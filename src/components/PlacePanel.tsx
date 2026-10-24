@@ -13,7 +13,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/compone
 import { Drawer, DrawerContent, DrawerDescription, DrawerTitle } from '@/components/ui/drawer';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { localePath } from '@/lib/i18n';
-import { useMapState } from '@/lib/map-store';
+import { useMapState, useSecondSide } from '@/lib/map-store';
 import { NEAR_YEARS, nearestPhoto, yearNumber, type Credit, type Photo, type Spot } from '@/lib/spots';
 import { cn } from '@/lib/utils';
 
@@ -23,8 +23,18 @@ export const PANEL_WIDTH = 480;
 function CreditLine({ c }: { c: Credit }) {
   const t = useMessages();
   return (
-    <>
-      {c.author} ·{' '}
+    <p
+      title={[c.author, c.licence, c.source].filter(Boolean).join(' · ')}
+      className="absolute bottom-2.5 left-2.5 max-w-[calc(100%-64px)] truncate rounded-full bg-black/60 px-2.5 py-1 text-[11px] leading-4 text-white/80 backdrop-blur [&_a]:underline [&_a]:decoration-white/40 [&_a]:underline-offset-2 [&_a:hover]:text-white"
+    >
+      {c.sourceUrl ? (
+        <a href={c.sourceUrl} target="_blank" rel="noopener" aria-label={`${c.author} (${c.source || t.spot.source})`}>
+          {c.author}
+        </a>
+      ) : (
+        c.author
+      )}
+      {' · '}
       {c.licenceUrl ? (
         <a href={c.licenceUrl} target="_blank" rel="noopener">
           {c.licence}
@@ -32,25 +42,31 @@ function CreditLine({ c }: { c: Credit }) {
       ) : (
         c.licence
       )}
-      {c.sourceUrl && (
-        <>
-          {' · '}
-          <a href={c.sourceUrl} target="_blank" rel="noopener">
-            {c.source || t.spot.source}
-          </a>
-        </>
-      )}
-    </>
+    </p>
   );
 }
 
-function SinglePhoto({ photo, alt, sizes, className }: { photo: Photo; alt: string; sizes: string; className?: string }) {
+const PANEL_FRAME = 4 / 3;
+
+function SinglePhoto({
+  photo,
+  alt,
+  sizes,
+  frame,
+  className,
+}: {
+  photo: Photo;
+  alt: string;
+  sizes: string;
+  frame?: number;
+  className?: string;
+}) {
   return (
     <div
       className={cn('relative overflow-hidden rounded-xl bg-neutral-900', className)}
-      style={{ aspectRatio: photo.ratio }}
+      style={{ aspectRatio: frame ?? photo.ratio }}
     >
-      <Image src={photo.src} alt={alt} fill sizes={sizes} priority className="object-cover" />
+      <Image src={photo.src} alt={alt} fill sizes={sizes} priority className={frame ? 'object-contain' : 'object-cover'} />
       <span className="photo-tag left-3">{photo.date}</span>
     </div>
   );
@@ -60,7 +76,8 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
   const locale = useLocale();
   const t = useMessages();
   const map = useMapState();
-  const mapYear = map.swipe ? map.swipe[0] : map.year;
+  const onSecondSide = useSecondSide().has(spot.id);
+  const mapYear = map.swipe ? map.swipe[onSecondSide ? 1 : 0] : map.year;
   const fromMap = nearestPhoto(spot, yearNumber(mapYear));
   const [picked, setPicked] = useState<Photo | null>(null);
   const [zoomed, setZoomed] = useState(false);
@@ -75,7 +92,7 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
 
   const photo = picked ?? fromMap;
   const index = spot.photos.indexOf(photo);
-  const gap = !picked && Math.abs(fromMap.year - yearNumber(mapYear)) > NEAR_YEARS;
+  const gap = Math.abs(fromMap.year - yearNumber(mapYear)) > NEAR_YEARS;
   const first = spot.photos[0];
   const last = spot.photos[spot.photos.length - 1];
 
@@ -123,7 +140,12 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
       </header>
 
       <div className="group/photo relative">
-        <SinglePhoto photo={photo} alt={`${spot.name}, ${photo.date}`} sizes="(max-width: 720px) 100vw, 460px" />
+        <SinglePhoto
+          photo={photo}
+          alt={`${spot.name}, ${photo.date}`}
+          sizes="(max-width: 720px) 100vw, 460px"
+          frame={PANEL_FRAME}
+        />
         {spot.photos.length > 1 &&
           ([
             [-1, ChevronLeft, t.spot.older, 'left-2'],
@@ -152,22 +174,23 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
         >
           <Maximize2 className="size-4" />
         </button>
+        <CreditLine c={photo.credit} />
       </div>
 
-      {gap && (
-        <p className="mt-2 text-xs text-muted-foreground">
-          {t.spot.gap(t.years[mapYear].label, fromMap.date)}
-        </p>
-      )}
-
-      <p className="credit mt-3 text-[13px] leading-snug text-muted-foreground">
-        <strong className="text-foreground tabular-nums">{photo.date}</strong>
-        {photo.caption && <> · {photo.caption}</>}
-        <br />
-        <span className="text-xs">
-          <CreditLine c={photo.credit} />
-        </span>
-      </p>
+      <div className="mt-3 grid text-[13px] leading-snug text-muted-foreground">
+        {spot.photos.map((p) => (
+          <p
+            key={p.src}
+            aria-hidden={p !== photo || undefined}
+            className={cn('col-start-1 row-start-1', p !== photo && 'invisible')}
+          >
+            {p.caption}
+            {gap && p === fromMap && (
+              <span className="mt-1 block text-xs">{t.spot.gap(t.years[mapYear].label, fromMap.date)}</span>
+            )}
+          </p>
+        ))}
+      </div>
 
       <div className="mt-4">
         <div className="mb-2 flex items-baseline justify-between gap-2">

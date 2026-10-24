@@ -55,7 +55,8 @@ npm run build        # static pages for / and every /spots/<id>
 - **Places** are pins with photos from different years. A pin shows a crop of the photo closest to the year on
   the map, and fades when the place has no photo within 12 years of it. Modern landmarks have square pins.
   Opening one slides in a panel next to the map (a bottom sheet on mobile) with the photo nearest to the map's
-  year (the left year in compare mode). The arrows and the strip of thumbnails go through every photo of the
+  year. In compare mode, both the pin and the panel use the year on the side of the divider the place is on, and
+  switch when the divider or the map moves the place across. The arrows and the strip of thumbnails go through every photo of the
   place. Esc closes the panel.
 - The buttons on the right, top to bottom: Share, map layers, my location, zoom in and zoom out (zoom is hidden
   on phones). The layers menu turns street names (City of Warsaw WMS labels) and places on and off; with

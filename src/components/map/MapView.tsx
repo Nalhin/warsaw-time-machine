@@ -14,15 +14,23 @@ const escapeHtml = (s: string) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(
 
 const ATTRIBUTION_PREFIX = '<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>';
 
+const iconCache = new Map<string, L.DivIcon>();
+
 function pinIcon(spot: Spot, year: number, active: boolean) {
   const photo = nearestPhoto(spot, year);
-  const classes = ['spot-pin', active && 'active', !hasPhotoNear(spot, year) && 'faded', spot.kind === 'modern' && 'modern'];
-  return L.divIcon({
+  const faded = !hasPhotoNear(spot, year);
+  const key = [spot.id, spot.name, photo.pin, active, faded].join('|');
+  const cached = iconCache.get(key);
+  if (cached) return cached;
+  const classes = ['spot-pin', active && 'active', faded && 'faded', spot.kind === 'modern' && 'modern'];
+  const icon = L.divIcon({
     className: classes.filter(Boolean).join(' '),
     html: `<span class="pin"><img src="${escapeHtml(photo.pin)}" alt="" draggable="false"></span><span class="pin-label">${escapeHtml(spot.name)}</span>`,
     iconSize: [44, 44],
     iconAnchor: [22, 22],
   });
+  iconCache.set(key, icon);
+  return icon;
 }
 
 function StreetLabels({ pane }: { pane: string }) {
@@ -105,7 +113,8 @@ export function MapView({
   onSpot,
   showLabels,
   showPins,
-  year,
+  years,
+  secondSide,
   myLocation,
   onMap,
 }: {
@@ -117,13 +126,15 @@ export function MapView({
   onSpot(id: string): void;
   showLabels: boolean;
   showPins: boolean;
-  year: number;
+  years: [number] | [number, number];
+  secondSide: ReadonlySet<string>;
   myLocation: L.LatLng | null;
   onMap(map: L.Map): void;
 }) {
+  const [first, second = first] = years;
   const icons = useMemo(
-    () => new Map(spots.map((s) => [s.id, pinIcon(s, year, s.id === activeSpot)])),
-    [spots, activeSpot, year],
+    () => new Map(spots.map((s) => [s.id, pinIcon(s, secondSide.has(s.id) ? second : first, s.id === activeSpot)])),
+    [spots, activeSpot, first, second, secondSide],
   );
 
   return (

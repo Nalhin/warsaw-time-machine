@@ -187,11 +187,6 @@ body,
   pointer-events: none;
 }
 
-.credit a {
-  color: var(--gold);
-  text-underline-offset: 2px;
-}
-
 .leaflet-container {
   --map-bg: #1a1b1e;
   --feather: 8px;

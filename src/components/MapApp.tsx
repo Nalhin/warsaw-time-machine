@@ -22,7 +22,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { localePath } from '@/lib/i18n';
 import { useTileLoading } from '@/lib/loading';
 import { WARSAW_BBOX } from '@/lib/site';
-import { publishMapState } from '@/lib/map-store';
+import { NO_SPOTS, publishMapState, publishSecondSide } from '@/lib/map-store';
 import { spotIdFromPath, yearNumber, type Spot } from '@/lib/spots';
 import { DEFAULT_STATE, START, mapStateToQuery, readCamera, readMapState, type MapCamera, type MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
@@ -39,6 +39,30 @@ const ShareDialog = dynamic(() => import('@/components/ShareDialog').then((m) =>
 });
 
 const HINT_KEY = 'wtm-dragged';
+
+function useSecondSidePins(map: L.Map | null, spots: Spot[], ratio: number, swipe: boolean, horizontal: boolean) {
+  const [ids, setIds] = useState(NO_SPOTS);
+  useEffect(() => {
+    if (!map || !swipe) return setIds(NO_SPOTS);
+    const update = () => {
+      const size = map.getSize();
+      const split = (horizontal ? size.y : size.x) * ratio;
+      const next = spots
+        .filter((s) => {
+          const p = map.latLngToContainerPoint([s.lat, s.lng]);
+          return (horizontal ? p.y : p.x) >= split;
+        })
+        .map((s) => s.id);
+      setIds((prev) => (prev.size === next.length && next.every((id) => prev.has(id)) ? prev : new Set(next)));
+    };
+    update();
+    map.on('move zoomend viewreset resize', update);
+    return () => {
+      map.off('move zoomend viewreset resize', update);
+    };
+  }, [map, spots, ratio, swipe, horizontal]);
+  return ids;
+}
 const PLAY_HOLD_MS = 3500;
 
 export function MapApp({ spots }: { spots: Spot[] }) {
@@ -81,6 +105,9 @@ export function MapApp({ spots }: { spots: Spot[] }) {
   }, []);
 
   useEffect(() => publishMapState(state), [state]);
+
+  const secondSide = useSecondSidePins(map, spots, ratio, !!state.swipe, state.horizontal);
+  useEffect(() => publishSecondSide(secondSide), [secondSide]);
 
   useEffect(() => {
     if (!ready) return;
@@ -206,7 +233,8 @@ export function MapApp({ spots }: { spots: Spot[] }) {
           onSpot={openSpot}
           showLabels={labels}
           showPins={pins}
-          year={yearNumber(state.swipe ? state.swipe[0] : state.year)}
+          years={state.swipe ? [yearNumber(state.swipe[0]), yearNumber(state.swipe[1])] : [yearNumber(state.year)]}
+          secondSide={secondSide}
           myLocation={me}
           onMap={setMap}
         />

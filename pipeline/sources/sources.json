@@ -3008,5 +3008,75 @@
         }
       }
     ]
+  },
+  {
+    "id": "powazki",
+    "name": "Powązki Cemetery",
+    "lat": 52.25322,
+    "lng": 20.97781,
+    "kind": "historic",
+    "description": "Powązki Cemetery (Stare Powązki), founded in 1790, is one of Warsaw's oldest cemeteries and the resting place of many of Poland's best-known writers, artists, scientists and statesmen. The Church of St. Charles Borromeo stands at its gate on Powązkowska Street. It was rebuilt and enlarged into its present form at the end of the 19th century.",
+    "pl": {
+      "name": "Cmentarz Powązkowski",
+      "description": "Cmentarz Powązkowski (Stare Powązki), założony w 1790 roku, to jeden z najstarszych cmentarzy Warszawy i miejsce spoczynku wielu najbardziej znanych polskich pisarzy, artystów, uczonych i polityków. Przy jego bramie, od ulicy Powązkowskiej, stoi kościół św. Karola Boromeusza, przebudowany i powiększony do obecnej postaci pod koniec XIX wieku."
+    },
+    "photos": [
+      {
+        "file": "File:Kościół na Powązkach - Fot. A. Karoli (62825).jpg",
+        "year": 1898,
+        "date": "1898",
+        "approx": false,
+        "author": "Aleksander Karoli",
+        "licence": "Public domain (PD-old-auto)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-auto",
+        "page": "https://commons.wikimedia.org/wiki/File:Kościół_na_Powązkach_-_Fot._A._Karoli_(62825).jpg",
+        "caption": "The Church of St. Charles Borromeo at the cemetery gate, published in Tygodnik Illustrowany in 1898",
+        "pl": {
+          "caption": "Kościół św. Karola Boromeusza przy bramie cmentarza, opublikowany w „Tygodniku Illustrowanym” w 1898 roku"
+        }
+      },
+      {
+        "file": "File:Kościół św. Karola Boromeusza w Warszawie przed 1939.jpg",
+        "year": 1930,
+        "date": "before 1939",
+        "approx": true,
+        "author": "Unknown",
+        "licence": "Public domain (PD-Polish)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+        "page": "https://commons.wikimedia.org/wiki/File:Kościół_św._Karola_Boromeusza_w_Warszawie_przed_1939.jpg",
+        "caption": "The church from Powązkowska Street in winter, before 1939",
+        "pl": {
+          "caption": "Kościół od strony ulicy Powązkowskiej zimą, przed 1939 rokiem"
+        }
+      },
+      {
+        "file": "File:Kosciol sw Boromeusza w Warszawie.jpg",
+        "year": 2007,
+        "date": "2007-04-21",
+        "approx": false,
+        "author": "masti",
+        "licence": "CC BY 2.5",
+        "licenceUrl": "https://creativecommons.org/licenses/by/2.5",
+        "page": "https://commons.wikimedia.org/wiki/File:Kosciol_sw_Boromeusza_w_Warszawie.jpg",
+        "caption": "The church and the cemetery wall in 2007",
+        "pl": {
+          "caption": "Kościół i mur cmentarza w 2007 roku"
+        }
+      },
+      {
+        "file": "File:Kościół pw. św. Karola Boromeusza, Warsaw.jpg",
+        "year": 2022,
+        "date": "2022-05-08",
+        "approx": false,
+        "author": "Wistula",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "page": "https://commons.wikimedia.org/wiki/File:Kościół_pw._św._Karola_Boromeusza,_Warsaw.jpg",
+        "caption": "The church and the brick cemetery wall along Powązkowska Street, 2022",
+        "pl": {
+          "caption": "Kościół i ceglany mur cmentarza wzdłuż ulicy Powązkowskiej, 2022"
+        }
+      }
+    ]
   }
 ]
