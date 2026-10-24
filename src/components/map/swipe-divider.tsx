@@ -6,7 +6,7 @@ import { useMessages } from '@/components/locale-provider';
 import { cn } from '@/lib/utils';
 
 const YEAR_TAG_CLASS =
-  'absolute top-[calc(64px+env(safe-area-inset-top))] rounded-full border border-border bg-[rgb(17_18_20/0.8)] px-2.5 py-0.5 text-[13px] font-semibold whitespace-nowrap tabular-nums';
+  'absolute top-[calc(108px+env(safe-area-inset-top))] rounded-full border border-border bg-[rgb(17_18_20/0.8)] px-2.5 py-0.5 text-[13px] font-semibold whitespace-nowrap tabular-nums';
 
 function clipRect(x0: number, y0: number, x1: number, y1: number) {
   return `polygon(${x0}px ${y0}px, ${x1}px ${y0}px, ${x1}px ${y1}px, ${x0}px ${y1}px)`;
@@ -156,8 +156,8 @@ export function SwipeDivider({
         </>
       ) : (
         <>
-          <span className={cn(YEAR_TAG_CLASS, 'right-[calc(100%-var(--pos)+14px)] xl:top-[calc(116px+env(safe-area-inset-top))]')}>{leftLabel}</span>
-          <span className={cn(YEAR_TAG_CLASS, 'left-[calc(var(--pos)+14px)] xl:top-[calc(116px+env(safe-area-inset-top))]')}>{rightLabel}</span>
+          <span className={cn(YEAR_TAG_CLASS, 'right-[calc(100%-var(--pos)+14px)] xl:top-[calc(160px+env(safe-area-inset-top))]')}>{leftLabel}</span>
+          <span className={cn(YEAR_TAG_CLASS, 'left-[calc(var(--pos)+14px)] xl:top-[calc(160px+env(safe-area-inset-top))]')}>{rightLabel}</span>
         </>
       )}
     </div>
