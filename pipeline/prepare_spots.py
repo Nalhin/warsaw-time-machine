@@ -37,7 +37,7 @@ WEB_SIDE = 1600
 PIN_SIDE = 96
 COMMONS_API = "https://commons.wikimedia.org/w/api.php"
 Image.MAX_IMAGE_PIXELS = 400_000_000
-USER_AGENT = "warsaw-time-machine/1.0 (https://github.com/Nalhin/warsaw-time-machine)"
+USER_AGENT = "warsaw-timelapse/1.0 (https://github.com/Nalhin/warsaw-timelapse)"
 
 
 def fetch(url: str, retries: int = 4) -> bytes:

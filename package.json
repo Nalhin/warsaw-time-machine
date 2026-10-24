@@ -1,7 +1,7 @@
 {
-  "name": "warsaw-time-machine",
+  "name": "warsaw-timelapse",
   "version": "1.0.0",
-  "description": "Warsaw Time Machine: aerial photos of Warsaw from 1935 to today, with pre-war street views",
+  "description": "Warsaw Timelapse: aerial photos of Warsaw from 1935 to today, with pre-war street views",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nalhin/warsaw-time-machine.git"
+    "url": "git+https://github.com/Nalhin/warsaw-timelapse.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Nalhin/warsaw-time-machine/issues"
+    "url": "https://github.com/Nalhin/warsaw-timelapse/issues"
   },
-  "homepage": "https://github.com/Nalhin/warsaw-time-machine#readme",
+  "homepage": "https://github.com/Nalhin/warsaw-timelapse#readme",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
     "@types/leaflet": "^1.9.22",

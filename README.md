@@ -1,4 +1,4 @@
-# Warsaw Time Machine
+# Warsaw Timelapse
 
 A map of Warsaw that compares the city's aerial photos from 1935 (pre-war), 1945 (after the destruction),
 the rebuilding and every later survey the city publishes (1944 to 2024) and today. Pins open places with street-level photographs from
@@ -13,7 +13,7 @@ it, and today side by side shows both the scale of the loss and the scale of the
 ## Contributing
 
 Contributions are open and welcome, especially new places with a pre-war photo and a matching photo from
-today. The code is on GitHub: **[github.com/Nalhin/warsaw-time-machine](https://github.com/Nalhin/warsaw-time-machine)**.
+today. The code is on GitHub: **[github.com/Nalhin/warsaw-timelapse](https://github.com/Nalhin/warsaw-timelapse)**.
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a place and the rules for photos.
 
 ## Author

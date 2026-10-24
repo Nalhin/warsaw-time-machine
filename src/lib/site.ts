@@ -4,7 +4,7 @@ export const SITE_URL = (
   'http://localhost:3000'
 ).replace(/\/$/, '');
 
-export const SITE_NAME = 'Warsaw Time Machine';
+export const SITE_NAME = 'Warsaw Timelapse';
 
 export const WARSAW_BBOX = { south: 52.07, west: 20.82, north: 52.39, east: 21.29 };
 
@@ -13,7 +13,7 @@ export function isInWarsaw(lat: number, lng: number) {
   return lat >= b.south && lat <= b.north && lng >= b.west && lng <= b.east;
 }
 
-export const GITHUB_URL = 'https://github.com/Nalhin/warsaw-time-machine';
+export const GITHUB_URL = 'https://github.com/Nalhin/warsaw-timelapse';
 
 export const AUTHOR = {
   name: 'Krzysztof Olipra',

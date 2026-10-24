@@ -1,7 +1,7 @@
 [project]
 name = "wtm-pipeline"
 version = "0.1.0"
-description = "Photo pipeline for Warsaw Time Machine: Commons photos, web copies, link previews, photo alignment"
+description = "Photo pipeline for Warsaw Timelapse: Commons photos, web copies, link previews, photo alignment"
 requires-python = ">=3.11,<3.14"
 dependencies = [
     "torch>=2.4",

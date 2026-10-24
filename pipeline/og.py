@@ -25,7 +25,7 @@ FONT_URLS = {
 }
 
 WMS = "https://mapa.um.warszawa.pl/mapviewer/wms"
-UA = {"User-Agent": "warsaw-time-machine/0.1 (+og.py)"}
+UA = {"User-Agent": "warsaw-timelapse/0.1 (+og.py)"}
 
 
 def font(name: str, size: int, weight: int) -> ImageFont.FreeTypeFont:
@@ -114,7 +114,7 @@ def spot_card(old: Path, today: Path, title: str, out: Path, old_label: str = "P
     line_h = round(big.size * 1.08)
     for i, line in enumerate(reversed(lines)):
         d.text((40, H - 118 - i * line_h), line, font=big, fill=(255, 255, 255), anchor="ls")
-    d.text((42, H - 62), "Warsaw Time Machine", font=small, fill=(226, 183, 100), anchor="ls")
+    d.text((42, H - 62), "Warsaw Timelapse", font=small, fill=(226, 183, 100), anchor="ls")
     out.parent.mkdir(parents=True, exist_ok=True)
     img.save(out, "JPEG", quality=86, optimize=True, progressive=True)
 
@@ -156,7 +156,7 @@ def default_card(out: Path) -> None:
         pill(d, (i * strip + 24, 24), label, tag, (17, 18, 20), (243, 239, 231))
     big = font("Fraunces.ttf", 74, 600)
     small = font("Inter.ttf", 26, 500)
-    d.text((40, H - 112), "Warsaw Time Machine", font=big, fill=(255, 255, 255), anchor="ls")
+    d.text((40, H - 112), "Warsaw Timelapse", font=big, fill=(255, 255, 255), anchor="ls")
     d.text((42, H - 58), "Warsaw in 1935, after the destruction in 1945, and today", font=small, fill=(226, 183, 100), anchor="ls")
     out.parent.mkdir(parents=True, exist_ok=True)
     card.filter(ImageFilter.UnsharpMask(1.2, 60, 2)).save(out, "JPEG", quality=86, optimize=True, progressive=True)
