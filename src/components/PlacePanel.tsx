@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { useLocale, useMessages } from '@/components/LocaleProvider';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Drawer, DrawerContent, DrawerDescription, DrawerTitle } from '@/components/ui/drawer';
@@ -97,14 +96,7 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
   return (
     <div className="px-4 pt-1 pb-[calc(24px+env(safe-area-inset-bottom))] sm:px-5 sm:pt-5">
       <header className="mb-4 flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          {spot.kind === 'modern' && (
-            <Badge variant="outline" className="mb-1 h-4.5 border-gold/40 px-1.5 text-[10px] tracking-normal text-gold normal-case">
-              {t.spot.modern}
-            </Badge>
-          )}
-          <h1 className="font-heading text-2xl leading-tight font-semibold tracking-tight sm:text-[28px]">{spot.name}</h1>
-        </div>
+        <h1 className="min-w-0 font-heading text-2xl leading-tight font-semibold tracking-tight sm:text-[28px]">{spot.name}</h1>
         <Button variant="outline" size="icon" className="shrink-0 rounded-[3px]" onClick={onClose} aria-label={t.spot.close}>
           <X />
         </Button>

@@ -1,4 +1,4 @@
-import { fetchLabelImage, fetchYearImage, whiteToAlpha, type BBox, type ImageFormat } from './wms';
+import { fetchLabelImage, fetchYearImage, whiteToAlpha, type BBox } from './wms';
 import { featherPx, yearDef, type YearKey } from './years';
 
 export type Layout = 'side' | 'stack' | 'split';
@@ -62,7 +62,7 @@ function canvas(width: number, height: number) {
   return c;
 }
 
-export function fit(area: SnapshotArea, width: number, height: number): BBox {
+function fit(area: SnapshotArea, width: number, height: number): BBox {
   const aspect = width / height;
   const w = area.width / area.height > aspect ? area.height * aspect : area.width;
   const h = w / aspect;
@@ -97,23 +97,14 @@ function drawCoverageMask(ctx: CanvasRenderingContext2D, year: YearKey, bbox: BB
 
 const panelCache = new Map<string, Promise<HTMLCanvasElement>>();
 
-export function renderPanel(
-  year: YearKey,
-  bbox: BBox,
-  width: number,
-  height: number,
-  labels: boolean,
-  feather: number,
-  format: ImageFormat = 'png',
-) {
-  if (yearDef(year).whiteIsBlank) format = 'png';
-  const key = [year, ...bbox.map((v) => v.toFixed(1)), width, height, labels, feather.toFixed(1), format].join('|');
+function renderPanel(year: YearKey, bbox: BBox, width: number, height: number, labels: boolean, feather: number) {
+  const key = [year, ...bbox.map((v) => v.toFixed(1)), width, height, labels, feather.toFixed(1)].join('|');
   const cached = panelCache.get(key);
   if (cached) return cached;
 
   const job = (async () => {
     const [photo, names] = await Promise.all([
-      fetchYearImage(year, bbox, width, height, format),
+      fetchYearImage(year, bbox, width, height),
       labels ? fetchLabelImage(bbox, width, height).catch(() => null) : null,
     ]);
     const c = canvas(width, height);
@@ -138,7 +129,7 @@ export function renderPanel(
   return job;
 }
 
-export function fontFamily(variable: string, fallback: string) {
+function fontFamily(variable: string, fallback: string) {
   const family = getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
   return family ? `${family}, ${fallback}` : fallback;
 }
@@ -146,19 +137,21 @@ export function fontFamily(variable: string, fallback: string) {
 function pill(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, s: number, align: 'left' | 'right') {
   const padX = 16 * s;
   const h = 46 * s;
-  const w = ctx.measureText(text).width + padX * 2;
+  ctx.textBaseline = 'alphabetic';
+  ctx.textAlign = 'left';
+  const ink = ctx.measureText(text);
+  const cap = ctx.measureText('H').actualBoundingBoxAscent;
+  const w = ink.actualBoundingBoxLeft + ink.actualBoundingBoxRight + padX * 2;
   const left = align === 'left' ? x : x - w;
   ctx.fillStyle = PILL_BG;
   ctx.beginPath();
   ctx.roundRect(left, y, w, h, h / 2);
   ctx.fill();
   ctx.fillStyle = PILL_FG;
-  ctx.textBaseline = 'middle';
-  ctx.textAlign = 'left';
-  ctx.fillText(text, left + padX, y + h / 2 + s);
+  ctx.fillText(text, left + padX + ink.actualBoundingBoxLeft, y + (h + cap) / 2);
 }
 
-export function drawHandle(ctx: CanvasRenderingContext2D, cx: number, cy: number, s: number, horizontal: boolean) {
+function drawHandle(ctx: CanvasRenderingContext2D, cx: number, cy: number, s: number, horizontal: boolean) {
   ctx.save();
   ctx.translate(cx, cy);
   if (horizontal) ctx.rotate(Math.PI / 2);

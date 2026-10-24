@@ -8,8 +8,8 @@ import { toast } from 'sonner';
 import { useMessages } from '@/components/LocaleProvider';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Switch } from '@/components/ui/switch';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { VideoExport } from '@/components/VideoExport';
 import { Choice, Field, YearPair } from '@/components/ShareFields';
 import { SITE_NAME } from '@/lib/site';
 import { FORMATS, LAYOUTS, formatSize, renderSnapshot, toBlob, type Format, type Layout, type SnapshotArea } from '@/lib/snapshot';
@@ -17,7 +17,7 @@ import { mapStateToQuery, type MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
 import type { YearKey } from '@/lib/years';
 
-type Mode = 'link' | 'image' | 'video';
+type Mode = 'link' | 'image';
 
 interface Inset {
   right: number;
@@ -223,26 +223,8 @@ export function ShareDialog({
     }
   };
 
-  const video = mode === 'video';
-  const heading = {
-    link: [m.title, m.description],
-    image: [m.imageTitle, m.imageDescription],
-    video: [m.videoTitle, m.videoDescription],
-  }[mode];
+  const heading = mode === 'link' ? [m.title, m.description] : [m.imageTitle, m.imageDescription];
   const swapYears = () => setYears(([a, b]) => [b, a]);
-
-  const labelsToggle = (
-    <Button
-      variant="outline"
-      size="sm"
-      className={cn('w-fit', withLabels && 'bg-foreground! text-background!')}
-      onClick={() => setWithLabels((v) => !v)}
-      aria-pressed={withLabels}
-    >
-      <Type />
-      {t.map.streetNames}
-    </Button>
-  );
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -264,11 +246,11 @@ export function ShareDialog({
           <DialogDescription>{heading[1]}</DialogDescription>
         </DialogHeader>
 
-        <div className="sm:max-w-80">
+        <div className="sm:max-w-60">
           <Choice<Mode>
             value={mode}
             onChange={setMode}
-            options={(['link', 'image', 'video'] as const).map((key) => ({ key, label: m.modes[key] }))}
+            options={(['link', 'image'] as const).map((key) => ({ key, label: m.modes[key] }))}
             label={m.title}
           />
         </div>
@@ -297,90 +279,88 @@ export function ShareDialog({
           </div>
         ) : (
           <div className="grid gap-5 sm:grid-cols-[minmax(0,1fr)_280px]">
-            {video && snap ? (
-              <VideoExport area={snap.area} labels={withLabels} years={years} onSide={setSide} onSwap={swapYears}>
-                {labelsToggle}
-              </VideoExport>
-            ) : (
-              <>
-                <div className="grid content-start gap-3">
-                  <div
-                    className="relative mx-auto w-full overflow-hidden rounded-lg bg-[#1a1b1e] ring-1 ring-foreground/10"
-                    style={{ aspectRatio: `${preview.width} / ${preview.height}`, maxHeight: '58dvh', maxWidth: `calc(58dvh * ${preview.width / preview.height})` }}
-                  >
-                    {result && (
-                      <img
-                        src={result.url}
-                        alt={m.preview}
-                        className={cn('size-full object-contain transition-opacity', busy && 'opacity-50')}
-                      />
-                    )}
-                    {busy && (
-                      <div className="absolute inset-0 grid place-items-center">
-                        <span className="glass-strong flex items-center gap-2 rounded-full px-3 py-1.5 text-xs">
-                          <Loader2 className="size-3.5 animate-spin text-gold" />
-                          {m.rendering}
-                        </span>
-                      </div>
-                    )}
-                    {error && !busy && (
-                      <div className="absolute inset-0 grid place-items-center p-4 text-center">
-                        <div className="grid justify-items-center gap-2 text-sm text-muted-foreground">
-                          <ImageIcon className="size-5" />
-                          {m.failed}
-                          <Button size="sm" variant="outline" onClick={() => setAttempt((n) => n + 1)}>
-                            {m.retry}
-                          </Button>
-                        </div>
-                      </div>
-                    )}
+            <div className="grid content-start gap-3">
+              <div
+                className="relative mx-auto w-full overflow-hidden rounded-lg bg-[#1a1b1e] ring-1 ring-foreground/10"
+                style={{ aspectRatio: `${preview.width} / ${preview.height}`, maxHeight: '58dvh', maxWidth: `calc(58dvh * ${preview.width / preview.height})` }}
+              >
+                {result && (
+                  <img
+                    src={result.url}
+                    alt={m.preview}
+                    className={cn('size-full object-contain transition-opacity', busy && 'opacity-50')}
+                  />
+                )}
+                {busy && (
+                  <div className="absolute inset-0 grid place-items-center">
+                    <span className="glass-strong flex items-center gap-2 rounded-full px-3 py-1.5 text-xs">
+                      <Loader2 className="size-3.5 animate-spin text-gold" />
+                      {m.rendering}
+                    </span>
                   </div>
-
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {shareFiles && (
-                      <Button onClick={shareImage} disabled={!ready}>
-                        <Share2 />
-                        {m.shareImage}
+                )}
+                {error && !busy && (
+                  <div className="absolute inset-0 grid place-items-center p-4 text-center">
+                    <div className="grid justify-items-center gap-2 text-sm text-muted-foreground">
+                      <ImageIcon className="size-5" />
+                      {m.failed}
+                      <Button size="sm" variant="outline" onClick={() => setAttempt((n) => n + 1)}>
+                        {m.retry}
                       </Button>
-                    )}
-                    <Button variant={shareFiles ? 'outline' : 'default'} onClick={download} disabled={!ready}>
-                      <Download />
-                      {m.download}
-                    </Button>
-                    {canCopyImage && !shareFiles && (
-                      <Button variant="outline" onClick={copyImage} disabled={!ready}>
-                        <Copy />
-                        {m.copyImage}
-                      </Button>
-                    )}
+                    </div>
                   </div>
-                </div>
+                )}
+              </div>
 
-                <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-4">
-                  <YearPair years={years} sides={sides} onSide={setSide} onSwap={swapYears} />
+              <div className="flex flex-wrap justify-center gap-2">
+                {shareFiles && (
+                  <Button onClick={shareImage} disabled={!ready}>
+                    <Share2 />
+                    {m.shareImage}
+                  </Button>
+                )}
+                <Button variant={shareFiles ? 'outline' : 'default'} onClick={download} disabled={!ready}>
+                  <Download />
+                  {m.download}
+                </Button>
+                {canCopyImage && !shareFiles && (
+                  <Button variant="outline" onClick={copyImage} disabled={!ready}>
+                    <Copy />
+                    {m.copyImage}
+                  </Button>
+                )}
+              </div>
+            </div>
 
-                  <Field label={m.layout}>
-                    <Choice<Layout>
-                      value={layout}
-                      onChange={setLayout}
-                      options={LAYOUTS.map((key) => ({ key, label: m.layouts[key] }))}
-                      label={m.layout}
-                    />
-                  </Field>
+            <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-4">
+              <YearPair years={years} sides={sides} onSide={setSide} onSwap={swapYears} />
 
-                  <Field label={m.size}>
-                    <Choice<Format>
-                      value={format}
-                      onChange={setFormat}
-                      options={FORMATS.map(({ key }) => ({ key, ...m.formats[key] }))}
-                      label={m.size}
-                    />
-                  </Field>
+              <Field label={m.layout}>
+                <Choice<Layout>
+                  value={layout}
+                  onChange={setLayout}
+                  options={LAYOUTS.map((key) => ({ key, label: m.layouts[key] }))}
+                  label={m.layout}
+                />
+              </Field>
 
-                  {labelsToggle}
-                </div>
-              </>
-            )}
+              <Field label={m.size}>
+                <Choice<Format>
+                  value={format}
+                  onChange={setFormat}
+                  options={FORMATS.map(({ key }) => ({ key, ...m.formats[key] }))}
+                  label={m.size}
+                />
+              </Field>
+
+              <label className="flex cursor-pointer items-center justify-between gap-3 text-sm">
+                <span className="flex items-center gap-2">
+                  <Type className="size-4 text-muted-foreground" />
+                  {m.showStreetNames}
+                </span>
+                <Switch checked={withLabels} onCheckedChange={setWithLabels} />
+              </label>
+            </div>
           </div>
         )}
       </DialogContent>

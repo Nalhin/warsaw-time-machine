@@ -99,17 +99,15 @@ export function createLabelLayer(pane: string): L.TileLayer.WMS {
 
 export type BBox = [minX: number, minY: number, maxX: number, maxY: number];
 
-export type ImageFormat = 'png' | 'jpeg';
-
-function getMapUrl(base: string, layers: string, bbox: BBox, width: number, height: number, format: ImageFormat = 'png') {
+function getMapUrl(base: string, layers: string, bbox: BBox, width: number, height: number) {
   const q = new URLSearchParams({
     SERVICE: 'WMS',
     REQUEST: 'GetMap',
     VERSION: '1.1.1',
     LAYERS: layers,
     STYLES: '',
-    FORMAT: `image/${format}`,
-    TRANSPARENT: String(format === 'png'),
+    FORMAT: 'image/png',
+    TRANSPARENT: 'true',
     SRS: 'EPSG:3857',
     BBOX: bbox.map((v) => v.toFixed(2)).join(','),
     WIDTH: String(width),
@@ -129,17 +127,17 @@ function loadImage(src: string): Promise<HTMLImageElement> {
   });
 }
 
-export async function fetchYearImage(key: YearKey, bbox: BBox, width: number, height: number, format: ImageFormat = 'png') {
+export async function fetchYearImage(key: YearKey, bbox: BBox, width: number, height: number) {
   const def = yearDef(key);
   if (!primaryDead || !def.fallbackLayer) {
     try {
-      return await loadImage(getMapUrl(PRIMARY_URL, def.layer, bbox, width, height, format));
+      return await loadImage(getMapUrl(PRIMARY_URL, def.layer, bbox, width, height));
     } catch {
       if (!def.fallbackLayer) throw new Error(`[wms] ${def.layer}: GetMap failed`);
       console.warn(`[wms] ${def.layer}: GetMap failed, trying ${FALLBACK_URL}`);
     }
   }
-  return loadImage(getMapUrl(FALLBACK_URL, def.fallbackLayer, bbox, width, height, format));
+  return loadImage(getMapUrl(FALLBACK_URL, def.fallbackLayer, bbox, width, height));
 }
 
 export function fetchLabelImage(bbox: BBox, width: number, height: number) {

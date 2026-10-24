@@ -104,15 +104,3 @@ export function parseYear(v: string | null | undefined): YearKey | null {
   if (s === 'today' || s === 'dzis' || s === 'dziś' || s === '2025' || s === 'now') return 'today';
   return (YEAR_KEYS as readonly string[]).includes(s) ? (s as YearKey) : null;
 }
-
-export function covers(key: YearKey, lat: number, lng: number) {
-  let inside = false;
-  for (const ring of yearDef(key).outline) {
-    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
-      const [ai, bi] = ring[i];
-      const [aj, bj] = ring[j];
-      if (bi > lng !== bj > lng && lat < ((aj - ai) * (lng - bi)) / (bj - bi) + ai) inside = !inside;
-    }
-  }
-  return inside;
-}
