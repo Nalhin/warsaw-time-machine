@@ -281,7 +281,6 @@ export function MapApp({ spots }: { spots: Spot[] }) {
             ratio={ratio}
             labels={labels}
             inset={spot ? (mobile ? { right: 0, bottom: innerHeight * DRAWER_PEEK } : { right: PANEL_WIDTH + 24, bottom: 0 }) : { right: 0, bottom: 0 }}
-            spotName={spot?.name ?? null}
           />
         )}
       </div>

@@ -1,4 +1,4 @@
-import { fetchLabelImage, fetchYearImage, whiteToAlpha, type BBox } from './wms';
+import { fetchLabelImage, fetchYearImage, whiteToAlpha, type BBox, type ImageFormat } from './wms';
 import { featherPx, yearDef, type YearKey } from './years';
 
 export type Layout = 'side' | 'stack' | 'split';
@@ -32,7 +32,6 @@ export interface SnapshotOptions {
   divider: number;
   horizontal: boolean;
   labels: boolean;
-  title: string;
   host: string;
   yearLabels: [string, string];
   credit: string;
@@ -63,7 +62,7 @@ function canvas(width: number, height: number) {
   return c;
 }
 
-function fit(area: SnapshotArea, width: number, height: number): BBox {
+export function fit(area: SnapshotArea, width: number, height: number): BBox {
   const aspect = width / height;
   const w = area.width / area.height > aspect ? area.height * aspect : area.width;
   const h = w / aspect;
@@ -98,14 +97,23 @@ function drawCoverageMask(ctx: CanvasRenderingContext2D, year: YearKey, bbox: BB
 
 const panelCache = new Map<string, Promise<HTMLCanvasElement>>();
 
-function renderPanel(year: YearKey, bbox: BBox, width: number, height: number, labels: boolean, feather: number) {
-  const key = [year, ...bbox.map((v) => v.toFixed(1)), width, height, labels, feather.toFixed(1)].join('|');
+export function renderPanel(
+  year: YearKey,
+  bbox: BBox,
+  width: number,
+  height: number,
+  labels: boolean,
+  feather: number,
+  format: ImageFormat = 'png',
+) {
+  if (yearDef(year).whiteIsBlank) format = 'png';
+  const key = [year, ...bbox.map((v) => v.toFixed(1)), width, height, labels, feather.toFixed(1), format].join('|');
   const cached = panelCache.get(key);
   if (cached) return cached;
 
   const job = (async () => {
     const [photo, names] = await Promise.all([
-      fetchYearImage(year, bbox, width, height),
+      fetchYearImage(year, bbox, width, height, format),
       labels ? fetchLabelImage(bbox, width, height).catch(() => null) : null,
     ]);
     const c = canvas(width, height);
@@ -130,7 +138,7 @@ function renderPanel(year: YearKey, bbox: BBox, width: number, height: number, l
   return job;
 }
 
-function fontFamily(variable: string, fallback: string) {
+export function fontFamily(variable: string, fallback: string) {
   const family = getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
   return family ? `${family}, ${fallback}` : fallback;
 }
@@ -150,17 +158,7 @@ function pill(ctx: CanvasRenderingContext2D, text: string, x: number, y: number,
   ctx.fillText(text, left + padX, y + h / 2 + s);
 }
 
-function wrap(ctx: CanvasRenderingContext2D, text: string, maxWidth: number) {
-  const lines = [''];
-  for (const word of text.split(/\s+/).filter(Boolean)) {
-    const trial = `${lines[lines.length - 1]} ${word}`.trim();
-    if (ctx.measureText(trial).width <= maxWidth || !lines[lines.length - 1]) lines[lines.length - 1] = trial;
-    else lines.push(word);
-  }
-  return lines;
-}
-
-function drawHandle(ctx: CanvasRenderingContext2D, cx: number, cy: number, s: number, horizontal: boolean) {
+export function drawHandle(ctx: CanvasRenderingContext2D, cx: number, cy: number, s: number, horizontal: boolean) {
   ctx.save();
   ctx.translate(cx, cy);
   if (horizontal) ctx.rotate(Math.PI / 2);
@@ -187,10 +185,8 @@ function drawHandle(ctx: CanvasRenderingContext2D, cx: number, cy: number, s: nu
 export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElement> {
   const { width: W, height: H } = formatSize(o.format, o.area);
   const s = Math.min(W, H) / 1080;
-  const heading = fontFamily('--font-fraunces', 'Georgia, serif');
   const sans = fontFamily('--font-geist', 'system-ui, sans-serif');
   await Promise.all([
-    document.fonts.load(`600 64px ${heading}`),
     document.fonts.load(`600 24px ${sans}`),
     document.fonts.load(`500 24px ${sans}`),
   ]).catch(() => undefined);
@@ -241,7 +237,7 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
     panels.forEach((p, i) => ctx.drawImage(p, rects[i][0], rects[i][1]));
   }
 
-  const shadeTop = H * (o.title.trim() ? 0.6 : 0.72);
+  const shadeTop = H * 0.72;
   const shade = ctx.createLinearGradient(0, shadeTop, 0, H);
   shade.addColorStop(0, 'rgba(10, 10, 12, 0)');
   shade.addColorStop(1, 'rgba(10, 10, 12, 0.88)');
@@ -274,7 +270,7 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
   }
 
   const pad = 44 * s;
-  let baseline = H - pad;
+  const baseline = H - pad;
   ctx.textBaseline = 'alphabetic';
 
   ctx.font = `400 ${17 * s}px ${sans}`;
@@ -294,28 +290,6 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
   ctx.font = `600 ${26 * s}px ${sans}`;
   ctx.fillStyle = '#fff';
   ctx.fillText(o.host, pad, baseline);
-
-  const title = o.title.trim();
-  if (title) {
-    baseline -= 26 * s + 24 * s;
-    const maxWidth = W - pad * 2;
-    let size = 68 * s;
-    let lines: string[] = [];
-    for (; size >= 44 * s; size -= 4 * s) {
-      ctx.font = `600 ${size}px ${heading}`;
-      lines = wrap(ctx, title, maxWidth);
-      if (lines.length <= 2 && lines.every((l) => ctx.measureText(l).width <= maxWidth)) break;
-    }
-    lines = lines.slice(0, 2);
-    ctx.fillStyle = '#fff';
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
-    ctx.shadowBlur = 18 * s;
-    lines
-      .slice()
-      .reverse()
-      .forEach((l, i) => ctx.fillText(l, pad, baseline - i * size * 1.08));
-    ctx.shadowBlur = 0;
-  }
 
   return out;
 }
