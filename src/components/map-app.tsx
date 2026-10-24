@@ -26,6 +26,8 @@ import { spotIdFromPath, yearNumber, type Spot } from '@/lib/spots';
 import {
   DEFAULT_STATE,
   DEFAULT_SWIPE,
+  PLAY_FADE_RATIO,
+  PLAY_HOLD_MS,
   START,
   mapStateToQuery,
   readCamera,
@@ -77,7 +79,6 @@ function useSecondSidePins(map: L.Map | null, spots: Spot[], ratio: number, isSw
   return ids;
 }
 
-const PLAY_HOLD_MS = 2000;
 const STEP_FADE_MS = 450;
 const PRELOAD_YEARS = 3;
 
@@ -164,6 +165,7 @@ export function MapApp({ spots }: MapAppProps) {
       setIsPlaying(false);
       setState((s) => {
         if (mode === 'compare') return { ...s, mode, swipe: [s.year === 'today' ? DEFAULT_SWIPE[0] : s.year, 'today'] };
+        if (mode === 'timelapse') return { ...s, mode, year: YEAR_KEYS[0] };
         return { ...s, mode, year: s.mode === 'compare' ? s.swipe[1] : s.year };
       });
     },
@@ -227,7 +229,7 @@ export function MapApp({ spots }: MapAppProps) {
   const holdMs = PLAY_HOLD_MS / speed;
   const preloadYears =
     state.mode === 'timelapse' ? YEAR_KEYS.slice(YEAR_KEYS.indexOf(state.year) + 1).slice(0, PRELOAD_YEARS) : [];
-  const fadeMs = isPlaying ? Math.round(holdMs * 0.4) : STEP_FADE_MS;
+  const fadeMs = isPlaying ? Math.round(holdMs * PLAY_FADE_RATIO) : STEP_FADE_MS;
 
   useEffect(() => {
     if (!isPlaying || isBusy) return;
@@ -304,6 +306,7 @@ export function MapApp({ spots }: MapAppProps) {
             map={map}
             state={state}
             ratio={ratio}
+            speed={speed}
             showLabels={showLabels}
             inset={spot ? panelInset(isMobile) : { right: 0, bottom: 0 }}
           />

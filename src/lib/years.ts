@@ -2,7 +2,6 @@ import coverage from '@/data/coverage.json';
 
 export const YEAR_KEYS = [
   '1935',
-  '1944',
   '1945',
   '1951',
   '1972',
@@ -64,7 +63,6 @@ function year(key: YearKey, def: Omit<YearDef, 'key' | 'outline' | 'coverage'>):
 
 export const YEARS: YearDef[] = [
   year('1935', { layer: 'FOTOPLAN_1935', fallbackLayer: 'RASTER_FOTOPLAN_1935' }),
-  year('1944', { layer: 'MUZEUM_PW_ORTO_1944' }),
   year('1945', { layer: 'ORTOFOTO_1945', fallbackLayer: 'RASTER_ORTOFOTO_1945', whiteIsBlank: true }),
   year('1951', { layer: 'ZDJECIA_1951' }),
   year('1972', { layer: 'ZDJECIA_1972' }),
@@ -103,6 +101,23 @@ export function stepYear(key: YearKey, delta: number): YearKey | undefined {
 
 export function otherYear(key: YearKey | null): YearKey {
   return key === 'today' ? '1945' : 'today';
+}
+
+export const MIN_OVERLAP = 0.1;
+
+function boxArea([[s, w], [n, e]]: Box) {
+  return Math.max(0, n - s) * Math.max(0, e - w);
+}
+
+export function intersect([[s1, w1], [n1, e1]]: Box, [[s2, w2], [n2, e2]]: Box): Box {
+  return [
+    [Math.max(s1, s2), Math.max(w1, w2)],
+    [Math.min(n1, n2), Math.min(e1, e2)],
+  ];
+}
+
+export function coverageOverlap(view: Box, cov: Box) {
+  return boxArea(intersect(view, cov)) / Math.min(boxArea(view), boxArea(cov));
 }
 
 export function featherPx(zoom: number) {

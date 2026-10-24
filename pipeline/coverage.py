@@ -13,7 +13,6 @@ from PIL import Image
 WMS = "https://mapa.um.warszawa.pl/mapviewer/wms"
 LAYERS = {
     "1935": ("FOTOPLAN_1935", "texture"),
-    "1944": ("MUZEUM_PW_ORTO_1944", "dark"),
     "1945": ("ORTOFOTO_1945", "white"),
     "1951": ("ZDJECIA_1951", "dark"),
     "1972": ("ZDJECIA_1972", "dark"),

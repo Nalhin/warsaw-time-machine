@@ -1,7 +1,7 @@
 # Warsaw Timelapse
 
 A map of Warsaw that compares the city's aerial photos from 1935 (pre-war), 1945 (after the destruction),
-the rebuilding and every later survey the city publishes (1944 to 2024) and today. Pins open places with street-level photographs from
+the rebuilding and every later survey the city publishes (1951 to 2024) and today. Pins open places with street-level photographs from
 different decades, from before the war to today.
 
 ## Why
@@ -37,7 +37,7 @@ npm run build        # static pages for / and every /spots/<id>
 ## Map
 
 - Aerials come from the city WMS `https://mapa.um.warszawa.pl/mapviewer/wms` (WMS 1.1.1, `DATASOURCE=dane_wawa`,
-  EPSG:3857, 512 px tiles). The app uses these years: 1935 (`FOTOPLAN_1935`), 1944 (`MUZEUM_PW_ORTO_1944`),
+  EPSG:3857, 512 px tiles). The app uses these years: 1935 (`FOTOPLAN_1935`),
   1945 (`ORTOFOTO_1945`), 1951 (`ZDJECIA_1951`), 1972 (`ZDJECIA_1972`), 1976–77, 1982, 1987 and 1990–94
   (`FOTOSZKIC_*`), 1997 (`ZDJECIA_1997`), 2001, 2005, 2008, 2010, 2013 and 2022–2024 (`ORTOFOTO_*`), 2011,
   2012 and 2014–2021 (`FOTOPLAN_*`) and today (`ORTOFOTO_2025`). The city's own map also has 1964 and 1969
@@ -45,8 +45,8 @@ npm run build        # static pages for / and every /spots/<id>
   `src/lib/years.ts`. To add one, add it to `YEARS` and to `LAYERS` in `pipeline/coverage.py`, then run
   `uv run python coverage.py <key>`.
 - If 3 tiles fail before any succeeds, the app switches to the official `https://wms.um.warszawa.pl/serwis`
-  (`RASTER_FOTOPLAN_*` and `RASTER_ORTOFOTO_*` for 1935, 1945, 2005–2021, and `ORTO` for today). 1944–2001
-  except 1945, and 2022–2024, aren't on that server, so they stay on the primary one. See `src/lib/wms.ts`.
+  (`RASTER_FOTOPLAN_*` and `RASTER_ORTOFOTO_*` for 1935, 1945, 2005–2021, and `ORTO` for today). 1951–2001 and
+  2022–2024 aren't on that server, so they stay on the primary one. See `src/lib/wms.ts`.
 - When you switch years, the new layer loads on top of the old one. The old layer is removed only after the
   new one has finished, so the map never goes blank. A progress bar and a "Loading aerial photos…" pill
   show while tiles load.
@@ -84,7 +84,7 @@ npm run build        # static pages for / and every /spots/<id>
 | URL | |
 |---|---|
 | `/` | compare mode, 1945 \| today (default) |
-| `/?year=1945` | one year (`1935`, `1944`, `1945`, … `2024`, `today`; see `YEAR_KEYS` in `src/lib/years.ts`) |
+| `/?year=1945` | one year (`1935`, `1945`, … `2024`, `today`; see `YEAR_KEYS` in `src/lib/years.ts`) |
 | `/?compare=1945-today` | compare mode, left and right |
 | `/?divider=h` | compare mode with a horizontal divider (top and bottom); vertical is the default |
 | `/?timelapse=1935` | timelapse, starting at that year |
@@ -187,7 +187,7 @@ city at about 12 m per pixel and separates real photo from no-data: transparent 
 white padding around the 1945 mosaic, and the blank paper sheets of the 1935 photomap (flat, where photos
 are textured). A smooth shape is found at a quarter of that resolution, then bright flat paper near its
 edge is trimmed at full resolution and the outline is pulled in slightly, so the fade starts inside the
-photo. The black padding and black or white holes in the years marked `dark` in `LAYERS` (1944–2001 except 1945,
+photo. The black padding and black or white holes in the years marked `dark` in `LAYERS` (1951–2001
 and 2008) count as no-data too.
 The result is saved as polygons (outer ring plus large interior gaps). The map uses them to fade
 each layer's edge into the background, to skip tile requests outside the photos and to show the

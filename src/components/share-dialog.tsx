@@ -10,14 +10,36 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Switch } from '@/components/ui/switch';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { Choice, Field, YearPair } from '@/components/share-fields';
+import { Choice, Field } from '@/components/share-fields';
+import { YearSelect } from '@/components/year-controls';
 import { SITE_NAME } from '@/lib/site';
-import { FORMATS, LAYOUTS, formatSize, renderSnapshot, toBlob, type Format, type Layout, type SnapshotArea } from '@/lib/snapshot';
-import { DEFAULT_SWIPE, mapStateToQuery, setSwipeSide, type MapState, type Side, type SwipeYears } from '@/lib/state';
+import {
+  FORMATS,
+  LAYOUTS,
+  formatSize,
+  renderSnapshot,
+  renderTimelapse,
+  toBlob,
+  VideoUnsupportedError,
+  type Format,
+  type Layout,
+  type SnapshotArea,
+} from '@/lib/snapshot';
+import {
+  mapStateToQuery,
+  PLAY_FADE_RATIO,
+  PLAY_HOLD_MS,
+  type MapState,
+  type PlaybackSpeed,
+  type Side,
+  type SwipeYears,
+  type ViewMode,
+} from '@/lib/state';
 import { cn } from '@/lib/utils';
-import { otherYear, type YearKey } from '@/lib/years';
+import { coverageOverlap, MIN_OVERLAP, YEAR_KEYS, yearDef, type Box, type YearKey } from '@/lib/years';
 
-type Mode = 'link' | 'image';
+type Mode = 'link' | 'media';
+type RenderError = 'failed' | 'unsupported';
 
 export interface Inset {
   right: number;
@@ -26,26 +48,36 @@ export interface Inset {
 
 interface Capture {
   area: SnapshotArea;
+  bounds: Box;
   divider: number;
   isHorizontal: boolean;
+  kind: ViewMode;
+  years: YearKey[];
+  holdMs: number;
   link: string;
 }
 
 interface Result {
-  canvas: HTMLCanvasElement;
+  canvas: HTMLCanvasElement | null;
   blob: Blob;
   url: string;
 }
 
-function capture(map: L.Map, state: MapState, ratio: number, inset: Inset): Capture {
+function capture(map: L.Map, state: MapState, ratio: number, speed: PlaybackSpeed, inset: Inset): Capture {
   const size = map.getSize();
   const width = Math.max(1, size.x - inset.right);
   const height = Math.max(1, size.y - inset.bottom);
   const crs = map.options.crs!;
-  const nw = crs.project(map.containerPointToLatLng([0, 0]));
-  const se = crs.project(map.containerPointToLatLng([width, height]));
+  const nwLatLng = map.containerPointToLatLng([0, 0]);
+  const seLatLng = map.containerPointToLatLng([width, height]);
+  const nw = crs.project(nwLatLng);
+  const se = crs.project(seLatLng);
   const c = map.getCenter();
   const camera = { lat: c.lat, lng: c.lng, zoom: map.getZoom() };
+  const bounds: Box = [
+    [seLatLng.lat, nwLatLng.lng],
+    [nwLatLng.lat, seLatLng.lng],
+  ];
   return {
     area: {
       cx: (nw.x + se.x) / 2,
@@ -55,15 +87,36 @@ function capture(map: L.Map, state: MapState, ratio: number, inset: Inset): Capt
       zoom: map.getZoom(),
       metersPerPixel: (se.x - nw.x) / width,
     },
+    bounds,
     divider: state.isHorizontal ? (ratio * size.y) / height : (ratio * size.x) / width,
     isHorizontal: state.mode === 'compare' && state.isHorizontal,
+    kind: state.mode,
+    years: state.mode === 'compare' ? state.swipe : state.mode === 'year' ? [state.year] : coveredYears(bounds),
+    holdMs: PLAY_HOLD_MS / speed,
     link: `${location.origin}${location.pathname}${mapStateToQuery(state, camera)}`,
   };
 }
 
-function supportsFileShare() {
+function coveredYears(bounds: Box) {
+  const covered = YEAR_KEYS.filter((k) => coverageOverlap(bounds, yearDef(k).coverage) >= MIN_OVERLAP);
+  return covered.length ? covered : [...YEAR_KEYS];
+}
+
+function timelapseYears(covered: YearKey[], [from, to]: SwipeYears) {
+  const span = YEAR_KEYS.slice(YEAR_KEYS.indexOf(from), YEAR_KEYS.indexOf(to) + 1);
+  const picked = covered.filter((y) => span.includes(y));
+  return picked.length ? picked : span;
+}
+
+function setRangeSide(range: SwipeYears, side: Side, year: YearKey): SwipeYears {
+  const next: SwipeYears = [...range];
+  next[side] = year;
+  return YEAR_KEYS.indexOf(next[0]) > YEAR_KEYS.indexOf(next[1]) ? [next[1], next[0]] : next;
+}
+
+function supportsFileShare(name: string, type: string) {
   try {
-    return !!navigator.canShare?.({ files: [new File([''], 'x.jpg', { type: 'image/jpeg' })] });
+    return !!navigator.canShare?.({ files: [new File([''], name, { type })] });
   } catch {
     return false;
   }
@@ -73,83 +126,112 @@ interface ShareDialogProps {
   map: L.Map;
   state: MapState;
   ratio: number;
+  speed: PlaybackSpeed;
   showLabels: boolean;
   inset: Inset;
 }
 
-export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialogProps) {
+export function ShareDialog({ map, state, ratio, speed, showLabels, inset }: ShareDialogProps) {
   const t = useMessages();
   const m = t.share;
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<Mode>('link');
   const [snap, setSnap] = useState<Capture | null>(null);
-  const [years, setYears] = useState<SwipeYears>(DEFAULT_SWIPE);
+  const [range, setRange] = useState<SwipeYears>([YEAR_KEYS[0], 'today']);
   const [layout, setLayout] = useState<Layout>('split');
   const [format, setFormat] = useState<Format>('screen');
   const [hasLabels, setHasLabels] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
   const [isBusy, setIsBusy] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const [progress, setProgress] = useState<number | null>(null);
+  const [error, setError] = useState<RenderError | null>(null);
   const [attempt, setAttempt] = useState(0);
   const [isCopied, setIsCopied] = useState(false);
-  const [canShareFiles, setCanShareFiles] = useState(false);
+  const [canShareImage, setCanShareImage] = useState(false);
+  const [canShareVideo, setCanShareVideo] = useState(false);
   const [canShareLink, setCanShareLink] = useState(false);
   const [canCopyImage, setCanCopyImage] = useState(false);
   const resultRef = useRef<Result | null>(null);
 
   useEffect(() => {
-    setCanShareFiles(supportsFileShare());
+    setCanShareImage(supportsFileShare('x.jpg', 'image/jpeg'));
+    setCanShareVideo(supportsFileShare('x.mp4', 'video/mp4'));
     setCanShareLink(!!navigator.share);
     setCanCopyImage(typeof ClipboardItem !== 'undefined' && !!navigator.clipboard?.write);
   }, []);
 
+  const replaceResult = (next: Result | null) => {
+    if (resultRef.current) URL.revokeObjectURL(resultRef.current.url);
+    resultRef.current = next;
+    setResult(next);
+  };
+
   const onOpenChange = (next: boolean) => {
     if (next) {
-      setSnap(capture(map, state, ratio, inset));
-      setYears(state.mode === 'compare' ? [...state.swipe] : [state.year, otherYear(state.year)]);
+      const captured = capture(map, state, ratio, speed, inset);
+      setSnap(captured);
+      if (captured.kind === 'timelapse') setRange([captured.years[0], captured.years[captured.years.length - 1]]);
       setHasLabels(showLabels);
       setIsCopied(false);
       setMode('link');
+      replaceResult(null);
     }
     setIsOpen(next);
   };
 
+  const kind = snap?.kind ?? state.mode;
+  const isVideo = kind === 'timelapse';
+
   useEffect(() => {
-    if (!isOpen || !snap || mode !== 'image') return;
-    let isCancelled = false;
+    if (!isOpen || !snap || mode !== 'media') return;
+    const controller = new AbortController();
+    const isAborted = () => controller.signal.aborted;
     setIsBusy(true);
-    setHasError(false);
+    setError(null);
+    setProgress(null);
+    const base = { format, area: snap.area, hasLabels, credit: m.credit };
+    const shown = snap.kind === 'timelapse' ? timelapseYears(snap.years, range) : snap.years;
+    const yearLabels = shown.map((y) => t.years[y].label);
     const timer = setTimeout(async () => {
       try {
-        const canvas = await renderSnapshot({
-          years,
-          layout,
-          format,
-          area: snap.area,
-          divider: snap.divider,
-          isHorizontal: snap.isHorizontal,
-          hasLabels,
-          host: location.host,
-          yearLabels: [t.years[years[0]].label, t.years[years[1]].label],
-          credit: m.credit,
-        });
-        const blob = await toBlob(canvas);
-        if (isCancelled) return;
-        if (resultRef.current) URL.revokeObjectURL(resultRef.current.url);
-        resultRef.current = { canvas, blob, url: URL.createObjectURL(blob) };
-        setResult(resultRef.current);
+        let next: Omit<Result, 'url'>;
+        if (snap.kind === 'timelapse') {
+          setProgress(0);
+          const blob = await renderTimelapse(
+            { ...base, years: shown, yearLabels, holdMs: snap.holdMs, fadeMs: snap.holdMs * PLAY_FADE_RATIO },
+            (done) => !isAborted() && setProgress(Math.floor(done * 100)),
+            controller.signal,
+          );
+          next = { blob, canvas: null };
+        } else {
+          const canvas = await renderSnapshot({
+            ...base,
+            years: shown as [YearKey] | SwipeYears,
+            yearLabels,
+            layout,
+            divider: snap.divider,
+            isHorizontal: snap.isHorizontal,
+          });
+          next = { blob: await toBlob(canvas), canvas };
+        }
+        if (isAborted()) return;
+        replaceResult({ ...next, url: URL.createObjectURL(next.blob) });
       } catch (e) {
-        console.error('[share] snapshot failed', e);
-        if (!isCancelled) setHasError(true);
+        if (isAborted()) return;
+        console.error('[share] render failed', e);
+        setError(e instanceof VideoUnsupportedError ? 'unsupported' : 'failed');
       } finally {
-        if (!isCancelled) setIsBusy(false);
+        if (!isAborted()) {
+          setIsBusy(false);
+          setProgress(null);
+        }
       }
     }, 250);
     return () => {
-      isCancelled = true;
+      controller.abort();
       clearTimeout(timer);
     };
-  }, [isOpen, snap, mode, years, layout, format, hasLabels, attempt, t]);
+  }, [isOpen, snap, mode, range, layout, format, hasLabels, attempt, t]);
 
   useEffect(
     () => () => {
@@ -158,11 +240,13 @@ export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialo
     [],
   );
 
-  const setSide = (side: Side, year: YearKey) => setYears((prev) => setSwipeSide(prev, side, year));
-
-  const fileName = `${m.filePrefix}-${years.join('-vs-')}.jpg`;
-  const isReady = !!result && !isBusy && !hasError;
-  const sides: [string, string] = layout === 'stack' || (layout === 'split' && snap?.isHorizontal) ? [m.top, m.bottom] : [m.left, m.right];
+  const videoYears = snap && isVideo ? timelapseYears(snap.years, range) : [];
+  const videoSeconds = snap ? Math.round(((videoYears.length + 1) * snap.holdMs) / 1000) : 0;
+  const fileName = isVideo
+    ? `${m.filePrefix}-${range.join('-')}.mp4`
+    : `${m.filePrefix}-${(snap?.years ?? []).join('-vs-')}.jpg`;
+  const isReady = !!result && !isBusy && !error;
+  const canShareFiles = isVideo ? canShareVideo : canShareImage;
   const preview = snap ? formatSize(format, snap.area) : { width: 1, height: 1 };
 
   const copyLink = async () => {
@@ -193,7 +277,7 @@ export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialo
   };
 
   const copyImage = async () => {
-    if (!result) return;
+    if (!result?.canvas) return;
     try {
       await navigator.clipboard.write([new ClipboardItem({ 'image/png': toBlob(result.canvas, 'image/png') })]);
       toast.success(m.imageCopied);
@@ -202,17 +286,17 @@ export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialo
     }
   };
 
-  const shareImage = async () => {
+  const shareMedia = async () => {
     if (!result) return;
     try {
-      await navigator.share({ files: [new File([result.blob], fileName, { type: 'image/jpeg' })], title: SITE_NAME });
+      await navigator.share({ files: [new File([result.blob], fileName, { type: result.blob.type })], title: SITE_NAME });
     } catch (e) {
-      if ((e as Error).name !== 'AbortError') toast.error(m.imageShareFailed);
+      if ((e as Error).name !== 'AbortError') toast.error(isVideo ? m.videoShareFailed : m.imageShareFailed);
     }
   };
 
-  const heading = mode === 'link' ? [m.title, m.description] : [m.imageTitle, m.imageDescription];
-  const swapYears = () => setYears(([a, b]) => [b, a]);
+  const heading = mode === 'link' ? [m.title, m.description] : [m.mediaTitle[kind], m.mediaDescription[kind]];
+  const previewClass = cn('size-full object-contain transition-opacity', isBusy && 'opacity-50');
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -238,7 +322,7 @@ export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialo
           <Choice<Mode>
             value={mode}
             onChange={setMode}
-            options={(['link', 'image'] as const).map((key) => ({ key, label: m.modes[key] }))}
+            options={(['link', 'media'] as const).map((key) => ({ key, label: m.modes[key] }))}
             label={m.title}
           />
         </div>
@@ -272,29 +356,30 @@ export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialo
                 className="relative mx-auto w-full overflow-hidden rounded-lg bg-[#1a1b1e] ring-1 ring-foreground/10"
                 style={{ aspectRatio: `${preview.width} / ${preview.height}`, maxHeight: '58dvh', maxWidth: `calc(58dvh * ${preview.width / preview.height})` }}
               >
-                {result && (
-                  <img
-                    src={result.url}
-                    alt={m.preview}
-                    className={cn('size-full object-contain transition-opacity', isBusy && 'opacity-50')}
-                  />
-                )}
+                {result &&
+                  (result.canvas ? (
+                    <img src={result.url} alt={m.preview} className={previewClass} />
+                  ) : (
+                    <video src={result.url} aria-label={m.preview} autoPlay loop muted playsInline controls className={previewClass} />
+                  ))}
                 {isBusy && (
                   <div className="absolute inset-0 grid place-items-center">
-                    <span className="glass-strong flex items-center gap-2 rounded-full px-3 py-1.5 text-xs">
+                    <span className="glass-strong flex items-center gap-2 rounded-full px-3 py-1.5 text-xs tabular-nums">
                       <Loader2 className="size-3.5 animate-spin text-gold" />
-                      {m.rendering}
+                      {progress === null ? m.rendering : m.renderingVideo(progress)}
                     </span>
                   </div>
                 )}
-                {hasError && !isBusy && (
+                {error && !isBusy && (
                   <div className="absolute inset-0 grid place-items-center p-4 text-center">
                     <div className="grid justify-items-center gap-2 text-sm text-muted-foreground">
                       <ImageIcon className="size-5" />
-                      {m.failed}
-                      <Button size="sm" variant="outline" onClick={() => setAttempt((n) => n + 1)}>
-                        {m.retry}
-                      </Button>
+                      {error === 'unsupported' ? m.videoUnsupported : m.failed}
+                      {error === 'failed' && (
+                        <Button size="sm" variant="outline" onClick={() => setAttempt((n) => n + 1)}>
+                          {m.retry}
+                        </Button>
+                      )}
                     </div>
                   </div>
                 )}
@@ -302,16 +387,16 @@ export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialo
 
               <div className="flex flex-wrap justify-center gap-2">
                 {canShareFiles && (
-                  <Button onClick={shareImage} disabled={!isReady}>
+                  <Button onClick={shareMedia} disabled={!isReady}>
                     <Share2 />
-                    {m.shareImage}
+                    {isVideo ? m.shareVideo : m.shareImage}
                   </Button>
                 )}
                 <Button variant={canShareFiles ? 'outline' : 'default'} onClick={download} disabled={!isReady}>
                   <Download />
                   {m.download}
                 </Button>
-                {canCopyImage && !canShareFiles && (
+                {canCopyImage && !canShareFiles && !isVideo && (
                   <Button variant="outline" onClick={copyImage} disabled={!isReady}>
                     <Copy />
                     {m.copyImage}
@@ -321,16 +406,36 @@ export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialo
             </div>
 
             <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-4">
-              <YearPair years={years} sides={sides} onSide={setSide} onSwap={swapYears} />
+              {kind === 'compare' && (
+                <Field label={m.layout}>
+                  <Choice<Layout>
+                    value={layout}
+                    onChange={setLayout}
+                    options={LAYOUTS.map((key) => ({ key, label: m.layouts[key] }))}
+                    label={m.layout}
+                  />
+                </Field>
+              )}
 
-              <Field label={m.layout}>
-                <Choice<Layout>
-                  value={layout}
-                  onChange={setLayout}
-                  options={LAYOUTS.map((key) => ({ key, label: m.layouts[key] }))}
-                  label={m.layout}
-                />
-              </Field>
+              {isVideo && (
+                <Field label={m.years}>
+                  <div className="grid grid-cols-2 gap-2">
+                    {range.map((y, i) => (
+                      <div key={i} className="grid gap-1">
+                        <span className="text-[11px] text-muted-foreground">{i ? m.to : m.from}</span>
+                        <YearSelect
+                          value={y}
+                          onChange={(next) => setRange((prev) => setRangeSide(prev, i as Side, next))}
+                          label={i ? m.to : m.from}
+                          className="justify-between rounded-md border border-input bg-input/30"
+                          isModal
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <span className="text-xs text-muted-foreground tabular-nums">{m.videoLength(videoYears.length, videoSeconds)}</span>
+                </Field>
+              )}
 
               <Field label={m.size}>
                 <Choice<Format>

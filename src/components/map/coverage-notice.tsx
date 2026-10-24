@@ -4,24 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { useMessages } from '@/components/locale-provider';
 import { Button } from '@/components/ui/button';
-import { yearDef, type Box, type YearKey } from '@/lib/years';
-
-const MIN_OVERLAP = 0.1;
-
-function area([[s, w], [n, e]]: Box) {
-  return Math.max(0, n - s) * Math.max(0, e - w);
-}
-
-function intersect([[s1, w1], [n1, e1]]: Box, [[s2, w2], [n2, e2]]: Box): Box {
-  return [
-    [Math.max(s1, s2), Math.max(w1, w2)],
-    [Math.min(n1, n2), Math.min(e1, e2)],
-  ];
-}
-
-function overlap(view: Box, cov: Box) {
-  return area(intersect(view, cov)) / Math.min(area(view), area(cov));
-}
+import { coverageOverlap, intersect, MIN_OVERLAP, yearDef, type Box, type YearKey } from '@/lib/years';
 
 function toBox(b: L.LatLngBounds): Box {
   return [
@@ -44,7 +27,7 @@ export function CoverageNotice({ map, years }: CoverageNoticeProps) {
     const keys = key.split(',') as YearKey[];
     const check = () => {
       const view = toBox(map.getBounds());
-      const next = keys.filter((k) => overlap(view, yearDef(k).coverage) < MIN_OVERLAP);
+      const next = keys.filter((k) => coverageOverlap(view, yearDef(k).coverage) < MIN_OVERLAP);
       setMissing((prev) => (prev.join(',') === next.join(',') ? prev : next));
     };
     check();

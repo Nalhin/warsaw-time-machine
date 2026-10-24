@@ -7,6 +7,8 @@ export type ViewMode = 'compare' | 'year' | 'timelapse';
 
 export const VIEW_MODES: ViewMode[] = ['compare', 'year', 'timelapse'];
 export const PLAYBACK_SPEEDS = [0.5, 1, 2] as const;
+export const PLAY_HOLD_MS = 2000;
+export const PLAY_FADE_RATIO = 0.4;
 
 export type PlaybackSpeed = (typeof PLAYBACK_SPEEDS)[number];
 

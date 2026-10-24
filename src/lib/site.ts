@@ -6,6 +6,9 @@ export const SITE_URL = (
 
 export const SITE_NAME = 'Warsaw Timelapse';
 
+export const SITE_DOMAIN_PARTS = ['warsaw', 'timelapse', '.com'] as const;
+export const SITE_DOMAIN = SITE_DOMAIN_PARTS.join('');
+
 export const WARSAW_BBOX = { south: 52.07, west: 20.82, north: 52.39, east: 21.29 };
 
 export function isInWarsaw(lat: number, lng: number) {
