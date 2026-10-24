@@ -66,7 +66,7 @@ interface SinglePhotoProps {
 function SinglePhoto({ photo, alt, sizes, frame, className }: SinglePhotoProps) {
   return (
     <div
-      className={cn('relative overflow-hidden rounded-[2px] bg-neutral-900', className)}
+      className={cn('relative overflow-hidden rounded-lg bg-neutral-900', className)}
       style={{ aspectRatio: frame ?? photo.ratio }}
     >
       <Image src={photo.src} alt={alt} fill sizes={sizes} priority className={frame ? 'object-contain' : 'object-cover'} />
@@ -110,7 +110,7 @@ function PlaceContent({ spot, onClose }: PlaceContentProps) {
     <div className="px-4 pt-1 pb-[calc(24px+env(safe-area-inset-bottom))] sm:px-5 sm:pt-5">
       <header className="mb-4 flex items-start justify-between gap-3">
         <h1 className="min-w-0 font-heading text-2xl leading-tight font-semibold tracking-tight sm:text-[28px]">{spot.name}</h1>
-        <Button variant="outline" size="icon" className="shrink-0 rounded-[3px]" onClick={onClose} aria-label={t.spot.close}>
+        <Button variant="outline" size="icon" className="shrink-0" onClick={onClose} aria-label={t.spot.close}>
           <X />
         </Button>
       </header>
@@ -255,7 +255,7 @@ export function PlacePanel({ spot }: PlacePanelProps) {
     <aside
       aria-label={spot.name}
       style={{ width: PANEL_WIDTH }}
-      className="sheet fixed top-3 right-3 bottom-3 z-[1050] animate-in overflow-y-auto overscroll-contain rounded-[3px] duration-300 slide-in-from-right-8 fade-in-0"
+      className="sheet fixed top-3 right-3 bottom-3 z-[1050] animate-in overflow-y-auto overscroll-contain rounded-2xl duration-300 slide-in-from-right-8 fade-in-0"
     >
       <PlaceContent key={spot.id} spot={spot} onClose={close} />
     </aside>

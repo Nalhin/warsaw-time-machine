@@ -23,7 +23,7 @@ export interface MapCamera {
   zoom: number;
 }
 
-export const DEFAULT_SWIPE: SwipeYears = ['1935', 'today'];
+export const DEFAULT_SWIPE: SwipeYears = ['1945', 'today'];
 export const DEFAULT_STATE: MapState = { mode: 'compare', year: '1935', swipe: DEFAULT_SWIPE, isHorizontal: false };
 export const START: MapCamera = { lat: 52.2445, lng: 21.0122, zoom: 16 };
 export const MIN_ZOOM = 11;
@@ -40,27 +40,24 @@ export function shownYears(s: MapState): [YearKey] | SwipeYears {
   return s.mode === 'compare' ? s.swipe : [s.year];
 }
 
-function readMode(q: URLSearchParams, hasYear: boolean): ViewMode {
-  if (q.get('mode')?.trim().toLowerCase() === 'timelapse') return 'timelapse';
-  return hasYear && !q.has('swipe') ? 'year' : 'compare';
+function readPair(value: string): SwipeYears {
+  const [a, b] = value.split('-').map(parseYear);
+  const left = a ?? DEFAULT_SWIPE[0];
+  const right = b && b !== left ? b : otherYear(left);
+  return [left, right];
 }
 
 export function readMapState(search: string): MapState {
   const q = new URLSearchParams(search);
-  const year = parseYear(q.get('year'));
-  let swipe: SwipeYears = [...DEFAULT_SWIPE];
-  const sw = q.get('swipe');
-  if (sw !== null) {
-    const [a, b] = sw.split(',').map(parseYear);
-    swipe = [a ?? '1935', b ?? otherYear(a)];
-    if (swipe[0] === swipe[1]) swipe[1] = otherYear(swipe[0]);
-  }
-  const divider = q.get('divider')?.trim().toLowerCase();
+  const timelapse = q.get('timelapse');
+  const year = parseYear(timelapse ?? q.get('year'));
+  const compare = q.get('compare');
+  const mode: ViewMode = timelapse !== null ? 'timelapse' : year ? 'year' : 'compare';
   return {
-    mode: readMode(q, !!year),
-    year: year ?? '1935',
-    swipe,
-    isHorizontal: divider === 'horizontal' || divider === 'h',
+    mode,
+    year: year ?? DEFAULT_STATE.year,
+    swipe: compare ? readPair(compare) : [...DEFAULT_SWIPE],
+    isHorizontal: q.get('divider') === 'h',
   };
 }
 
@@ -73,16 +70,16 @@ export function readCamera(search: string): MapCamera | null {
 }
 
 export function formatCamera({ lat, lng, zoom }: MapCamera): string {
-  const digits = zoom >= 17 ? 6 : 5;
-  return `${lat.toFixed(digits)},${lng.toFixed(digits)},${Number(zoom.toFixed(2))}`;
+  const digits = zoom >= 17 ? 6 : zoom >= 13 ? 5 : 4;
+  return [lat.toFixed(digits), lng.toFixed(digits), zoom.toFixed(2)].map(Number).join(',');
 }
 
 export function mapStateToQuery(s: MapState, camera: MapCamera | null = null): string {
   const parts: string[] = [];
-  if (s.mode === 'timelapse') parts.push('mode=timelapse');
-  if (s.mode !== 'compare') parts.push(`year=${s.year}`);
-  else if (s.swipe.join() !== DEFAULT_SWIPE.join()) parts.push(`swipe=${s.swipe.join(',')}`);
-  if (s.mode === 'compare' && s.isHorizontal) parts.push('divider=horizontal');
+  if (s.mode === 'timelapse') parts.push(`timelapse=${s.year}`);
+  if (s.mode === 'year') parts.push(`year=${s.year}`);
+  if (s.mode === 'compare' && s.swipe.join() !== DEFAULT_SWIPE.join()) parts.push(`compare=${s.swipe.join('-')}`);
+  if (s.mode === 'compare' && s.isHorizontal) parts.push('divider=h');
   if (camera) parts.push(`at=${formatCamera(camera)}`);
   return parts.length ? `?${parts.join('&')}` : '';
 }

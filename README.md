@@ -53,7 +53,7 @@ npm run build        # static pages for / and every /spots/<id>
 - **Play** (the first button in the bar) goes through every year in turn, holding each for 2 s once its tiles
   have loaded. While it plays, the next year loads ahead as an invisible layer under the current one and is
   shown as soon as its turn comes, so the switch is instant (`ahead` in `src/components/map/year-layer.tsx`).
-- **The map opens in compare mode** (1935 | Today). The divider can be dragged with a mouse or touch. Each
+- **The map opens in compare mode** (1945 | Today). The divider can be dragged with a mouse or touch. Each
   side has its own year menu (it scrolls when it doesn't fit), and ⇄ swaps the sides. "One year" leaves compare mode and shows ‹ year › arrows that step through the years, and the last button
   ("Horizontal"/"Vertical", icon only on phones) switches the divider between vertical (the default) and
   horizontal. It clips two Leaflet panes, so there's no plugin
@@ -83,14 +83,14 @@ npm run build        # static pages for / and every /spots/<id>
 
 | URL | |
 |---|---|
-| `/` | compare mode, 1935 \| today (default) |
+| `/` | compare mode, 1945 \| today (default) |
 | `/?year=1945` | one year (`1935`, `1944`, `1945`, … `2024`, `today`; see `YEAR_KEYS` in `src/lib/years.ts`) |
-| `/?swipe=1945,today` | compare mode, left and right |
-| `/?divider=horizontal` | compare mode with a horizontal divider (top and bottom); vertical is the default |
+| `/?compare=1945-today` | compare mode, left and right |
+| `/?divider=h` | compare mode with a horizontal divider (top and bottom); vertical is the default |
+| `/?timelapse=1935` | timelapse, starting at that year |
 | `/?at=52.2479,21.0136,17` | map position and zoom (`lat,lng,zoom`); combines with every other URL |
-| `/spots/plac-zamkowy` | a place: its own server-rendered page (can be combined with `?swipe=` / `?year=`) |
+| `/spots/plac-zamkowy` | a place: its own server-rendered page (can be combined with `?compare=` / `?year=`) |
 | `/pl`, `/pl/spots/plac-zamkowy` | the same pages in Polish; every URL above works with the `/pl` prefix |
-| `/s/<id>`, `/?spot=<id>` | old links: permanent redirects to `/spots/<id>` |
 
 ### Languages
 

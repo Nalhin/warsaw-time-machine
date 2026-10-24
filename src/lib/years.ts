@@ -102,7 +102,7 @@ export function stepYear(key: YearKey, delta: number): YearKey | undefined {
 }
 
 export function otherYear(key: YearKey | null): YearKey {
-  return key === 'today' ? '1935' : 'today';
+  return key === 'today' ? '1945' : 'today';
 }
 
 export function featherPx(zoom: number) {

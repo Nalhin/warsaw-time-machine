@@ -61,7 +61,7 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-[3px] border border-white/14 bg-popover shadow-[0_24px_60px_rgb(0_0_0/0.55)] p-5 text-sm text-popover-foreground duration-150 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:slide-in-from-bottom-2 data-closed:animate-out data-closed:fade-out-0",
+          "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-2xl border border-white/14 bg-popover shadow-[0_24px_60px_rgb(0_0_0/0.55)] p-5 text-sm text-popover-foreground duration-150 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:slide-in-from-bottom-2 data-closed:animate-out data-closed:fade-out-0",
           className
         )}
         {...props}
@@ -71,7 +71,7 @@ function DialogContent({
           <DialogPrimitive.Close data-slot="dialog-close" asChild>
             <Button
               variant="ghost"
-              className="absolute top-3 right-3 rounded-[3px]"
+              className="absolute top-3 right-3"
               size="icon-sm"
             >
               <XIcon

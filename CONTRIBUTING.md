@@ -44,7 +44,7 @@ uv sync
 - Frontend: Next.js (App Router), React, TypeScript, Tailwind CSS v4 and [shadcn/ui](https://ui.shadcn.com) (Radix base).
   Add UI primitives with `npx shadcn@latest add <component>` rather than writing them by hand.
 - Map: Leaflet through react-leaflet. The year layers and the compare divider are in `src/components/map/`.
-- Keep URLs (`/spots/<id>`, `?year=`, `?swipe=`) backwards compatible, because links get shared and indexed.
+- URL params are read and written in `src/lib/state.ts`; keep the README URL table in sync.
 - Leaflet only runs in the browser, so keep it out of server components and out of the `src/lib/` modules that pages import.
 - Don't write code comments. Explain non-obvious decisions in the PR description.
 - The WMS is slow, so don't add features that multiply tile requests (e.g. preloading every year).

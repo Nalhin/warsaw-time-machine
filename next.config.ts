@@ -10,13 +10,6 @@ const config: NextConfig = {
     return [
       { source: '/en', destination: '/', permanent: true },
       { source: '/en/:path*', destination: '/:path*', permanent: true },
-      { source: '/s/:id', destination: '/spots/:id', permanent: true },
-      {
-        source: '/',
-        has: [{ type: 'query', key: 'spot', value: '(?<id>[a-z0-9-]+)' }],
-        destination: '/spots/:id',
-        permanent: true,
-      },
     ];
   },
   async rewrites() {

@@ -25,6 +25,7 @@ import { NO_SPOTS, publishMapState, publishSecondSide } from '@/lib/map-store';
 import { spotIdFromPath, yearNumber, type Spot } from '@/lib/spots';
 import {
   DEFAULT_STATE,
+  DEFAULT_SWIPE,
   START,
   mapStateToQuery,
   readCamera,
@@ -162,7 +163,7 @@ export function MapApp({ spots }: MapAppProps) {
       if (mode === state.mode) return;
       setIsPlaying(false);
       setState((s) => {
-        if (mode === 'compare') return { ...s, mode, swipe: [s.year === 'today' ? '1935' : s.year, 'today'] };
+        if (mode === 'compare') return { ...s, mode, swipe: [s.year === 'today' ? DEFAULT_SWIPE[0] : s.year, 'today'] };
         return { ...s, mode, year: s.mode === 'compare' ? s.swipe[1] : s.year };
       });
     },

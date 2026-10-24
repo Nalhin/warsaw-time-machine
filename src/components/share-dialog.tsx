@@ -13,7 +13,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { Choice, Field, YearPair } from '@/components/share-fields';
 import { SITE_NAME } from '@/lib/site';
 import { FORMATS, LAYOUTS, formatSize, renderSnapshot, toBlob, type Format, type Layout, type SnapshotArea } from '@/lib/snapshot';
-import { mapStateToQuery, setSwipeSide, type MapState, type Side, type SwipeYears } from '@/lib/state';
+import { DEFAULT_SWIPE, mapStateToQuery, setSwipeSide, type MapState, type Side, type SwipeYears } from '@/lib/state';
 import { cn } from '@/lib/utils';
 import { otherYear, type YearKey } from '@/lib/years';
 
@@ -83,7 +83,7 @@ export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialo
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<Mode>('link');
   const [snap, setSnap] = useState<Capture | null>(null);
-  const [years, setYears] = useState<SwipeYears>(['1935', 'today']);
+  const [years, setYears] = useState<SwipeYears>(DEFAULT_SWIPE);
   const [layout, setLayout] = useState<Layout>('split');
   const [format, setFormat] = useState<Format>('screen');
   const [hasLabels, setHasLabels] = useState(false);
