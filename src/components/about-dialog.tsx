@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogFooter,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
@@ -45,12 +44,10 @@ export function AboutDialog() {
           <span className="whitespace-nowrap">{t.about.label}</span>
         </button>
       </DialogTrigger>
-      <DialogContent aria-describedby={undefined} className="max-h-[calc(100dvh-48px)] overflow-y-auto sm:max-w-lg">
-        <DialogHeader>
-          <DialogTitle>{SITE_NAME}</DialogTitle>
-        </DialogHeader>
+      <DialogContent aria-describedby={undefined} showCloseButton={false} className="flex max-h-[calc(100dvh-48px)] flex-col overflow-hidden sm:max-w-lg">
+        <DialogTitle className="sr-only">{SITE_NAME}</DialogTitle>
 
-        <div className="grid gap-3 text-sm leading-relaxed text-foreground/85 [&_a]:text-gold [&_a]:underline-offset-2 hover:[&_a]:underline">
+        <div className="-mx-5 grid min-h-0 gap-3 overflow-y-auto px-5 text-sm leading-relaxed text-foreground/85 [&_a]:text-gold [&_a]:underline-offset-2 hover:[&_a]:underline">
           {t.about.story.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
