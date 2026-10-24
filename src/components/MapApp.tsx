@@ -26,7 +26,7 @@ import { publishMapState } from '@/lib/map-store';
 import { spotIdFromPath, yearNumber, type Spot } from '@/lib/spots';
 import { DEFAULT_STATE, START, mapStateToQuery, readCamera, readMapState, type MapCamera, type MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
-import type { YearKey } from '@/lib/years';
+import { YEAR_KEYS, type YearKey } from '@/lib/years';
 
 const MapView = dynamic(() => import('@/components/map/MapView').then((m) => m.MapView), {
   ssr: false,
@@ -39,6 +39,7 @@ const ShareDialog = dynamic(() => import('@/components/ShareDialog').then((m) =>
 });
 
 const HINT_KEY = 'wtm-dragged';
+const PLAY_HOLD_MS = 5000;
 
 export function MapApp({ spots }: { spots: Spot[] }) {
   const router = useRouter();
@@ -58,6 +59,7 @@ export function MapApp({ spots }: { spots: Spot[] }) {
   const [labels, setLabels] = useState(false);
   const [pins, setPins] = useState(true);
   const [me, setMe] = useState<L.LatLng | null>(null);
+  const [playing, setPlaying] = useState(false);
   const mobile = useIsMobile();
 
   const flown = useRef<string | null>(null);
@@ -103,7 +105,10 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     };
   }, [map]);
 
-  const setYear = (year: YearKey) => setState((s) => ({ ...s, year }));
+  const setYear = (year: YearKey) => {
+    setPlaying(false);
+    setState((s) => ({ ...s, year }));
+  };
   const setSide = useCallback(
     (side: 0 | 1, y: YearKey) =>
       setState((s) => {
@@ -117,13 +122,17 @@ export function MapApp({ spots }: { spots: Spot[] }) {
   );
   const toggleHorizontal = useCallback(() => setState((s) => ({ ...s, horizontal: !s.horizontal })), []);
   const swap = useCallback(() => setState((s) => (s.swipe ? { ...s, swipe: [s.swipe[1], s.swipe[0]] } : s)), []);
-  const toggleCompare = useCallback(
-    () =>
-      setState((s) =>
-        s.swipe ? { ...s, year: s.swipe[1], swipe: null } : { ...s, swipe: [s.year === 'today' ? '1935' : s.year, 'today'] },
-      ),
-    [],
-  );
+  const toggleCompare = useCallback(() => {
+    setPlaying(false);
+    setState((s) =>
+      s.swipe ? { ...s, year: s.swipe[1], swipe: null } : { ...s, swipe: [s.year === 'today' ? '1935' : s.year, 'today'] },
+    );
+  }, []);
+  const togglePlay = useCallback(() => {
+    if (playing) return setPlaying(false);
+    setState((s) => ({ ...s, swipe: null, year: s.swipe || s.year === 'today' ? YEAR_KEYS[0] : s.year }));
+    setPlaying(true);
+  }, [playing]);
 
   const openSpot = (id: string) => router.push(`${localePath(locale, `/spots/${id}`)}${location.search}`, { scroll: false });
 
@@ -172,6 +181,17 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     const t = setTimeout(() => setShowLoading(true), 250);
     return () => clearTimeout(t);
   }, [busy]);
+
+  useEffect(() => {
+    if (!playing || busy) return;
+    const next = YEAR_KEYS[YEAR_KEYS.indexOf(state.year) + 1];
+    if (!next) return setPlaying(false);
+    const timer = setTimeout(() => {
+      setState((s) => ({ ...s, year: next }));
+      if (next === YEAR_KEYS[YEAR_KEYS.length - 1]) setPlaying(false);
+    }, PLAY_HOLD_MS);
+    return () => clearTimeout(timer);
+  }, [playing, busy, state.year]);
 
   return (
     <>
@@ -230,6 +250,8 @@ export function MapApp({ spots }: { spots: Spot[] }) {
           swap={swap}
           toggleCompare={toggleCompare}
           toggleHorizontal={toggleHorizontal}
+          playing={playing}
+          togglePlay={togglePlay}
         />
       </div>
 

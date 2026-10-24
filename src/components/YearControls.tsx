@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowLeftRight, Check, ChevronDown, Columns2, RectangleHorizontal, SeparatorVertical } from 'lucide-react';
+import { ArrowLeftRight, Check, ChevronDown, Columns2, Pause, Play, RectangleHorizontal, SeparatorVertical } from 'lucide-react';
 import { DropdownMenu } from 'radix-ui';
 
 import { useMessages } from '@/components/LocaleProvider';
@@ -109,6 +109,8 @@ export function YearControls({
   swap,
   toggleCompare,
   toggleHorizontal,
+  playing,
+  togglePlay,
 }: {
   state: MapState;
   setYear(y: YearKey): void;
@@ -116,6 +118,8 @@ export function YearControls({
   swap(): void;
   toggleCompare(): void;
   toggleHorizontal(): void;
+  playing: boolean;
+  togglePlay(): void;
 }) {
   const t = useMessages();
   const c = t.controls;
@@ -125,6 +129,21 @@ export function YearControls({
       aria-label={c.nav}
       className="glass fixed inset-x-2.5 bottom-[calc(28px+env(safe-area-inset-bottom))] z-[1000] mx-auto flex w-fit max-w-[calc(100%-20px)] items-center gap-1 rounded-full p-1 sm:top-3 sm:bottom-auto"
     >
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="ghost"
+            size="icon"
+            className={cn('rounded-full', playing && 'text-gold')}
+            onClick={togglePlay}
+            aria-label={playing ? c.pause : c.play}
+            aria-pressed={playing}
+          >
+            {playing ? <Pause className="fill-current" /> : <Play className="fill-current" />}
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>{playing ? c.pause : c.play}</TooltipContent>
+      </Tooltip>
       {compare ? (
         <>
           <YearSelect value={compare[0]} onChange={(y) => setSide(0, y)} label={state.horizontal ? c.topSide : c.leftSide} />
