@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/spots/${s.id}`,
       changeFrequency: 'yearly' as const,
       priority: 0.8,
-      images: [s.old, s.today, ...(s.restored ? [s.restored] : [])].map((p) => `${SITE_URL}${p}`),
+      images: s.photos.map((p) => `${SITE_URL}${p.src}`),
     })),
   ];
 }

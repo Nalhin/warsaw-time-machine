@@ -10,9 +10,14 @@ pipeline/.cache/
 pipeline/models/
 pipeline/fonts/
 pipeline/out/
+pipeline/sources/cache/
 __pycache__/
 *.part
 
 .next/
 next-env.d.ts
 *.tsbuildinfo
+
+.env
+.env*.local
+pipeline/.env

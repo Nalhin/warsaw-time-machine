@@ -1,7 +1,7 @@
 {
   "name": "warsaw-time-machine",
   "version": "1.0.0",
-  "description": "Warsaw Time Machine: aerial photos of Warsaw from 1935, 1945 and today, with pre-war street views",
+  "description": "Warsaw Time Machine: aerial photos of Warsaw from 1935 to today, with pre-war street views",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

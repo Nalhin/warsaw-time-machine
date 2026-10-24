@@ -1,152 +1,163 @@
-"""Build the site's photos and spots.json from pipeline/sources/.
+"""Build the site's photos and spots.json from pipeline/sources/sources.json.
 
-    uv run python prepare_spots.py              # all spots in sources/sources.json
+    uv run python prepare_spots.py              # all places
     uv run python prepare_spots.py plac-zamkowy # just one
-    uv run python prepare_spots.py --force      # redo the AI restoration even if it exists
 
-For each spot in sources/sources.json (see README for the format) it writes:
-    public/img/<id>_old.jpg     original archival photo, resized for the web
-    public/img/<id>_ai.jpg      restore.py output (Real-ESRGAN + DDColor, labelled "AI")
-    public/img/<id>_today.jpg   today's photo, resized for the web
-    public/img/og/<id>.jpg      1200x630 link preview (old | today)
-With "align": true (or {"points": "<file>.json"}) in the source entry, the today photo is also warped
-onto the old photo's framing (align.py) for a pixel-matched slider:
-    public/img/<id>_cmp_{old,ai,today}.jpg
-and updates the entry in src/data/spots.json, leaving entries that aren't in sources.json alone.
+Each place in sources.json has a list of photos from Wikimedia Commons (see README for the format). The
+originals are downloaded once into sources/cache/ (gitignored). For each place it writes:
+    public/img/places/<id>/<year>-<n>.jpg   each photo, resized for the web
+    public/img/places/<id>/<year>-<n>p.jpg  96x96 crop for the map pin
+    public/img/og/<id>.jpg                  1200x630 link preview (oldest | newest)
+and rewrites src/data/spots.json. Places that aren't in sources.json are dropped from it.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import re
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
 from pathlib import Path
 
 from PIL import Image, ImageOps
 
 import og
-from align import AlignError, align_pair, load as load_rgb
-from restore import Colorizer, Upscaler, restore
 
 HERE = Path(__file__).resolve().parent
 SOURCES = HERE / "sources"
+CACHE = SOURCES / "cache"
 PUBLIC = HERE.parent / "public"
 IMG = PUBLIC / "img"
 SPOTS_JSON = HERE.parent / "src" / "data" / "spots.json"
 WEB_SIDE = 1600
+PIN_SIDE = 96
+COMMONS_API = "https://commons.wikimedia.org/w/api.php"
+Image.MAX_IMAGE_PIXELS = 400_000_000
+USER_AGENT = "warsaw-time-machine/1.0 (https://github.com/Nalhin/warsaw-time-machine)"
 
 
-def web_copy(src: Path, dst: Path, quality: int = 82) -> None:
-    im = ImageOps.exif_transpose(Image.open(src)).convert("RGB")
+def fetch(url: str, retries: int = 4) -> bytes:
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            return urllib.request.urlopen(req, timeout=120).read()
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or attempt == retries - 1:
+                raise
+            time.sleep(30)
+    raise RuntimeError(url)
+
+
+def original(title: str) -> Path:
+    name = re.sub(r"[^\w.-]+", "_", title.removeprefix("File:"))[-80:]
+    path = CACHE / f"{hashlib.sha1(title.encode()).hexdigest()[:10]}-{name}"
+    if path.exists():
+        return path
+    q = urllib.parse.urlencode({"action": "query", "prop": "imageinfo", "iiprop": "url", "titles": title, "format": "json"})
+    page = next(iter(json.loads(fetch(f"{COMMONS_API}?{q}"))["query"]["pages"].values()))
+    if "imageinfo" not in page:
+        raise SystemExit(f"Not on Commons: {title}")
+    CACHE.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(fetch(page["imageinfo"][0]["url"]))
+    time.sleep(1)
+    print(f"  downloaded {title}")
+    return path
+
+
+def web_copy(src: Path, dst: Path, quality: int = 82) -> Image.Image:
+    im = Image.open(src)
+    im.draft("RGB", (WEB_SIDE, WEB_SIDE))
+    im = ImageOps.exif_transpose(im).convert("RGB")
     im.thumbnail((WEB_SIDE, WEB_SIDE), Image.LANCZOS)
     dst.parent.mkdir(parents=True, exist_ok=True)
     im.save(dst, "JPEG", quality=quality, optimize=True, progressive=True)
+    return im
 
 
-def credit(c: dict) -> dict:
+def pin_thumb(im: Image.Image, dst: Path) -> None:
+    ImageOps.fit(im, (PIN_SIDE, PIN_SIDE), Image.LANCZOS).save(dst, "JPEG", quality=80, optimize=True)
+
+
+def credit(p: dict) -> dict:
+    page = p.get("page") or ""
     return {
-        "author": c.get("author") or "unknown",
-        "date": c.get("date") or None,
-        "licence": c.get("licence") or "",
-        "licenceUrl": c.get("licenceUrl") or None,
-        "source": "Wikimedia Commons" if "commons.wikimedia.org" in (c.get("page") or "") else (c.get("source") or "source"),
-        "sourceUrl": c.get("page") or c.get("sourceUrl") or None,
+        "author": p.get("author") or "unknown",
+        "date": p.get("date") or None,
+        "licence": p.get("licence") or "",
+        "licenceUrl": p.get("licenceUrl") or None,
+        "source": "Wikimedia Commons" if "commons.wikimedia.org" in page else (p.get("source") or "source"),
+        "sourceUrl": page or p.get("sourceUrl") or None,
+    }
+
+
+def build(place: dict) -> dict:
+    pid = place["id"]
+    out_dir = IMG / "places" / pid
+    photos, files = [], []
+    seen: dict[int, int] = {}
+    for p in sorted(place["photos"], key=lambda p: p["year"]):
+        src = SOURCES / p["path"] if p.get("path") else original(p["file"])
+        n = seen[p["year"]] = seen.get(p["year"], 0) + 1
+        stem = f"{p['year']}-{n}"
+        im = web_copy(src, out_dir / f"{stem}.jpg", quality=82 if p["year"] < 1990 else 80)
+        pin_thumb(im, out_dir / f"{stem}p.jpg")
+        files.append(src)
+        photos.append(
+            {
+                "src": f"/img/places/{pid}/{stem}.jpg",
+                "pin": f"/img/places/{pid}/{stem}p.jpg",
+                "year": p["year"],
+                "date": p.get("date") or str(p["year"]),
+                "approx": bool(p.get("approx")),
+                "ratio": round(im.width / im.height, 4),
+                "caption": p.get("caption"),
+                "credit": credit(p),
+            }
+        )
+    og.spot_card(
+        files[0], files[-1], place["name"], IMG / "og" / f"{pid}.jpg",
+        old_label=photos[0]["date"], today_label="Today" if photos[-1]["year"] >= 2015 else photos[-1]["date"])
+    return {
+        "id": pid,
+        "name": place["name"],
+        "lat": place["lat"],
+        "lng": place["lng"],
+        "kind": place.get("kind", "historic"),
+        "description": place.get("description"),
+        "og": f"/img/og/{pid}.jpg",
+        "photos": photos,
     }
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("ids", nargs="*", help="only these spot ids")
-    ap.add_argument("--force", action="store_true", help="re-run the AI restoration")
-    ap.add_argument("--no-ai", action="store_true", help="skip the AI restoration")
+    ap.add_argument("ids", nargs="*", help="only these place ids")
     args = ap.parse_args()
 
-    sources = json.loads((SOURCES / "sources.json").read_text())
-    if args.ids:
-        sources = [s for s in sources if s["id"] in args.ids]
-    spots = json.loads(SPOTS_JSON.read_text()) if SPOTS_JSON.exists() else []
-    by_id = {s["id"]: s for s in spots}
-
-    upscaler = colorizer = None
-    for src in sources:
-        sid = src["id"]
-        old_src, today_src = SOURCES / src["old"]["file"], SOURCES / src["today"]["file"]
-        print(f"== {sid}")
-        web_copy(old_src, IMG / f"{sid}_old.jpg")
-        web_copy(today_src, IMG / f"{sid}_today.jpg", quality=80)
-
-        ai = IMG / f"{sid}_ai.jpg"
-        if not args.no_ai and (args.force or not ai.exists()):
-            if upscaler is None:
-                upscaler, colorizer = Upscaler(), Colorizer()
-            restore(
-                old_src, ai, upscaler=upscaler, colorizer=colorizer, max_input=1000,
-                max_output=WEB_SIDE, saturation=1.2, label=True, quality=84,
-            )
-
-        compare = None
-        if src.get("align"):
-            opts = src["align"] if isinstance(src["align"], dict) else {}
-            points = json.loads((SOURCES / opts["points"]).read_text()) if opts.get("points") else None
-            try:
-                aligned, old_crop, stats = align_pair(load_rgb(old_src), load_rgb(today_src), points=points)
-            except AlignError as e:
-                print(f"  ! alignment failed ({e}); using the unaligned photos")
-            else:
-                print(f"  aligned: {stats}")
-                cmp_old, cmp_today, cmp_ai = (IMG / f"{sid}_cmp_{k}.jpg" for k in ("old", "today", "ai"))
-                for rgb, path, q in ((old_crop, cmp_old, 82), (aligned, cmp_today, 80)):
-                    im = Image.fromarray(rgb)
-                    im.thumbnail((WEB_SIDE, WEB_SIDE), Image.LANCZOS)
-                    im.save(path, "JPEG", quality=q, optimize=True, progressive=True)
-                if not args.no_ai and (args.force or not cmp_ai.exists()):
-                    if upscaler is None:
-                        upscaler, colorizer = Upscaler(), Colorizer()
-                    restore(
-                        cmp_old, cmp_ai, upscaler=upscaler, colorizer=colorizer, max_input=1000,
-                        max_output=WEB_SIDE, saturation=1.2, label=True, quality=84,
-                    )
-                compare = {
-                    "old": f"/img/{cmp_old.name}",
-                    "today": f"/img/{cmp_today.name}",
-                    "restored": f"/img/{cmp_ai.name}" if cmp_ai.exists() else None,
-                }
-                old_src_og, today_src_og = cmp_old, cmp_today
-
-        old_year = src.get("oldYear") or "".join(ch for ch in (src["old"].get("date") or "")[:4] if ch.isdigit()) or None
-        og.spot_card(
-            old_src_og if compare else old_src,
-            today_src_og if compare else today_src,
-            src["name"], IMG / "og" / f"{sid}.jpg", old_label=old_year or "Pre-war")
-
-        entry = by_id.get(sid, {})
-        entry.update(
-            {
-                "id": sid,
-                "name": src["name"],
-                "lat": src["lat"],
-                "lng": src["lng"],
-                "heading": src.get("heading"),
-                "description": src.get("description"),
-                "oldYear": old_year,
-                "old": f"/img/{sid}_old.jpg",
-                "restored": f"/img/{sid}_ai.jpg" if ai.exists() else None,
-                "today": f"/img/{sid}_today.jpg",
-                "og": f"/img/og/{sid}.jpg",
-                "compare": compare,
-                "credits": {"old": credit(src["old"]), "today": credit(src["today"])},
-            }
-        )
-        if sid not in by_id:
-            spots.append(entry)
-            by_id[sid] = entry
+    places = json.loads((SOURCES / "sources.json").read_text())
+    existing = {s["id"]: s for s in json.loads(SPOTS_JSON.read_text())} if SPOTS_JSON.exists() else {}
+    out = []
+    for place in places:
+        if args.ids and place["id"] not in args.ids:
+            if place["id"] in existing:
+                out.append(existing[place["id"]])
+            continue
+        print(f"== {place['id']} ({len(place['photos'])} photos)")
+        out.append(build(place))
 
     def clean(o):
         if isinstance(o, dict):
             return {k: clean(v) for k, v in o.items() if v is not None}
+        if isinstance(o, list):
+            return [clean(v) for v in o]
         return o
 
-    SPOTS_JSON.write_text(json.dumps([clean(s) for s in spots], ensure_ascii=False, indent=2) + "\n")
-    print(f"-> {SPOTS_JSON} ({len(spots)} spots)")
+    SPOTS_JSON.write_text(json.dumps([clean(s) for s in out], ensure_ascii=False, indent=2) + "\n")
+    print(f"-> {SPOTS_JSON} ({len(out)} places, {sum(len(s['photos']) for s in out)} photos)")
 
 
 if __name__ == "__main__":

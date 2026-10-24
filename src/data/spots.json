@@ -2,286 +2,3488 @@
   {
     "id": "hotel-europejski",
     "name": "Hotel Europejski (Raffles Europejski)",
-    "lat": 52.24165,
-    "lng": 21.0158,
-    "heading": "looking north-west from Krakowskie Przedmieście (by Hotel Bristol) at the hotel's rounded corner",
-    "description": "Hotel Europejski on Krakowskie Przedmieście was built in stages in 1855–1877 to a design by Henryk Marconi; in 1877 it installed the first passenger lift in Warsaw. A fire broke out in the building during the defence of Warsaw in September 1939; after the war the Ministry of Defence completed its rebuilding for a military academy, and it was converted back into a hotel in 1957–1961. During a 2013–2018 renovation two new storeys replaced the attic, and in May 2018 it reopened as Raffles Europejski Warsaw.",
-    "old": "/img/hotel-europejski_old.jpg",
-    "restored": "/img/hotel-europejski_ai.jpg",
-    "today": "/img/hotel-europejski_today.jpg",
+    "lat": 52.2419,
+    "lng": 21.01466,
+    "kind": "historic",
+    "description": "Hotel Europejski on Krakowskie Przedmieście was built in 1855–1877 to a design by Henryk Marconi and was one of Warsaw's grandest hotels before the war. The building burned in September 1939 during the defence of Warsaw; after the war it was rebuilt, first for a military academy, and it reopened as a hotel in the early 1960s. After a 2013–2018 renovation that added two new storeys under a new roof, it reopened in 2018 as Raffles Europejski Warsaw.",
     "og": "/img/og/hotel-europejski.jpg",
-    "credits": {
-      "old": {
-        "author": "Zdzisław Marcinkowski",
+    "photos": [
+      {
+        "src": "/img/places/hotel-europejski/1930-1.jpg",
+        "pin": "/img/places/hotel-europejski/1930-1p.jpg",
+        "year": 1930,
         "date": "before 1939",
-        "licence": "Public domain (PD-old)",
-        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hotel_Europejski_przed_1939.jpg"
+        "approx": true,
+        "ratio": 1.4493,
+        "caption": "The hotel's rounded corner on Krakowskie Przedmieście, seen from the south-east, with cars and cabs in the street",
+        "credit": {
+          "author": "Zdzisław Marcinkowski",
+          "date": "before 1939",
+          "licence": "Public domain (PD-old)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hotel_Europejski_przed_1939.jpg"
+        }
       },
-      "today": {
-        "author": "Patryk Duszkiewicz",
+      {
+        "src": "/img/places/hotel-europejski/1934-1.jpg",
+        "pin": "/img/places/hotel-europejski/1934-1p.jpg",
+        "year": 1934,
+        "date": "1934",
+        "approx": false,
+        "ratio": 1.3245,
+        "caption": "The hotel's long façade facing Piłsudski Square",
+        "credit": {
+          "author": "Willem van de Poll",
+          "date": "1934",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warschau._Hotel_Europejski,_Bestanddeelnr_190-0031.jpg"
+        }
+      },
+      {
+        "src": "/img/places/hotel-europejski/1944-1.jpg",
+        "pin": "/img/places/hotel-europejski/1944-1p.jpg",
+        "year": 1944,
+        "date": "July 1944",
+        "approx": false,
+        "ratio": 1.5564,
+        "caption": "German military trucks on Piłsudski Square a month before the Warsaw Uprising; Hotel Europejski on the left",
+        "credit": {
+          "author": "Stefan Bałuk",
+          "date": "July 1944",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warsaw_1944_by_Ba%C5%82uk_-_26278.jpg"
+        }
+      },
+      {
+        "src": "/img/places/hotel-europejski/2011-1.jpg",
+        "pin": "/img/places/hotel-europejski/2011-1p.jpg",
+        "year": 2011,
+        "date": "2011-09-19",
+        "approx": false,
+        "ratio": 1.8161,
+        "caption": "The hotel before its 2013–2018 renovation, with its post-war green roof",
+        "credit": {
+          "author": "Pawel.lech",
+          "date": "2011-09-19",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hotel_Europejski,_1855-78,_1949-51_ul._Krakowskie_Przedmie%C5%9Bcie_13.jpg"
+        }
+      },
+      {
+        "src": "/img/places/hotel-europejski/2021-1.jpg",
+        "pin": "/img/places/hotel-europejski/2021-1p.jpg",
+        "year": 2021,
         "date": "2021-11-15",
-        "licence": "CC BY-SA 4.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_-_Hotel_Europejski_(2021).jpg"
+        "approx": false,
+        "ratio": 1.4625,
+        "caption": "Raffles Europejski after the renovation, with two new storeys under the glass roof",
+        "credit": {
+          "author": "Patryk Duszkiewicz",
+          "date": "2021-11-15",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_-_Hotel_Europejski_(2021).jpg"
+        }
       }
-    }
+    ]
   },
   {
     "id": "plac-zamkowy",
     "name": "Plac Zamkowy (Castle Square)",
-    "lat": 52.24675,
-    "lng": 21.01315,
-    "heading": "looking north across the square towards Sigismund's Column, the Old Town and the Royal Castle",
-    "description": "Castle Square lies at the gate to the Old Town, with Sigismund's Column (1644) and the Royal Castle, which was the residence of the President of Poland in 1926–1939. The castle burned after German bombardment in September 1939 and was completely destroyed in 1944; the column was toppled during the Warsaw Uprising in September 1944. The column was re-erected in 1949 and the castle was rebuilt in 1971–1984.",
-    "oldYear": "1925",
-    "old": "/img/plac-zamkowy_old.jpg",
-    "restored": "/img/plac-zamkowy_ai.jpg",
-    "today": "/img/plac-zamkowy_today.jpg",
+    "lat": 52.2474,
+    "lng": 21.0136,
+    "kind": "historic",
+    "description": "Castle Square lies at the gate to the Old Town, with Sigismund's Column (1644) and the Royal Castle, the residence of the President of Poland in 1926–1939. The castle burned after German shelling in September 1939 and its remains were blown up by the Germans in 1944; the column was toppled during the Warsaw Uprising. The column was re-erected in 1949, when the W-Z route tunnel was built under the square, and the castle was rebuilt in 1971–1984.",
     "og": "/img/og/plac-zamkowy.jpg",
-    "credits": {
-      "old": {
-        "author": "Henryk Poddębski",
+    "photos": [
+      {
+        "src": "/img/places/plac-zamkowy/1925-1.jpg",
+        "pin": "/img/places/plac-zamkowy/1925-1p.jpg",
+        "year": 1925,
         "date": "1925",
-        "licence": "Public domain (PD-old-80)",
-        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-80",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_-_plac_Zamkowy_1925.jpg"
+        "approx": false,
+        "ratio": 1.4467,
+        "caption": "Sigismund's Column and the Royal Castle seen from above, looking north towards the Old Town",
+        "credit": {
+          "author": "Henryk Poddębski",
+          "date": "1925",
+          "licence": "Public domain (PD-old-80)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-80",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_-_plac_Zamkowy_1925.jpg"
+        }
       },
-      "today": {
-        "author": "Scotch Mist",
+      {
+        "src": "/img/places/plac-zamkowy/1945-1.jpg",
+        "pin": "/img/places/plac-zamkowy/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.4665,
+        "caption": "The ruined square with the toppled Sigismund's Column and the burned-out houses of the Old Town",
+        "credit": {
+          "author": "Leonard Sempoliński",
+          "date": "1945",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Zamkowy_i_Kolumna_Zygmunta_III_Wazy_1945.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-zamkowy/1955-1.jpg",
+        "pin": "/img/places/plac-zamkowy/1955-1p.jpg",
+        "year": 1955,
+        "date": "1950s",
+        "approx": true,
+        "ratio": 1.6,
+        "caption": "The rebuilt John's townhouse and re-erected Sigismund's Column, with St Martin's Church behind",
+        "credit": {
+          "author": "unidentified family member",
+          "date": "1950s",
+          "licence": "Public domain (PD-heirs)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-heirs",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_Plac_Zamkowy_-_lata_50-e.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-zamkowy/1970-1.jpg",
+        "pin": "/img/places/plac-zamkowy/1970-1p.jpg",
+        "year": 1970,
+        "date": "before 1972",
+        "approx": true,
+        "ratio": 1.4072,
+        "caption": "The square with buses and the empty, cleared site of the Royal Castle before its reconstruction",
+        "credit": {
+          "author": "unknown",
+          "date": "before 1972",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Zamkowy_w_Warszawie_przed_1972.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-zamkowy/1981-1.jpg",
+        "pin": "/img/places/plac-zamkowy/1981-1p.jpg",
+        "year": 1981,
+        "date": "1981",
+        "approx": false,
+        "ratio": 1.5385,
+        "caption": "The rebuilt Royal Castle and Sigismund's Column seen from Krakowskie Przedmieście, with parked cars",
+        "credit": {
+          "author": "Fortepan / Jankó Attila",
+          "date": "1981",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Szemben_a_Zsigmond_kir%C3%A1ly-oszlop,_jobbra_a_Kir%C3%A1lyi_Palota._Fortepan_20799.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-zamkowy/2010-1.jpg",
+        "pin": "/img/places/plac-zamkowy/2010-1p.jpg",
+        "year": 2010,
         "date": "2010-07-24",
-        "licence": "CC BY-SA 3.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Castle_Square_ViewA.jpg"
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "Sigismund's Column, the Old Town houses and the Royal Castle's clock tower",
+        "credit": {
+          "author": "Scotch Mist",
+          "date": "2010-07-24",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Castle_Square_ViewA.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-zamkowy/2024-1.jpg",
+        "pin": "/img/places/plac-zamkowy/2024-1p.jpg",
+        "year": 2024,
+        "date": "2024-09-16",
+        "approx": false,
+        "ratio": 1.3278,
+        "caption": "The square and the Royal Castle seen from above, looking north towards the Old Town",
+        "credit": {
+          "author": "Gemmajade99",
+          "date": "2024-09-16",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:%C5%9Ar%C3%B3dmie%C5%9Bcie_-_Plac_Zamkowy_-_za%C5%82o%C5%BCenie_urbanistyczne_-_20240916152326.jpg"
+        }
       }
-    }
+    ]
   },
   {
     "id": "krakowskie-przedmiescie",
-    "name": "Krakowskie Przedmieście",
-    "lat": 52.245,
-    "lng": 21.01455,
-    "heading": "looking north along Krakowskie Przedmieście towards St Anne's Church and Castle Square",
-    "description": "Krakowskie Przedmieście is the northern part of the Royal Route, here with St Anne's Church and the former Bernardine monastery; before the war trams ran along the street. Its buildings were damaged during the defence of Warsaw in September 1939 and again in 1944. After the war most of its historic buildings were rebuilt, some restored to their earlier 18th-century appearance.",
-    "oldYear": "1930",
-    "old": "/img/krakowskie-przedmiescie_old.jpg",
-    "restored": "/img/krakowskie-przedmiescie_ai.jpg",
-    "today": "/img/krakowskie-przedmiescie_today.jpg",
+    "name": "Krakowskie Przedmieście by St Anne's Church",
+    "lat": 52.24617,
+    "lng": 21.01375,
+    "kind": "historic",
+    "description": "The northern end of Krakowskie Przedmieście, part of the Royal Route, runs past St Anne's Church and the former Bernardine monastery towards Castle Square; before the war trams ran along it. Buildings here were damaged in September 1939 and burned in 1944, while St Anne's Church survived with damage. In 1947–1949 the W-Z route was cut in a tunnel under the street beside the church, and most of the historic buildings were rebuilt; in 2006–2008 the street was repaved and largely closed to private traffic.",
     "og": "/img/og/krakowskie-przedmiescie.jpg",
-    "credits": {
-      "old": {
-        "author": "Henryk Poddębski",
+    "photos": [
+      {
+        "src": "/img/places/krakowskie-przedmiescie/1931-1.jpg",
+        "pin": "/img/places/krakowskie-przedmiescie/1931-1p.jpg",
+        "year": 1931,
         "date": "1930–1933",
-        "licence": "Public domain (PD-Poland)",
-        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Krakowskie_Przedmie%C5%9Bcie_ko%C5%9Bci%C3%B3%C5%82_%C5%9Bw._Anny_Warszawa_tramwaje.jpg"
+        "approx": true,
+        "ratio": 1.4506,
+        "caption": "Trams on Krakowskie Przedmieście in front of St Anne's Church, looking north towards Castle Square",
+        "credit": {
+          "author": "Henryk Poddębski",
+          "date": "1930–1933",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Krakowskie_Przedmie%C5%9Bcie_ko%C5%9Bci%C3%B3%C5%82_%C5%9Bw._Anny_Warszawa_tramwaje.jpg"
+        }
       },
-      "today": {
-        "author": "Cayambe",
+      {
+        "src": "/img/places/krakowskie-przedmiescie/1940-1.jpg",
+        "pin": "/img/places/krakowskie-przedmiescie/1940-1p.jpg",
+        "year": 1940,
+        "date": "1940",
+        "approx": true,
+        "ratio": 1.5224,
+        "caption": "Line 3 trams passing the Resursa Obywatelska building next to St Anne's during the German occupation",
+        "credit": {
+          "author": "unknown",
+          "date": "1940",
+          "licence": "Public domain (PD-old)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-auto",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa._Zniszczenia_wojenne_i_sceny_uliczne_(2-223-6).jpg"
+        }
+      },
+      {
+        "src": "/img/places/krakowskie-przedmiescie/1945-1.jpg",
+        "pin": "/img/places/krakowskie-przedmiescie/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.2945,
+        "caption": "St Anne's Church among the rubble and ruined buildings at the end of the war",
+        "credit": {
+          "author": "Leonard Jabrzemski",
+          "date": "1945",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ko%C5%9Bci%C3%B3%C5%82_%C5%9Bw._Anny_w_Warszawie_w_1945_roku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/krakowskie-przedmiescie/1958-1.jpg",
+        "pin": "/img/places/krakowskie-przedmiescie/1958-1p.jpg",
+        "year": 1958,
+        "date": "1958",
+        "approx": false,
+        "ratio": 1.4939,
+        "caption": "Looking south from Castle Square down the rebuilt Krakowskie Przedmieście, with St Anne's bell tower on the left",
+        "credit": {
+          "author": "Fortepan / Lencse Zoltán",
+          "date": "1958",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Zamkowy,_szemben_az_ulica_Krakowskie_Przedmiescie,_balra_a_Szent_Anna-templom._Fortepan_54661.jpg"
+        }
+      },
+      {
+        "src": "/img/places/krakowskie-przedmiescie/1974-1.jpg",
+        "pin": "/img/places/krakowskie-przedmiescie/1974-1p.jpg",
+        "year": 1974,
+        "date": "c. 1974",
+        "approx": true,
+        "ratio": 0.9669,
+        "caption": "Krakowskie Przedmieście seen from above, with cars, buses and Sigismund's Column",
+        "credit": {
+          "author": "unknown",
+          "date": "c. 1974",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Krakowskie_Przedmie%C5%9Bcie_w_Warszawie_w_latach_70.jpg"
+        }
+      },
+      {
+        "src": "/img/places/krakowskie-przedmiescie/2012-1.jpg",
+        "pin": "/img/places/krakowskie-przedmiescie/2012-1p.jpg",
+        "year": 2012,
+        "date": "2012-03-02",
+        "approx": false,
+        "ratio": 1.3746,
+        "caption": "St Anne's Church façade and the arcaded former Bernardine monastery wing",
+        "credit": {
+          "author": "Guillaume Speurt",
+          "date": "2012-03-02",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Church_of_Saint_Anne_(8020283434).jpg"
+        }
+      },
+      {
+        "src": "/img/places/krakowskie-przedmiescie/2019-1.jpg",
+        "pin": "/img/places/krakowskie-przedmiescie/2019-1p.jpg",
+        "year": 2019,
         "date": "2019-07-27",
-        "licence": "CC BY-SA 4.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warsaw,_Krakowskie_Przedmie%C5%9Bcie,_St_Anne_Church.jpg"
+        "approx": false,
+        "ratio": 1.9753,
+        "caption": "The pedestrianised street in front of St Anne's Church, looking north towards Castle Square",
+        "credit": {
+          "author": "Cayambe",
+          "date": "2019-07-27",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warsaw,_Krakowskie_Przedmie%C5%9Bcie,_St_Anne_Church.jpg"
+        }
       }
-    }
+    ]
   },
   {
     "id": "ogrod-saski",
-    "name": "Grób Nieznanego Żołnierza / Pałac Saski (Tomb of the Unknown Soldier)",
-    "lat": 52.24093,
-    "lng": 21.01182,
-    "heading": "looking west at the arcades of the Tomb of the Unknown Soldier, with the Saxon Garden behind",
-    "description": "The Tomb of the Unknown Soldier was created in 1925 in the central colonnade of the Saxon Palace on today's Piłsudski Square. German troops blew up the palace on 27–29 December 1944; only three arcades of the colonnade with the tomb survived. In 2021 the decision was taken to rebuild the palace.",
-    "oldYear": "1929",
-    "old": "/img/ogrod-saski_old.jpg",
-    "restored": "/img/ogrod-saski_ai.jpg",
-    "today": "/img/ogrod-saski_today.jpg",
+    "name": "Tomb of the Unknown Soldier / Saxon Palace (Piłsudski Square)",
+    "lat": 52.24096,
+    "lng": 21.011285,
+    "kind": "historic",
+    "description": "The Tomb of the Unknown Soldier was created in 1925 in the central colonnade of the Saxon Palace, which closed the west side of today's Piłsudski Square. German troops blew up the palace in December 1944; only three arcades of the colonnade with the tomb survived. The tomb was restored and reopened in 1946 as a free-standing monument in front of the Saxon Garden. In 2021 the decision was taken to rebuild the Saxon Palace, and archaeological excavations on its site followed.",
     "og": "/img/og/ogrod-saski.jpg",
-    "compare": {
-      "old": "/img/ogrod-saski_cmp_old.jpg",
-      "today": "/img/ogrod-saski_cmp_today.jpg",
-      "restored": "/img/ogrod-saski_cmp_ai.jpg"
-    },
-    "credits": {
-      "old": {
-        "author": "Narcyz Witczak-Witaczyński",
+    "photos": [
+      {
+        "src": "/img/places/ogrod-saski/1929-1.jpg",
+        "pin": "/img/places/ogrod-saski/1929-1p.jpg",
+        "year": 1929,
         "date": "1929-08-02",
-        "licence": "Public domain (PD-old-80)",
-        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-80",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Narcyz_Witczak-Witaczy%C5%84ski_-_Uroczysto%C5%9B%C4%87_jubileuszu_15-lecia_wyruszenia_u%C5%82a%C5%84skiej_si%C3%B3demki_Beliny_-_Pra%C5%BCmowskiego_na_placu_marsza%C5%82ka_J%C3%B3zefa_Pi%C5%82sudskiego_w_Warszawie_(107-261-1).jpg"
+        "approx": false,
+        "ratio": 1.5857,
+        "caption": "Guard of honour at the Tomb of the Unknown Soldier under the Saxon Palace colonnade",
+        "credit": {
+          "author": "Narcyz Witczak-Witaczyński",
+          "date": "1929-08-02",
+          "licence": "Public domain (PD-old-80)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-80",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Narcyz_Witczak-Witaczy%C5%84ski_-_Uroczysto%C5%9B%C4%87_jubileuszu_15-lecia_wyruszenia_u%C5%82a%C5%84skiej_si%C3%B3demki_Beliny_-_Pra%C5%BCmowskiego_na_placu_marsza%C5%82ka_J%C3%B3zefa_Pi%C5%82sudskiego_w_Warszawie_(107-261-1).jpg"
+        }
       },
-      "today": {
-        "author": "tm-md",
+      {
+        "src": "/img/places/ogrod-saski/1934-1.jpg",
+        "pin": "/img/places/ogrod-saski/1934-1p.jpg",
+        "year": 1934,
+        "date": "1934",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The Saxon Palace with its central colonnade seen across Piłsudski Square",
+        "credit": {
+          "author": "Willem van de Poll",
+          "date": "1934",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warschau._Josef_Pilsudski_plein_met_het_presidentiele_paleis_(het_Saksische_Pale,_Bestanddeelnr_190-0028.jpg"
+        }
+      },
+      {
+        "src": "/img/places/ogrod-saski/1945-1.jpg",
+        "pin": "/img/places/ogrod-saski/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.2285,
+        "caption": "The surviving arches of the tomb among the rubble of the blown-up Saxon Palace",
+        "credit": {
+          "author": "Jan Bułhak",
+          "date": "1945",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Saski_Palace_Warsaw,_destroyed_by_Germans_in_1944.jpg"
+        }
+      },
+      {
+        "src": "/img/places/ogrod-saski/1949-1.jpg",
+        "pin": "/img/places/ogrod-saski/1949-1p.jpg",
+        "year": 1949,
+        "date": "c. 1949",
+        "approx": true,
+        "ratio": 0.9456,
+        "caption": "The restored tomb with its urns, looking out at the ruined Grand Theatre across the square",
+        "credit": {
+          "author": "unknown",
+          "date": "c. 1949",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gr%C3%B3b_Nieznanego_%C5%BBo%C5%82nierza_w_Warszawie_ok._1949.jpg"
+        }
+      },
+      {
+        "src": "/img/places/ogrod-saski/1972-1.jpg",
+        "pin": "/img/places/ogrod-saski/1972-1p.jpg",
+        "year": 1972,
+        "date": "1972",
+        "approx": false,
+        "ratio": 1.5504,
+        "caption": "The free-standing arcade of the tomb on Victory Square, with the Saxon Garden behind",
+        "credit": {
+          "author": "foundin_a_attic",
+          "date": "1972",
+          "licence": "CC BY 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Poland_1972_(41640812090).jpg"
+        }
+      },
+      {
+        "src": "/img/places/ogrod-saski/2005-1.jpg",
+        "pin": "/img/places/ogrod-saski/2005-1p.jpg",
+        "year": 2005,
+        "date": "2005",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The tomb seen across the empty Piłsudski Square",
+        "credit": {
+          "author": "Janusz Jurzyk",
+          "date": "2005",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Niepodleg%C5%82o%C5%9Bci1.JPG"
+        }
+      },
+      {
+        "src": "/img/places/ogrod-saski/2022-1.jpg",
+        "pin": "/img/places/ogrod-saski/2022-1p.jpg",
+        "year": 2022,
         "date": "2022-12-30",
-        "licence": "CC BY-SA 2.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_-_52767185662.jpg"
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The arcade of the Tomb of the Unknown Soldier with the eternal flame",
+        "credit": {
+          "author": "tm-md",
+          "date": "2022-12-30",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_-_52767185662.jpg"
+        }
       }
-    }
+    ]
   },
   {
     "id": "dworzec-glowny",
-    "name": "Dworzec Wiedeński / Dworzec Główny (Vienna Station)",
-    "lat": 52.22998,
-    "lng": 21.0117,
-    "heading": "looking north-west from the Marszałkowska / Aleje Jerozolimskie corner towards the site of the station's clock tower",
-    "description": "The Warsaw–Vienna Railway Station, the city's first, opened in 1845 at the corner of Marszałkowska Street and Aleje Jerozolimskie; from 1919 it served as the Main Station. Most of the building was demolished between the wars for the cross-city railway line, the rest burned in September 1939, and the ruins of the clock tower were blown up in 1947. Today the corner is occupied by the sunken 'Patelnia' square at the entrance to Centrum metro station, with the Palace of Culture and Science behind it.",
-    "old": "/img/dworzec-glowny_old.jpg",
-    "restored": "/img/dworzec-glowny_ai.jpg",
-    "today": "/img/dworzec-glowny_today.jpg",
+    "name": "Dworzec Wiedeński (Vienna Station) – today Patelnia",
+    "lat": 52.23032,
+    "lng": 21.01067,
+    "kind": "historic",
+    "description": "The Warsaw–Vienna Railway Station, the city's first, opened in 1845 at the corner of Marszałkowska Street and Aleje Jerozolimskie, and from 1919 served as the Main Station. Most of the building was demolished in the 1930s during construction of the cross-city railway tunnel, and the remainder burned in September 1939; the ruins of the clock tower were blown up in 1947. The site became part of the square around the Palace of Culture and Science, and since 1998 the sunken 'Patelnia' square has formed the entrance to Centrum metro station.",
     "og": "/img/og/dworzec-glowny.jpg",
-    "credits": {
-      "old": {
-        "author": "Henryk Poddębski",
+    "photos": [
+      {
+        "src": "/img/places/dworzec-glowny/1925-1.jpg",
+        "pin": "/img/places/dworzec-glowny/1925-1p.jpg",
+        "year": 1925,
         "date": "before 1939",
-        "licence": "Public domain (PD-old-70)",
-        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-70",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa,_Dworzec_Kolei_Warszawsko-Wiedenskiej_ante_1939_(68180160).jpg"
+        "approx": true,
+        "ratio": 1.3699,
+        "caption": "The station with its clock tower at the corner of Marszałkowska Street, with crowds and trams",
+        "credit": {
+          "author": "Henryk Poddębski",
+          "date": "before 1939",
+          "licence": "Public domain (PD-old-70)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-70",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa,_Dworzec_Kolei_Warszawsko-Wiedenskiej_ante_1939_(68180160).jpg"
+        }
       },
-      "today": {
-        "author": "Cybularny",
+      {
+        "src": "/img/places/dworzec-glowny/1931-1.jpg",
+        "pin": "/img/places/dworzec-glowny/1931-1p.jpg",
+        "year": 1931,
+        "date": "1931",
+        "approx": false,
+        "ratio": 1.4109,
+        "caption": "The cross-city railway cutting dug through the station site, with the remaining clock-tower building behind",
+        "credit": {
+          "author": "unknown",
+          "date": "1931",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Budowa_tunelu_lini_%C5%9Brednicowej_w_Warszawie_1931.jpg"
+        }
+      },
+      {
+        "src": "/img/places/dworzec-glowny/1939-1.jpg",
+        "pin": "/img/places/dworzec-glowny/1939-1p.jpg",
+        "year": 1939,
+        "date": "September 1939",
+        "approx": false,
+        "ratio": 1.5341,
+        "caption": "The burned-out Main Station after the siege of Warsaw",
+        "credit": {
+          "author": "unknown",
+          "date": "September 1939",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zniszczony_Dworzec_G%C5%82%C3%B3wny_w_Warszawie_wrzesie%C5%84_1939.jpg"
+        }
+      },
+      {
+        "src": "/img/places/dworzec-glowny/1954-1.jpg",
+        "pin": "/img/places/dworzec-glowny/1954-1p.jpg",
+        "year": 1954,
+        "date": "1954",
+        "approx": false,
+        "ratio": 1.5009,
+        "caption": "Trams at the Marszałkowska / Aleje Jerozolimskie crossing; behind, the cleared station site and the Palace of Culture under construction",
+        "credit": {
+          "author": "Zbyszko Siemaszko",
+          "date": "1954",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Skrzy%C5%BCowanie_ulicy_Marsza%C5%82kowskiej_i_Alej_Jerozolimskich_w_1954_roku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/dworzec-glowny/1968-1.jpg",
+        "pin": "/img/places/dworzec-glowny/1968-1p.jpg",
+        "year": 1968,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 1.1127,
+        "caption": "The crossing in the 1960s with the Universal office building and the Rotunda",
+        "credit": {
+          "author": "unknown",
+          "date": "1960s",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Skrzy%C5%BCowanie_Alej_Jerozolimskich_i_Marsza%C5%82kowskiej_w_Warszawie_w_latach_60.jpg"
+        }
+      },
+      {
+        "src": "/img/places/dworzec-glowny/2013-1.jpg",
+        "pin": "/img/places/dworzec-glowny/2013-1p.jpg",
+        "year": 2013,
+        "date": "2013-11-01",
+        "approx": false,
+        "ratio": 1.5009,
+        "caption": "The Patelnia square at the entrance to Centrum metro station at night",
+        "credit": {
+          "author": "Lukas Plewnia",
+          "date": "2013-11-01",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Patelnia_(11581046783).jpg"
+        }
+      },
+      {
+        "src": "/img/places/dworzec-glowny/2024-1.jpg",
+        "pin": "/img/places/dworzec-glowny/2024-1p.jpg",
+        "year": 2024,
         "date": "2024-07-19",
-        "licence": "CC0",
-        "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:2024_Warszawa_Patelnia,_1.jpg"
+        "approx": false,
+        "ratio": 1.4995,
+        "caption": "Patelnia with the metro entrances and the Palace of Culture and Science behind",
+        "credit": {
+          "author": "Cybularny",
+          "date": "2024-07-19",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:2024_Warszawa_Patelnia,_1.jpg"
+        }
       }
-    }
+    ]
   },
   {
     "id": "rynek-starego-miasta",
     "name": "Rynek Starego Miasta (Old Town Market Square)",
-    "lat": 52.2495,
-    "lng": 21.01262,
-    "heading": "looking north-west across the square towards the Dekert side",
-    "description": "The houses of the Old Town Market Square kept their early-17th-century form almost unchanged until 1944, when the Old Town was destroyed during and after the Warsaw Uprising. In 1949–1953 the townhouses were carefully reconstructed using surviving stonework and fragments of painted decoration, and the square was reopened on 22 July 1953. The rebuilt Old Town has been a UNESCO World Heritage Site since 1980.",
-    "oldYear": "1",
-    "old": "/img/rynek-starego-miasta_old.jpg",
-    "restored": "/img/rynek-starego-miasta_ai.jpg",
-    "today": "/img/rynek-starego-miasta_today.jpg",
+    "lat": 52.249798,
+    "lng": 21.012167,
+    "kind": "historic",
+    "description": "The townhouses of the Old Town Market Square largely kept their 17th–18th-century form until 1944; in 1928–1929 their façades were repainted with new polychromes. During and after the Warsaw Uprising the Old Town was almost completely destroyed. In 1949–1953 the townhouses were reconstructed using surviving fragments and historical records, and the square was reopened on 22 July 1953. The rebuilt Old Town has been a UNESCO World Heritage Site since 1980.",
     "og": "/img/og/rynek-starego-miasta.jpg",
-    "compare": {
-      "old": "/img/rynek-starego-miasta_cmp_old.jpg",
-      "today": "/img/rynek-starego-miasta_cmp_today.jpg",
-      "restored": "/img/rynek-starego-miasta_cmp_ai.jpg"
-    },
-    "credits": {
-      "old": {
-        "author": "Henryk Poddębski",
+    "photos": [
+      {
+        "src": "/img/places/rynek-starego-miasta/1929-1.jpg",
+        "pin": "/img/places/rynek-starego-miasta/1929-1p.jpg",
+        "year": 1929,
         "date": "c. 1929",
-        "licence": "Public domain (PD-old-70)",
-        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-70",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa,_Rynek_Starego_Miasta_ca_1929_(67263824).jpg"
+        "approx": true,
+        "ratio": 1.4286,
+        "caption": "The square looking north-west towards the Dekert side, with children playing on the cobbles",
+        "credit": {
+          "author": "Henryk Poddębski",
+          "date": "c. 1929",
+          "licence": "Public domain (PD-old-70)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-70",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa,_Rynek_Starego_Miasta_ca_1929_(67263824).jpg"
+        }
       },
-      "today": {
-        "author": "Steven Lek",
+      {
+        "src": "/img/places/rynek-starego-miasta/1945-1.jpg",
+        "pin": "/img/places/rynek-starego-miasta/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.281,
+        "caption": "The burned-out shells of the Dekert side townhouses after the Warsaw Uprising",
+        "credit": {
+          "author": "Jan Bułhak",
+          "date": "1945",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Strona_Dekerta_w_1945_roku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rynek-starego-miasta/1953-1.jpg",
+        "pin": "/img/places/rynek-starego-miasta/1953-1p.jpg",
+        "year": 1953,
+        "date": "1953-07-22",
+        "approx": false,
+        "ratio": 0.9657,
+        "caption": "Crowds at the ceremony opening the rebuilt Old Town, 22 July 1953",
+        "credit": {
+          "author": "unknown",
+          "date": "1953-07-22",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Uroczysto%C5%9B%C4%87_oddania_do_u%C5%BCytku_odbudowanego_Starego_Miasta_22_lipca_1953.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rynek-starego-miasta/1960-1.jpg",
+        "pin": "/img/places/rynek-starego-miasta/1960-1p.jpg",
+        "year": 1960,
+        "date": "1960",
+        "approx": false,
+        "ratio": 1.2021,
+        "caption": "Rebuilt townhouses on the square, with a car parked in the foreground",
+        "credit": {
+          "author": "Fortepan / Romák Éva",
+          "date": "1960",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:%C3%93v%C3%A1rosi_piact%C3%A9r_(Rynek_Starego_Miasta)._Fortepan_75073.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rynek-starego-miasta/1966-1.jpg",
+        "pin": "/img/places/rynek-starego-miasta/1966-1p.jpg",
+        "year": 1966,
+        "date": "1966",
+        "approx": false,
+        "ratio": 1.448,
+        "caption": "Cars parked in front of the rebuilt townhouses",
+        "credit": {
+          "author": "Fortepan / Sugár Ferenc",
+          "date": "1966",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:%C3%93v%C3%A1rosi_piact%C3%A9r_(Rynek_Starego_Miasta)._Fortepan_101717.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rynek-starego-miasta/1991-1.jpg",
+        "pin": "/img/places/rynek-starego-miasta/1991-1p.jpg",
+        "year": 1991,
+        "date": "August 1991",
+        "approx": false,
+        "ratio": 1.4453,
+        "caption": "The Kołłątaj side of the square in 1991",
+        "credit": {
+          "author": "Smiley.toerist",
+          "date": "August 1991",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warschau_1991_174.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rynek-starego-miasta/2018-1.jpg",
+        "pin": "/img/places/rynek-starego-miasta/2018-1p.jpg",
+        "year": 2018,
         "date": "2018-10-28",
-        "licence": "CC BY-SA 4.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Old_Town_Market_Square_Warsaw_2018.jpg"
+        "approx": false,
+        "ratio": 1.5094,
+        "caption": "The square with the water pump and the Mermaid statue, looking towards the Dekert side",
+        "credit": {
+          "author": "Steven Lek",
+          "date": "2018-10-28",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Old_Town_Market_Square_Warsaw_2018.jpg"
+        }
       }
-    }
+    ]
   },
   {
     "id": "plac-teatralny",
     "name": "Plac Teatralny (Theatre Square)",
-    "lat": 52.24415,
-    "lng": 21.00845,
-    "heading": "looking east across the square, with the Jabłonowski Palace (left) and the Grand Theatre (right)",
-    "description": "Theatre Square is framed by the Grand Theatre and the Jabłonowski Palace, which served as Warsaw's City Hall from 1819 to 1944. The theatre was bombed in September 1939 and wrecked in 1944; it was rebuilt and enlarged in 1947–1965, keeping its original façade on the square. The burned-out ruins of the Jabłonowski Palace were demolished in 1952 and the palace was reconstructed in 1995–1997.",
-    "old": "/img/plac-teatralny_old.jpg",
-    "restored": "/img/plac-teatralny_ai.jpg",
-    "today": "/img/plac-teatralny_today.jpg",
+    "lat": 52.244136,
+    "lng": 21.009574,
+    "kind": "historic",
+    "description": "Theatre Square is framed by the Grand Theatre and the Jabłonowski Palace, which served as Warsaw's City Hall from 1819 until 1944. The theatre was bombed in September 1939 and burned in 1944; it was rebuilt and greatly enlarged after the war, keeping its original façade on the square, and reopened in 1965. The ruins of the Jabłonowski Palace were demolished in 1952 and the Warsaw Nike monument was unveiled near its site in 1964; the monument was moved away in the 1990s and the palace was reconstructed in 1995–1997.",
     "og": "/img/og/plac-teatralny.jpg",
-    "credits": {
-      "old": {
-        "author": "unknown",
+    "photos": [
+      {
+        "src": "/img/places/plac-teatralny/1930-1.jpg",
+        "pin": "/img/places/plac-teatralny/1930-1p.jpg",
+        "year": 1930,
         "date": "before 1939",
-        "licence": "Public domain (PD-Poland)",
-        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Teatralny_i_Teatr_Wielki_w_Warszawie_przed_1939.jpg"
+        "approx": true,
+        "ratio": 1.4172,
+        "caption": "The square with the Jabłonowski Palace (City Hall) tower on the left and the Grand Theatre on the right",
+        "credit": {
+          "author": "unknown",
+          "date": "before 1939",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Teatralny_i_Teatr_Wielki_w_Warszawie_przed_1939.jpg"
+        }
       },
-      "today": {
-        "author": "Adrian Grycuk",
+      {
+        "src": "/img/places/plac-teatralny/1934-1.jpg",
+        "pin": "/img/places/plac-teatralny/1934-1p.jpg",
+        "year": 1934,
+        "date": "c. 1934",
+        "approx": true,
+        "ratio": 1.537,
+        "caption": "City Hall with its tower and the Grand Theatre, seen from above across the square",
+        "credit": {
+          "author": "Willem van de Poll",
+          "date": "c. 1934",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Foto_van_een_plein_in_Warschau,_met_links_het_raadhuis_en_rechts_het_Wielki_Thea,_Bestanddeelnr_252-1603.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-teatralny/1939-1.jpg",
+        "pin": "/img/places/plac-teatralny/1939-1p.jpg",
+        "year": 1939,
+        "date": "September 1939",
+        "approx": false,
+        "ratio": 1.4401,
+        "caption": "Refugees in front of the Jabłonowski Palace (City Hall) during the siege of Warsaw",
+        "credit": {
+          "author": "unknown",
+          "date": "September 1939",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pa%C5%82ac_Jab%C5%82onowskich_podczas_obl%C4%99%C5%BCenia_Warszawy_we_wrze%C5%9Bniu_1939.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-teatralny/1945-1.jpg",
+        "pin": "/img/places/plac-teatralny/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.3675,
+        "caption": "Residents clearing rubble by the ruined Jabłonowski Palace",
+        "credit": {
+          "author": "unknown",
+          "date": "1945",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Odgruzowywanie_pa%C5%82ac_Jab%C5%82onowskich_1945.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-teatralny/1966-1.jpg",
+        "pin": "/img/places/plac-teatralny/1966-1p.jpg",
+        "year": 1966,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 1.4184,
+        "caption": "The Warsaw Nike monument on the square, near the site of the demolished Jabłonowski Palace",
+        "credit": {
+          "author": "unknown",
+          "date": "1960s",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Teatralny_w_Warszawie_w_latach_60.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-teatralny/2009-1.jpg",
+        "pin": "/img/places/plac-teatralny/2009-1p.jpg",
+        "year": 2009,
+        "date": "2009-08-16",
+        "approx": false,
+        "ratio": 3.0246,
+        "caption": "The north side of the square with the reconstructed Jabłonowski Palace and its tower",
+        "credit": {
+          "author": "Marcin Białek",
+          "date": "2009-08-16",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_p%C3%B3%C5%82nocna_pierzeja_placu_Teatralnego.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-teatralny/2020-1.jpg",
+        "pin": "/img/places/plac-teatralny/2020-1p.jpg",
+        "year": 2020,
         "date": "2020-04-18",
-        "licence": "CC BY-SA 3.0 pl",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Teatralny_w_Warszawie_2020.jpg"
+        "approx": false,
+        "ratio": 1.7372,
+        "caption": "The empty square with the Jabłonowski Palace on the left and the Grand Theatre on the right",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2020-04-18",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Teatralny_w_Warszawie_2020.jpg"
+        }
       }
-    }
+    ]
   },
   {
     "id": "marszalkowska",
-    "name": "Ulica Marszałkowska – plac Zbawiciela",
-    "lat": 52.21985,
-    "lng": 21.01772,
-    "heading": "looking south across the square at the Church of the Most Holy Saviour",
-    "description": "Plac Zbawiciela on Marszałkowska Street is dominated by the Church of the Most Holy Saviour, consecrated in 1927. In September 1939 German shells destroyed the church's west tower, the spire over the crossing and the roof, and in 1944 German demolition charges caused further severe damage. The church was repaired after the war and reopened to worshippers in 1948; the 20-metre central spire was never rebuilt.",
-    "oldYear": "1929",
-    "old": "/img/marszalkowska_old.jpg",
-    "restored": "/img/marszalkowska_ai.jpg",
-    "today": "/img/marszalkowska_today.jpg",
+    "name": "Plac Zbawiciela – Church of the Most Holy Saviour",
+    "lat": 52.219191,
+    "lng": 21.01796,
+    "kind": "historic",
+    "description": "Plac Zbawiciela on Marszałkowska Street is dominated by the Church of the Most Holy Saviour, built in 1901–1927. In September 1939 German shells destroyed the church's west tower, the spire over the crossing and the roof, and in 1944 it suffered further severe damage. The church was repaired after the war and its towers rebuilt; in the early 1950s the square was enclosed by the arcaded buildings of the MDM housing estate. The central spire over the crossing was never rebuilt.",
     "og": "/img/og/marszalkowska.jpg",
-    "credits": {
-      "old": {
-        "author": "unknown",
+    "photos": [
+      {
+        "src": "/img/places/marszalkowska/1932-1.jpg",
+        "pin": "/img/places/marszalkowska/1932-1p.jpg",
+        "year": 1932,
         "date": "1929–1939",
-        "licence": "Public domain (PD-Poland)",
-        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Zbawiciela_w_Warszawie_1929-1939.jpg"
+        "approx": true,
+        "ratio": 0.7113,
+        "caption": "The church with its twin towers and central spire, seen across the round garden in the middle of the square",
+        "credit": {
+          "author": "unknown",
+          "date": "1929–1939",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Zbawiciela_w_Warszawie_1929-1939.jpg"
+        }
       },
-      "today": {
-        "author": "Adrian Grycuk",
+      {
+        "src": "/img/places/marszalkowska/1945-1.jpg",
+        "pin": "/img/places/marszalkowska/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.1923,
+        "caption": "The war-damaged church behind rubble and stone lions on today's Aleja Wyzwolenia",
+        "credit": {
+          "author": "Leonard Jabrzemski",
+          "date": "1945",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_6_sierpnia_(aleja_Wyzwolenia)_w_Warszawie_w_1945_roku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/marszalkowska/1949-1.jpg",
+        "pin": "/img/places/marszalkowska/1949-1p.jpg",
+        "year": 1949,
+        "date": "c. 1949",
+        "approx": true,
+        "ratio": 1.6807,
+        "caption": "The church with one tower under reconstruction in scaffolding, on the cleared post-war square",
+        "credit": {
+          "author": "Roman Kwiatkowski",
+          "date": "c. 1949",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Zbawiciela_w_Warszawie_po_wojnie.jpg"
+        }
+      },
+      {
+        "src": "/img/places/marszalkowska/1965-1.jpg",
+        "pin": "/img/places/marszalkowska/1965-1p.jpg",
+        "year": 1965,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 0.9306,
+        "caption": "Aerial view of the square ringed by the arcaded MDM buildings, with the church towers on the right",
+        "credit": {
+          "author": "Edmund Kupiecki",
+          "date": "1960s",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Zbawiciela_lata_60._XX_wieku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/marszalkowska/2009-1.jpg",
+        "pin": "/img/places/marszalkowska/2009-1p.jpg",
+        "year": 2009,
+        "date": "2009-05-13",
+        "approx": false,
+        "ratio": 0.7519,
+        "caption": "The church seen from the square, without the pre-war central spire",
+        "credit": {
+          "author": "Aw58",
+          "date": "2009-05-13",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa,_Ko%C5%9Bci%C3%B3%C5%82_Naj%C5%9Bwi%C4%99tszego_Zbawiciela_-_13.05.2009_r..JPG"
+        }
+      },
+      {
+        "src": "/img/places/marszalkowska/2019-1.jpg",
+        "pin": "/img/places/marszalkowska/2019-1p.jpg",
+        "year": 2019,
         "date": "2019-05-05",
-        "licence": "CC BY-SA 3.0 pl",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ko%C5%9Bci%C3%B3%C5%82_Naj%C5%9Bwi%C4%99tszego_Zbawiciela_w_Warszawie_2019c.jpg"
+        "approx": false,
+        "ratio": 0.6294,
+        "caption": "The front of the church with its twin towers",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2019-05-05",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ko%C5%9Bci%C3%B3%C5%82_Naj%C5%9Bwi%C4%99tszego_Zbawiciela_w_Warszawie_2019c.jpg"
+        }
+      },
+      {
+        "src": "/img/places/marszalkowska/2022-1.jpg",
+        "pin": "/img/places/marszalkowska/2022-1p.jpg",
+        "year": 2022,
+        "date": "2022-05-17",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "Aerial view of the square from the west, with the church on the right",
+        "credit": {
+          "author": "Emptywords",
+          "date": "2022-05-17",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Zbawiciela_Warsaw_2022_aerial.jpg"
+        }
       }
-    }
+    ]
   },
   {
     "id": "plac-trzech-krzyzy",
-    "name": "Plac Trzech Krzyży (Three Crosses Square)",
-    "lat": 52.2299,
-    "lng": 21.02215,
-    "heading": "looking south from the end of Nowy Świat towards St Alexander's Church",
-    "description": "St Alexander's Church on Three Crosses Square was built in 1818–1826 to a classicist design by Piotr Aigner and enlarged in 1886–1895 in neo-Renaissance style, with two towers and a large dome. It was destroyed by German bombing in September 1944. In 1949–1952 it was rebuilt in its original, smaller classicist form, without the 19th-century extension.",
-    "old": "/img/plac-trzech-krzyzy_old.jpg",
-    "restored": "/img/plac-trzech-krzyzy_ai.jpg",
-    "today": "/img/plac-trzech-krzyzy_today.jpg",
+    "name": "Plac Trzech Krzyży (Three Crosses Square) – St Alexander's Church",
+    "lat": 52.229115,
+    "lng": 21.02234,
+    "kind": "historic",
+    "description": "St Alexander's Church on Three Crosses Square was built in 1818–1826 to a classicist design by Chrystian Piotr Aigner and enlarged in 1886–1895 in neo-Renaissance style, with two towers and a large dome. It was largely destroyed during the Warsaw Uprising in 1944. In 1949–1952 it was rebuilt in its original, smaller classicist form, without the 19th-century extension, while new buildings rose around the square.",
     "og": "/img/og/plac-trzech-krzyzy.jpg",
-    "credits": {
-      "old": {
-        "author": "unknown",
+    "photos": [
+      {
+        "src": "/img/places/plac-trzech-krzyzy/1930-1.jpg",
+        "pin": "/img/places/plac-trzech-krzyzy/1930-1p.jpg",
+        "year": 1930,
         "date": "before 1939",
-        "licence": "Public domain (PD-Poland)",
-        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Trzech_Krzy%C5%BCy_w_Warszawie_przed_1939.jpg"
+        "approx": true,
+        "ratio": 1.3559,
+        "caption": "The square from above, with the enlarged church, trees and trams",
+        "credit": {
+          "author": "unknown",
+          "date": "before 1939",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Trzech_Krzy%C5%BCy_w_Warszawie_przed_1939.jpg"
+        }
       },
-      "today": {
-        "author": "Marcin Białek",
+      {
+        "src": "/img/places/plac-trzech-krzyzy/1933-1.jpg",
+        "pin": "/img/places/plac-trzech-krzyzy/1933-1p.jpg",
+        "year": 1933,
+        "date": "1933",
+        "approx": false,
+        "ratio": 1.4427,
+        "caption": "Looking along Nowy Świat towards the enlarged St Alexander's Church with its two towers and dome",
+        "credit": {
+          "author": "unknown",
+          "date": "1933",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Trzech_Krzy%C5%BCy_w_Warszawie_1933.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-trzech-krzyzy/1945-1.jpg",
+        "pin": "/img/places/plac-trzech-krzyzy/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.1765,
+        "caption": "The ruins of the church with one surviving tower",
+        "credit": {
+          "author": "Jan Bułhak",
+          "date": "1945",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ko%C5%9Bci%C3%B3%C5%82_%C5%9Bw._Aleksandra_w_Warszawie_w_1945_roku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-trzech-krzyzy/1948-1.jpg",
+        "pin": "/img/places/plac-trzech-krzyzy/1948-1p.jpg",
+        "year": 1948,
+        "date": "1948 or 1949",
+        "approx": true,
+        "ratio": 1.4829,
+        "caption": "Trams on the square during post-war reconstruction, with the ruined church on the right",
+        "credit": {
+          "author": "Leonard Jabrzemski",
+          "date": "1948 or 1949",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Odbudowa_placu_Trzech_Krzy%C5%BCy.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-trzech-krzyzy/1965-1.jpg",
+        "pin": "/img/places/plac-trzech-krzyzy/1965-1p.jpg",
+        "year": 1965,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 1.6598,
+        "caption": "Buses and cars on the square in front of the rebuilt classicist church",
+        "credit": {
+          "author": "unknown",
+          "date": "1960s",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Trzech_Krzy%C5%BCy_w_Warszawie_w_latach_60.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-trzech-krzyzy/2009-1.jpg",
+        "pin": "/img/places/plac-trzech-krzyzy/2009-1p.jpg",
+        "year": 2009,
         "date": "2009-02-21",
-        "licence": "CC BY-SA 4.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "source": "Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_plac_Trzech_Krzy%C5%BCy.jpg"
+        "approx": false,
+        "ratio": 2.2857,
+        "caption": "The rebuilt church in the middle of the square, in winter",
+        "credit": {
+          "author": "Marcin Białek",
+          "date": "2009-02-21",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_plac_Trzech_Krzy%C5%BCy.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-trzech-krzyzy/2022-1.jpg",
+        "pin": "/img/places/plac-trzech-krzyzy/2022-1p.jpg",
+        "year": 2022,
+        "date": "2022-08-05",
+        "approx": false,
+        "ratio": 1.4085,
+        "caption": "St Alexander's Church, the rotunda and portico as rebuilt after the war",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2022-08-05",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ko%C5%9Bci%C3%B3%C5%82_%C5%9Bw._Aleksandra_w_Warszawie_2022a.jpg"
+        }
       }
-    }
+    ]
+  },
+  {
+    "id": "nowy-swiat",
+    "name": "Nowy Świat at Aleje Jerozolimskie (Rondo de Gaulle'a)",
+    "lat": 52.231854,
+    "lng": 21.02086,
+    "kind": "historic",
+    "description": "Before the war the crossing of Nowy Świat and Aleje Jerozolimskie was one of Warsaw's busiest corners, lined with tenement houses and cafés, with the Bank Gospodarstwa Krajowego building completed on one corner in 1931. Most of the surrounding houses were destroyed during the war and the 1944 Warsaw Uprising. In 1948–1952 the monumental Party House, seat of the Central Committee of the Polish United Workers' Party, was built on the corner of Nowy Świat. After 1991 it became the Centrum Bankowo-Finansowe and housed the Warsaw Stock Exchange until 2000; since 2002 Joanna Rajkowska's artificial palm tree has stood in the middle of the Charles de Gaulle roundabout.",
+    "og": "/img/og/nowy-swiat.jpg",
+    "photos": [
+      {
+        "src": "/img/places/nowy-swiat/1932-1.jpg",
+        "pin": "/img/places/nowy-swiat/1932-1p.jpg",
+        "year": 1932,
+        "date": "1930–1934",
+        "approx": true,
+        "ratio": 1.3722,
+        "caption": "Cars, cabs and a line 0 tram at the Nowy Świat – Aleje Jerozolimskie crossing, with the Gastronomia café on the right",
+        "credit": {
+          "author": "Jan Binek",
+          "date": "1930–1934",
+          "licence": "Public domain (PD-old-auto)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-auto",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AJan_Binek_-_Warszawa._Skrzy%C5%BCowanie_Ulicy_Nowy_%C5%9Awiat_z_Alejami_Jerozolimskimi._%281-U-6788%29.jpg"
+        }
+      },
+      {
+        "src": "/img/places/nowy-swiat/1935-1.jpg",
+        "pin": "/img/places/nowy-swiat/1935-1p.jpg",
+        "year": 1935,
+        "date": "before 1939",
+        "approx": true,
+        "ratio": 1.3452,
+        "caption": "The corner tenement house with the Gastronomia café at Nowy Świat and Aleje 3 Maja",
+        "credit": {
+          "author": "Unknown",
+          "date": "before 1939",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AKamienica_przy_al._3_Maja_50_r%C3%B3g_Nowy_%C5%9Awiat_w_Warszawie_przed_1939.jpg"
+        }
+      },
+      {
+        "src": "/img/places/nowy-swiat/1948-1.jpg",
+        "pin": "/img/places/nowy-swiat/1948-1p.jpg",
+        "year": 1948,
+        "date": "1948–1949",
+        "approx": true,
+        "ratio": 1.5952,
+        "caption": "The junction in the late 1940s, with war-damaged houses and early post-war traffic",
+        "credit": {
+          "author": "Unknown",
+          "date": "1948–1949",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASkrzy%C5%BCowanie_Nowego_%C5%9Awiatu_z_Alejami_Jerozolimskimi_w_Warszawie_pod_koniec_lat_40.jpg"
+        }
+      },
+      {
+        "src": "/img/places/nowy-swiat/1949-1.jpg",
+        "pin": "/img/places/nowy-swiat/1949-1p.jpg",
+        "year": 1949,
+        "date": "1949",
+        "approx": false,
+        "ratio": 1.2842,
+        "caption": "Clearing the street at the junction while the Party House rises behind scaffolding",
+        "credit": {
+          "author": "Edward Falkowski",
+          "date": "1949",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASkrzy%C5%BCowanie_Alej_Jerozolimskich_i_ulicy_Nowy_%C5%9Awiat_w_Warszawie_1949.jpg"
+        }
+      },
+      {
+        "src": "/img/places/nowy-swiat/1965-1.jpg",
+        "pin": "/img/places/nowy-swiat/1965-1p.jpg",
+        "year": 1965,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 1.3514,
+        "caption": "Trams and buses at the junction in the 1960s, with the Party House in the background",
+        "credit": {
+          "author": "Marek A. Karewicz",
+          "date": "1960s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASkrzy%C5%BCowanie_Alej_Jerozlimskich_i_ul._Nowy_%C5%9Awiat_w_latach_60.jpg"
+        }
+      },
+      {
+        "src": "/img/places/nowy-swiat/2012-1.jpg",
+        "pin": "/img/places/nowy-swiat/2012-1p.jpg",
+        "year": 2012,
+        "date": "2012-05-24",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The roundabout with the artificial palm tree and the Bank Gospodarstwa Krajowego building",
+        "credit": {
+          "author": "Alina Zienowicz (Ala_z)",
+          "date": "2012-05-24",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACharles_de_Gaulle_Roundabout_in_Warsaw_2012.JPG"
+        }
+      },
+      {
+        "src": "/img/places/nowy-swiat/2019-1.jpg",
+        "pin": "/img/places/nowy-swiat/2019-1p.jpg",
+        "year": 2019,
+        "date": "2019-08-18",
+        "approx": false,
+        "ratio": 1.4109,
+        "caption": "The Charles de Gaulle roundabout with its palm tree, seen along Aleje Jerozolimskie",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2019-08-18",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ARondo_gen._Charlesa_de_Gaulle%E2%80%99a_w_Warszawie_2019.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "plac-bankowy",
+    "name": "Plac Bankowy (Bank Square)",
+    "lat": 52.243006,
+    "lng": 21.002322,
+    "kind": "historic",
+    "description": "Bank Square took its classicist form in the 1820s, when Antonio Corazzi built the palace of the Government Revenue and Treasury Commission, the Treasury Minister's Palace and the Bank Polski building around it. The palaces were burnt out in 1944 and rebuilt in the early 1950s, while the square was widened into a major traffic junction and renamed after Felix Dzerzhinsky, whose statue stood here from 1951 to 1989. Today the palace complex houses Warsaw City Hall, the Blue Skyscraper (completed in 1991) stands on the east side near the site of the destroyed Great Synagogue, and a monument to Juliusz Słowacki has stood on the square since 2001.",
+    "og": "/img/og/plac-bankowy.jpg",
+    "photos": [
+      {
+        "src": "/img/places/plac-bankowy/1925-1.jpg",
+        "pin": "/img/places/plac-bankowy/1925-1p.jpg",
+        "year": 1925,
+        "date": "1920s",
+        "approx": true,
+        "ratio": 1.5702,
+        "caption": "The Treasury Minister's Palace and the tree-lined garden square in front of it, seen from Rymarska Street",
+        "credit": {
+          "author": "Zdzisław Marcinkowski (1880−1944)",
+          "date": "1920s",
+          "licence": "Public domain (PD-old)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APlac_Bankowy_w_Warszawie_w_latach_20.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-bankowy/1935-1.jpg",
+        "pin": "/img/places/plac-bankowy/1935-1p.jpg",
+        "year": 1935,
+        "date": "before 1939",
+        "approx": true,
+        "ratio": 1.534,
+        "caption": "Bank Square with its fountain, the Corazzi palaces on the left and Rymarska Street on the right",
+        "credit": {
+          "author": "Unknown",
+          "date": "before 1939",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APlac_Bankowy_w_Warszawie_przed_1939.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-bankowy/1951-1.jpg",
+        "pin": "/img/places/plac-bankowy/1951-1p.jpg",
+        "year": 1951,
+        "date": "1951",
+        "approx": false,
+        "ratio": 1.5549,
+        "caption": "The colonnaded palaces of the square under reconstruction after their destruction in 1944",
+        "credit": {
+          "author": "Unknown",
+          "date": "1951",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APa%C5%82ac_Komisji_Rz%C4%85dowej_Przychod%C3%B3w_i_Skarbu_1951.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-bankowy/1974-1.jpg",
+        "pin": "/img/places/plac-bankowy/1974-1p.jpg",
+        "year": 1974,
+        "date": "c. 1974",
+        "approx": true,
+        "ratio": 1.1765,
+        "caption": "Dzerzhinsky Square, as it was then named, with the rebuilt palaces and the Dzerzhinsky statue",
+        "credit": {
+          "author": "Unknown",
+          "date": "c. 1974",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APlac_Dzier%C5%BCy%C5%84skiego_Bankowy_w_latach_70.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-bankowy/2010-1.jpg",
+        "pin": "/img/places/plac-bankowy/2010-1p.jpg",
+        "year": 2010,
+        "date": "2010-08-07",
+        "approx": false,
+        "ratio": 1.5052,
+        "caption": "A Konstal 105Na tram passing the rebuilt palace colonnades on Bank Square",
+        "credit": {
+          "author": "Citizen59",
+          "date": "2010-08-07",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A105Na_1274%2B1273_plac_Bankowy_Warszawa.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-bankowy/2015-1.jpg",
+        "pin": "/img/places/plac-bankowy/2015-1p.jpg",
+        "year": 2015,
+        "date": "2015-06-02",
+        "approx": false,
+        "ratio": 1.5474,
+        "caption": "The Blue Skyscraper and the Słowacki monument on Bank Square",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2015-06-02",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APlac_Bankowy_w_Warszawie_2015.JPG"
+        }
+      },
+      {
+        "src": "/img/places/plac-bankowy/2018-1.jpg",
+        "pin": "/img/places/plac-bankowy/2018-1p.jpg",
+        "year": 2018,
+        "date": "2018-04-15",
+        "approx": false,
+        "ratio": 1.8519,
+        "caption": "The rebuilt Treasury Minister's Palace with the Słowacki monument in front",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2018-04-15",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APa%C5%82ac_Ministra_Skarbu_w_Warszawie_2018.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "plac-grzybowski",
+    "name": "Plac Grzybowski (All Saints Church)",
+    "lat": 52.236016,
+    "lng": 21.00336,
+    "kind": "historic",
+    "description": "Grzybowski Square was a busy market square in the heart of Warsaw's Jewish quarter, dominated by All Saints Church, built from 1861 to Enrico Marconi's design. In 1904 it was the scene of the PPS armed demonstration, and during the occupation the square lay within the Warsaw Ghetto. The church was badly damaged in 1944 and rebuilt after the war, while most of the surrounding tenements were replaced by post-war housing blocks and office towers. The square itself was redesigned as a green public space in 2010.",
+    "og": "/img/og/plac-grzybowski.jpg",
+    "photos": [
+      {
+        "src": "/img/places/plac-grzybowski/1867-1.jpg",
+        "pin": "/img/places/plac-grzybowski/1867-1p.jpg",
+        "year": 1867,
+        "date": "1867-08",
+        "approx": false,
+        "ratio": 1.2987,
+        "caption": "All Saints Church under construction behind the market stalls and carts of Grzybowski Square",
+        "credit": {
+          "author": "Konrad Brandel",
+          "date": "1867-08",
+          "licence": "Public domain (PD-old-100)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-100",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ABudowa_ko%C5%9Bcio%C5%82a_Wszystkich_%C5%9Awi%C4%99tych_w_Warszawie_sierpie%C5%84_1867.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-grzybowski/1900-1.jpg",
+        "pin": "/img/places/plac-grzybowski/1900-1p.jpg",
+        "year": 1900,
+        "date": "c. 1900",
+        "approx": true,
+        "ratio": 1.1356,
+        "caption": "The completed All Saints Church above the busy square, with horse-drawn trams and carts",
+        "credit": {
+          "author": "Unknown",
+          "date": "c. 1900",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APlac_Grzybowski_w_XIX_wieku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-grzybowski/1931-1.jpg",
+        "pin": "/img/places/plac-grzybowski/1931-1p.jpg",
+        "year": 1931,
+        "date": "1931-05-01",
+        "approx": false,
+        "ratio": 0.7169,
+        "caption": "A Polish Socialist Party May Day rally in front of All Saints Church",
+        "credit": {
+          "author": "Unknown",
+          "date": "1931-05-01",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AWiec_Polskiej_Partii_Socjalistycznej_w_Warszawie_podczas_obchod%C3%B3w_%C5%9Bwi%C4%99ta_1_Maja_1931_07.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-grzybowski/2007-1.jpg",
+        "pin": "/img/places/plac-grzybowski/2007-1p.jpg",
+        "year": 2007,
+        "date": "2007-04-21",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The square as a small park with parked cars, before its 2010 redesign",
+        "credit": {
+          "author": "masti",
+          "date": "2007-04-21",
+          "licence": "CC BY-SA 2.5",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APlac_Grzybowski_w_Warszawie.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-grzybowski/2011-1.jpg",
+        "pin": "/img/places/plac-grzybowski/2011-1p.jpg",
+        "year": 2011,
+        "date": "2011-04-22",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The newly redesigned square in spring 2011",
+        "credit": {
+          "author": "Raf24",
+          "date": "2011-04-22",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APlac_Grzybowski_kwiecie%C5%84_2011_%281%29.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-grzybowski/2015-1.jpg",
+        "pin": "/img/places/plac-grzybowski/2015-1p.jpg",
+        "year": 2015,
+        "date": "2015-08-16",
+        "approx": false,
+        "ratio": 1.564,
+        "caption": "The square's pond and planting, with post-war housing blocks behind",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2015-08-16",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APlac_Grzybowski_w_Warszawie_2015.JPG"
+        }
+      },
+      {
+        "src": "/img/places/plac-grzybowski/2026-1.jpg",
+        "pin": "/img/places/plac-grzybowski/2026-1p.jpg",
+        "year": 2026,
+        "date": "2026-04-20",
+        "approx": false,
+        "ratio": 1.2336,
+        "caption": "All Saints Church at the southern end of the square today",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2026-04-20",
+          "licence": "CC BY 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AKo%C5%9Bci%C3%B3%C5%82_Wszystkich_%C5%9Awi%C4%99tych_w_Warszawie_2026.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "most-poniatowskiego",
+    "name": "Poniatowski Bridge (Most Poniatowskiego)",
+    "lat": 52.23566,
+    "lng": 21.0394,
+    "kind": "historic",
+    "description": "Poniatowski Bridge, a steel-arch bridge over the Vistula with gatehouse towers designed by Stefan Szyller, opened in January 1914 as the continuation of Aleje Jerozolimskie. Russian troops blew it up in 1915 and it reopened only in the 1920s; in September 1944 German forces destroyed it again. The rebuilt bridge was reopened on 22 July 1946, and it still carries trams and road traffic to Praga, with the National Stadium on the eastern bank since 2011.",
+    "og": "/img/og/most-poniatowskiego.jpg",
+    "photos": [
+      {
+        "src": "/img/places/most-poniatowskiego/1914-1.jpg",
+        "pin": "/img/places/most-poniatowskiego/1914-1p.jpg",
+        "year": 1914,
+        "date": "1914",
+        "approx": false,
+        "ratio": 1.3937,
+        "caption": "The newly opened bridge and its western gatehouse tower seen from the riverbank",
+        "credit": {
+          "author": "Stanisław Bogacki",
+          "date": "1914",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMost_Poniatowskiego_w_Warszawie_%281914%29a.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-poniatowskiego/1935-1.jpg",
+        "pin": "/img/places/most-poniatowskiego/1935-1p.jpg",
+        "year": 1935,
+        "date": "before 1939",
+        "approx": true,
+        "ratio": 1.3746,
+        "caption": "The western approach to the bridge with its pair of towers and a tram",
+        "credit": {
+          "author": "Unknown",
+          "date": "before 1939",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AWjazd_na_most_Poniatowskiego_przed_1939.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-poniatowskiego/1945-1.jpg",
+        "pin": "/img/places/most-poniatowskiego/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.5152,
+        "caption": "A temporary pontoon bridge beside the wrecked spans and damaged tower of Poniatowski Bridge",
+        "credit": {
+          "author": "Jerzy Baranowski",
+          "date": "1945",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMost_pontonowy_przy_mo%C5%9Bcie_Poniatowskiego_1945.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-poniatowskiego/1945-2.jpg",
+        "pin": "/img/places/most-poniatowskiego/1945-2p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.3962,
+        "caption": "Workers assembling a new steel arch during the reconstruction of the bridge",
+        "credit": {
+          "author": "Unknown",
+          "date": "1945",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AOdbudowa_mostu_Poniatowskiego_1945a.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-poniatowskiego/1958-1.jpg",
+        "pin": "/img/places/most-poniatowskiego/1958-1p.jpg",
+        "year": 1958,
+        "date": "1958",
+        "approx": false,
+        "ratio": 1.5671,
+        "caption": "The rebuilt bridge seen from the Stadion Dziesięciolecia side, with pedestrians and a bus",
+        "credit": {
+          "author": "Fortepan / Lencse Zoltán",
+          "date": "1958",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AVars%C3%B3._A_Poniatowski_h%C3%ADd_%28Most_Ksiecia_J%C3%B3zefa_Poniatowskiego%29_a_Nemzeti_Stadion_fel%C5%91l_n%C3%A9zve._Fortepan_54668.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-poniatowskiego/2010-1.jpg",
+        "pin": "/img/places/most-poniatowskiego/2010-1p.jpg",
+        "year": 2010,
+        "date": "2010-05-21",
+        "approx": false,
+        "ratio": 1.5009,
+        "caption": "The bridge during the high water of the Vistula in May 2010",
+        "credit": {
+          "author": "Tadeusz Rudzki",
+          "date": "2010-05-21",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AWarsaw_Vistula_river_20100521.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-poniatowskiego/2015-1.jpg",
+        "pin": "/img/places/most-poniatowskiego/2015-1p.jpg",
+        "year": 2015,
+        "date": "2015-08-30",
+        "approx": false,
+        "ratio": 1.9347,
+        "caption": "The steel arches of the bridge from the western riverbank",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2015-08-30",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMost_Poniatowskiego_2015.JPG"
+        }
+      }
+    ]
+  },
+  {
+    "id": "barbakan",
+    "name": "Barbakan (Warsaw Barbican)",
+    "lat": 52.250588,
+    "lng": 21.010161,
+    "kind": "historic",
+    "description": "The Barbican, a semicircular fortified gate in Warsaw's city walls, was built in the mid-16th century on the road from the Old Town to the New Town. After losing its defensive role it was partly demolished and built over with tenement houses, and only fragments were uncovered during restoration work in the late 1930s. The area was devastated in 1944, and the Barbican was reconstructed in 1952–1954 from old drawings and the surviving remains. Today it is a pedestrian gateway between the Old and New Towns, part of the Old Town UNESCO World Heritage Site.",
+    "og": "/img/og/barbakan.jpg",
+    "photos": [
+      {
+        "src": "/img/places/barbakan/1935-1.jpg",
+        "pin": "/img/places/barbakan/1935-1p.jpg",
+        "year": 1935,
+        "date": "before 1939",
+        "approx": true,
+        "ratio": 1.6074,
+        "caption": "Nowomiejska Street at Freta Street before the war, when the Barbican's remains were hidden among tenement houses",
+        "credit": {
+          "author": "Unknown",
+          "date": "before 1939",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AUlica_Nowomiejska_przy_Freta_przed_1939.jpg"
+        }
+      },
+      {
+        "src": "/img/places/barbakan/1945-1.jpg",
+        "pin": "/img/places/barbakan/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.071,
+        "caption": "Rubble filling Nowomiejska Street, which leads from the Old Town Market Square to the Barbican",
+        "credit": {
+          "author": "Leonard Jabrzemski",
+          "date": "1945",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AUlica_Nowomiejska_w_Warszawie_w_1945_roku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/barbakan/1953-1.jpg",
+        "pin": "/img/places/barbakan/1953-1p.jpg",
+        "year": 1953,
+        "date": "1953",
+        "approx": false,
+        "ratio": 1.0652,
+        "caption": "Reconstruction of the Barbican's brick walls",
+        "credit": {
+          "author": "Unknown",
+          "date": "1953",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ABudowa_Barbakanu_w_Warszawie_lata_50.jpg"
+        }
+      },
+      {
+        "src": "/img/places/barbakan/1958-1.jpg",
+        "pin": "/img/places/barbakan/1958-1p.jpg",
+        "year": 1958,
+        "date": "1958",
+        "approx": false,
+        "ratio": 1.4733,
+        "caption": "The rebuilt Barbican seen from Nowomiejska Street",
+        "credit": {
+          "author": "Fortepan / Lencse Zoltán",
+          "date": "1958",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AUlica_Nowomiejska%2C_szemben_a_barbak%C3%A1n._Fortepan_54656.jpg"
+        }
+      },
+      {
+        "src": "/img/places/barbakan/1965-1.jpg",
+        "pin": "/img/places/barbakan/1965-1p.jpg",
+        "year": 1965,
+        "date": "1965",
+        "approx": false,
+        "ratio": 1.0989,
+        "caption": "The Barbican and the reconstructed city walls seen from Podwale Street",
+        "credit": {
+          "author": "Fortepan / Nagy Gyula",
+          "date": "1965",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AA_barbak%C3%A1n_az_ulica_Podwale_fel%C5%91l_n%C3%A9zve._Fortepan_59935.jpg"
+        }
+      },
+      {
+        "src": "/img/places/barbakan/2009-1.jpg",
+        "pin": "/img/places/barbakan/2009-1p.jpg",
+        "year": 2009,
+        "date": "2009-09-26",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The Barbican's outer face seen from the moat",
+        "credit": {
+          "author": "Alina Zienowicz Ala z",
+          "date": "2009-09-26",
+          "licence": "Public domain (PD-self)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-self",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ABarbakan_in_Warsaw_2009_%283%29.jpg"
+        }
+      },
+      {
+        "src": "/img/places/barbakan/2020-1.jpg",
+        "pin": "/img/places/barbakan/2020-1p.jpg",
+        "year": 2020,
+        "date": "2020-04-24",
+        "approx": false,
+        "ratio": 1.4273,
+        "caption": "The Barbican seen from Nowomiejska Street",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2020-04-24",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ABarbakan_w_Warszawie_od_strony_ul._Nowomiejskiej_2020.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "zacheta",
+    "name": "Zachęta Gallery (Plac Małachowskiego)",
+    "lat": 52.239242,
+    "lng": 21.011491,
+    "kind": "historic",
+    "description": "The Zachęta building on Małachowski Square was designed by Stefan Szyller for the Society for the Encouragement of Fine Arts and opened in 1900. In December 1922 Poland's first president, Gabriel Narutowicz, was assassinated inside it. The gallery survived the war with damage while much of the surrounding square was ruined, and after 1949 it housed the Central Bureau of Art Exhibitions. Since 2003 it has been the Zachęta National Gallery of Art.",
+    "og": "/img/og/zacheta.jpg",
+    "photos": [
+      {
+        "src": "/img/places/zacheta/1900-1.jpg",
+        "pin": "/img/places/zacheta/1900-1p.jpg",
+        "year": 1900,
+        "date": "1900",
+        "approx": false,
+        "ratio": 1.2569,
+        "caption": "The newly completed Zachęta building, with the dome of Holy Trinity Church behind",
+        "credit": {
+          "author": "Jadwiga Golcz",
+          "date": "1900",
+          "licence": "Public domain (PD-old-auto)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-auto",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AGmach_Towarzystwa_Zach%C4%99ty_Sztuk_Pi%C4%99knych_w_Warszawie_%2870363%29.jpg"
+        }
+      },
+      {
+        "src": "/img/places/zacheta/1935-1.jpg",
+        "pin": "/img/places/zacheta/1935-1p.jpg",
+        "year": 1935,
+        "date": "before 1939",
+        "approx": true,
+        "ratio": 1.342,
+        "caption": "Małachowski Square with the Lutheran Holy Trinity Church and the corner of the Zachęta building on the right",
+        "credit": {
+          "author": "Unknown",
+          "date": "before 1939",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APlac_Ma%C5%82achowskiego_przed_1939.jpg"
+        }
+      },
+      {
+        "src": "/img/places/zacheta/1940-1.jpg",
+        "pin": "/img/places/zacheta/1940-1p.jpg",
+        "year": 1940,
+        "date": "1939–1940",
+        "approx": true,
+        "ratio": 1.6145,
+        "caption": "The Peowiak monument on Małachowski Square during the German occupation, with war-damaged houses behind",
+        "credit": {
+          "author": "Unknown",
+          "date": "1939–1940",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APeowiak_Monument_in_Warsaw_%281940%29.jpg"
+        }
+      },
+      {
+        "src": "/img/places/zacheta/1948-1.jpg",
+        "pin": "/img/places/zacheta/1948-1p.jpg",
+        "year": 1948,
+        "date": "1948",
+        "approx": false,
+        "ratio": 1.5209,
+        "caption": "Kredytowa Street seen from Małachowski Square, with ruins and new construction",
+        "credit": {
+          "author": "Unknown",
+          "date": "1948",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AUlica_Kredytowa_i_plac_Ma%C5%82achowskiego_w_Warszawie_1948.jpg"
+        }
+      },
+      {
+        "src": "/img/places/zacheta/2010-1.jpg",
+        "pin": "/img/places/zacheta/2010-1p.jpg",
+        "year": 2010,
+        "date": "2010-03-28",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The Zachęta National Gallery of Art seen from Małachowski Square",
+        "credit": {
+          "author": "Alina Zienowicz Ala z",
+          "date": "2010-03-28",
+          "licence": "Public domain (PD-self)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-self",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AWarszawa_Zacheta_2010_%281%29.JPG"
+        }
+      },
+      {
+        "src": "/img/places/zacheta/2015-1.jpg",
+        "pin": "/img/places/zacheta/2015-1p.jpg",
+        "year": 2015,
+        "date": "2015-01-17",
+        "approx": false,
+        "ratio": 1.8824,
+        "caption": "The main facade of the Zachęta building with the 'Artibus' pediment",
+        "credit": {
+          "author": "rdrozd",
+          "date": "2015-01-17",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AZach%C4%99ta_-_budynek.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "prudential",
+    "name": "Prudential (Hotel Warszawa)",
+    "lat": 52.235643,
+    "lng": 21.012321,
+    "kind": "historic",
+    "description": "Built in 1931–1934 for the Prudential insurance company to a design by Marcin Weinfeld, the 66 m tower was one of the tallest buildings in pre-war Europe. During the 1944 Warsaw Uprising it was hit by heavy artillery and burnt out, but its steel frame survived. It was rebuilt by 1954 with a socialist-realist facade and reopened as Hotel Warszawa. After years of disuse it was renovated and reopened in 2018 as a luxury hotel that again shows its pre-war modernist lines.",
+    "og": "/img/og/prudential.jpg",
+    "photos": [
+      {
+        "src": "/img/places/prudential/1935-1.jpg",
+        "pin": "/img/places/prudential/1935-1p.jpg",
+        "year": 1935,
+        "date": "1935",
+        "approx": false,
+        "ratio": 0.7063,
+        "caption": "The new Prudential skyscraper seen above the trees of Plac Napoleona",
+        "credit": {
+          "author": "Henryk Poddębski",
+          "date": "1935",
+          "licence": "Public domain (PD-old-auto-1996)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-auto-1996",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa,_Prudential_1935_(67574769).jpg"
+        }
+      },
+      {
+        "src": "/img/places/prudential/1945-1.jpg",
+        "pin": "/img/places/prudential/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.0753,
+        "caption": "The burnt-out shell of the Prudential tower after the Warsaw Uprising",
+        "credit": {
+          "author": "Zbyszko Siemaszko (CAF)",
+          "date": "1945",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prudential_Building_Warsaw,_1945.jpg"
+        }
+      },
+      {
+        "src": "/img/places/prudential/1955-1.jpg",
+        "pin": "/img/places/prudential/1955-1p.jpg",
+        "year": 1955,
+        "date": "c. 1955",
+        "approx": true,
+        "ratio": 0.725,
+        "caption": "The rebuilt tower, now Hotel Warszawa, at the end of the widened Świętokrzyska Street",
+        "credit": {
+          "author": "Teodor Hermańczyk",
+          "date": "c. 1955",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_%C5%9Awi%C4%99tokrzyska_w_Warszawie_ok._1955.jpg"
+        }
+      },
+      {
+        "src": "/img/places/prudential/1965-1.jpg",
+        "pin": "/img/places/prudential/1965-1p.jpg",
+        "year": 1965,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 0.8762,
+        "caption": "Hotel Warszawa above Plac Powstańców Warszawy in the 1960s",
+        "credit": {
+          "author": "Henryk Jurko",
+          "date": "1960s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Powsta%C5%84c%C3%B3w_Warszawy_w_Warszawie_w_latach_60a.jpg"
+        }
+      },
+      {
+        "src": "/img/places/prudential/1975-1.jpg",
+        "pin": "/img/places/prudential/1975-1p.jpg",
+        "year": 1975,
+        "date": "1970s",
+        "approx": true,
+        "ratio": 0.7312,
+        "caption": "Hotel Warszawa with its socialist-realist facade in the 1970s",
+        "credit": {
+          "author": "Unknown",
+          "date": "1970s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hotel_Warszawa_w_latach_70.jpg"
+        }
+      },
+      {
+        "src": "/img/places/prudential/2009-1.jpg",
+        "pin": "/img/places/prudential/2009-1p.jpg",
+        "year": 2009,
+        "date": "2009-08-16",
+        "approx": false,
+        "ratio": 1.1197,
+        "caption": "The disused tower with an advertising banner on top, 2009",
+        "credit": {
+          "author": "Marcin Białek",
+          "date": "2009-08-16",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_Prudential_2009.jpg"
+        }
+      },
+      {
+        "src": "/img/places/prudential/2024-1.jpg",
+        "pin": "/img/places/prudential/2024-1p.jpg",
+        "year": 2024,
+        "date": "2024-12-10",
+        "approx": false,
+        "ratio": 1.3356,
+        "caption": "The renovated Hotel Warszawa seen from Plac Powstańców Warszawy",
+        "credit": {
+          "author": "Szczecinolog",
+          "date": "2024-12-10",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prudential_building_in_Warsaw,_2024.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "plac-konstytucji",
+    "name": "Plac Konstytucji (MDM)",
+    "lat": 52.222381,
+    "lng": 21.016183,
+    "kind": "historic",
+    "description": "Before the war this was a dense area of 19th-century tenement houses at the junction of Marszałkowska, Piękna and Koszykowa streets; most of it was destroyed during the war. In 1950–1952 the Marszałkowska Housing District (MDM) was built here in the socialist-realist style, and Plac Konstytucji was opened on 22 July 1952 with its arcades, reliefs and three tall ornamental lamp posts. For decades much of the square has been used as a car park.",
+    "og": "/img/og/plac-konstytucji.jpg",
+    "photos": [
+      {
+        "src": "/img/places/plac-konstytucji/1939-1.jpg",
+        "pin": "/img/places/plac-konstytucji/1939-1p.jpg",
+        "year": 1939,
+        "date": "September 1939",
+        "approx": false,
+        "ratio": 1.2549,
+        "caption": "A barricade of tram cars at the corner of Marszałkowska and Piękna during the defence of Warsaw, with the pre-war tenements behind",
+        "credit": {
+          "author": "Unknown",
+          "date": "September 1939",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Barykada_na_rogu_ulic_Marsza%C5%82kowskiej_i_Pi%C4%99knej_1939.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-konstytucji/1945-1.jpg",
+        "pin": "/img/places/plac-konstytucji/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 0.7294,
+        "caption": "Ruins at the corner of Marszałkowska and Koszykowa, where the square was later built",
+        "credit": {
+          "author": "Edward Falkowski",
+          "date": "1945",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:PL_Warszawa_r%C3%B3g_Marsza%C5%82kowskiej_i_Koszykowej_1945.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-konstytucji/1952-1.jpg",
+        "pin": "/img/places/plac-konstytucji/1952-1p.jpg",
+        "year": 1952,
+        "date": "April 1952",
+        "approx": false,
+        "ratio": 1.6667,
+        "caption": "MDM blocks under construction along Marszałkowska, April 1952",
+        "credit": {
+          "author": "Unknown",
+          "date": "April 1952",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Budowa_MDM_w_Warszawie_kwiecie%C5%84_1952.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-konstytucji/1956-1.jpg",
+        "pin": "/img/places/plac-konstytucji/1956-1p.jpg",
+        "year": 1956,
+        "date": "1950s",
+        "approx": true,
+        "ratio": 1.4023,
+        "caption": "The finished square with the Palace of Culture in the background",
+        "credit": {
+          "author": "Unknown",
+          "date": "1950s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Konstytucji_w_Warszawie_lata_50._XX_wieku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-konstytucji/1975-1.jpg",
+        "pin": "/img/places/plac-konstytucji/1975-1p.jpg",
+        "year": 1975,
+        "date": "c. 1975",
+        "approx": true,
+        "ratio": 1.2924,
+        "caption": "Plac Konstytucji seen from the MDM Hotel, with cars parked in the middle",
+        "credit": {
+          "author": "Teodor Hermańczyk",
+          "date": "c. 1975",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Konstytucji_w_Warszawie_ok_1975.jpg"
+        }
+      },
+      {
+        "src": "/img/places/plac-konstytucji/2010-1.jpg",
+        "pin": "/img/places/plac-konstytucji/2010-1p.jpg",
+        "year": 2010,
+        "date": "2010-11-12",
+        "approx": false,
+        "ratio": 1.592,
+        "caption": "The square from a similar high viewpoint, 2010",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2010-11-12",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Konstytucji_w_Warszawie_2010.JPG"
+        }
+      },
+      {
+        "src": "/img/places/plac-konstytucji/2021-1.jpg",
+        "pin": "/img/places/plac-konstytucji/2021-1p.jpg",
+        "year": 2021,
+        "date": "2021-09-13",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "Lamp posts and the MDM Hotel on Plac Konstytucji, 2021",
+        "credit": {
+          "author": "Szczecinolog",
+          "date": "2021-09-13",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Konstytucji_Square_in_Warsaw,_2021.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "hala-mirowska",
+    "name": "Hale Mirowskie (Mirów market halls)",
+    "lat": 52.23899,
+    "lng": 20.9984,
+    "kind": "historic",
+    "description": "The two brick market halls were built in 1899–1902 on the site of the former Mirów guards' barracks, designed by Józef Pius Dziekoński and Apoloniusz Nieniewski. During the 1944 Warsaw Uprising the Germans executed civilians here and the halls were burnt and partly blown up. After the war the western hall served as a sports hall for the Gwardia club, while the eastern hall was rebuilt and reopened as a market in the early 1960s. Both halls are again used for trade today, with a street market around them.",
+    "og": "/img/og/hala-mirowska.jpg",
+    "photos": [
+      {
+        "src": "/img/places/hala-mirowska/1932-1.jpg",
+        "pin": "/img/places/hala-mirowska/1932-1p.jpg",
+        "year": 1932,
+        "date": "1932",
+        "approx": false,
+        "ratio": 1.318,
+        "caption": "Market stalls in front of the Mirów hall, 1932",
+        "credit": {
+          "author": "Henryk Poddębski",
+          "date": "1932",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hala_Mirowska_1932.jpg"
+        }
+      },
+      {
+        "src": "/img/places/hala-mirowska/1942-1.jpg",
+        "pin": "/img/places/hala-mirowska/1942-1p.jpg",
+        "year": 1942,
+        "date": "1939–1944",
+        "approx": true,
+        "ratio": 1.426,
+        "caption": "A tram passes the western hall during the German occupation",
+        "credit": {
+          "author": "Unknown",
+          "date": "1939–1944",
+          "licence": "Public domain (PD-anon-70-EU)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-anon-70-EU",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hala_Mirowska_w_okresie_okupacji.jpg"
+        }
+      },
+      {
+        "src": "/img/places/hala-mirowska/1944-1.jpg",
+        "pin": "/img/places/hala-mirowska/1944-1p.jpg",
+        "year": 1944,
+        "date": "August 1944",
+        "approx": false,
+        "ratio": 1.3749,
+        "caption": "The hall on fire during the Warsaw Uprising, seen from Solna Street",
+        "credit": {
+          "author": "Stefan Bałuk",
+          "date": "August 1944",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:P%C5%82on%C4%85ca_Hala_Mirowska_Powstanie_warszawskie.jpg"
+        }
+      },
+      {
+        "src": "/img/places/hala-mirowska/1960-1.jpg",
+        "pin": "/img/places/hala-mirowska/1960-1p.jpg",
+        "year": 1960,
+        "date": "1960",
+        "approx": false,
+        "ratio": 1.0782,
+        "caption": "The western hall used as the Gwardia sports hall, 1960",
+        "credit": {
+          "author": "Fortepan / Romák Éva",
+          "date": "1960",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Mirowski,_sportcsarnok,_ma_Hale_Mirowskie_v%C3%A1s%C3%A1rcsarnok._Fortepan_75037.jpg"
+        }
+      },
+      {
+        "src": "/img/places/hala-mirowska/1965-1.jpg",
+        "pin": "/img/places/hala-mirowska/1965-1p.jpg",
+        "year": 1965,
+        "date": "c. 1965",
+        "approx": true,
+        "ratio": 0.7919,
+        "caption": "Shoppers inside the rebuilt Mirów market hall",
+        "credit": {
+          "author": "Unknown",
+          "date": "c. 1965",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wn%C4%99trze_Hali_Mirowskiej_ok._1965.jpg"
+        }
+      },
+      {
+        "src": "/img/places/hala-mirowska/2000-1.jpg",
+        "pin": "/img/places/hala-mirowska/2000-1p.jpg",
+        "year": 2000,
+        "date": "2000",
+        "approx": false,
+        "ratio": 1.25,
+        "caption": "One of the brick halls on a grey day in 2000",
+        "credit": {
+          "author": "Ra Boe",
+          "date": "2000",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_2000_-_Hale_Mirowskie_-_by-RaBoe_007.jpg"
+        }
+      },
+      {
+        "src": "/img/places/hala-mirowska/2025-1.jpg",
+        "pin": "/img/places/hala-mirowska/2025-1p.jpg",
+        "year": 2025,
+        "date": "2025-04-06",
+        "approx": false,
+        "ratio": 1.5873,
+        "caption": "Hala Mirowska seen from Aleja Jana Pawła II, 2025",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2025-04-06",
+          "licence": "CC BY 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hala_Mirowska_w_Warszawie_2025c.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "politechnika",
+    "name": "Warsaw University of Technology Main Building",
+    "lat": 52.22068,
+    "lng": 21.01009,
+    "kind": "historic",
+    "description": "The Main Building was erected in 1899–1901 to a design by Stefan Szyller for the Emperor Nicholas II Polytechnic Institute, and from 1915 housed the Polish Warsaw University of Technology. It was burnt out during the war and repaired after 1945; in December 1948 a mass rally for the congress uniting the PPR and PPS parties was held on the square in front of it. Under communist rule the square was renamed Plac Jedności Robotniczej. Today the restored building, with its large glass-roofed main hall, is again the university's centrepiece on Plac Politechniki.",
+    "og": "/img/og/politechnika.jpg",
+    "photos": [
+      {
+        "src": "/img/places/politechnika/1935-1.jpg",
+        "pin": "/img/places/politechnika/1935-1p.jpg",
+        "year": 1935,
+        "date": "before 1939",
+        "approx": true,
+        "ratio": 1.5429,
+        "caption": "The Main Building and the quiet square in front of it before the war",
+        "credit": {
+          "author": "Zdzisław Marcinkowski",
+          "date": "before 1939",
+          "licence": "Public domain (PD-old)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Politechniki_przed_1939_rokiem.jpg"
+        }
+      },
+      {
+        "src": "/img/places/politechnika/1945-1.jpg",
+        "pin": "/img/places/politechnika/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.2461,
+        "caption": "The burnt-out Main Building in 1945",
+        "credit": {
+          "author": "Edward Falkowski",
+          "date": "1945",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gmach_G%C5%82%C3%B3wny_Politechniki_Warszawskiej_po_wyzwoleniu.jpg"
+        }
+      },
+      {
+        "src": "/img/places/politechnika/1948-1.jpg",
+        "pin": "/img/places/politechnika/1948-1p.jpg",
+        "year": 1948,
+        "date": "December 1948",
+        "approx": false,
+        "ratio": 0.6969,
+        "caption": "A mass rally on the square during the PPR–PPS unification congress",
+        "credit": {
+          "author": "Unknown",
+          "date": "December 1948",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Politechniki_Kongres_zjednoczeniowy_PPR_i_PPS_1948.jpg"
+        }
+      },
+      {
+        "src": "/img/places/politechnika/1965-1.jpg",
+        "pin": "/img/places/politechnika/1965-1p.jpg",
+        "year": 1965,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 0.9619,
+        "caption": "The square, then Plac Jedności Robotniczej, with cars and a bus in the 1960s",
+        "credit": {
+          "author": "Janusz Smogorzewski",
+          "date": "1960s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Politechniki_w_Warszawie_w_latach_60.jpg"
+        }
+      },
+      {
+        "src": "/img/places/politechnika/2008-1.jpg",
+        "pin": "/img/places/politechnika/2008-1p.jpg",
+        "year": 2008,
+        "date": "2008-06-16",
+        "approx": false,
+        "ratio": 2.3845,
+        "caption": "Panorama of the yellow-painted Main Building and the square, 2008",
+        "credit": {
+          "author": "Marcin Białek",
+          "date": "2008-06-16",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_-_Politechnika.jpg"
+        }
+      },
+      {
+        "src": "/img/places/politechnika/2018-1.jpg",
+        "pin": "/img/places/politechnika/2018-1p.jpg",
+        "year": 2018,
+        "date": "2018-05-05",
+        "approx": false,
+        "ratio": 1.3889,
+        "caption": "The restored white facade with the Apotheosis of Knowledge sculpture group, 2018",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2018-05-05",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gmach_G%C5%82%C3%B3wny_Politechniki_Warszawskiej_2018.jpg"
+        }
+      },
+      {
+        "src": "/img/places/politechnika/2019-1.jpg",
+        "pin": "/img/places/politechnika/2019-1p.jpg",
+        "year": 2019,
+        "date": "2019-08-18",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The Main Building seen across Plac Politechniki, 2019",
+        "credit": {
+          "author": "Kgbo",
+          "date": "2019-08-18",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gmach_G%C5%82%C3%B3wny_Politechniki_Warszawskiej_i_plac,_2019.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "rondo-daszynskiego",
+    "name": "Rondo Daszyńskiego",
+    "lat": 52.230332,
+    "lng": 20.9844,
+    "kind": "modern",
+    "description": "The roundabout at the junction of Prosta, Towarowa, Kasprzaka and Okopowa streets in Wola was for decades surrounded by industrial plots, low office blocks and the RSW press complex. Since the opening of the Rondo Daszyńskiego metro station in 2015 the area has become Warsaw's second high-rise business district, with Warsaw Spire (2016), Generation Park, The Warsaw HUB and Skyliner rising around the junction.",
+    "og": "/img/og/rondo-daszynskiego.jpg",
+    "photos": [
+      {
+        "src": "/img/places/rondo-daszynskiego/1971-1.jpg",
+        "pin": "/img/places/rondo-daszynskiego/1971-1p.jpg",
+        "year": 1971,
+        "date": "c. 1971",
+        "approx": true,
+        "ratio": 1.0237,
+        "caption": "Towarowa Street with the tower of the RSW press complex, c. 1971",
+        "credit": {
+          "author": "Unknown",
+          "date": "c. 1971",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kompleks_RSW_przy_ul._Towarowej_ok._1971.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rondo-daszynskiego/2007-1.jpg",
+        "pin": "/img/places/rondo-daszynskiego/2007-1p.jpg",
+        "year": 2007,
+        "date": "2007-08-02",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The roundabout in 2007, before the skyscrapers, with a low office block under construction",
+        "credit": {
+          "author": "Hiuppo",
+          "date": "2007-08-02",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:POL_Warsaw_Rondo_Daszyńskiego.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rondo-daszynskiego/2013-1.jpg",
+        "pin": "/img/places/rondo-daszynskiego/2013-1p.jpg",
+        "year": 2013,
+        "date": "2013-07-18",
+        "approx": false,
+        "ratio": 1.5686,
+        "caption": "View to the north-east in 2013, with construction cranes on the Warsaw Spire site",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2013-07-18",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rondo_Ignacego_Daszyńskiego_w_Warszawie_01.JPG"
+        }
+      },
+      {
+        "src": "/img/places/rondo-daszynskiego/2016-1.jpg",
+        "pin": "/img/places/rondo-daszynskiego/2016-1p.jpg",
+        "year": 2016,
+        "date": "2016-06-12",
+        "approx": false,
+        "ratio": 1.3019,
+        "caption": "The finished Warsaw Spire tower and cranes over the Generation Park site, 2016",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2016-06-12",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Generation_Park_budowa_czerwiec_2016.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rondo-daszynskiego/2019-1.jpg",
+        "pin": "/img/places/rondo-daszynskiego/2019-1p.jpg",
+        "year": 2019,
+        "date": "2019-03-17",
+        "approx": false,
+        "ratio": 1.5009,
+        "caption": "Generation Park tower under construction beside Warsaw Spire, 2019",
+        "credit": {
+          "author": "Wistula",
+          "date": "2019-03-17",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rondo_Daszynskiego,_Warsaw,_Office_buildings_under_construction.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rondo-daszynskiego/2022-1.jpg",
+        "pin": "/img/places/rondo-daszynskiego/2022-1p.jpg",
+        "year": 2022,
+        "date": "2022-09-02",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "Aerial view along Prosta Street with Generation Park and Warsaw Unit flanking the roundabout, 2022",
+        "credit": {
+          "author": "Emptywords",
+          "date": "2022-09-02",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rondo_Daszynskiego_Warsaw_2022_aerial.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "palac-kultury",
+    "name": "Palace of Culture and Science",
+    "lat": 52.23179,
+    "lng": 21.0061,
+    "kind": "modern",
+    "description": "Before the Second World War this part of Śródmieście was a dense quarter of tenement streets such as Chmielna, Złota, Zielna and Wielka, with the Vienna Railway Station at the corner of Marszałkowska and Aleje Jerozolimskie. After the wartime destruction the remaining buildings were cleared and the Palace of Culture and Science, a gift from the Soviet Union, was built in 1952–1955, surrounded by the vast Plac Defilad. In recent years the square has been redeveloped, with the Museum of Modern Art and the new Plac Centralny.",
+    "og": "/img/og/palac-kultury.jpg",
+    "photos": [
+      {
+        "src": "/img/places/palac-kultury/1930-1.jpg",
+        "pin": "/img/places/palac-kultury/1930-1p.jpg",
+        "year": 1930,
+        "date": "before 1939",
+        "approx": true,
+        "ratio": 0.7094,
+        "caption": "Chmielna Street at Zielna, looking towards Marszałkowska; this stretch now lies under Plac Defilad",
+        "credit": {
+          "author": "Unknown",
+          "date": "before 1939",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_Chmielna_przy_Zielnej,_widok_w_kierunku_Marszałkowskiej_przed_1939.jpg"
+        }
+      },
+      {
+        "src": "/img/places/palac-kultury/1944-1.jpg",
+        "pin": "/img/places/palac-kultury/1944-1p.jpg",
+        "year": 1944,
+        "date": "1944",
+        "approx": true,
+        "ratio": 0.8712,
+        "caption": "Ruined building of the former Vienna Railway Station on Aleje Jerozolimskie, at the edge of today's Plac Defilad",
+        "credit": {
+          "author": "Fortepan / Jezsuita Levéltár",
+          "date": "1944",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aleje_Jerozolimskie,_a_Bécsi_pályaudvar_(Dworzec_Wiedeński)_romos_épülete._Fortepan_100437.jpg"
+        }
+      },
+      {
+        "src": "/img/places/palac-kultury/1952-1.jpg",
+        "pin": "/img/places/palac-kultury/1952-1p.jpg",
+        "year": 1952,
+        "date": "1952",
+        "approx": false,
+        "ratio": 1.2355,
+        "caption": "Excavating the foundations of the Palace, 1952",
+        "credit": {
+          "author": "Unknown",
+          "date": "1952",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wykopy_pod_fundamenty_Pałacu_Kultury_i_Nauki_1952.jpg"
+        }
+      },
+      {
+        "src": "/img/places/palac-kultury/1953-1.jpg",
+        "pin": "/img/places/palac-kultury/1953-1p.jpg",
+        "year": 1953,
+        "date": "1953",
+        "approx": false,
+        "ratio": 1.6327,
+        "caption": "The steel frame of the tower rising during construction, 1953",
+        "credit": {
+          "author": "Unknown",
+          "date": "1953",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Budowa_Pałacu_Kultury_i_Nauki_001.jpg"
+        }
+      },
+      {
+        "src": "/img/places/palac-kultury/1966-1.jpg",
+        "pin": "/img/places/palac-kultury/1966-1p.jpg",
+        "year": 1966,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 0.7444,
+        "caption": "The finished Palace seen from across Marszałkowska, with the Rotunda and the Universal office tower in the foreground, 1960s",
+        "credit": {
+          "author": "Unknown",
+          "date": "1960s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pałac_Kultury_i_Nauki_Rotunda_i_budynek_Universalu_lata_60.jpg"
+        }
+      },
+      {
+        "src": "/img/places/palac-kultury/2025-1.jpg",
+        "pin": "/img/places/palac-kultury/2025-1p.jpg",
+        "year": 2025,
+        "date": "2025-06-14",
+        "approx": false,
+        "ratio": 0.75,
+        "caption": "The Palace with the newly built Plac Centralny in front, 2025",
+        "credit": {
+          "author": "Cybularny",
+          "date": "2025-06-14",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:2025_Warszawa_Pałac_Kultury_i_Nauki_z_Placem_Centralnym,_1.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "stadion-narodowy",
+    "name": "National Stadium",
+    "lat": 52.23954,
+    "lng": 21.045793,
+    "kind": "modern",
+    "description": "The 10th-Anniversary Stadium (Stadion Dziesięciolecia) was built on the Praga bank of the Vistula largely from wartime rubble and opened in July 1955. From 1989 its crumbling embankments housed Jarmark Europa, one of Europe's largest open-air markets, which closed in 2007. The National Stadium was built inside the old bowl in 2008–2011 and hosted the opening match of UEFA Euro 2012.",
+    "og": "/img/og/stadion-narodowy.jpg",
+    "photos": [
+      {
+        "src": "/img/places/stadion-narodowy/1955-1.jpg",
+        "pin": "/img/places/stadion-narodowy/1955-1p.jpg",
+        "year": 1955,
+        "date": "1955",
+        "approx": false,
+        "ratio": 1.3267,
+        "caption": "Construction of the 10th-Anniversary Stadium, 1955",
+        "credit": {
+          "author": "Zbyszko Siemaszko",
+          "date": "1955",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Budowa_Stadionu_Dziesięciolecia_1955.jpg"
+        }
+      },
+      {
+        "src": "/img/places/stadion-narodowy/1965-1.jpg",
+        "pin": "/img/places/stadion-narodowy/1965-1p.jpg",
+        "year": 1965,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 1.0169,
+        "caption": "Aerial view of the 10th-Anniversary Stadium in the 1960s",
+        "credit": {
+          "author": "Unknown",
+          "date": "1960s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stadion_Dziesięciolecia_lata_60.jpg"
+        }
+      },
+      {
+        "src": "/img/places/stadion-narodowy/1975-1.jpg",
+        "pin": "/img/places/stadion-narodowy/1975-1p.jpg",
+        "year": 1975,
+        "date": "1970s",
+        "approx": true,
+        "ratio": 1.1057,
+        "caption": "Crowds at the annual Trybuna Ludu festival in the stadium, 1970s",
+        "credit": {
+          "author": "Unknown",
+          "date": "1970s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Doroczny_festyn_Trybuny_Ludu_na_Stadionie_Dziesięciolecia_w_Warszawie.jpg"
+        }
+      },
+      {
+        "src": "/img/places/stadion-narodowy/2007-1.jpg",
+        "pin": "/img/places/stadion-narodowy/2007-1p.jpg",
+        "year": 2007,
+        "date": "2007-09-30",
+        "approx": false,
+        "ratio": 1.3311,
+        "caption": "Last day of the Jarmark Europa market on the stadium embankment, 2007",
+        "credit": {
+          "author": "masti",
+          "date": "2007-09-30",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:POL_WAW_Stadion1.jpg"
+        }
+      },
+      {
+        "src": "/img/places/stadion-narodowy/2010-1.jpg",
+        "pin": "/img/places/stadion-narodowy/2010-1p.jpg",
+        "year": 2010,
+        "date": "2010-10-10",
+        "approx": false,
+        "ratio": 1.3389,
+        "caption": "The roof structure of the National Stadium under construction, 2010",
+        "credit": {
+          "author": "Sliwers",
+          "date": "2010-10-10",
+          "licence": "Public domain (PD-self)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/File:BudowaStadionuNarodowego_20101010.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:BudowaStadionuNarodowego_20101010.jpg"
+        }
+      },
+      {
+        "src": "/img/places/stadion-narodowy/2025-1.jpg",
+        "pin": "/img/places/stadion-narodowy/2025-1p.jpg",
+        "year": 2025,
+        "date": "2025-09-22",
+        "approx": false,
+        "ratio": 1.4995,
+        "caption": "The National Stadium seen from Varso Tower across the Vistula, 2025",
+        "credit": {
+          "author": "Cybularny",
+          "date": "2025-09-22",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:2025_Warszawa_widok_z_Varso_na_Stadion_Narodowy,_1.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "centrum-nauki-kopernik",
+    "name": "Copernicus Science Centre and the Vistula boulevards",
+    "lat": 52.24183,
+    "lng": 21.02876,
+    "kind": "modern",
+    "description": "For most of the 20th century this stretch of the Powiśle riverbank was a sandy embankment and, later, the route of the Wisłostrada riverside expressway. The Copernicus Science Centre was built in 2008–2010 over a newly extended tunnel that took the expressway underground, and its planetarium opened in 2011. In the 2010s the riverside promenades were rebuilt as the Vistula boulevards, now one of the city's busiest public spaces.",
+    "og": "/img/og/centrum-nauki-kopernik.jpg",
+    "photos": [
+      {
+        "src": "/img/places/centrum-nauki-kopernik/1925-1.jpg",
+        "pin": "/img/places/centrum-nauki-kopernik/1925-1p.jpg",
+        "year": 1925,
+        "date": "1924–1925",
+        "approx": true,
+        "ratio": 1.6667,
+        "caption": "Sand diggers on the Vistula bank by Wybrzeże Kościuszkowskie, looking towards the railway bridge, 1920s",
+        "credit": {
+          "author": "Zdzisław Marcinkowski",
+          "date": "1924–1925",
+          "licence": "Public domain",
+          "licenceUrl": "https://creativecommons.org/publicdomain/mark/1.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Piaskarze_na_Wiśle_przy_Wybrzeżu_Kościuszkowskim_w_latach_20.jpg"
+        }
+      },
+      {
+        "src": "/img/places/centrum-nauki-kopernik/2007-1.jpg",
+        "pin": "/img/places/centrum-nauki-kopernik/2007-1p.jpg",
+        "year": 2007,
+        "date": "2007-03-10",
+        "approx": false,
+        "ratio": 1.3361,
+        "caption": "Wisłostrada beside Świętokrzyski Bridge in 2007, before the science centre was built over the road",
+        "credit": {
+          "author": "Marek \"masti\" Stelmasik",
+          "date": "2007-03-10",
+          "licence": "CC BY-SA 2.5",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:POL_Warszawa_Tunel_Wislostrady.jpg"
+        }
+      },
+      {
+        "src": "/img/places/centrum-nauki-kopernik/2010-1.jpg",
+        "pin": "/img/places/centrum-nauki-kopernik/2010-1p.jpg",
+        "year": 2010,
+        "date": "2010-05-20",
+        "approx": false,
+        "ratio": 1.5009,
+        "caption": "The science centre under construction during the Vistula flood of May 2010",
+        "credit": {
+          "author": "Tadeusz Rudzki",
+          "date": "2010-05-20",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:POL_WAW_Centrum_Nauki_Kopernik_2010.jpg"
+        }
+      },
+      {
+        "src": "/img/places/centrum-nauki-kopernik/2014-1.jpg",
+        "pin": "/img/places/centrum-nauki-kopernik/2014-1p.jpg",
+        "year": 2014,
+        "date": "2014-05-06",
+        "approx": false,
+        "ratio": 1.7778,
+        "caption": "The completed science centre by Świętokrzyski Bridge, with the National Stadium across the river, 2014",
+        "credit": {
+          "author": "Mateusz Giełczyński",
+          "date": "2014-05-06",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Centrum_Nauki_Kopernik,_Most_Świętokrzyski_i_Stadion_Narodowy.jpg"
+        }
+      },
+      {
+        "src": "/img/places/centrum-nauki-kopernik/2017-1.jpg",
+        "pin": "/img/places/centrum-nauki-kopernik/2017-1p.jpg",
+        "year": 2017,
+        "date": "2017-08-27",
+        "approx": false,
+        "ratio": 1.5267,
+        "caption": "The rebuilt Vistula boulevard in front of the science centre, 2017",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2017-08-27",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bulwary_wiślane_w_Warszawie_2017b.jpg"
+        }
+      },
+      {
+        "src": "/img/places/centrum-nauki-kopernik/2022-1.jpg",
+        "pin": "/img/places/centrum-nauki-kopernik/2022-1p.jpg",
+        "year": 2022,
+        "date": "2022-08-13",
+        "approx": false,
+        "ratio": 1.5717,
+        "caption": "The science centre seen from the river, with a moored barge, 2022",
+        "credit": {
+          "author": "Panek",
+          "date": "2022-08-13",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Barka_wynurzenie_i_centrum_nauki_kopernik.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "rondo-onz",
+    "name": "Rondo ONZ",
+    "lat": 52.233122,
+    "lng": 20.99828,
+    "kind": "modern",
+    "description": "The roundabout at the junction of Aleja Jana Pawła II (formerly Marchlewskiego), Świętokrzyska and Prosta streets was laid out after the war among new housing blocks and office towers. Since the 2000s it has become a cluster of high-rises, including Rondo 1 (2006) and Q22 (2016), and the Rondo ONZ station of metro line 2 opened beneath it in 2015.",
+    "og": "/img/og/rondo-onz.jpg",
+    "photos": [
+      {
+        "src": "/img/places/rondo-onz/1965-1.jpg",
+        "pin": "/img/places/rondo-onz/1965-1p.jpg",
+        "year": 1965,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 0.9856,
+        "caption": "The roundabout in the 1960s, looking south-east towards the Palace of Culture",
+        "credit": {
+          "author": "Henryk Jurko",
+          "date": "1960s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rondo_ONZ_lata_60._XX_wieku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rondo-onz/1975-1.jpg",
+        "pin": "/img/places/rondo-onz/1975-1p.jpg",
+        "year": 1975,
+        "date": "1970s",
+        "approx": true,
+        "ratio": 0.9906,
+        "caption": "The junction of Marchlewskiego and Świętokrzyska streets in the 1970s, with a PKO savings neon on a tower block",
+        "credit": {
+          "author": "Unknown",
+          "date": "1970s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rondo_ONZ_w_latach_70.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rondo-onz/2007-1.jpg",
+        "pin": "/img/places/rondo-onz/2007-1p.jpg",
+        "year": 2007,
+        "date": "2007-09-05",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "Rondo ONZ seen from above in 2007",
+        "credit": {
+          "author": "Gophi",
+          "date": "2007-09-05",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:2007-09-05_Rondo_ONZ_w_Warszawie_1.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rondo-onz/2012-1.jpg",
+        "pin": "/img/places/rondo-onz/2012-1p.jpg",
+        "year": 2012,
+        "date": "2012-09-28",
+        "approx": false,
+        "ratio": 1.5038,
+        "caption": "Construction works for the metro line 2 station at Rondo ONZ, 2012",
+        "credit": {
+          "author": "Wistula",
+          "date": "2012-09-28",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Metrobau_Warschau_DSC_2337.JPG"
+        }
+      },
+      {
+        "src": "/img/places/rondo-onz/2016-1.jpg",
+        "pin": "/img/places/rondo-onz/2016-1p.jpg",
+        "year": 2016,
+        "date": "2016-05-09",
+        "approx": false,
+        "ratio": 2.2378,
+        "caption": "Office towers around the roundabout in 2016",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2016-05-09",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rondo_ONZ_w_Warszawie_2016.jpg"
+        }
+      },
+      {
+        "src": "/img/places/rondo-onz/2025-1.jpg",
+        "pin": "/img/places/rondo-onz/2025-1p.jpg",
+        "year": 2025,
+        "date": "2025-09-22",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "Rondo ONZ seen from the Varso Tower viewing terrace, 2025",
+        "credit": {
+          "author": "Cybularny",
+          "date": "2025-09-22",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:2025_Warszawa_widok_z_Varso_na_rondo_ONZ,_1.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "dworzec-centralny",
+    "name": "Warszawa Centralna and Varso Tower",
+    "lat": 52.228832,
+    "lng": 21.00328,
+    "kind": "modern",
+    "description": "Warsaw's modernist Main Station (Dworzec Główny) on Aleje Jerozolimskie was still unfinished when it was destroyed in 1939, and for three decades after the war the city made do with provisional station buildings. Warszawa Centralna, designed by Arseniusz Romanowicz and Piotr Szymaniak, opened in December 1975 above the underground cross-city railway line. Since 2022 its western neighbour has been Varso Tower, at 310 metres the tallest building in the European Union.",
+    "og": "/img/og/dworzec-centralny.jpg",
+    "photos": [
+      {
+        "src": "/img/places/dworzec-centralny/1938-1.jpg",
+        "pin": "/img/places/dworzec-centralny/1938-1p.jpg",
+        "year": 1938,
+        "date": "1938",
+        "approx": false,
+        "ratio": 1.7957,
+        "caption": "The pre-war Main Station under construction on Aleje Jerozolimskie, close to the site of today's Centralna, 1938",
+        "credit": {
+          "author": "Józef Fischer",
+          "date": "1938",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dworzec_Główny_-_wygląd_w_1938.jpg"
+        }
+      },
+      {
+        "src": "/img/places/dworzec-centralny/1962-1.jpg",
+        "pin": "/img/places/dworzec-centralny/1962-1p.jpg",
+        "year": 1962,
+        "date": "1962",
+        "approx": false,
+        "ratio": 1.6824,
+        "caption": "View south-west from the Palace of Culture over the railway corridor where Centralna would be built, 1962",
+        "credit": {
+          "author": "Fortepan / Nagy Gyula",
+          "date": "1962",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Látkép_a_Kultúra_és_Tudomány_Palotájából_délnyugat_felé,_balra_az_aleje_Jerozolimskie._Fortepan_50523.jpg"
+        }
+      },
+      {
+        "src": "/img/places/dworzec-centralny/1975-1.jpg",
+        "pin": "/img/places/dworzec-centralny/1975-1p.jpg",
+        "year": 1975,
+        "date": "1975",
+        "approx": false,
+        "ratio": 1.4572,
+        "caption": "The main hall of the newly opened Warszawa Centralna, 1975",
+        "credit": {
+          "author": "Unknown",
+          "date": "1975",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dworzec_Centralny_1975.jpg"
+        }
+      },
+      {
+        "src": "/img/places/dworzec-centralny/2006-1.jpg",
+        "pin": "/img/places/dworzec-centralny/2006-1p.jpg",
+        "year": 2006,
+        "date": "2006-09-01",
+        "approx": false,
+        "ratio": 1.3998,
+        "caption": "The station roof seen from the Palace of Culture, with Złote Tarasy under construction on the right, 2006",
+        "credit": {
+          "author": "Bahnfrend",
+          "date": "2006-09-01",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Views_from_Palace_of_Culture_and_Science_in_Warsaw,_2006_(03).jpg"
+        }
+      },
+      {
+        "src": "/img/places/dworzec-centralny/2020-1.jpg",
+        "pin": "/img/places/dworzec-centralny/2020-1p.jpg",
+        "year": 2020,
+        "date": "2020-05-27",
+        "approx": false,
+        "ratio": 1.4995,
+        "caption": "Varso Tower under construction behind the station, 2020",
+        "credit": {
+          "author": "Cybularny",
+          "date": "2020-05-27",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:27-05-2020_budowa_Varso,_3.jpg"
+        }
+      },
+      {
+        "src": "/img/places/dworzec-centralny/2025-1.jpg",
+        "pin": "/img/places/dworzec-centralny/2025-1p.jpg",
+        "year": 2025,
+        "date": "2025-08-03",
+        "approx": false,
+        "ratio": 1.5355,
+        "caption": "Warszawa Centralna in 2025",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2025-08-03",
+          "licence": "CC BY 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/pl",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dworzec_Centralny_w_Warszawie_2025.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ulica-miodowa",
+    "name": "Ulica Miodowa",
+    "lat": 52.2472,
+    "lng": 21.00982,
+    "kind": "historic",
+    "description": "Since the 17th and 18th centuries Miodowa Street has been lined with aristocratic residences such as the Pac and Branicki palaces, and with churches including the Capuchin church and the Basilian Greek Catholic church. Before the war it was also a busy shopping street with trams. Most of its buildings were burnt or ruined during the 1944 Warsaw Uprising and were rebuilt after the war, largely in their historic form. Today it is a quiet street of palaces, government offices and academies close to the Old Town.",
+    "og": "/img/og/ulica-miodowa.jpg",
+    "photos": [
+      {
+        "src": "/img/places/ulica-miodowa/1910-1.jpg",
+        "pin": "/img/places/ulica-miodowa/1910-1p.jpg",
+        "year": 1910,
+        "date": "before 1913",
+        "approx": true,
+        "ratio": 1.5038,
+        "caption": "Miodowa Street with shops and a tram, looking towards St Anne's Church",
+        "credit": {
+          "author": "Unknown",
+          "date": "before 1913",
+          "licence": "Public domain (PD-anon-1923)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-anon-1923",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_Miodowa_w_Warszawie_poczt%C3%B3wka_05.jpg"
+        }
+      },
+      {
+        "src": "/img/places/ulica-miodowa/1939-1.jpg",
+        "pin": "/img/places/ulica-miodowa/1939-1p.jpg",
+        "year": 1939,
+        "date": "September 1939",
+        "approx": false,
+        "ratio": 1.2232,
+        "caption": "A soldier on Miodowa during the defence of Warsaw, looking towards Senatorska Street",
+        "credit": {
+          "author": "Unknown",
+          "date": "September 1939",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_Miodowa_podczas_obrony_Warszawy_we_wrze%C5%9Bniu_1939_roku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/ulica-miodowa/1945-1.jpg",
+        "pin": "/img/places/ulica-miodowa/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.1722,
+        "caption": "Ruined buildings and rubble along Miodowa Street in 1945",
+        "credit": {
+          "author": "Jan Bułhak",
+          "date": "1945",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_Miodowa_w_Warszawie_w_1945_roku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/ulica-miodowa/1965-1.jpg",
+        "pin": "/img/places/ulica-miodowa/1965-1p.jpg",
+        "year": 1965,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 1.3548,
+        "caption": "Rebuilt palaces with cars and a bus on Miodowa in the 1960s",
+        "credit": {
+          "author": "Unknown",
+          "date": "1960s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_Miodowa_w_latach_60.jpg"
+        }
+      },
+      {
+        "src": "/img/places/ulica-miodowa/2009-1.jpg",
+        "pin": "/img/places/ulica-miodowa/2009-1p.jpg",
+        "year": 2009,
+        "date": "2009-07-31",
+        "approx": false,
+        "ratio": 1.4939,
+        "caption": "Evening on Miodowa Street, 2009",
+        "credit": {
+          "author": "TenKobuz",
+          "date": "2009-07-31",
+          "licence": "CC BY-SA 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_Miodowa_Warszawa_80_04489.JPG"
+        }
+      },
+      {
+        "src": "/img/places/ulica-miodowa/2014-1.jpg",
+        "pin": "/img/places/ulica-miodowa/2014-1p.jpg",
+        "year": 2014,
+        "date": "2014-01-06",
+        "approx": false,
+        "ratio": 1.3333,
+        "caption": "The south-eastern end of Miodowa leading to St Anne's Church, from a similar viewpoint to the old postcard",
+        "credit": {
+          "author": "Simon Burchell",
+          "date": "2014-01-06",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_Miodowa,_Warsaw.jpg"
+        }
+      },
+      {
+        "src": "/img/places/ulica-miodowa/2025-1.jpg",
+        "pin": "/img/places/ulica-miodowa/2025-1p.jpg",
+        "year": 2025,
+        "date": "2025-08-16",
+        "approx": false,
+        "ratio": 1.4559,
+        "caption": "Miodowa Street seen from the corner of Senatorska Street, 2025",
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2025-08-16",
+          "licence": "CC BY 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_Miodowa_przy_ulicy_Senatorskiej_w_Warszawie_2025.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "polin",
+    "name": "POLIN Museum and the Monument to the Ghetto Heroes",
+    "lat": 52.249352,
+    "lng": 20.993131,
+    "kind": "modern",
+    "description": "Before the Second World War, Muranów was the heart of Warsaw's Jewish community. During the occupation it lay within the Warsaw Ghetto, and after the Ghetto Uprising of April–May 1943 the area was systematically razed. The Monument to the Ghetto Heroes by Natan Rapoport was unveiled in 1948 amid the rubble, and the post-war Muranów housing estate was later built around it. The POLIN Museum of the History of Polish Jews, designed by Rainer Mahlamäki, opened facing the monument in 2013, with its core exhibition opening in 2014.",
+    "og": "/img/og/polin.jpg",
+    "photos": [
+      {
+        "src": "/img/places/polin/1931-1.jpg",
+        "pin": "/img/places/polin/1931-1p.jpg",
+        "year": 1931,
+        "date": "1931",
+        "approx": false,
+        "ratio": 1.4011,
+        "caption": "Zamenhofa Street in 1931, in the pre-war Jewish quarter around today's museum site",
+        "credit": {
+          "author": "Leon Jarumski",
+          "date": "1931",
+          "licence": "Public domain",
+          "licenceUrl": "https://creativecommons.org/publicdomain/mark/1.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_Zamenhofa_w_Warszawie_w_1931_roku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/polin/1945-1.jpg",
+        "pin": "/img/places/polin/1945-1p.jpg",
+        "year": 1945,
+        "date": "c. 1945",
+        "approx": true,
+        "ratio": 1.6244,
+        "caption": "The levelled area of the former ghetto after the war, looking west along Gęsia Street (now Anielewicza), beside today's museum",
+        "credit": {
+          "author": "Unknown",
+          "date": "c. 1945",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gęsia_Street_in_Warsaw_after_the_war.jpg"
+        }
+      },
+      {
+        "src": "/img/places/polin/1946-1.jpg",
+        "pin": "/img/places/polin/1946-1p.jpg",
+        "year": 1946,
+        "date": "1946",
+        "approx": false,
+        "ratio": 1.6393,
+        "caption": "Construction of the first memorial to the Ghetto Heroes amid the ruins, 1946",
+        "credit": {
+          "author": "Unknown",
+          "date": "1946",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Budowa_pierwszego_pomnika_Bohaterów_Getta_w_Warszawie_1946.jpg"
+        }
+      },
+      {
+        "src": "/img/places/polin/1965-1.jpg",
+        "pin": "/img/places/polin/1965-1p.jpg",
+        "year": 1965,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 1.6293,
+        "caption": "The new Muranów estate on Zamenhofa Street and the Monument to the Ghetto Heroes, 1960s",
+        "credit": {
+          "author": "Unknown",
+          "date": "1960s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ulica_Zamenhofa_pomnik_Bohaterów_Getta_lata_60.jpg"
+        }
+      },
+      {
+        "src": "/img/places/polin/2006-1.jpg",
+        "pin": "/img/places/polin/2006-1p.jpg",
+        "year": 2006,
+        "date": "2006-09-01",
+        "approx": false,
+        "ratio": 1.5094,
+        "caption": "The Monument to the Ghetto Heroes in 2006, before the museum was built",
+        "credit": {
+          "author": "Bahnfrend",
+          "date": "2006-09-01",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Monument_to_the_Ghetto_Heroes,_2006_(01).jpg"
+        }
+      },
+      {
+        "src": "/img/places/polin/2011-1.jpg",
+        "pin": "/img/places/polin/2011-1p.jpg",
+        "year": 2011,
+        "date": "2011-07-29",
+        "approx": false,
+        "ratio": 1.4639,
+        "caption": "The POLIN museum building under construction, 2011",
+        "credit": {
+          "author": "Edelseider",
+          "date": "2011-07-29",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:29_July_2011_Construction_of_the_Muzeum_Historii_Żydów_Polskich.jpg"
+        }
+      },
+      {
+        "src": "/img/places/polin/2023-1.jpg",
+        "pin": "/img/places/polin/2023-1p.jpg",
+        "year": 2023,
+        "date": "2023-03-07",
+        "approx": false,
+        "ratio": 1.4995,
+        "caption": "The POLIN museum and the back of the Ghetto Heroes Monument on the square, 2023",
+        "credit": {
+          "author": "Cybularny",
+          "date": "2023-03-07",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:2023_Warszawa_plac_Bohaterów_Getta_Warszawskiego,_1.jpg"
+        }
+      }
+    ]
+  },
+  {
+    "id": "most-slasko-dabrowski",
+    "name": "Śląsko-Dąbrowski Bridge (Kierbedź Bridge)",
+    "lat": 52.248844,
+    "lng": 21.020738,
+    "kind": "historic",
+    "description": "The Kierbedź Bridge, Warsaw's first permanent bridge over the Vistula, was built in 1859–1864 to a design by Stanisław Kierbedź as a long iron lattice truss carrying road traffic and trams. It was blown up by the retreating Russians in 1915 and rebuilt, then destroyed by the Germans in September 1944. On its old piers a new steel girder bridge, named Śląsko-Dąbrowski, was built in 1947–1949 as part of the East–West Route and opened in July 1949. It still carries cars and trams between the Old Town and Praga.",
+    "og": "/img/og/most-slasko-dabrowski.jpg",
+    "photos": [
+      {
+        "src": "/img/places/most-slasko-dabrowski/1934-1.jpg",
+        "pin": "/img/places/most-slasko-dabrowski/1934-1p.jpg",
+        "year": 1934,
+        "date": "1934",
+        "approx": false,
+        "ratio": 1.3223,
+        "caption": "A tram and a car at the entrance portal of the iron Kierbedź Bridge",
+        "credit": {
+          "author": "Willem van de Poll",
+          "date": "1934",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brug_over_de_Weichsel_(Wisla)_die_Warschau_met_voorstad_Praga_verbindt,_Bestanddeelnr_190-0034.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-slasko-dabrowski/1942-1.jpg",
+        "pin": "/img/places/most-slasko-dabrowski/1942-1p.jpg",
+        "year": 1942,
+        "date": "1940–1944",
+        "approx": true,
+        "ratio": 1.3998,
+        "caption": "German soldiers on the Royal Castle terrace looking at the Kierbedź Bridge and Praga",
+        "credit": {
+          "author": "Unknown",
+          "date": "1940–1944",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warsaw_during_WWII_-_Kierbed%C5%BA_Bridge.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-slasko-dabrowski/1945-1.jpg",
+        "pin": "/img/places/most-slasko-dabrowski/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945–1946",
+        "approx": true,
+        "ratio": 1.5889,
+        "caption": "The surviving span of the blown-up Kierbedź Bridge before its demolition",
+        "credit": {
+          "author": "Zdzisław Wdowiński",
+          "date": "1945–1946",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Relikty_zniszczonego_mostu_Kierbedzia_przed_rozbi%C3%B3rk%C4%85.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-slasko-dabrowski/1949-1.jpg",
+        "pin": "/img/places/most-slasko-dabrowski/1949-1p.jpg",
+        "year": 1949,
+        "date": "1949",
+        "approx": false,
+        "ratio": 1.4506,
+        "caption": "The new Śląsko-Dąbrowski Bridge shortly after its opening, with a crane still standing",
+        "credit": {
+          "author": "Leonard Jabrzemski",
+          "date": "1949",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Most_%C5%9Al%C4%85sko-D%C4%85browski_kr%C3%B3tko_po_oddaniu_do_u%C5%BCytku.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-slasko-dabrowski/1965-1.jpg",
+        "pin": "/img/places/most-slasko-dabrowski/1965-1p.jpg",
+        "year": 1965,
+        "date": "1960s",
+        "approx": true,
+        "ratio": 1.2539,
+        "caption": "Traffic on the East–West Route ramp leading to the bridge below the Old Town",
+        "credit": {
+          "author": "Unknown",
+          "date": "1960s",
+          "licence": "Public domain (PD-Polish)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Polish",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wjazd_na_most_%C5%9Al%C4%85sko-D%C4%85browski_lata_60.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-slasko-dabrowski/2006-1.jpg",
+        "pin": "/img/places/most-slasko-dabrowski/2006-1p.jpg",
+        "year": 2006,
+        "date": "2006",
+        "approx": false,
+        "ratio": 1.4939,
+        "caption": "The bridge seen from above, leading towards Praga and St Florian's Cathedral",
+        "credit": {
+          "author": "Paul Kowalow",
+          "date": "2006",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Most_slasko-dabrowski.jpg"
+        }
+      },
+      {
+        "src": "/img/places/most-slasko-dabrowski/2024-1.jpg",
+        "pin": "/img/places/most-slasko-dabrowski/2024-1p.jpg",
+        "year": 2024,
+        "date": "2024-06-20",
+        "approx": false,
+        "ratio": 1.4995,
+        "caption": "Drone view of the whole bridge across the Vistula, 2024",
+        "credit": {
+          "author": "Kapitel",
+          "date": "2024-06-20",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_Most_Slasko-Dabrowski_(dron).jpg"
+        }
+      }
+    ]
   }
 ]

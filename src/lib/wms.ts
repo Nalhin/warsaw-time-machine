@@ -48,8 +48,9 @@ const BlankWhiteWMS: new (url: string, options: L.WMSOptions) => L.TileLayer.WMS
 export function createYearLayer(key: YearKey, pane: string): L.TileLayer.WMS {
   const def = yearDef(key);
   const Layer = def.whiteIsBlank ? BlankWhiteWMS : L.TileLayer.WMS;
-  const layer = new Layer(primaryDead ? FALLBACK_URL : PRIMARY_URL, {
-    layers: primaryDead ? def.fallbackLayer : def.layer,
+  const useFallback = primaryDead && !!def.fallbackLayer;
+  const layer = new Layer(useFallback ? FALLBACK_URL : PRIMARY_URL, {
+    layers: useFallback ? def.fallbackLayer : def.layer,
     format: 'image/png',
     transparent: true,
     bounds: L.latLngBounds(def.coverage),
@@ -60,7 +61,7 @@ export function createYearLayer(key: YearKey, pane: string): L.TileLayer.WMS {
     keepBuffer: 1,
     updateWhenZooming: false,
     attribution: 'Aerial photos: <a href="https://mapa.um.warszawa.pl" target="_blank" rel="noopener">City of Warsaw</a>',
-    ...(primaryDead ? {} : { DATASOURCE: 'dane_wawa' }),
+    ...(useFallback ? {} : { DATASOURCE: 'dane_wawa' }),
   } as L.WMSOptions);
 
   let ok = 0;
@@ -68,7 +69,7 @@ export function createYearLayer(key: YearKey, pane: string): L.TileLayer.WMS {
   layer.on('tileload', () => ok++);
   layer.on('tileerror', () => {
     failed++;
-    if (primaryDead && (layer as any)._url === FALLBACK_URL) return;
+    if (!def.fallbackLayer || (layer as any)._url === FALLBACK_URL) return;
     if (ok === 0 && failed >= FAILS_BEFORE_FALLBACK) {
       primaryDead = true;
       const params = (layer as any).wmsParams as Record<string, unknown>;
@@ -128,10 +129,11 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 
 export async function fetchYearImage(key: YearKey, bbox: BBox, width: number, height: number) {
   const def = yearDef(key);
-  if (!primaryDead) {
+  if (!primaryDead || !def.fallbackLayer) {
     try {
       return await loadImage(getMapUrl(PRIMARY_URL, def.layer, bbox, width, height));
     } catch {
+      if (!def.fallbackLayer) throw new Error(`[wms] ${def.layer}: GetMap failed`);
       console.warn(`[wms] ${def.layer}: GetMap failed, trying ${FALLBACK_URL}`);
     }
   }

@@ -16,30 +16,25 @@ The pipeline (only needed for new spots) uses Python and [uv](https://docs.astra
 
 ```
 cd pipeline
-uv sync --extra export
-uv run --extra export python export_ddcolor.py   # once, about 1 GB
+uv sync
 ```
 
-## Adding a spot
+## Adding a place
 
-1. **Find an old photo** taken before 1939 that is clearly public domain: Wikimedia Commons (`PD-Polish`,
-   `PD-old`), NAC (szukajwarchiwach.gov.pl) or Polona. Street-level views work best.
-2. **Find or take a photo for today** from the same position and angle. Your own photo is ideal (license it
-   CC BY-SA 4.0 or CC0). Otherwise use a freely licensed photo from Commons.
-3. Save both photos as `pipeline/sources/<id>_old.jpg` and `pipeline/sources/<id>_today.jpg`, then add an
-   entry to `pipeline/sources/sources.json` (see the README for the format). The author, date, licence and
-   source page are **required** for both photos.
-4. Set `lat`/`lng` to where the photographer stood, not to the building in the photo. Check it against the
-   1935 aerial on the map.
-5. Run `uv run python prepare_spots.py <id>`, then check the result in `npm run dev`.
-6. Open a PR with the source files, the generated `public/img/*` files and the `src/data/spots.json` change.
+1. **Find photos from different decades** on Wikimedia Commons: before 1939, 1944–45, the rebuilding, the
+   1960s–80s, the 2000s and today, matching the map's years where possible. Photos published in Poland before
+   1994 are often public domain (`PD-Polish`); recent ones are usually CC BY-SA. Your own photo of today is
+   welcome too (upload it to Commons as CC BY-SA 4.0 or CC0).
+2. Add the place to `pipeline/sources/sources.json` (see the README for the format). The Commons title, year,
+   author, licence and source page are **required** for every photo.
+3. Set `lat`/`lng` to the place itself: the middle of the building, the centre of the square. Check it on the
+   2025 aerial on the map.
+4. Run `uv run python prepare_spots.py <id>`, then check the result in `npm run dev`.
+5. Open a PR with the `sources.json` change, the generated `public/img/*` files and `src/data/spots.json`.
 
 ### Rules for photos
 
-- **Real photos only.** Never use image generators to create or "complete" historical scenes. The AI step only
-  restores an existing photograph: it upscales it and guesses colours.
-- AI-restored images must keep the "AI-restored · colours are a guess" label, both burned into the image and
-  shown in the UI.
+- Use the original photographs as they are: no colourising, upscaling or AI-generated images.
 - If you're not sure a photo's licence allows reuse, leave it out.
 - Descriptions are in English, short and factual. Avoid speculation, especially about wartime events.
 

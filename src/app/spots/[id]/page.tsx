@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { SpotPanel } from '@/components/SpotPanel';
+import { PlacePanel } from '@/components/PlacePanel';
 import { SITE_NAME, SITE_URL } from '@/lib/site';
 import { getSpot, SPOTS, type Credit, type Spot } from '@/lib/spots';
 
@@ -15,12 +15,12 @@ export function generateStaticParams() {
 
 const describe = (s: Spot) =>
   s.description?.split(/(?<=\.)\s/)[0] ??
-  `${s.name} in Warsaw: a pre-war photograph, an AI-restored version, and the same view today.`;
+  `${s.name} in Warsaw: ${s.photos.length} photographs from ${s.photos[0].date} to ${s.photos[s.photos.length - 1].date}.`;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const spot = getSpot((await params).id);
   if (!spot) return {};
-  const title = `${spot.name}: Warsaw before the war and today`;
+  const title = `${spot.name}: Warsaw then and now`;
   const description = describe(spot);
   const image = spot.og ?? '/img/og/default.jpg';
   return {
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: `/spots/${spot.id}`,
-      images: [{ url: image, width: 1200, height: 630, alt: `${spot.name}: before the war and today` }],
+      images: [{ url: image, width: 1200, height: 630, alt: `${spot.name}: then and now` }],
     },
     twitter: { card: 'summary_large_image', creator: '@KrzysztofOlipra', title, description, images: [image] },
   };
@@ -67,10 +67,7 @@ export default async function SpotPage({ params }: Props) {
         url: `${SITE_URL}/spots/${spot.id}`,
         geo: { '@type': 'GeoCoordinates', latitude: spot.lat, longitude: spot.lng },
         containedInPlace: { '@type': 'City', name: 'Warsaw', alternateName: 'Warszawa' },
-        image: [
-          imageObject(spot.old, `${spot.name}${spot.oldYear ? `, ${spot.oldYear}` : ', before 1939'}`, spot.credits.old),
-          imageObject(spot.today, `${spot.name} today`, spot.credits.today),
-        ],
+        image: spot.photos.map((p) => imageObject(p.src, `${spot.name}, ${p.date}`, p.credit)),
       },
       {
         '@type': 'BreadcrumbList',
@@ -84,7 +81,7 @@ export default async function SpotPage({ params }: Props) {
 
   return (
     <>
-      <SpotPanel spot={spot} />
+      <PlacePanel spot={spot} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );

@@ -2,7 +2,7 @@ import L from 'leaflet';
 import { useEffect, useMemo } from 'react';
 import { CircleMarker, MapContainer, Marker, Pane, ZoomControl, useMap } from 'react-leaflet';
 
-import type { Spot } from '@/lib/spots';
+import { hasPhotoNear, nearestPhoto, type Spot } from '@/lib/spots';
 import { createLabelLayer } from '@/lib/wms';
 import { MAX_ZOOM, MIN_ZOOM, type MapCamera } from '@/lib/state';
 import { featherPx, yearDef, type YearKey } from '@/lib/years';
@@ -12,15 +12,16 @@ export const WARSAW_BOUNDS = L.latLngBounds([52.07, 20.82], [52.39, 21.29]);
 
 const escapeHtml = (s: string) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
 
-const CAMERA_SVG =
-  '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7H8l1.4-2h5.2L16 7h2.5A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
+const ATTRIBUTION_PREFIX = '<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>';
 
-function pinIcon(name: string, active: boolean) {
+function pinIcon(spot: Spot, year: number, active: boolean) {
+  const photo = nearestPhoto(spot, year);
+  const classes = ['spot-pin', active && 'active', !hasPhotoNear(spot, year) && 'faded', spot.kind === 'modern' && 'modern'];
   return L.divIcon({
-    className: `spot-pin${active ? ' active' : ''}`,
-    html: `<span class="pin">${CAMERA_SVG}</span><span class="pin-label">${escapeHtml(name)}</span>`,
-    iconSize: [36, 36],
-    iconAnchor: [18, 18],
+    className: classes.filter(Boolean).join(' '),
+    html: `<span class="pin"><img src="${escapeHtml(photo.pin)}" alt="" draggable="false"></span><span class="pin-label">${escapeHtml(spot.name)}</span>`,
+    iconSize: [44, 44],
+    iconAnchor: [22, 22],
   });
 }
 
@@ -98,6 +99,8 @@ export function MapView({
   activeSpot,
   onSpot,
   showLabels,
+  showPins,
+  year,
   myLocation,
   onMap,
 }: {
@@ -108,18 +111,22 @@ export function MapView({
   activeSpot: string | null;
   onSpot(id: string): void;
   showLabels: boolean;
+  showPins: boolean;
+  year: number;
   myLocation: L.LatLng | null;
   onMap(map: L.Map): void;
 }) {
   const icons = useMemo(
-    () => new Map(spots.map((s) => [s.id, pinIcon(s.name, s.id === activeSpot)])),
-    [spots, activeSpot],
+    () => new Map(spots.map((s) => [s.id, pinIcon(s, year, s.id === activeSpot)])),
+    [spots, activeSpot, year],
   );
 
   return (
     <MapContainer
       ref={(m) => {
-        if (m) onMap(m);
+        if (!m) return;
+        m.attributionControl.setPrefix(ATTRIBUTION_PREFIX);
+        onMap(m);
       }}
       className="fixed! inset-0"
       center={[camera.lat, camera.lng]}
@@ -144,7 +151,7 @@ export function MapView({
         {showLabels && <StreetLabels pane="labels" />}
       </Pane>
 
-      {spots.map((s) => (
+      {spots.filter((s) => showPins || s.id === activeSpot).map((s) => (
         <Marker
           key={s.id}
           position={[s.lat, s.lng]}

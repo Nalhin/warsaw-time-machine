@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <section className="sr-only">
-      <h1>Warsaw in 1935, 1945 and today: historical aerial photos and pre-war street views</h1>
+      <h1>Warsaw from 1935 to today: historical aerial photos and street photos from every decade</h1>
       <p>{SITE_DESCRIPTION}</p>
       <nav aria-label="Places">
         <h2>Places</h2>

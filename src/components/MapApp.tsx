@@ -1,7 +1,7 @@
 'use client';
 
 import type L from 'leaflet';
-import { LocateFixed, Type } from 'lucide-react';
+import { LocateFixed, MapPin, MapPinOff, Type } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 import { AboutDialog } from '@/components/AboutDialog';
 import { CoverageNotice } from '@/components/map/CoverageNotice';
 import { SwipeDivider } from '@/components/map/SwipeDivider';
-import { DRAWER_PEEK, PANEL_WIDTH } from '@/components/SpotPanel';
+import { DRAWER_PEEK, PANEL_WIDTH } from '@/components/PlacePanel';
 import { Button } from '@/components/ui/button';
 import { Toaster } from '@/components/ui/sonner';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
@@ -18,7 +18,8 @@ import { YearControls } from '@/components/YearControls';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useTileLoading } from '@/lib/loading';
 import { WARSAW_BBOX } from '@/lib/site';
-import { spotIdFromPath, type Spot } from '@/lib/spots';
+import { publishMapState } from '@/lib/map-store';
+import { spotIdFromPath, yearNumber, type Spot } from '@/lib/spots';
 import { DEFAULT_STATE, START, mapStateToQuery, readCamera, readMapState, type MapCamera, type MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
 import { yearDef, type YearKey } from '@/lib/years';
@@ -49,6 +50,7 @@ export function MapApp({ spots }: { spots: Spot[] }) {
   const [ratio, setRatio] = useState(0.5);
   const [hintSeen, setHintSeen] = useState(true);
   const [labels, setLabels] = useState(false);
+  const [pins, setPins] = useState(true);
   const [me, setMe] = useState<L.LatLng | null>(null);
   const mobile = useIsMobile();
 
@@ -69,6 +71,8 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     }
     setReady(true);
   }, []);
+
+  useEffect(() => publishMapState(state), [state]);
 
   useEffect(() => {
     if (!ready) return;
@@ -122,9 +126,8 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     const first = flown.current === null;
     flown.current = spot.id;
     const covered = mobile ? { x: 0, y: innerHeight * DRAWER_PEEK } : { x: PANEL_WIDTH + 24, y: 0 };
-    const zoom = Math.max(first ? 17 : map.getZoom(), 17);
-    const p = map.project([spot.lat, spot.lng], zoom).add([covered.x / 2, covered.y / 2]);
-    const target = map.unproject(p, zoom);
+    const zoom = Math.max(first ? 17 : map.getZoom(), 16);
+    const target = map.unproject(map.project([spot.lat, spot.lng], zoom).add([covered.x / 2, covered.y / 2]), zoom);
     if (first) map.setView(target, zoom, { animate: false });
     else map.flyTo(target, zoom, { duration: 0.8 });
   }, [map, spot, mobile]);
@@ -150,6 +153,11 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     };
   }, [map]);
 
+  const panelOpen = !!spot && !mobile;
+  useEffect(() => {
+    document.documentElement.classList.toggle('panel-open', panelOpen);
+  }, [panelOpen]);
+
   const loading = useTileLoading();
   const busy = loading.total > 0 && loading.done < loading.total;
   const [showLoading, setShowLoading] = useState(false);
@@ -158,11 +166,6 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     const t = setTimeout(() => setShowLoading(true), 250);
     return () => clearTimeout(t);
   }, [busy]);
-
-  const panelOpen = !!spot && !mobile;
-  useEffect(() => {
-    document.documentElement.classList.toggle('panel-open', panelOpen);
-  }, [panelOpen]);
 
   return (
     <>
@@ -175,6 +178,8 @@ export function MapApp({ spots }: { spots: Spot[] }) {
           activeSpot={activeId}
           onSpot={openSpot}
           showLabels={labels}
+          showPins={pins}
+          year={yearNumber(state.swipe ? state.swipe[0] : state.year)}
           myLocation={me}
           onMap={setMap}
         />
@@ -223,8 +228,9 @@ export function MapApp({ spots }: { spots: Spot[] }) {
       <div
         className={cn(
           'fixed right-3.5 bottom-[calc(88px+env(safe-area-inset-bottom))] z-[900] flex flex-col gap-2 transition-[right] duration-300 sm:bottom-24',
-          panelOpen && 'sm:right-[calc(420px+38px)]',
+          panelOpen && 'sm:right-[calc(var(--pw)+38px)]',
         )}
+        style={{ ['--pw' as string]: `${PANEL_WIDTH}px` }}
       >
         {map && (
           <ShareDialog
@@ -250,6 +256,21 @@ export function MapApp({ spots }: { spots: Spot[] }) {
             </Button>
           </TooltipTrigger>
           <TooltipContent side="left">Street names</TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon-lg"
+              className="glass-strong rounded-xl"
+              onClick={() => setPins((v) => !v)}
+              aria-pressed={!pins}
+              aria-label={pins ? 'Hide places' : 'Show places'}
+            >
+              {pins ? <MapPin /> : <MapPinOff />}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="left">{pins ? 'Hide places' : 'Show places'}</TooltipContent>
         </Tooltip>
         <Tooltip>
           <TooltipTrigger asChild>

@@ -92,7 +92,7 @@ def fit_title(d: ImageDraw.ImageDraw, title: str, max_w: int) -> tuple[list[str]
     return lines[:2], f
 
 
-def spot_card(old: Path, today: Path, title: str, out: Path, old_label: str = "Pre-war") -> None:
+def spot_card(old: Path, today: Path, title: str, out: Path, old_label: str = "Pre-war", today_label: str = "Today") -> None:
     half = W // 2
     img = Image.new("RGB", (W, H))
     img.paste(cover(ImageOps.grayscale(Image.open(old)).convert("RGB"), half, H), (0, 0))
@@ -107,7 +107,7 @@ def spot_card(old: Path, today: Path, title: str, out: Path, old_label: str = "P
 
     tag = font("Inter.ttf", 24, 600)
     pill(d, (28, 28), old_label, tag, (17, 18, 20), (243, 239, 231))
-    pill(d, (W - 28, 28), "Today", tag, (17, 18, 20), (243, 239, 231), anchor="ra")
+    pill(d, (W - 28, 28), today_label, tag, (17, 18, 20), (243, 239, 231), anchor="ra")
 
     lines, big = fit_title(d, title, W - 80)
     small = font("Inter.ttf", 25, 500)

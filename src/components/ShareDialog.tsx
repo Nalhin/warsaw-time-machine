@@ -9,11 +9,12 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { YearSelect } from '@/components/YearControls';
 import { SITE_NAME } from '@/lib/site';
 import { FORMATS, LAYOUTS, formatSize, renderSnapshot, toBlob, type Format, type Layout, type SnapshotArea } from '@/lib/snapshot';
 import { mapStateToQuery, type MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
-import { YEARS, yearDef, type YearKey } from '@/lib/years';
+import { yearDef, type YearKey } from '@/lib/years';
 
 interface Inset {
   right: number;
@@ -353,11 +354,12 @@ export function ShareDialog({
                   <span className="w-12 shrink-0 text-xs text-muted-foreground">
                     {sides[i]}
                   </span>
-                  <Choice<YearKey>
+                  <YearSelect
                     value={year}
                     onChange={(y) => setSide(i as 0 | 1, y)}
-                    options={YEARS.map((y) => ({ key: y.key, label: y.label }))}
                     label={`${sides[i]} year`}
+                    className="flex-1 justify-between rounded-md border border-input bg-input/30"
+                    modal
                   />
                 </div>
               ))}

@@ -48,22 +48,18 @@ export function AboutDialog() {
       <DialogContent className="max-h-[calc(100dvh-48px)] overflow-y-auto sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="font-heading text-2xl">{SITE_NAME}</DialogTitle>
-          <DialogDescription>Warsaw in 1935, in 1945 after the wartime destruction, and today, on one map.</DialogDescription>
+          <DialogDescription>Warsaw in 1935, in 1945 after the wartime destruction, through the rebuilding, and today, on one map.</DialogDescription>
         </DialogHeader>
 
         <div className="grid gap-3 text-sm leading-relaxed text-foreground/85 [&_a]:text-gold [&_a]:underline-offset-2 hover:[&_a]:underline">
           <p>
             Drag the white divider to compare two years of aerial photos, and pick the year for each side in the bar.
-            Each pin opens a pre-war photograph, an AI-restored version, and a photo of the same spot today.
+            Each pin is a place with photographs from different years. Its panel opens on the photo closest to the
+            year on the map, and you can go through all of them. The pin button hides all pins.
           </p>
           <p>
             The project aims to show what Poland has been through as a country, and what it has rebuilt and achieved
             since.
-          </p>
-          <p className="rounded-lg border border-ai/25 bg-ai/10 px-3.5 py-3">
-            <strong>About the AI versions:</strong> each one is a real archival photo. Real-ESRGAN increases its
-            resolution and DDColor adds colour. <em>The colours are the model&apos;s guess, not historical fact.</em> No
-            scenes are generated from scratch.
           </p>
           <Separator className="my-1" />
           <ul className="grid gap-1 text-muted-foreground">
