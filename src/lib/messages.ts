@@ -304,8 +304,8 @@ const pl: Messages = {
     nextYear: 'Następny rok',
   },
   about: {
-    label: 'O mapie',
-    trigger: 'O mapie',
+    label: 'O projekcie',
+    trigger: 'O projekcie',
     story: [
       'W 1935 roku Warszawa była stolicą kraju, który był niepodległy dopiero od 17 lat, po ponad stu latach zaborów.',
       'W czasie drugiej wojny światowej zginęło około sześciu milionów obywateli Polski. Po Powstaniu Warszawskim w 1944 roku Niemcy niszczyli miasto ulica po ulicy. W 1945 roku nie istniało już około 85% historycznego centrum.',
