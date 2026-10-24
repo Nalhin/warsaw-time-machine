@@ -1,19 +1,17 @@
 import { parseYear, type YearKey } from './years';
 
-export interface AppState {
+export interface MapState {
   year: YearKey;
-  /** [left, right] when compare mode is on. */
   swipe: [YearKey, YearKey] | null;
-  spot: string | null;
 }
 
-/** With no parameters the map opens comparing 1935 with today. */
 export const DEFAULT_SWIPE: [YearKey, YearKey] = ['1935', 'today'];
+export const DEFAULT_STATE: MapState = { year: '1935', swipe: DEFAULT_SWIPE };
 
-export function readUrlState(search = location.search): AppState {
+export function readMapState(search: string): MapState {
   const q = new URLSearchParams(search);
   const year = parseYear(q.get('year'));
-  let swipe: AppState['swipe'] = null;
+  let swipe: MapState['swipe'] = null;
   const sw = q.get('swipe');
   if (sw !== null) {
     const [a, b] = sw.split(',').map(parseYear);
@@ -22,22 +20,10 @@ export function readUrlState(search = location.search): AppState {
   } else if (!year) {
     swipe = [...DEFAULT_SWIPE];
   }
-  return { year: year ?? '1935', swipe, spot: q.get('spot') || null };
+  return { year: year ?? '1935', swipe };
 }
 
-export function stateToQuery(s: AppState): string {
-  // Built by hand so the comma in ?swipe=1935,today isn't percent-encoded.
-  const parts: string[] = [];
-  if (s.swipe) {
-    if (s.swipe.join() !== DEFAULT_SWIPE.join()) parts.push(`swipe=${s.swipe.join(',')}`);
-  } else {
-    parts.push(`year=${s.year}`);
-  }
-  if (s.spot) parts.push(`spot=${encodeURIComponent(s.spot)}`);
-  return parts.length ? `?${parts.join('&')}` : '';
-}
-
-export function writeUrlState(s: AppState) {
-  const url = `${location.pathname}${stateToQuery(s)}${location.hash}`;
-  if (url !== `${location.pathname}${location.search}${location.hash}`) history.replaceState(null, '', url);
+export function mapStateToQuery(s: MapState): string {
+  if (s.swipe) return s.swipe.join() === DEFAULT_SWIPE.join() ? '' : `?swipe=${s.swipe.join(',')}`;
+  return `?year=${s.year}`;
 }

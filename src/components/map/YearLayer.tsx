@@ -3,13 +3,9 @@ import { useEffect, useRef } from 'react';
 import { useMap } from 'react-leaflet';
 
 import { trackLayer } from '@/lib/loading';
-import { createYearLayer, type YearKey } from '@/lib/years';
+import { createYearLayer } from '@/lib/wms';
+import type { YearKey } from '@/lib/years';
 
-/**
- * The aerial photo for one year in one pane (or nothing when `year` is null).
- * On a change the new layer loads on top of the old one, and the old layer is removed only when
- * the new one has finished, so the map never goes blank while the slow WMS catches up.
- */
 export function YearLayer({ pane, year }: { pane: string; year: YearKey | null }) {
   const map = useMap();
   const slot = useRef<{
@@ -48,7 +44,6 @@ export function YearLayer({ pane, year }: { pane: string; year: YearKey | null }
     layer.addTo(map);
   }, [map, pane, year]);
 
-  // Remove everything on unmount.
   useEffect(
     () => () => {
       const s = slot.current;

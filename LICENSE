@@ -26,7 +26,7 @@ This licence covers the source code only. It does not cover:
 
 - Photographs in public/img/ and pipeline/sources/. Each photo keeps its own
   licence, and its author, licence and source link are recorded in
-  public/spots.json and pipeline/sources/sources.json.
+  src/data/spots.json and pipeline/sources/sources.json.
 - AI-restored images (public/img/*_ai.jpg). These are derived from the
   photographs above and follow the licence of the original photo.
 - Aerial imagery, which is loaded at runtime from the City of Warsaw WMS

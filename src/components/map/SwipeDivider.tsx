@@ -4,11 +4,6 @@ import { useEffect, useRef, useState, type PointerEvent as RPointerEvent } from 
 
 import { cn } from '@/lib/utils';
 
-/**
- * Draggable vertical divider for compare mode. The left year pane is clipped to the part left
- * of the divider and the right pane to the part right of it. Clip coordinates are in Leaflet layer
- * points, so they are recomputed whenever the map moves.
- */
 export function SwipeDivider({
   map,
   ratio,
@@ -31,7 +26,6 @@ export function SwipeDivider({
   const ratioRef = useRef(ratio);
   ratioRef.current = ratio;
 
-  // Clip both panes; re-run on every map move.
   useEffect(() => {
     const left = map.getPane('yearLeft')!;
     const right = map.getPane('yearRight')!;
@@ -75,7 +69,6 @@ export function SwipeDivider({
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[800]" style={{ ['--x' as string]: `${x}px` }}>
-      {/* wide invisible hit area around the line */}
       <div
         className="pointer-events-auto absolute inset-y-0 left-[var(--x)] -ml-3 w-6 cursor-ew-resize touch-none"
         {...handlers}

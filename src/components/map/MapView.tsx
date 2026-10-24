@@ -7,7 +7,7 @@ import type { YearKey } from '@/lib/years';
 import { YearLayer } from './YearLayer';
 
 export const WARSAW_BOUNDS = L.latLngBounds([52.07, 20.82], [52.39, 21.29]);
-const START: L.LatLngTuple = [52.2445, 21.0122]; // Royal Castle / Krakowskie Przedmieście
+const START: L.LatLngTuple = [52.2445, 21.0122];
 
 const CARTO_ATTR =
   '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
@@ -26,7 +26,6 @@ function pinIcon(name: string, active: boolean) {
   });
 }
 
-/** Adds `pin-labels` to the map container when zoomed in enough for pin names not to collide. */
 function PinLabelZoom() {
   const map = useMap();
   useEffect(() => {
@@ -50,9 +49,7 @@ export function MapView({
   myLocation,
   onMap,
 }: {
-  /** Year in the left pane (the only one in single-year mode). */
   left: YearKey;
-  /** Year in the right pane, or null in single-year mode. */
   right: YearKey | null;
   spots: Spot[];
   activeSpot: string | null;
@@ -82,7 +79,6 @@ export function MapView({
       attributionControl
     >
       <ZoomControl position="bottomright" zoomInTitle="Zoom in" zoomOutTitle="Zoom out" />
-      {/* Dark basemap underneath: shows while aerial tiles load and outside their coverage. */}
       <TileLayer
         url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
         subdomains="abcd"

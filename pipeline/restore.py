@@ -48,7 +48,6 @@ def log(msg: str) -> None:
     print(msg, file=sys.stderr, flush=True)
 
 
-# ---------------------------------------------------------------- models
 
 
 def download(url: str, dest: Path) -> None:
@@ -72,7 +71,6 @@ def pick_device(name: str):
 
 
 class Upscaler:
-    """Real-ESRGAN x2plus loaded through spandrel, run in overlapping tiles to bound memory."""
 
     def __init__(self, device: str = "auto", tile: int = 384, overlap: int = 24):
         import torch
@@ -90,7 +88,6 @@ class Upscaler:
         self.overlap = overlap
 
     def __call__(self, rgb: np.ndarray) -> np.ndarray:
-        """uint8 HxWx3 RGB -> uint8 (H*s)x(W*s)x3 RGB."""
         torch = self.torch
         s, t, o = self.scale, self.tile, self.overlap
         h, w = rgb.shape[:2]
@@ -99,7 +96,6 @@ class Upscaler:
         with torch.inference_mode():
             for y in range(0, h, t):
                 for x in range(0, w, t):
-                    # Each tile is padded with `o` px of context, which is cropped off again.
                     y0, x0 = max(y - o, 0), max(x - o, 0)
                     y1, x1 = min(y + t + o, h), min(x + t + o, w)
                     res = self.model(src[:, :, y0:y1, x0:x1].to(self.device)).float().cpu()
@@ -110,7 +106,6 @@ class Upscaler:
 
 
 class Colorizer:
-    """DDColor ONNX (see export_ddcolor.py). Predicts Lab a/b at 512x512."""
 
     def __init__(self, model_path: Path = DDCOLOR_PATH):
         import onnxruntime as ort
@@ -125,12 +120,10 @@ class Colorizer:
         self.input_name = self.sess.get_inputs()[0].name
 
     def __call__(self, rgb: np.ndarray, saturation: float = 1.2) -> np.ndarray:
-        """uint8 RGB (any size) -> uint8 RGB, same size. Only the colour comes from the model."""
         h, w = rgb.shape[:2]
         img = rgb.astype(np.float32) / 255.0
         full_l = cv2.cvtColor(img, cv2.COLOR_RGB2Lab)[:, :, :1]
 
-        # Model input: the L channel alone at 512x512, rendered back to (grey) RGB.
         small = cv2.resize(img, (DDCOLOR_SIZE, DDCOLOR_SIZE), interpolation=cv2.INTER_AREA)
         small_l = cv2.cvtColor(small, cv2.COLOR_RGB2Lab)[:, :, :1]
         grey = cv2.cvtColor(np.concatenate([small_l, np.zeros_like(small_l), np.zeros_like(small_l)], -1), cv2.COLOR_Lab2RGB)
@@ -142,12 +135,10 @@ class Colorizer:
         return (out.clip(0, 1) * 255).round().astype(np.uint8)
 
 
-# ---------------------------------------------------------------- helpers
 
 
 def load_rgb(path: Path) -> np.ndarray:
     im = ImageOps.exif_transpose(Image.open(path))
-    # Old photos are often sepia or slightly tinted; the colour is replaced anyway, so work in grey.
     return np.asarray(im.convert("L").convert("RGB"))
 
 
@@ -167,7 +158,6 @@ def load_font(size: int) -> ImageFont.ImageFont:
 
 
 def add_label(im: Image.Image, text: str = LABEL_TEXT) -> Image.Image:
-    """Small badge in the bottom-left corner so the AI version is never mistaken for the original."""
     im = im.convert("RGBA")
     w, h = im.size
     size = max(12, round(min(w, h) * 0.022))
@@ -187,12 +177,11 @@ def add_label(im: Image.Image, text: str = LABEL_TEXT) -> Image.Image:
 def save_jpeg(im: Image.Image, path: Path, quality: int) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     exif = Image.Exif()
-    exif[0x010E] = LABEL_META  # ImageDescription
-    exif[0x0131] = "warszawa-1935-1945-dzis/restore.py"  # Software
+    exif[0x010E] = LABEL_META
+    exif[0x0131] = "warszawa-1935-1945-dzis/restore.py"
     im.save(path, "JPEG", quality=quality, optimize=True, progressive=True, exif=exif.tobytes())
 
 
-# ---------------------------------------------------------------- main
 
 
 def restore(

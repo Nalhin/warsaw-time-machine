@@ -1,4 +1,8 @@
+'use client';
+
 import { Share, X } from 'lucide-react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState, type ReactNode } from 'react';
 import { toast } from 'sonner';
 
@@ -12,13 +16,11 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import type { Credit, Spot } from '@/lib/spots';
 import { cn } from '@/lib/utils';
 
-/** Visible fraction of the mobile drawer in its lower snap point. */
 export const DRAWER_PEEK = 0.55;
 export const PANEL_WIDTH = 420;
 
 function CreditLine({ c }: { c: string | Credit }) {
   if (typeof c === 'string') {
-    // "author, licence, https://link" → turn URLs into links
     const parts = c.split(/(https?:\/\/[^\s,;)]+)/g);
     return (
       <>
@@ -59,20 +61,23 @@ function CreditLine({ c }: { c: string | Credit }) {
 
 type Zoomed = { node: ReactNode; caption: ReactNode } | null;
 
-function SpotContent({ spot, onClose, shareUrl }: { spot: Spot; onClose(): void; shareUrl: string }) {
+function SpotContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
   const [useAi, setUseAi] = useState(false);
   const [zoomed, setZoomed] = useState<Zoomed>(null);
   const oldLabel = spot.oldYear || 'Pre-war';
-  const before = useAi && spot.restored ? spot.restored : spot.old;
+  const cmp = spot.compare;
+  const restored = cmp ? cmp.restored : spot.restored;
+  const after = cmp ? cmp.today : spot.today;
+  const before = useAi && restored ? restored : cmp ? cmp.old : spot.old;
   const beforeLabel = useAi ? 'AI colour' : oldLabel;
 
   const share = async () => {
+    const shareUrl = `${location.origin}/spots/${spot.id}${location.search}`;
     const data = { title: `${spot.name}: Warsaw before the war and today`, url: shareUrl };
     if (navigator.share && matchMedia('(pointer: coarse)').matches) {
       try {
         return await navigator.share(data);
       } catch {
-        /* cancelled: fall back to copying */
       }
     }
     try {
@@ -104,7 +109,7 @@ function SpotContent({ spot, onClose, shareUrl }: { spot: Spot; onClose(): void;
       <header className="mb-4 flex items-start justify-between gap-3">
         <div>
           <p className="mb-1 text-[11px] font-semibold tracking-[0.12em] text-gold uppercase">Before the war &amp; today</p>
-          <h2 className="font-heading text-2xl leading-tight font-semibold sm:text-[28px]">{spot.name}</h2>
+          <h1 className="font-heading text-2xl leading-tight font-semibold sm:text-[28px]">{spot.name}</h1>
           {spot.heading && <p className="mt-1.5 text-sm text-muted-foreground">{spot.heading}</p>}
         </div>
         <div className="flex gap-1.5">
@@ -119,7 +124,7 @@ function SpotContent({ spot, onClose, shareUrl }: { spot: Spot; onClose(): void;
 
       <CompareSlider
         before={before}
-        after={spot.today}
+        after={after}
         beforeLabel={beforeLabel}
         afterLabel="Today"
         alt={spot.name}
@@ -128,7 +133,7 @@ function SpotContent({ spot, onClose, shareUrl }: { spot: Spot; onClose(): void;
             node: (
               <CompareSlider
                 before={before}
-                after={spot.today}
+                after={after}
                 beforeLabel={beforeLabel}
                 afterLabel="Today"
                 alt={spot.name}
@@ -140,7 +145,13 @@ function SpotContent({ spot, onClose, shareUrl }: { spot: Spot; onClose(): void;
         }
       />
 
-      {spot.restored && (
+      {cmp && (
+        <p className="mt-2 text-center text-xs text-muted-foreground">
+          The modern photo is aligned to the old camera angle (perspective correction only).
+        </p>
+      )}
+
+      {restored && (
         <ToggleGroup
           type="single"
           size="sm"
@@ -189,13 +200,15 @@ function SpotContent({ spot, onClose, shareUrl }: { spot: Spot; onClose(): void;
                 })
               }
             >
-              <img
-                src={s.src}
-                alt={s.title}
-                loading="lazy"
-                decoding="async"
-                className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-              />
+              <span className="relative block aspect-[4/3] w-full">
+                <Image
+                  src={s.src}
+                  alt={`${spot.name}: ${s.title.toLowerCase()}`}
+                  fill
+                  sizes="(max-width: 720px) 100vw, 380px"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+              </span>
               {s.ai && (
                 <Badge className="absolute top-2.5 left-2.5 border-0 bg-ai-deep/90 text-ai-foreground">AI · colours are a guess</Badge>
               )}
@@ -224,36 +237,27 @@ function SpotContent({ spot, onClose, shareUrl }: { spot: Spot; onClose(): void;
   );
 }
 
-export function SpotPanel({
-  spot,
-  onClose,
-  shareUrl,
-}: {
-  spot: Spot | null;
-  onClose(): void;
-  shareUrl: string;
-}) {
+export function SpotPanel({ spot }: { spot: Spot }) {
+  const router = useRouter();
   const mobile = useIsMobile();
   const [snap, setSnap] = useState<number | string | null>(DRAWER_PEEK);
+  const close = () => router.push(`/${location.search}`, { scroll: false });
 
   if (mobile) {
     return (
       <Drawer
-        open={!!spot}
-        onOpenChange={(o) => {
-          if (!o) onClose();
-          else setSnap(DRAWER_PEEK);
-        }}
+        open
+        onOpenChange={(o) => !o && close()}
         modal={false}
         snapPoints={[DRAWER_PEEK, 1]}
         activeSnapPoint={snap}
         setActiveSnapPoint={setSnap}
       >
         <DrawerContent hideOverlay className="glass-strong z-[1050] h-[calc(100dvh-56px)] max-h-none!">
-          <DrawerTitle className="sr-only">{spot?.name}</DrawerTitle>
+          <DrawerTitle className="sr-only">{spot.name}</DrawerTitle>
           <DrawerDescription className="sr-only">Old photo, AI-restored version and today</DrawerDescription>
           <div className={cn('overflow-y-auto overscroll-contain', snap === 1 ? 'h-full' : 'h-[calc(55dvh-48px)]')}>
-            {spot && <SpotContent key={spot.id} spot={spot} onClose={onClose} shareUrl={shareUrl} />}
+            <SpotContent key={spot.id} spot={spot} onClose={close} />
           </div>
         </DrawerContent>
       </Drawer>
@@ -262,14 +266,11 @@ export function SpotPanel({
 
   return (
     <aside
-      aria-label={spot?.name}
+      aria-label={spot.name}
       style={{ width: PANEL_WIDTH }}
-      className={cn(
-        'glass-strong fixed top-3 right-3 bottom-3 z-[1050] overflow-y-auto overscroll-contain rounded-2xl transition-transform duration-300 ease-out',
-        spot ? 'translate-x-0' : 'pointer-events-none translate-x-[calc(100%+24px)]',
-      )}
+      className="glass-strong fixed top-3 right-3 bottom-3 z-[1050] animate-in overflow-y-auto overscroll-contain rounded-2xl duration-300 slide-in-from-right-8 fade-in-0"
     >
-      {spot && <SpotContent key={spot.id} spot={spot} onClose={onClose} shareUrl={shareUrl} />}
+      <SpotContent key={spot.id} spot={spot} onClose={close} />
     </aside>
   );
 }

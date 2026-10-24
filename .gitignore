@@ -12,3 +12,7 @@ pipeline/fonts/
 pipeline/out/
 __pycache__/
 *.part
+
+.next/
+next-env.d.ts
+*.tsbuildinfo

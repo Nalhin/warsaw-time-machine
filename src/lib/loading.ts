@@ -1,14 +1,10 @@
 import type L from 'leaflet';
 import { useSyncExternalStore } from 'react';
 
-/**
- * Tile-loading progress across all year layers. Progress is recomputed from each layer's
- * internal tile list rather than by counting events: Leaflet aborts in-flight tiles on removal
- * without firing any event, so counters would drift.
- */
 const tracked = new Set<L.TileLayer>();
 const listeners = new Set<() => void>();
-let snapshot = { total: 0, done: 0 };
+const EMPTY = { total: 0, done: 0 };
+let snapshot = EMPTY;
 
 function recompute() {
   let total = 0;
@@ -43,5 +39,6 @@ export function useTileLoading() {
       return () => listeners.delete(cb);
     },
     () => snapshot,
+    () => EMPTY,
   );
 }

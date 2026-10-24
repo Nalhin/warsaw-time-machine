@@ -19,7 +19,6 @@ FONTS = HERE / "fonts"
 PUBLIC = HERE.parent / "public"
 W, H = 1200, 630
 
-# OFL fonts from the google/fonts repo (variable fonts; Pillow selects the weight).
 FONT_URLS = {
     "Fraunces.ttf": "https://github.com/google/fonts/raw/main/ofl/fraunces/Fraunces%5BSOFT,WONK,opsz,wght%5D.ttf",
     "Inter.ttf": "https://github.com/google/fonts/raw/main/ofl/inter/Inter%5Bopsz,wght%5D.ttf",
@@ -50,7 +49,7 @@ def font(name: str, size: int, weight: int) -> ImageFont.FreeTypeFont:
                 values.append(a["default"])
         f.set_variation_by_axes(values)
     except (OSError, AttributeError):
-        pass  # static font or FreeType without variation support
+        pass
     return f
 
 
@@ -59,7 +58,6 @@ def cover(im: Image.Image, w: int, h: int, centering=(0.5, 0.5)) -> Image.Image:
 
 
 def shade(im: Image.Image, top: int = 0, bottom: int = 330) -> Image.Image:
-    """Dark gradient at the bottom so white text stays readable on any photo."""
     grad = Image.new("L", (1, H))
     for y in range(H):
         t = max(0.0, (y - (H - bottom)) / bottom)
@@ -79,7 +77,6 @@ def pill(d: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, f, fill, fg, an
 
 
 def spot_card(old: Path, today: Path, title: str, out: Path, old_label: str = "Pre-war") -> None:
-    """Old photo | today photo, split down the middle, with the place name."""
     half = W // 2
     img = Image.new("RGB", (W, H))
     img.paste(cover(ImageOps.grayscale(Image.open(old)).convert("RGB"), half, H), (0, 0))
@@ -87,7 +84,6 @@ def spot_card(old: Path, today: Path, title: str, out: Path, old_label: str = "P
     img = shade(img)
     d = ImageDraw.Draw(img)
     d.rectangle((half - 2, 0, half + 1, H), fill=(255, 255, 255))
-    # handle
     d.ellipse((half - 26, H // 2 - 26, half + 26, H // 2 + 26), fill=(255, 255, 255))
     arrow = font("Inter.ttf", 26, 700)
     d.text((half, H // 2), "⇆", font=arrow, fill=(20, 20, 20), anchor="mm")
@@ -115,13 +111,12 @@ def wms_image(layer: str, bbox: tuple[float, float, float, float], size: tuple[i
 
 
 def default_card(out: Path) -> None:
-    """Three strips of the same area (Stare Miasto / Krakowskie Przedmieście) in 1935, 1945 and today."""
     import math
 
     lat, lng = 52.2462, 21.0125
     x = lng * 20037508.34 / 180
     y = math.log(math.tan((90 + lat) * math.pi / 360)) * 20037508.34 / math.pi
-    m_per_px = 1.25  # ~ zoom 17 at this latitude
+    m_per_px = 1.25
     w, h = W * m_per_px / 2, H * m_per_px / 2
     bbox = (x - w, y - h, x + w, y + h)
     layers = [("FOTOPLAN_1935", "1935"), ("ORTOFOTO_1945", "1945"), ("ORTOFOTO_2025", "Today")]

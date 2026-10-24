@@ -1,0 +1,287 @@
+[
+  {
+    "id": "hotel-europejski",
+    "name": "Hotel Europejski (Raffles Europejski)",
+    "lat": 52.24165,
+    "lng": 21.0158,
+    "heading": "looking north-west from Krakowskie Przedmieście (by Hotel Bristol) at the hotel's rounded corner",
+    "description": "Hotel Europejski on Krakowskie Przedmieście was built in stages in 1855–1877 to a design by Henryk Marconi; in 1877 it installed the first passenger lift in Warsaw. A fire broke out in the building during the defence of Warsaw in September 1939; after the war the Ministry of Defence completed its rebuilding for a military academy, and it was converted back into a hotel in 1957–1961. During a 2013–2018 renovation two new storeys replaced the attic, and in May 2018 it reopened as Raffles Europejski Warsaw.",
+    "old": "/img/hotel-europejski_old.jpg",
+    "restored": "/img/hotel-europejski_ai.jpg",
+    "today": "/img/hotel-europejski_today.jpg",
+    "og": "/img/og/hotel-europejski.jpg",
+    "credits": {
+      "old": {
+        "author": "Zdzisław Marcinkowski",
+        "date": "before 1939",
+        "licence": "Public domain (PD-old)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hotel_Europejski_przed_1939.jpg"
+      },
+      "today": {
+        "author": "Patryk Duszkiewicz",
+        "date": "2021-11-15",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_-_Hotel_Europejski_(2021).jpg"
+      }
+    }
+  },
+  {
+    "id": "plac-zamkowy",
+    "name": "Plac Zamkowy (Castle Square)",
+    "lat": 52.24675,
+    "lng": 21.01315,
+    "heading": "looking north across the square towards Sigismund's Column, the Old Town and the Royal Castle",
+    "description": "Castle Square lies at the gate to the Old Town, with Sigismund's Column (1644) and the Royal Castle, which was the residence of the President of Poland in 1926–1939. The castle burned after German bombardment in September 1939 and was completely destroyed in 1944; the column was toppled during the Warsaw Uprising in September 1944. The column was re-erected in 1949 and the castle was rebuilt in 1971–1984.",
+    "oldYear": "1925",
+    "old": "/img/plac-zamkowy_old.jpg",
+    "restored": "/img/plac-zamkowy_ai.jpg",
+    "today": "/img/plac-zamkowy_today.jpg",
+    "og": "/img/og/plac-zamkowy.jpg",
+    "credits": {
+      "old": {
+        "author": "Henryk Poddębski",
+        "date": "1925",
+        "licence": "Public domain (PD-old-80)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-80",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_-_plac_Zamkowy_1925.jpg"
+      },
+      "today": {
+        "author": "Scotch Mist",
+        "date": "2010-07-24",
+        "licence": "CC BY-SA 3.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Castle_Square_ViewA.jpg"
+      }
+    }
+  },
+  {
+    "id": "krakowskie-przedmiescie",
+    "name": "Krakowskie Przedmieście",
+    "lat": 52.245,
+    "lng": 21.01455,
+    "heading": "looking north along Krakowskie Przedmieście towards St Anne's Church and Castle Square",
+    "description": "Krakowskie Przedmieście is the northern part of the Royal Route, here with St Anne's Church and the former Bernardine monastery; before the war trams ran along the street. Its buildings were damaged during the defence of Warsaw in September 1939 and again in 1944. After the war most of its historic buildings were rebuilt, some restored to their earlier 18th-century appearance.",
+    "oldYear": "1930",
+    "old": "/img/krakowskie-przedmiescie_old.jpg",
+    "restored": "/img/krakowskie-przedmiescie_ai.jpg",
+    "today": "/img/krakowskie-przedmiescie_today.jpg",
+    "og": "/img/og/krakowskie-przedmiescie.jpg",
+    "credits": {
+      "old": {
+        "author": "Henryk Poddębski",
+        "date": "1930–1933",
+        "licence": "Public domain (PD-Poland)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Krakowskie_Przedmie%C5%9Bcie_ko%C5%9Bci%C3%B3%C5%82_%C5%9Bw._Anny_Warszawa_tramwaje.jpg"
+      },
+      "today": {
+        "author": "Cayambe",
+        "date": "2019-07-27",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warsaw,_Krakowskie_Przedmie%C5%9Bcie,_St_Anne_Church.jpg"
+      }
+    }
+  },
+  {
+    "id": "ogrod-saski",
+    "name": "Grób Nieznanego Żołnierza / Pałac Saski (Tomb of the Unknown Soldier)",
+    "lat": 52.24093,
+    "lng": 21.01182,
+    "heading": "looking west at the arcades of the Tomb of the Unknown Soldier, with the Saxon Garden behind",
+    "description": "The Tomb of the Unknown Soldier was created in 1925 in the central colonnade of the Saxon Palace on today's Piłsudski Square. German troops blew up the palace on 27–29 December 1944; only three arcades of the colonnade with the tomb survived. In 2021 the decision was taken to rebuild the palace.",
+    "oldYear": "1929",
+    "old": "/img/ogrod-saski_old.jpg",
+    "restored": "/img/ogrod-saski_ai.jpg",
+    "today": "/img/ogrod-saski_today.jpg",
+    "og": "/img/og/ogrod-saski.jpg",
+    "compare": {
+      "old": "/img/ogrod-saski_cmp_old.jpg",
+      "today": "/img/ogrod-saski_cmp_today.jpg",
+      "restored": "/img/ogrod-saski_cmp_ai.jpg"
+    },
+    "credits": {
+      "old": {
+        "author": "Narcyz Witczak-Witaczyński",
+        "date": "1929-08-02",
+        "licence": "Public domain (PD-old-80)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-80",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Narcyz_Witczak-Witaczy%C5%84ski_-_Uroczysto%C5%9B%C4%87_jubileuszu_15-lecia_wyruszenia_u%C5%82a%C5%84skiej_si%C3%B3demki_Beliny_-_Pra%C5%BCmowskiego_na_placu_marsza%C5%82ka_J%C3%B3zefa_Pi%C5%82sudskiego_w_Warszawie_(107-261-1).jpg"
+      },
+      "today": {
+        "author": "tm-md",
+        "date": "2022-12-30",
+        "licence": "CC BY-SA 2.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_-_52767185662.jpg"
+      }
+    }
+  },
+  {
+    "id": "dworzec-glowny",
+    "name": "Dworzec Wiedeński / Dworzec Główny (Vienna Station)",
+    "lat": 52.22998,
+    "lng": 21.0117,
+    "heading": "looking north-west from the Marszałkowska / Aleje Jerozolimskie corner towards the site of the station's clock tower",
+    "description": "The Warsaw–Vienna Railway Station, the city's first, opened in 1845 at the corner of Marszałkowska Street and Aleje Jerozolimskie; from 1919 it served as the Main Station. Most of the building was demolished between the wars for the cross-city railway line, the rest burned in September 1939, and the ruins of the clock tower were blown up in 1947. Today the corner is occupied by the sunken 'Patelnia' square at the entrance to Centrum metro station, with the Palace of Culture and Science behind it.",
+    "old": "/img/dworzec-glowny_old.jpg",
+    "restored": "/img/dworzec-glowny_ai.jpg",
+    "today": "/img/dworzec-glowny_today.jpg",
+    "og": "/img/og/dworzec-glowny.jpg",
+    "credits": {
+      "old": {
+        "author": "Henryk Poddębski",
+        "date": "before 1939",
+        "licence": "Public domain (PD-old-70)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-70",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa,_Dworzec_Kolei_Warszawsko-Wiedenskiej_ante_1939_(68180160).jpg"
+      },
+      "today": {
+        "author": "Cybularny",
+        "date": "2024-07-19",
+        "licence": "CC0",
+        "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:2024_Warszawa_Patelnia,_1.jpg"
+      }
+    }
+  },
+  {
+    "id": "rynek-starego-miasta",
+    "name": "Rynek Starego Miasta (Old Town Market Square)",
+    "lat": 52.2495,
+    "lng": 21.01262,
+    "heading": "looking north-west across the square towards the Dekert side",
+    "description": "The houses of the Old Town Market Square kept their early-17th-century form almost unchanged until 1944, when the Old Town was destroyed during and after the Warsaw Uprising. In 1949–1953 the townhouses were carefully reconstructed using surviving stonework and fragments of painted decoration, and the square was reopened on 22 July 1953. The rebuilt Old Town has been a UNESCO World Heritage Site since 1980.",
+    "oldYear": "1",
+    "old": "/img/rynek-starego-miasta_old.jpg",
+    "restored": "/img/rynek-starego-miasta_ai.jpg",
+    "today": "/img/rynek-starego-miasta_today.jpg",
+    "og": "/img/og/rynek-starego-miasta.jpg",
+    "compare": {
+      "old": "/img/rynek-starego-miasta_cmp_old.jpg",
+      "today": "/img/rynek-starego-miasta_cmp_today.jpg",
+      "restored": "/img/rynek-starego-miasta_cmp_ai.jpg"
+    },
+    "credits": {
+      "old": {
+        "author": "Henryk Poddębski",
+        "date": "c. 1929",
+        "licence": "Public domain (PD-old-70)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-70",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa,_Rynek_Starego_Miasta_ca_1929_(67263824).jpg"
+      },
+      "today": {
+        "author": "Steven Lek",
+        "date": "2018-10-28",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Old_Town_Market_Square_Warsaw_2018.jpg"
+      }
+    }
+  },
+  {
+    "id": "plac-teatralny",
+    "name": "Plac Teatralny (Theatre Square)",
+    "lat": 52.24415,
+    "lng": 21.00845,
+    "heading": "looking east across the square, with the Jabłonowski Palace (left) and the Grand Theatre (right)",
+    "description": "Theatre Square is framed by the Grand Theatre and the Jabłonowski Palace, which served as Warsaw's City Hall from 1819 to 1944. The theatre was bombed in September 1939 and wrecked in 1944; it was rebuilt and enlarged in 1947–1965, keeping its original façade on the square. The burned-out ruins of the Jabłonowski Palace were demolished in 1952 and the palace was reconstructed in 1995–1997.",
+    "old": "/img/plac-teatralny_old.jpg",
+    "restored": "/img/plac-teatralny_ai.jpg",
+    "today": "/img/plac-teatralny_today.jpg",
+    "og": "/img/og/plac-teatralny.jpg",
+    "credits": {
+      "old": {
+        "author": "unknown",
+        "date": "before 1939",
+        "licence": "Public domain (PD-Poland)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Teatralny_i_Teatr_Wielki_w_Warszawie_przed_1939.jpg"
+      },
+      "today": {
+        "author": "Adrian Grycuk",
+        "date": "2020-04-18",
+        "licence": "CC BY-SA 3.0 pl",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Teatralny_w_Warszawie_2020.jpg"
+      }
+    }
+  },
+  {
+    "id": "marszalkowska",
+    "name": "Ulica Marszałkowska – plac Zbawiciela",
+    "lat": 52.21985,
+    "lng": 21.01772,
+    "heading": "looking south across the square at the Church of the Most Holy Saviour",
+    "description": "Plac Zbawiciela on Marszałkowska Street is dominated by the Church of the Most Holy Saviour, consecrated in 1927. In September 1939 German shells destroyed the church's west tower, the spire over the crossing and the roof, and in 1944 German demolition charges caused further severe damage. The church was repaired after the war and reopened to worshippers in 1948; the 20-metre central spire was never rebuilt.",
+    "oldYear": "1929",
+    "old": "/img/marszalkowska_old.jpg",
+    "restored": "/img/marszalkowska_ai.jpg",
+    "today": "/img/marszalkowska_today.jpg",
+    "og": "/img/og/marszalkowska.jpg",
+    "credits": {
+      "old": {
+        "author": "unknown",
+        "date": "1929–1939",
+        "licence": "Public domain (PD-Poland)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Zbawiciela_w_Warszawie_1929-1939.jpg"
+      },
+      "today": {
+        "author": "Adrian Grycuk",
+        "date": "2019-05-05",
+        "licence": "CC BY-SA 3.0 pl",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ko%C5%9Bci%C3%B3%C5%82_Naj%C5%9Bwi%C4%99tszego_Zbawiciela_w_Warszawie_2019c.jpg"
+      }
+    }
+  },
+  {
+    "id": "plac-trzech-krzyzy",
+    "name": "Plac Trzech Krzyży (Three Crosses Square)",
+    "lat": 52.2299,
+    "lng": 21.02215,
+    "heading": "looking south from the end of Nowy Świat towards St Alexander's Church",
+    "description": "St Alexander's Church on Three Crosses Square was built in 1818–1826 to a classicist design by Piotr Aigner and enlarged in 1886–1895 in neo-Renaissance style, with two towers and a large dome. It was destroyed by German bombing in September 1944. In 1949–1952 it was rebuilt in its original, smaller classicist form, without the 19th-century extension.",
+    "old": "/img/plac-trzech-krzyzy_old.jpg",
+    "restored": "/img/plac-trzech-krzyzy_ai.jpg",
+    "today": "/img/plac-trzech-krzyzy_today.jpg",
+    "og": "/img/og/plac-trzech-krzyzy.jpg",
+    "credits": {
+      "old": {
+        "author": "unknown",
+        "date": "before 1939",
+        "licence": "Public domain (PD-Poland)",
+        "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plac_Trzech_Krzy%C5%BCy_w_Warszawie_przed_1939.jpg"
+      },
+      "today": {
+        "author": "Marcin Białek",
+        "date": "2009-02-21",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warszawa_plac_Trzech_Krzy%C5%BCy.jpg"
+      }
+    }
+  }
+]

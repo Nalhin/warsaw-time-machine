@@ -9,7 +9,10 @@ For each spot in sources/sources.json (see README for the format) it writes:
     public/img/<id>_ai.jpg      restore.py output (Real-ESRGAN + DDColor, labelled "AI")
     public/img/<id>_today.jpg   today's photo, resized for the web
     public/img/og/<id>.jpg      1200x630 link preview (old | today)
-and updates the entry in public/spots.json, leaving entries that aren't in sources.json alone.
+With "align": true (or {"points": "<file>.json"}) in the source entry, the today photo is also warped
+onto the old photo's framing (align.py) for a pixel-matched slider:
+    public/img/<id>_cmp_{old,ai,today}.jpg
+and updates the entry in src/data/spots.json, leaving entries that aren't in sources.json alone.
 """
 
 from __future__ import annotations
@@ -21,13 +24,14 @@ from pathlib import Path
 from PIL import Image, ImageOps
 
 import og
+from align import AlignError, align_pair, load as load_rgb
 from restore import Colorizer, Upscaler, restore
 
 HERE = Path(__file__).resolve().parent
 SOURCES = HERE / "sources"
 PUBLIC = HERE.parent / "public"
 IMG = PUBLIC / "img"
-SPOTS_JSON = PUBLIC / "spots.json"
+SPOTS_JSON = HERE.parent / "src" / "data" / "spots.json"
 WEB_SIDE = 1600
 
 
@@ -79,8 +83,40 @@ def main() -> None:
                 max_output=WEB_SIDE, saturation=1.2, label=True, quality=84,
             )
 
+        compare = None
+        if src.get("align"):
+            opts = src["align"] if isinstance(src["align"], dict) else {}
+            points = json.loads((SOURCES / opts["points"]).read_text()) if opts.get("points") else None
+            try:
+                aligned, old_crop, stats = align_pair(load_rgb(old_src), load_rgb(today_src), points=points)
+            except AlignError as e:
+                print(f"  ! alignment failed ({e}); using the unaligned photos")
+            else:
+                print(f"  aligned: {stats}")
+                cmp_old, cmp_today, cmp_ai = (IMG / f"{sid}_cmp_{k}.jpg" for k in ("old", "today", "ai"))
+                for rgb, path, q in ((old_crop, cmp_old, 82), (aligned, cmp_today, 80)):
+                    im = Image.fromarray(rgb)
+                    im.thumbnail((WEB_SIDE, WEB_SIDE), Image.LANCZOS)
+                    im.save(path, "JPEG", quality=q, optimize=True, progressive=True)
+                if not args.no_ai and (args.force or not cmp_ai.exists()):
+                    if upscaler is None:
+                        upscaler, colorizer = Upscaler(), Colorizer()
+                    restore(
+                        cmp_old, cmp_ai, upscaler=upscaler, colorizer=colorizer, max_input=1000,
+                        max_output=WEB_SIDE, saturation=1.2, label=True, quality=84,
+                    )
+                compare = {
+                    "old": f"/img/{cmp_old.name}",
+                    "today": f"/img/{cmp_today.name}",
+                    "restored": f"/img/{cmp_ai.name}" if cmp_ai.exists() else None,
+                }
+                old_src_og, today_src_og = cmp_old, cmp_today
+
         old_year = src.get("oldYear") or "".join(ch for ch in (src["old"].get("date") or "")[:4] if ch.isdigit()) or None
-        og.spot_card(old_src, today_src, src["name"], IMG / "og" / f"{sid}.jpg", old_label=old_year or "Pre-war")
+        og.spot_card(
+            old_src_og if compare else old_src,
+            today_src_og if compare else today_src,
+            src["name"], IMG / "og" / f"{sid}.jpg", old_label=old_year or "Pre-war")
 
         entry = by_id.get(sid, {})
         entry.update(
@@ -92,10 +128,11 @@ def main() -> None:
                 "heading": src.get("heading"),
                 "description": src.get("description"),
                 "oldYear": old_year,
-                "old": f"img/{sid}_old.jpg",
-                "restored": f"img/{sid}_ai.jpg" if ai.exists() else None,
-                "today": f"img/{sid}_today.jpg",
-                "og": f"img/og/{sid}.jpg",
+                "old": f"/img/{sid}_old.jpg",
+                "restored": f"/img/{sid}_ai.jpg" if ai.exists() else None,
+                "today": f"/img/{sid}_today.jpg",
+                "og": f"/img/og/{sid}.jpg",
+                "compare": compare,
                 "credits": {"old": credit(src["old"]), "today": credit(src["today"])},
             }
         )

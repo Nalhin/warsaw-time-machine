@@ -1,9 +1,11 @@
+'use client';
+
 import { ArrowLeftRight, Columns2, Square } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import type { AppState } from '@/lib/state';
+import type { MapState } from '@/lib/state';
 import { YEARS, type YearKey } from '@/lib/years';
 
 function YearToggle({ value, onChange, label }: { value: YearKey; onChange(v: YearKey): void; label: string }) {
@@ -13,7 +15,6 @@ function YearToggle({ value, onChange, label }: { value: YearKey; onChange(v: Ye
       size="sm"
       spacing={0}
       value={value}
-      // Radix sends "" when the active item is clicked again; ignore that.
       onValueChange={(v) => v && onChange(v as YearKey)}
       aria-label={label}
       className="rounded-full"
@@ -39,7 +40,7 @@ export function YearControls({
   swap,
   toggleCompare,
 }: {
-  state: AppState;
+  state: MapState;
   setYear(y: YearKey): void;
   setSide(side: 0 | 1, y: YearKey): void;
   swap(): void;

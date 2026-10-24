@@ -1,118 +1,113 @@
+'use client';
+
 import type L from 'leaflet';
 import { LocateFixed, Type } from 'lucide-react';
-import { useCallback, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { usePathname, useRouter } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 import { AboutDialog } from '@/components/AboutDialog';
-import { MapView, WARSAW_BOUNDS } from '@/components/map/MapView';
 import { SwipeDivider } from '@/components/map/SwipeDivider';
-import { DRAWER_PEEK, PANEL_WIDTH, SpotPanel } from '@/components/SpotPanel';
+import { DRAWER_PEEK, PANEL_WIDTH } from '@/components/SpotPanel';
 import { Button } from '@/components/ui/button';
 import { Toaster } from '@/components/ui/sonner';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { YearControls } from '@/components/YearControls';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useTileLoading } from '@/lib/loading';
-import { loadSpots, type Spot } from '@/lib/spots';
-import { readUrlState, stateToQuery, writeUrlState, type AppState } from '@/lib/state';
-import { yearDef, YEARS, type YearKey } from '@/lib/years';
+import { WARSAW_BBOX } from '@/lib/site';
+import { spotIdFromPath, type Spot } from '@/lib/spots';
+import { DEFAULT_STATE, mapStateToQuery, readMapState, type MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
+import { yearDef, YEARS, type YearKey } from '@/lib/years';
+
+const MapView = dynamic(() => import('@/components/map/MapView').then((m) => m.MapView), {
+  ssr: false,
+  loading: () => <div className="fixed inset-0 bg-[#1a1b1e]" />,
+});
 
 const HINT_KEY = 'wtm-dragged';
-const readHintSeen = () => {
-  try {
-    return localStorage.getItem(HINT_KEY) === '1';
-  } catch {
-    return false;
-  }
-};
 
-export default function App() {
-  const [state, setState] = useState<AppState>(readUrlState);
+export function MapApp({ spots }: { spots: Spot[] }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const activeId = spotIdFromPath(pathname);
+  const spot = spots.find((s) => s.id === activeId) ?? null;
+
+  const [state, setState] = useState<MapState>(DEFAULT_STATE);
+  const [ready, setReady] = useState(false);
   const [map, setMap] = useState<L.Map | null>(null);
-  const [spots, setSpots] = useState<Spot[]>([]);
   const [ratio, setRatio] = useState(0.5);
-  const [hintSeen, setHintSeen] = useState(readHintSeen);
+  const [hintSeen, setHintSeen] = useState(true);
   const [labels, setLabels] = useState(false);
   const [me, setMe] = useState<L.LatLng | null>(null);
   const mobile = useIsMobile();
 
-  const spot = spots.find((s) => s.id === state.spot) ?? null;
-
-  useEffect(() => writeUrlState(state), [state]);
   useEffect(() => {
-    document.title = spot ? `${spot.name}: Warsaw 1935 / 1945 / Today` : 'Warsaw 1935 / 1945 / Today';
-  }, [spot]);
-
-  useEffect(() => {
-    loadSpots().then(setSpots, (e) => console.error(e));
+    setState(readMapState(location.search));
+    try {
+      setHintSeen(localStorage.getItem(HINT_KEY) === '1');
+    } catch {
+      setHintSeen(false);
+    }
+    setReady(true);
   }, []);
 
-  // ---- year actions
+  useEffect(() => {
+    if (!ready) return;
+    const url = `${location.pathname}${mapStateToQuery(state)}`;
+    if (url !== `${location.pathname}${location.search}`) history.replaceState(history.state, '', url);
+  }, [state, ready, pathname]);
+
 
   const setYear = (year: YearKey) => setState((s) => ({ ...s, year }));
-  const setSide = (side: 0 | 1, y: YearKey) =>
-    setState((s) => {
-      if (!s.swipe) return s;
-      const next: [YearKey, YearKey] = [...s.swipe];
-      // Picking the year that's already on the other side swaps the two.
-      if (next[1 - side] === y) next[1 - side] = next[side];
-      next[side] = y;
-      return { ...s, swipe: next };
-    });
-  const swap = () => setState((s) => (s.swipe ? { ...s, swipe: [s.swipe[1], s.swipe[0]] } : s));
-  const toggleCompare = () =>
-    setState((s) =>
-      s.swipe
-        ? { ...s, year: s.swipe[1], swipe: null }
-        : { ...s, swipe: [s.year === 'today' ? '1935' : s.year, 'today'] },
-    );
-
-  // ---- spots
-
-  const flyToSpot = useCallback(
-    (s: Spot) => {
-      if (!map) return;
-      // Centre the pin in the part of the map that the panel doesn't cover.
-      const covered = mobile ? { x: 0, y: innerHeight * DRAWER_PEEK } : { x: PANEL_WIDTH + 24, y: 0 };
-      const zoom = Math.max(map.getZoom(), 17);
-      const p = map.project([s.lat, s.lng], zoom).add([covered.x / 2, covered.y / 2]);
-      map.flyTo(map.unproject(p, zoom), zoom, { duration: 0.8 });
-    },
-    [map, mobile],
+  const setSide = useCallback(
+    (side: 0 | 1, y: YearKey) =>
+      setState((s) => {
+        if (!s.swipe) return s;
+        const next: [YearKey, YearKey] = [...s.swipe];
+        if (next[1 - side] === y) next[1 - side] = next[side];
+        next[side] = y;
+        return { ...s, swipe: next };
+      }),
+    [],
+  );
+  const swap = useCallback(() => setState((s) => (s.swipe ? { ...s, swipe: [s.swipe[1], s.swipe[0]] } : s)), []);
+  const toggleCompare = useCallback(
+    () =>
+      setState((s) =>
+        s.swipe ? { ...s, year: s.swipe[1], swipe: null } : { ...s, swipe: [s.year === 'today' ? '1935' : s.year, 'today'] },
+      ),
+    [],
   );
 
-  const openSpot = (id: string) => {
-    setState((s) => ({ ...s, spot: id }));
-    const s = spots.find((x) => x.id === id);
-    if (s) flyToSpot(s);
-  };
-  const closeSpot = () => setState((s) => ({ ...s, spot: null }));
 
-  // Spot from the URL: jump there once the map and spots are ready.
+  const openSpot = (id: string) => router.push(`/spots/${id}${location.search}`, { scroll: false });
+
+  const flown = useRef<string | null>(null);
   useEffect(() => {
-    if (!map || !spots.length || !state.spot) return;
-    const s = spots.find((x) => x.id === state.spot);
-    if (!s) return setState((st) => ({ ...st, spot: null }));
-    map.setView([s.lat, s.lng], 17, { animate: false });
-    flyToSpot(s);
-    // only on first load
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [map, spots.length]);
+    if (!map || !spot || flown.current === spot.id) return;
+    const first = flown.current === null;
+    flown.current = spot.id;
+    const covered = mobile ? { x: 0, y: innerHeight * DRAWER_PEEK } : { x: PANEL_WIDTH + 24, y: 0 };
+    const zoom = Math.max(first ? 17 : map.getZoom(), 17);
+    const p = map.project([spot.lat, spot.lng], zoom).add([covered.x / 2, covered.y / 2]);
+    const target = map.unproject(p, zoom);
+    if (first) map.setView(target, zoom, { animate: false });
+    else map.flyTo(target, zoom, { duration: 0.8 });
+  }, [map, spot, mobile]);
+  useEffect(() => {
+    if (!spot && flown.current !== null) flown.current = '';
+  }, [spot]);
 
-  const shareUrl = spot
-    ? import.meta.env.DEV
-      ? `${location.origin}/${stateToQuery({ ...state, spot: spot.id })}`
-      : // /s/<id>/ is a static page with Open Graph tags (scripts/build-spot-pages.mjs) that redirects to /?spot=<id>.
-        `${location.origin}/s/${spot.id}/${stateToQuery({ ...state, spot: null })}`
-    : '';
-
-  // ---- location
 
   useEffect(() => {
     if (!map) return;
     const found = (e: L.LocationEvent) => {
-      if (!WARSAW_BOUNDS.contains(e.latlng)) return void toast("You're outside Warsaw");
+      const { lat, lng } = e.latlng;
+      const b = WARSAW_BBOX;
+      if (lat < b.south || lat > b.north || lng < b.west || lng > b.east) return void toast("You're outside Warsaw");
       setMe(e.latlng);
       map.flyTo(e.latlng, Math.max(map.getZoom(), 17));
     };
@@ -125,7 +120,6 @@ export default function App() {
     };
   }, [map]);
 
-  // ---- keyboard shortcuts: 1/2/3 (Shift = left side), C compare, S swap, [ ] move divider
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -135,14 +129,8 @@ export default function App() {
       const digit = /^Digit([123])$/.exec(e.code);
       if (digit) {
         const y = YEARS[+digit[1] - 1].key;
-        setState((s) => {
-          if (!s.swipe) return { ...s, year: y };
-          const side = e.shiftKey ? 0 : 1;
-          const next: [YearKey, YearKey] = [...s.swipe];
-          if (next[1 - side] === y) next[1 - side] = next[side];
-          next[side] = y;
-          return { ...s, swipe: next };
-        });
+        setState((s) => (s.swipe ? s : { ...s, year: y }));
+        setSide(e.shiftKey ? 0 : 1, y);
       } else if (e.key === 'c' || e.key === 'C') toggleCompare();
       else if (e.key === 's' || e.key === 'S') swap();
       else if (e.key === '[') setRatio((r) => Math.max(0, r - 0.05));
@@ -152,20 +140,19 @@ export default function App() {
     };
     addEventListener('keydown', onKey);
     return () => removeEventListener('keydown', onKey);
-  }, []);
+  }, [setSide, swap, toggleCompare]);
+
 
   const loading = useTileLoading();
   const busy = loading.total > 0 && loading.done < loading.total;
   const [showLoading, setShowLoading] = useState(false);
   useEffect(() => {
-    // Short delay so cached tiles don't flash the indicator.
     if (!busy) return setShowLoading(false);
     const t = setTimeout(() => setShowLoading(true), 250);
     return () => clearTimeout(t);
   }, [busy]);
 
   const panelOpen = !!spot && !mobile;
-  // Leaflet's own controls (zoom, attribution) live outside React; shift them via a root class.
   useEffect(() => {
     document.documentElement.classList.toggle('panel-open', panelOpen);
   }, [panelOpen]);
@@ -176,7 +163,7 @@ export default function App() {
         left={state.swipe ? state.swipe[0] : state.year}
         right={state.swipe ? state.swipe[1] : null}
         spots={spots}
-        activeSpot={state.spot}
+        activeSpot={activeId}
         onSpot={openSpot}
         showLabels={labels}
         myLocation={me}
@@ -197,7 +184,6 @@ export default function App() {
             try {
               localStorage.setItem(HINT_KEY, '1');
             } catch {
-              /* private mode */
             }
           }}
         />
@@ -206,7 +192,7 @@ export default function App() {
       <AboutDialog />
 
       <div
-        className={cn('transition-[padding] duration-300', panelOpen && 'sm:[&>nav]:-translate-x-[calc(var(--pw)/2)]')}
+        className={cn(panelOpen && 'sm:[&>nav]:-translate-x-[calc(var(--pw)/2)]')}
         style={{ ['--pw' as string]: `${PANEL_WIDTH + 12}px` }}
       >
         <YearControls state={state} setYear={setYear} setSide={setSide} swap={swap} toggleCompare={toggleCompare} />
@@ -264,7 +250,6 @@ export default function App() {
         </div>
       )}
 
-      <SpotPanel spot={spot} onClose={closeSpot} shareUrl={shareUrl} />
       <Toaster theme="dark" position={mobile ? 'top-center' : 'bottom-center'} />
     </>
   );

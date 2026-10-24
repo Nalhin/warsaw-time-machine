@@ -7,7 +7,7 @@ plus a photo of the same view today.
 
 ```
 npm install
-npm run dev           # http://localhost:5173
+npm run dev           # http://localhost:3000
 npm run typecheck
 npm run build         # must pass before you open a PR
 ```
@@ -32,7 +32,7 @@ uv run --extra export python export_ddcolor.py   # once, about 1 GB
 4. Set `lat`/`lng` to where the photographer stood, not to the building in the photo. Check it against the
    1935 aerial on the map.
 5. Run `uv run python prepare_spots.py <id>`, then check the result in `npm run dev`.
-6. Open a PR with the source files, the generated `public/img/*` files and the `public/spots.json` change.
+6. Open a PR with the source files, the generated `public/img/*` files and the `src/data/spots.json` change.
 
 ### Rules for photos
 
@@ -45,10 +45,12 @@ uv run --extra export python export_ddcolor.py   # once, about 1 GB
 
 ## Code
 
-- Frontend: React, TypeScript, Vite, Tailwind CSS v4 and [shadcn/ui](https://ui.shadcn.com) (Radix base).
+- Frontend: Next.js (App Router), React, TypeScript, Tailwind CSS v4 and [shadcn/ui](https://ui.shadcn.com) (Radix base).
   Add UI primitives with `npx shadcn@latest add <component>` rather than writing them by hand.
 - Map: Leaflet through react-leaflet. The year layers and the compare divider are in `src/components/map/`.
-- Keep the URL parameters (`?year=`, `?swipe=`, `?spot=`) backwards compatible, because links get shared.
+- Keep URLs (`/spots/<id>`, `?year=`, `?swipe=`) backwards compatible, because links get shared and indexed.
+- Leaflet only runs in the browser, so keep it out of server components and out of the `src/lib/` modules that pages import.
+- Don't write code comments. Explain non-obvious decisions in the PR description.
 - The WMS is slow, so don't add features that multiply tile requests (e.g. preloading every year).
 - Keep pull requests focused. Describe what changed and include a screenshot for UI changes.
 

@@ -2,16 +2,16 @@
 
 A map of Warsaw that compares the city's aerial photos from 1935 (pre-war), 1945 (after the destruction)
 and today. Pins open street-level comparisons: the real pre-war photo, an AI-restored version, and a photo
-taken from the same spot today. It's a static site with no backend, deployed on Vercel.
+taken from the same spot today. It's a Next.js site, statically generated and deployed on Vercel.
 
-**Stack:** React 19, TypeScript, Vite, Tailwind CSS v4, [shadcn/ui](https://ui.shadcn.com) (Radix), Leaflet via react-leaflet.
+**Stack:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, [shadcn/ui](https://ui.shadcn.com) (Radix), Leaflet via react-leaflet.
 The restoration pipeline is Python (uv, PyTorch, ONNX Runtime).
 
 ```
 npm install
-npm run dev          # http://localhost:5173
+npm run dev          # http://localhost:3000
 npm run typecheck
-npm run build        # dist/ (+ dist/s/<id>/ share pages with Open Graph tags)
+npm run build        # static pages for / and every /spots/<id>
 ```
 
 ## Map
@@ -19,7 +19,7 @@ npm run build        # dist/ (+ dist/s/<id>/ share pages with Open Graph tags)
 - Aerials come from the city WMS `https://mapa.um.warszawa.pl/mapviewer/wms` (WMS 1.1.1, `DATASOURCE=dane_wawa`,
   EPSG:3857, 512 px tiles). The layers are `FOTOPLAN_1935`, `ORTOFOTO_1945` and `ORTOFOTO_2025`.
 - If 3 tiles fail before any succeeds, the app switches to the official `https://wms.um.warszawa.pl/serwis`
-  (`RASTER_FOTOPLAN_1935`, `RASTER_ORTOFOTO_1945`, `ORTO`). See `src/lib/years.ts`.
+  (`RASTER_FOTOPLAN_1935`, `RASTER_ORTOFOTO_1945`, `ORTO`). See `src/lib/wms.ts`.
 - When you switch years, the new layer loads on top of the old one. The old layer is removed only after the
   new one has finished, so the map never goes blank. A progress bar and a "Wczytywanie…" pill show while
   tiles load.
@@ -31,33 +31,36 @@ npm run build        # dist/ (+ dist/s/<id>/ share pages with Open Graph tags)
 - In the spot panel, the before/after slider follows the mouse, and the expand button opens it full-screen.
 - "T" toggles street names (CARTO labels). The target button shows your location.
 
-### URL state
+### URLs and SEO
 
 | URL | |
 |---|---|
 | `/` | compare mode, 1935 \| today (default) |
 | `/?year=1945` | one year (`1935`, `1945`, `today`) |
 | `/?swipe=1945,today` | compare mode, left and right |
-| `/?spot=plac-zamkowy` | opens a spot (can be combined with the above) |
-| `/s/plac-zamkowy/` | share link: its own OG image and title, then redirects to `/?spot=…` |
+| `/spots/plac-zamkowy` | a place: its own server-rendered page (can be combined with `?swipe=` / `?year=`) |
+| `/s/<id>`, `/?spot=<id>` | old links: permanent redirects to `/spots/<id>` |
 
-The share button in the panel copies `/s/<id>/?swipe=…`, which keeps the current map mode. X doesn't run
-JavaScript, so per-spot previews need these static pages, which `scripts/build-spot-pages.mjs` generates
-after `vite build`.
+Each `/spots/<id>` page is prerendered with its own title, description, canonical URL, Open Graph and
+Twitter card (the image is `public/img/og/<id>.jpg`), and JSON-LD for the place and its photos (with
+licence data). The panel text and photos are part of the HTML. The map lives in the root layout, so
+moving between places is a client-side navigation and the map stays loaded. `/sitemap.xml` (with image
+entries) and `/robots.txt` are generated from the spot data. The home page includes a crawlable list of
+every place.
 
 ## Deploy (Vercel)
 
-Import the repository in Vercel, or run `npx vercel --prod`. `vercel.json` sets the build command and cache headers.
-`og:image` must be an absolute URL. The build reads `VERCEL_PROJECT_PRODUCTION_URL`, and you can override it
-with `SITE_URL=https://your.domain` when you use a custom domain.
+Import the repository in Vercel (framework preset: Next.js), or run `npx vercel --prod`. Canonical and
+Open Graph URLs use `VERCEL_PROJECT_PRODUCTION_URL`. Set `SITE_URL=https://your.domain` when you use a
+custom domain.
 
-## Spots (`public/spots.json`)
+## Spots (`src/data/spots.json`)
 
 ```json
 { "id": "plac-zamkowy", "name": "Plac Zamkowy", "lat": 52.2477, "lng": 21.0136,
   "heading": "widok w stronę…", "description": "…", "oldYear": "1930",
-  "old": "img/plac-zamkowy_old.jpg", "restored": "img/plac-zamkowy_ai.jpg", "today": "img/plac-zamkowy_today.jpg",
-  "og": "img/og/plac-zamkowy.jpg",
+  "old": "/img/plac-zamkowy_old.jpg", "restored": "/img/plac-zamkowy_ai.jpg", "today": "/img/plac-zamkowy_today.jpg",
+  "og": "/img/og/plac-zamkowy.jpg",
   "credits": { "old":   { "author": "…", "date": "…", "licence": "Public domain", "licenceUrl": "…", "source": "Wikimedia Commons", "sourceUrl": "…" },
                "today": "author, licence, https://link" } }
 ```
@@ -88,6 +91,20 @@ Options: `--saturation`, `--no-upscale`, `--max-input`, `--max-output`, `--devic
 
 > Only restore real photos. Never use image generators to invent historical scenes.
 
+### Aligning a modern photo to the old framing
+
+```
+uv run python align.py old.jpg today.jpg --debug check.jpg     # -> today_aligned.jpg + old_crop.jpg
+uv run python align.py old.jpg today.jpg --points pts.json     # manual control points if matching fails
+```
+
+LoFTR (a learned feature matcher) finds the same architectural details in both photos. A homography then
+reprojects the **real** modern photo into the old camera's frame, and both are cropped to the area they
+share, so the slider lines up pixel for pixel. Nothing is generated. It's exact for facades and for photos
+taken from the same spot. If the modern photo was taken from a different position, parallax remains. In that
+case, re-take it (see CONTRIBUTING.md). Add `"align": true` (or `"align": {"points": "pts.json"}`) to a spot
+in `sources.json` to have `prepare_spots.py` do this automatically.
+
 ### From sources to the site
 
 Put the photos in `pipeline/sources/` and describe them in `pipeline/sources/sources.json`:
@@ -109,7 +126,7 @@ uv run python og.py default                  # main link preview from the WMS (1
 ```
 
 This writes web-sized `public/img/<id>_{old,ai,today}.jpg`, `public/img/og/<id>.jpg` (1200×630, old | today)
-and updates `public/spots.json`. Entries that aren't in `sources.json` are left alone.
+and updates `src/data/spots.json`. Entries that aren't in `sources.json` are left alone.
 
 ### Photo sources and licences
 
@@ -124,5 +141,5 @@ and updates `public/spots.json`. Entries that aren't in `sources.json` are left 
 Aerial photos © m.st. Warszawa. Labels and basemap © OpenStreetMap contributors, © CARTO.
 Real-ESRGAN (BSD-3-Clause), DDColor (Apache-2.0), fonts Fraunces, Inter and Geist (OFL).
 
-Code: [MIT](LICENSE). Photos keep their own licences (see `public/spots.json`). Contributions:
+Code: [MIT](LICENSE). Photos keep their own licences (see `src/data/spots.json`). Contributions:
 [CONTRIBUTING.md](CONTRIBUTING.md).

@@ -1,12 +1,11 @@
+'use client';
+
 import { ChevronsLeftRight, Maximize2 } from 'lucide-react';
+import Image from 'next/image';
 import { useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
-/**
- * Before/after photo slider. With a mouse the divider follows the pointer (no dragging needed).
- * On touch, or with the keyboard, a transparent range input over the image does the work.
- */
 export function CompareSlider({
   before,
   after,
@@ -15,6 +14,8 @@ export function CompareSlider({
   alt,
   onExpand,
   className,
+  sizes = '(max-width: 720px) 100vw, 380px',
+  priority = false,
 }: {
   before: string;
   after: string;
@@ -23,12 +24,13 @@ export function CompareSlider({
   alt: string;
   onExpand?: () => void;
   className?: string;
+  sizes?: string;
+  priority?: boolean;
 }) {
   const [pos, setPos] = useState(50);
 
   return (
     <div
-      // keeps the mobile drawer from treating a slider drag as a sheet drag
       data-vaul-no-drag
       className={cn('relative aspect-[4/3] overflow-hidden rounded-xl bg-neutral-800 select-none', className)}
       style={{ ['--pos' as string]: `${pos}%` }}
@@ -38,9 +40,9 @@ export function CompareSlider({
         setPos(Math.min(100, Math.max(0, ((e.clientX - r.left) / r.width) * 100)));
       }}
     >
-      <img src={after} alt={`${alt}: ${afterLabel}`} draggable={false} className="absolute inset-0 size-full object-cover" />
+      <Image src={after} alt={`${alt}: ${afterLabel}`} draggable={false} fill sizes={sizes} priority={priority} className="object-cover" />
       <div className="absolute inset-0 [clip-path:inset(0_calc(100%-var(--pos))_0_0)]">
-        <img src={before} alt={`${alt}: ${beforeLabel}`} draggable={false} className="absolute inset-0 size-full object-cover" />
+        <Image src={before} alt={`${alt}: ${beforeLabel}`} draggable={false} fill sizes={sizes} priority={priority} className="object-cover" />
       </div>
       <div className="pointer-events-none absolute inset-y-0 left-[var(--pos)] -ml-px w-0.5 bg-white shadow-[0_0_10px_rgba(0,0,0,.5)]">
         <span className="absolute top-1/2 left-1/2 grid size-9 -translate-1/2 place-items-center rounded-full bg-white text-neutral-900 shadow-lg">

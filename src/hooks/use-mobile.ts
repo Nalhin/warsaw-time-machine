@@ -2,7 +2,6 @@ import { useSyncExternalStore } from 'react';
 
 const QUERY = '(max-width: 720px)';
 
-/** True on phone-sized screens, where the spot panel becomes a bottom drawer. */
 export function useIsMobile() {
   return useSyncExternalStore(
     (cb) => {
@@ -11,5 +10,6 @@ export function useIsMobile() {
       return () => mq.removeEventListener('change', cb);
     },
     () => matchMedia(QUERY).matches,
+    () => false,
   );
 }
