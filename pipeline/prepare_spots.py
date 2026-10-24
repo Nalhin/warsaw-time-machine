@@ -121,7 +121,7 @@ def build(place: dict) -> dict:
         )
     og.spot_card(
         files[0], files[-1], place["name"], IMG / "og" / f"{pid}.jpg",
-        old_label=photos[0]["date"], today_label="Today" if photos[-1]["year"] >= 2015 else photos[-1]["date"])
+        *og.spot_labels(photos))
     return {
         "id": pid,
         "name": place["name"],

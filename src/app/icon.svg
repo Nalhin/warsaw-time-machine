@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <clipPath id="tile"><rect width="32" height="32" rx="7"/></clipPath>
+    <clipPath id="old"><rect width="16" height="32"/></clipPath>
+    <clipPath id="new"><rect x="16" width="16" height="32"/></clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <g clip-path="url(#old)">
+      <rect width="32" height="32" fill="#8c8c8c"/>
+      <path d="M-2 26C9 18 21 30 34 20" fill="none" stroke="#4a4a4a" stroke-width="6"/>
+    </g>
+    <g clip-path="url(#new)">
+      <rect width="32" height="32" fill="#e3b667"/>
+      <path d="M-2 26C9 18 21 30 34 20" fill="none" stroke="#3f8fcc" stroke-width="6"/>
+    </g>
+    <rect x="15" width="2" height="32" fill="#fff"/>
+    <circle cx="16" cy="12" r="4.5" fill="#fff"/>
+    <circle cx="16" cy="12" r="2.5" fill="#22190a"/>
+  </g>
+</svg>

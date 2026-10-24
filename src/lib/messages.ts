@@ -27,6 +27,7 @@ const en = {
     heading: 'Warsaw from 1935 to today: historical aerial photos and street photos from every decade',
     places: 'Places',
     ogAlt: 'Warsaw in 1935, 1945 and today, side by side',
+    viewTitle: (years: string[]) => `Warsaw from above: ${list(years, 'and')}`,
     keywords: [
       'Warsaw',
       'Warszawa',
@@ -231,6 +232,7 @@ const pl: Messages = {
     heading: 'Warszawa od 1935 roku do dziś: historyczne zdjęcia lotnicze i zdjęcia ulic z każdej dekady',
     places: 'Miejsca',
     ogAlt: 'Warszawa w 1935 i 1945 roku oraz dziś, obok siebie',
+    viewTitle: (years) => `Warszawa z lotu ptaka: ${list(years, 'i')}`,
     keywords: [
       'Warszawa',
       'Warsaw',

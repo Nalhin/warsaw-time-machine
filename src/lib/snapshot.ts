@@ -2,6 +2,7 @@ import { BufferTarget, CanvasSource, getFirstEncodableVideoCodec, Mp4OutputForma
 
 import { SITE_DOMAIN_PARTS } from './site';
 import { fetchLabelImage, fetchYearImage, whiteToAlpha, type BBox } from './wms';
+import { project } from './wms-request';
 import { featherPx, yearDef, type YearKey } from './years';
 
 export type Format = 'screen' | 'square' | 'portrait' | 'landscape';
@@ -70,16 +71,8 @@ const BG = '#1a1b1e';
 const PILL_BG = 'rgba(17, 18, 20, 0.84)';
 const PILL_FG = '#f3efe7';
 const GOLD = '#e3b667';
-const EARTH_RADIUS = 6378137;
 
 type Rect = [x: number, y: number, width: number, height: number];
-
-function project(lat: number, lng: number): [number, number] {
-  return [
-    (EARTH_RADIUS * lng * Math.PI) / 180,
-    EARTH_RADIUS * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360)),
-  ];
-}
 
 function createCanvas(width: number, height: number) {
   const c = document.createElement('canvas');

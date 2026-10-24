@@ -1,17 +1,11 @@
 import L from 'leaflet';
 
+import { fadeWhite, FALLBACK_URL, getMapUrl, LABEL_LAYERS, PRIMARY_URL, type BBox } from './wms-request';
 import { yearDef, type YearKey } from './years';
 
-const PRIMARY_URL = 'https://mapa.um.warszawa.pl/mapviewer/wms';
-const FALLBACK_URL = 'https://wms.um.warszawa.pl/serwis';
+export type { BBox };
+
 const FAILS_BEFORE_FALLBACK = 3;
-const LABEL_LAYERS = [
-  'ORTO_ULICE_GLOWNE_3',
-  'ORTO_ULICE_GLOWNE_4',
-  'ORTO_ULICE_LINIOWE_5_18',
-  'ORTO_ULICE_POWIERZCHNIOWE_9_14',
-  'ORTO_ULICE_POWIERZCHNIOWE_15_18',
-].join(',');
 
 let isPrimaryDead = false;
 
@@ -19,11 +13,7 @@ export function whiteToAlpha(canvas: HTMLCanvasElement, img: HTMLImageElement) {
   const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
   const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const px = data.data;
-  for (let i = 0; i < px.length; i += 4) {
-    const min = Math.min(px[i], px[i + 1], px[i + 2]);
-    if (min >= 240) px[i + 3] = Math.min(px[i + 3], (Math.max(0, 252 - min) / 12) * 255);
-  }
+  fadeWhite(data.data);
   ctx.putImageData(data, 0, 0);
 }
 
@@ -100,26 +90,6 @@ export function createLabelLayer(pane: string): L.TileLayer.WMS {
     updateWhenZooming: false,
     DATASOURCE: 'dane_wawa',
   } as L.WMSOptions);
-}
-
-export type BBox = [minX: number, minY: number, maxX: number, maxY: number];
-
-function getMapUrl(base: string, layers: string, bbox: BBox, width: number, height: number) {
-  const q = new URLSearchParams({
-    SERVICE: 'WMS',
-    REQUEST: 'GetMap',
-    VERSION: '1.1.1',
-    LAYERS: layers,
-    STYLES: '',
-    FORMAT: 'image/png',
-    TRANSPARENT: 'true',
-    SRS: 'EPSG:3857',
-    BBOX: bbox.map((v) => v.toFixed(2)).join(','),
-    WIDTH: String(width),
-    HEIGHT: String(height),
-  });
-  if (base === PRIMARY_URL) q.set('DATASOURCE', 'dane_wawa');
-  return `${base}?${q}`;
 }
 
 function loadImage(src: string): Promise<HTMLImageElement> {

@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { AppShell } from '@/components/app-shell';
-import { isLocale, languageAlternates, LOCALES, localePath, OG_LOCALE } from '@/lib/i18n';
+import { isLocale, languageAlternates, LOCALES, localePath } from '@/lib/i18n';
 import { MESSAGES } from '@/lib/messages';
 import { AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
+import { socialMetadata } from '@/lib/social-metadata';
 import { YEAR_KEYS } from '@/lib/years';
 
 export { viewport } from '@/components/app-shell';
@@ -36,23 +37,14 @@ export async function generateMetadata({ params }: LocaleParams): Promise<Metada
     creator: AUTHOR.name,
     keywords: [...t.site.keywords, ...YEAR_KEYS.filter((k) => k !== 'today'), SITE_NAME],
     alternates: { canonical: localePath(lang, '/'), languages: languageAlternates('/') },
-    openGraph: {
+    ...socialMetadata(lang, {
       type: 'website',
-      locale: OG_LOCALE[lang],
-      alternateLocale: LOCALES.filter((l) => l !== lang).map((l) => OG_LOCALE[l]),
-      siteName: SITE_NAME,
       title: SITE_NAME,
       description: t.site.description,
       url: localePath(lang, '/'),
-      images: [{ url: '/img/og/default.jpg', width: 1200, height: 630, alt: t.site.ogAlt }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      creator: '@KrzysztofOlipra',
-      title: SITE_NAME,
-      description: t.site.description,
-      images: ['/img/og/default.jpg'],
-    },
+      image: '/img/og/default.jpg',
+      alt: t.site.ogAlt,
+    }),
   };
 }
 

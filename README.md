@@ -1,8 +1,25 @@
+<div align="center">
+
+<img src="public/coat-of-arms.png" alt="Coat of arms of Warsaw" width="72" />
+
 # Warsaw Timelapse
 
-A map of Warsaw that compares the city's aerial photos from 1935 (pre-war), 1945 (after the destruction),
-the rebuilding and every later survey the city publishes (1951 to 2024) and today. Pins open places with street-level photographs from
-different decades, from before the war to today.
+**Warsaw from the air in 1935, in ruins in 1945, and every decade of rebuilding since.**
+
+Drag a slider across almost a century of aerial photographs, and open pins with street-level photos of the same place before the war and today.
+
+[![Live site](https://img.shields.io/badge/live-warsawtimelapse.com-c9a24b?style=flat-square)](https://warsawtimelapse.com)
+[![Polski](https://img.shields.io/badge/język-polski-dc143c?style=flat-square)](https://warsawtimelapse.com/pl)
+[![License: MIT](https://img.shields.io/badge/code-MIT-3b82f6?style=flat-square)](LICENSE)
+[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-22c55e?style=flat-square)](CONTRIBUTING.md)
+
+[**Open the map**](https://warsawtimelapse.com) · [Add a place](CONTRIBUTING.md) · [Report an issue](https://github.com/Nalhin/warsaw-timelapse/issues)
+
+<br />
+
+<a href="https://warsawtimelapse.com"><img src="public/img/og/default.jpg" alt="The Royal Castle area in 1935, 1945 and today" /></a>
+
+</div>
 
 ## Why
 
@@ -10,31 +27,50 @@ The goal of the project is to raise awareness of what Poland has been through as
 it has achieved since. In 1945 most of Warsaw lay in ruins. Putting the city before the war, right after
 it, and today side by side shows both the scale of the loss and the scale of the rebuilding.
 
-## Contributing
+## Then and now
 
-Contributions are open and welcome, especially new places with a pre-war photo and a matching photo from
-today. The code is on GitHub: **[github.com/Nalhin/warsaw-timelapse](https://github.com/Nalhin/warsaw-timelapse)**.
-See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a place and the rules for photos.
+<table>
+  <tr>
+    <td><a href="https://warsawtimelapse.com/spots/plac-zamkowy"><img src="public/img/og/plac-zamkowy.jpg" alt="Plac Zamkowy in 1925 and today" /></a></td>
+    <td><a href="https://warsawtimelapse.com/spots/rynek-starego-miasta"><img src="public/img/og/rynek-starego-miasta.jpg" alt="Old Town Market Square around 1929 and today" /></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://warsawtimelapse.com/spots/krakowskie-przedmiescie"><img src="public/img/og/krakowskie-przedmiescie.jpg" alt="Krakowskie Przedmieście in 1930–1933 and today" /></a></td>
+    <td><a href="https://warsawtimelapse.com/spots/barbakan"><img src="public/img/og/barbakan.jpg" alt="The Barbican before 1939 and today" /></a></td>
+  </tr>
+</table>
 
-## Author
+## Features
 
-Krzysztof Olipra · [X (@KrzysztofOlipra)](https://x.com/KrzysztofOlipra) · [krzysztofolipra.com](https://krzysztofolipra.com/)
+- 🛩️ **28 aerial surveys**: 1935, 1945, 1951 and every later survey up to today, served live from the City of Warsaw's WMS
+- ↔️ **Compare mode**: drag a vertical or horizontal divider between any two years
+- ▶️ **Timelapse**: play through every year, preloading the next one so each switch is instant
+- 📍 **Places**: pins with street-level photos from different decades, all of them originals with author and licence
+- 🖼️ **Share images**: export the current view as a split, side-by-side or stacked image sized for social media
+- 🔗 **Shareable URLs**: position, zoom, years and the open place all live in the URL
+- 🇬🇧 🇵🇱 **English and Polish**, server-rendered place pages with Open Graph previews and JSON-LD
 
-## Development
+## Quick start
 
-It's a Next.js site, statically generated and deployed on Vercel.
-
-**Stack:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, [shadcn/ui](https://ui.shadcn.com) (Radix), Leaflet via react-leaflet.
-The photo pipeline is Python (uv, Pillow; PyTorch and kornia only for `align.py`).
-
-```
+```bash
 npm install
 npm run dev          # http://localhost:3000
 npm run typecheck
 npm run build        # static pages for / and every /spots/<id>
 ```
 
-## Map
+**Stack:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, [shadcn/ui](https://ui.shadcn.com) (Radix), Leaflet via react-leaflet.
+The photo pipeline is Python (uv, Pillow; PyTorch and kornia only for `align.py`). The site is statically generated and deployed on Vercel.
+
+## Contributing
+
+Contributions are open and welcome, especially **new places with a pre-war photo and a matching photo from
+today**. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a place and the rules for photos.
+
+## How it works
+
+<details>
+<summary><b>🗺️ The map</b></summary>
 
 - Aerials come from the city WMS `https://mapa.um.warszawa.pl/mapviewer/wms` (WMS 1.1.1, `DATASOURCE=dane_wawa`,
   EPSG:3857, 512 px tiles). The app uses these years: 1935 (`FOTOPLAN_1935`),
@@ -79,7 +115,10 @@ npm run build        # static pages for / and every /spots/<id>
   The dialog also has the link to the view, and Download, Copy image (desktop) or Share (mobile, via the
   system share sheet). See `src/lib/snapshot.ts` and `src/components/share-dialog.tsx`.
 
-### URLs and SEO
+</details>
+
+<details>
+<summary><b>🔗 URLs and SEO</b></summary>
 
 | URL | |
 |---|---|
@@ -92,7 +131,10 @@ npm run build        # static pages for / and every /spots/<id>
 | `/spots/plac-zamkowy` | a place: its own server-rendered page (can be combined with `?compare=` / `?year=`) |
 | `/pl`, `/pl/spots/plac-zamkowy` | the same pages in Polish; every URL above works with the `/pl` prefix |
 
-### Languages
+</details>
+
+<details>
+<summary><b>🌐 Languages</b></summary>
 
 The site is in English (no prefix) and Polish (`/pl`). Routes live under `src/app/[lang]`; `next.config.ts`
 rewrites `/` and `/spots/<id>` to the English pages internally and redirects `/en/...` to the unprefixed URL.
@@ -109,13 +151,10 @@ moving between places is a client-side navigation and the map stays loaded. `/si
 entries) and `/robots.txt` are generated from the spot data. The home page includes a crawlable list of
 every place.
 
-## Deploy (Vercel)
+</details>
 
-Import the repository in Vercel (framework preset: Next.js), or run `npx vercel --prod`. Canonical and
-Open Graph URLs use `VERCEL_PROJECT_PRODUCTION_URL`. Set `SITE_URL=https://your.domain` when you use a
-custom domain.
-
-## Places (`src/data/spots.json`)
+<details>
+<summary><b>📍 Places data (<code>src/data/spots.json</code>)</b></summary>
 
 Generated by `pipeline/prepare_spots.py`, don't edit by hand:
 
@@ -133,9 +172,12 @@ Generated by `pipeline/prepare_spots.py`, don't edit by hand:
 `kind` is `historic` or `modern`. `lat`/`lng` is the place itself (the building, the centre of the square), not
 where a photographer stood. Photos are sorted by year.
 
-## Photo pipeline (`pipeline/`, Python + uv)
+</details>
 
-### From sources to the site
+<details>
+<summary><b>📷 Photo pipeline (<code>pipeline/</code>, Python + uv)</b></summary>
+
+#### From sources to the site
 
 Describe each place in `pipeline/sources/sources.json`:
 
@@ -163,7 +205,7 @@ uv run python og.py default                  # main link preview from the WMS (1
 This writes `public/img/places/<id>/<year>-<n>.jpg` (longest side 1600 px), a 96×96 crop for the pin next to
 each one, `public/img/og/<id>.jpg` (1200×630, oldest | newest) and rewrites `src/data/spots.json`.
 
-### Aligning a modern photo to the old framing
+#### Aligning a modern photo to the old framing
 
 ```
 uv run python align.py old.jpg today.jpg --debug check.jpg     # -> today_aligned.jpg + old_crop.jpg
@@ -176,7 +218,10 @@ share, so the slider lines up pixel for pixel. Nothing is generated. It's exact 
 taken from the same spot. If the modern photo was taken from a different position, parallax remains. In that
 case, re-take it (see CONTRIBUTING.md). It's a standalone tool: use its output as a photo's `path`.
 
-### Aerial photo coverage
+</details>
+
+<details>
+<summary><b>🛰️ Aerial photo coverage</b></summary>
 
 ```
 uv run python coverage.py                    # -> src/data/coverage.json
@@ -194,12 +239,30 @@ each layer's edge into the background, to skip tile requests outside the photos 
 "No photos here" notice. Re-run it only if the city changes the layers. `uv run python coverage.py 1951 1972`
 recomputes only those years and keeps the rest.
 
-### Photo sources and licences
+</details>
+
+<details>
+<summary><b>⚖️ Photo sources and licences</b></summary>
 
 - Wikimedia Commons. Photos published in Poland before 1994 are often public domain (`PD-Polish`); recent
   ones are usually CC BY-SA. NAC (szukajwarchiwach.gov.pl) and Polona are good places to find originals.
 - Always record the author, licence and source link. They're shown under every photo.
 - The site shows original photographs only: no colourising, upscaling or AI-generated images.
+
+</details>
+
+<details>
+<summary><b>🚀 Deploy (Vercel)</b></summary>
+
+Import the repository in Vercel (framework preset: Next.js), or run `npx vercel --prod`. Canonical and
+Open Graph URLs use `VERCEL_PROJECT_PRODUCTION_URL`. Set `SITE_URL=https://your.domain` when you use a
+custom domain.
+
+</details>
+
+## Author
+
+**Krzysztof Olipra** · [X (@KrzysztofOlipra)](https://x.com/KrzysztofOlipra) · [krzysztofolipra.com](https://krzysztofolipra.com/)
 
 ## Credits
 

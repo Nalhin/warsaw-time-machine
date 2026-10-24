@@ -15,6 +15,8 @@ const config: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        { source: '/', has: [{ type: 'query', key: 'at' }], destination: '/en/view' },
+        { source: '/pl', has: [{ type: 'query', key: 'at' }], destination: '/pl/view' },
         { source: '/', destination: '/en' },
         { source: '/spots/:id', destination: '/en/spots/:id' },
       ],

@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { PlacePanel } from '@/components/place-panel';
-import { isLocale, languageAlternates, LOCALES, localePath, OG_LOCALE, type Locale } from '@/lib/i18n';
+import { isLocale, languageAlternates, localePath, type Locale } from '@/lib/i18n';
 import { MESSAGES } from '@/lib/messages';
 import { SITE_NAME, SITE_URL } from '@/lib/site';
+import { socialMetadata } from '@/lib/social-metadata';
 import { getSpot, SPOT_IDS } from '@/lib/spot-data';
 import type { Credit, Spot } from '@/lib/spots';
 
@@ -43,16 +44,14 @@ export async function generateMetadata({ params }: SpotPageProps): Promise<Metad
     title,
     description,
     alternates: { canonical: localePath(locale, path), languages: languageAlternates(path) },
-    openGraph: {
+    ...socialMetadata(locale, {
       type: 'article',
-      locale: OG_LOCALE[locale],
-      alternateLocale: LOCALES.filter((l) => l !== locale).map((l) => OG_LOCALE[l]),
       title,
       description,
       url: localePath(locale, path),
-      images: [{ url: image, width: 1200, height: 630, alt: t.spot.ogAlt(spot.name) }],
-    },
-    twitter: { card: 'summary_large_image', creator: '@KrzysztofOlipra', title, description, images: [image] },
+      image,
+      alt: t.spot.ogAlt(spot.name),
+    }),
   };
 }
 
