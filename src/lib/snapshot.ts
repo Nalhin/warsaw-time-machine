@@ -207,7 +207,6 @@ async function setup(o: MediaOptions) {
   const sans = fontFamily('--font-inter', "'Inter var', ui-sans-serif, system-ui, sans-serif");
   await Promise.all([
     document.fonts.load(`400 24px ${sans}`),
-    document.fonts.load(`500 24px ${sans}`),
     document.fonts.load(`600 24px ${sans}`),
     document.fonts.load(`700 24px ${sans}`),
   ]).catch(() => undefined);
@@ -224,14 +223,9 @@ function drawWordmark(ctx: CanvasRenderingContext2D, x: number, baseline: number
   const parts = [
     { text: name, font: `700 ${28 * s}px ${sans}`, color: '#fff' },
     { text: product, font: `700 ${28 * s}px ${sans}`, color: GOLD },
-    { text: tld, font: `500 ${28 * s}px ${sans}`, color: 'rgba(255, 255, 255, 0.55)' },
+    { text: tld, font: `700 ${28 * s}px ${sans}`, color: '#fff' },
   ];
-  const dot = 7 * s;
-  ctx.fillStyle = GOLD;
-  ctx.beginPath();
-  ctx.arc(x + dot, baseline - 10 * s, dot, 0, Math.PI * 2);
-  ctx.fill();
-  let left = x + dot * 2 + 12 * s;
+  let left = x;
   ctx.textAlign = 'left';
   ctx.save();
   ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';

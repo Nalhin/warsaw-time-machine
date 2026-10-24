@@ -433,7 +433,7 @@ export function ShareDialog({ map, state, ratio, speed, showLabels, inset }: Sha
                       </div>
                     ))}
                   </div>
-                  <span className="text-xs text-muted-foreground tabular-nums">{m.videoLength(videoYears.length, videoSeconds)}</span>
+                  <span className="text-xs text-muted-foreground tabular-nums">{m.videoLength(videoSeconds)}</span>
                 </Field>
               )}
 
