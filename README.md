@@ -146,6 +146,21 @@ uv run python og.py default                  # main link preview from the WMS (1
 This writes web-sized `public/img/<id>_{old,ai,today}.jpg`, `public/img/og/<id>.jpg` (1200×630, old | today)
 and updates `src/data/spots.json`. Entries that aren't in `sources.json` are left alone.
 
+### Aerial photo coverage
+
+```
+uv run python coverage.py                    # -> src/data/coverage.json
+```
+
+Each year's photos cover a different, irregular area. `coverage.py` renders every WMS layer over the whole
+city at about 12 m per pixel and separates real photo from no-data: transparent pixels for today, the
+white padding around the 1945 mosaic, and the blank paper sheets of the 1935 photomap (flat, where photos
+are textured). A smooth shape is found at a quarter of that resolution, then bright flat paper near its
+edge is trimmed at full resolution and the outline is pulled in slightly, so the fade starts inside the
+photo. The result is saved as polygons (outer ring plus large interior gaps). The map uses them to fade
+each layer's edge into the background, to skip tile requests outside the photos and to show the
+"No photos here" notice. Re-run it only if the city changes the layers.
+
 ### Photo sources and licences
 
 - Wikimedia Commons (pre-1939 Polish photos are usually public domain, e.g. `PD-Polish`), NAC

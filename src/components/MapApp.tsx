@@ -8,6 +8,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 import { AboutDialog } from '@/components/AboutDialog';
+import { CoverageNotice } from '@/components/map/CoverageNotice';
 import { SwipeDivider } from '@/components/map/SwipeDivider';
 import { DRAWER_PEEK, PANEL_WIDTH } from '@/components/SpotPanel';
 import { Button } from '@/components/ui/button';
@@ -162,6 +163,8 @@ export function MapApp({ spots }: { spots: Spot[] }) {
           }}
         />
       )}
+
+      {map && <CoverageNotice map={map} years={state.swipe ?? [state.year]} />}
 
       <AboutDialog />
 

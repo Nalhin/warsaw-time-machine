@@ -15,12 +15,44 @@ const LABEL_LAYERS = [
 
 let primaryDead = false;
 
+function whiteToAlpha(canvas: HTMLCanvasElement, img: HTMLImageElement) {
+  const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const px = data.data;
+  for (let i = 0; i < px.length; i += 4) {
+    const min = Math.min(px[i], px[i + 1], px[i + 2]);
+    if (min >= 240) px[i + 3] = Math.min(px[i + 3], (Math.max(0, 252 - min) / 12) * 255);
+  }
+  ctx.putImageData(data, 0, 0);
+}
+
+const BlankWhiteWMS: new (url: string, options: L.WMSOptions) => L.TileLayer.WMS = L.TileLayer.WMS.extend({
+  createTile(this: L.TileLayer.WMS, coords: L.Coords, done: L.DoneCallback) {
+    const size = this.getTileSize();
+    const canvas = document.createElement('canvas');
+    canvas.width = size.x;
+    canvas.height = size.y;
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      whiteToAlpha(canvas, img);
+      done(undefined, canvas);
+    };
+    img.onerror = () => done(new Error(`Tile failed: ${img.src}`), canvas);
+    img.src = this.getTileUrl(coords);
+    return canvas;
+  },
+});
+
 export function createYearLayer(key: YearKey, pane: string): L.TileLayer.WMS {
   const def = yearDef(key);
-  const layer = L.tileLayer.wms(primaryDead ? FALLBACK_URL : PRIMARY_URL, {
+  const Layer = def.whiteIsBlank ? BlankWhiteWMS : L.TileLayer.WMS;
+  const layer = new Layer(primaryDead ? FALLBACK_URL : PRIMARY_URL, {
     layers: primaryDead ? def.fallbackLayer : def.layer,
     format: 'image/png',
-    transparent: false,
+    transparent: true,
+    bounds: L.latLngBounds(def.coverage),
     version: '1.1.1',
     tileSize: 512,
     pane,

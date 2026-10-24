@@ -4,7 +4,7 @@ import { CircleMarker, MapContainer, Marker, Pane, ZoomControl, useMap } from 'r
 
 import type { Spot } from '@/lib/spots';
 import { createLabelLayer } from '@/lib/wms';
-import type { YearKey } from '@/lib/years';
+import { yearDef, type YearKey } from '@/lib/years';
 import { YearLayer } from './YearLayer';
 
 export const WARSAW_BOUNDS = L.latLngBounds([52.07, 20.82], [52.39, 21.29]);
@@ -32,6 +32,49 @@ function StreetLabels({ pane }: { pane: string }) {
       map.removeLayer(layer);
     };
   }, [map, pane]);
+  return null;
+}
+
+const WORLD: L.LatLngTuple[] = [
+  [85, -180],
+  [85, 180],
+  [-85, 180],
+  [-85, -180],
+];
+
+function CoverageMask({ pane, year }: { pane: string; year: YearKey | null }) {
+  const map = useMap();
+  useEffect(() => {
+    if (!year) return;
+    const renderer = L.svg({ pane, padding: 0.5 });
+    const layer = L.polygon([WORLD, ...yearDef(year).outline], {
+      pane,
+      renderer,
+      className: 'coverage-mask',
+      interactive: false,
+      smoothFactor: 0.5,
+    }).addTo(map);
+    return () => {
+      map.removeLayer(layer);
+      map.removeLayer(renderer);
+    };
+  }, [map, pane, year]);
+  return null;
+}
+
+function FeatherZoom() {
+  const map = useMap();
+  useEffect(() => {
+    const sync = () => {
+      const px = Math.min(24, Math.max(3, 3 * 2 ** ((map.getZoom() - 11) / 2)));
+      map.getContainer().style.setProperty('--feather', `${px.toFixed(1)}px`);
+    };
+    sync();
+    map.on('zoomend', sync);
+    return () => {
+      map.off('zoomend', sync);
+    };
+  }, [map]);
   return null;
 }
 
@@ -82,17 +125,19 @@ export function MapView({
       zoom={16}
       minZoom={11}
       maxZoom={20}
-      maxBounds={WARSAW_BOUNDS.pad(0.15)}
-      maxBoundsViscosity={0.7}
+      maxBounds={WARSAW_BOUNDS.pad(0.05)}
+      maxBoundsViscosity={1}
       zoomControl={false}
       attributionControl
     >
       <ZoomControl position="bottomright" zoomInTitle="Zoom in" zoomOutTitle="Zoom out" />
       <Pane name="yearLeft" style={{ zIndex: 250 }}>
         <YearLayer pane="yearLeft" year={left} />
+        <CoverageMask pane="yearLeft" year={left} />
       </Pane>
       <Pane name="yearRight" style={{ zIndex: 251 }}>
         <YearLayer pane="yearRight" year={right} />
+        <CoverageMask pane="yearRight" year={right} />
       </Pane>
       <Pane name="labels" style={{ zIndex: 450, pointerEvents: 'none' }}>
         {showLabels && <StreetLabels pane="labels" />}
@@ -118,6 +163,7 @@ export function MapView({
         />
       )}
       <PinLabelZoom />
+      <FeatherZoom />
     </MapContainer>
   );
 }

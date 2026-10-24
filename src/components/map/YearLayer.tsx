@@ -30,18 +30,20 @@ export function YearLayer({ pane, year }: { pane: string; year: YearKey | null }
     const layer = createYearLayer(year, pane).setZIndex(++s.z);
     trackLayer(layer);
     const entry = { key: year, layer };
+    const promote = () => {
+      if (s.pending !== entry) return;
+      if (s.current) map.removeLayer(s.current.layer);
+      s.current = entry;
+      s.pending = null;
+    };
     if (!s.current) {
       s.current = entry;
     } else {
       s.pending = entry;
-      layer.once('load', () => {
-        if (s.pending !== entry) return;
-        if (s.current) map.removeLayer(s.current.layer);
-        s.current = entry;
-        s.pending = null;
-      });
+      layer.once('load', promote);
     }
     layer.addTo(map);
+    if (!layer.isLoading()) promote();
   }, [map, pane, year]);
 
   useEffect(

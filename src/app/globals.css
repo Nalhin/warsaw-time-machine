@@ -193,7 +193,9 @@ body,
 }
 
 .leaflet-container {
-  background: #1a1b1e;
+  --map-bg: #1a1b1e;
+  --feather: 8px;
+  background: var(--map-bg);
   font: 12px/1.4 var(--font-sans);
 }
 
@@ -243,6 +245,20 @@ body,
 .leaflet-pane[class*='yearLeft'] .leaflet-tile,
 .leaflet-pane[class*='yearRight'] .leaflet-tile {
   transition: opacity 0.35s ease;
+}
+
+.leaflet-yearLeft-pane > svg,
+.leaflet-yearRight-pane > svg {
+  z-index: 999999;
+  filter: blur(var(--feather));
+}
+
+.coverage-mask {
+  fill: var(--map-bg);
+  fill-opacity: 1;
+  stroke: var(--map-bg);
+  stroke-opacity: 1;
+  stroke-width: calc(var(--feather) * 4);
 }
 
 .spot-pin .pin {
