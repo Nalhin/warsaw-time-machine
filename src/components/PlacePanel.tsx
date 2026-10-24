@@ -68,7 +68,6 @@ function SinglePhoto({
       style={{ aspectRatio: frame ?? photo.ratio }}
     >
       <Image src={photo.src} alt={alt} fill sizes={sizes} priority className={frame ? 'object-contain' : 'object-cover'} />
-      <span className="photo-tag left-3">{photo.date}</span>
     </div>
   );
 }

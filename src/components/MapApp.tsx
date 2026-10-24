@@ -63,7 +63,7 @@ function useSecondSidePins(map: L.Map | null, spots: Spot[], ratio: number, swip
   }, [map, spots, ratio, swipe, horizontal]);
   return ids;
 }
-const PLAY_HOLD_MS = 3500;
+const PLAY_HOLD_MS = 2000;
 
 export function MapApp({ spots }: { spots: Spot[] }) {
   const router = useRouter();
@@ -228,6 +228,7 @@ export function MapApp({ spots }: { spots: Spot[] }) {
           camera={initialCamera}
           left={state.swipe ? state.swipe[0] : state.year}
           right={state.swipe ? state.swipe[1] : null}
+          ahead={playing ? (YEAR_KEYS[YEAR_KEYS.indexOf(state.year) + 1] ?? null) : null}
           spots={spots}
           activeSpot={activeId}
           onSpot={openSpot}

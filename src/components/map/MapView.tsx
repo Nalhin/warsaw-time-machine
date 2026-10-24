@@ -108,6 +108,7 @@ export function MapView({
   camera,
   left,
   right,
+  ahead = null,
   spots,
   activeSpot,
   onSpot,
@@ -121,6 +122,7 @@ export function MapView({
   camera: MapCamera;
   left: YearKey;
   right: YearKey | null;
+  ahead?: YearKey | null;
   spots: Spot[];
   activeSpot: string | null;
   onSpot(id: string): void;
@@ -155,7 +157,7 @@ export function MapView({
       attributionControl
     >
       <Pane name="yearLeft" style={{ zIndex: 250 }}>
-        <YearLayer pane="yearLeft" year={left} />
+        <YearLayer pane="yearLeft" year={left} ahead={ahead} />
         <CoverageMask pane="yearLeft" year={left} />
       </Pane>
       <Pane name="yearRight" style={{ zIndex: 251 }}>

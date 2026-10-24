@@ -1,7 +1,7 @@
 # Warsaw Time Machine
 
 A map of Warsaw that compares the city's aerial photos from 1935 (pre-war), 1945 (after the destruction),
-the rebuilding and later decades (1951, 1972, 1987, 2001, 2010) and today. Pins open places with street-level photographs from
+the rebuilding and every later survey the city publishes (1944 to 2024) and today. Pins open places with street-level photographs from
 different decades, from before the war to today.
 
 ## Why
@@ -37,18 +37,24 @@ npm run build        # static pages for / and every /spots/<id>
 ## Map
 
 - Aerials come from the city WMS `https://mapa.um.warszawa.pl/mapviewer/wms` (WMS 1.1.1, `DATASOURCE=dane_wawa`,
-  EPSG:3857, 512 px tiles). The layers are `FOTOPLAN_1935`, `ORTOFOTO_1945`, `ZDJECIA_1951`, `ZDJECIA_1972`,
-  `FOTOSZKIC_1987`, `ORTOFOTO_2001`, `ORTOFOTO_2010` and `ORTOFOTO_2025`. Years are defined in `src/lib/years.ts`.
-  The server has more (1976, 1982, 1990–94, 1997, 2005, 2008, 2013 and later). To add one, add it to `YEARS` and
-  to `LAYERS` in `pipeline/coverage.py`, then run `uv run python coverage.py <key>`.
+  EPSG:3857, 512 px tiles). The app uses these years: 1935 (`FOTOPLAN_1935`), 1944 (`MUZEUM_PW_ORTO_1944`),
+  1945 (`ORTOFOTO_1945`), 1951 (`ZDJECIA_1951`), 1972 (`ZDJECIA_1972`), 1976–77, 1982, 1987 and 1990–94
+  (`FOTOSZKIC_*`), 1997 (`ZDJECIA_1997`), 2001, 2005, 2008, 2010, 2013 and 2022–2024 (`ORTOFOTO_*`), 2011,
+  2012 and 2014–2021 (`FOTOPLAN_*`) and today (`ORTOFOTO_2025`). The city's own map also has 1964 and 1969
+  (`SATELITA_*`), but those satellite scans are too blurry at street zoom, so they're left out. The spans 1976–77 and 1990–94 use the keys `1976` and `1990`. Years are defined in
+  `src/lib/years.ts`. To add one, add it to `YEARS` and to `LAYERS` in `pipeline/coverage.py`, then run
+  `uv run python coverage.py <key>`.
 - If 3 tiles fail before any succeeds, the app switches to the official `https://wms.um.warszawa.pl/serwis`
-  (`RASTER_FOTOPLAN_1935`, `RASTER_ORTOFOTO_1945`, `RASTER_ORTOFOTO_2010`, `ORTO`). 1951, 1972, 1987 and 2001
-  aren't on that server, so they stay on the primary one. See `src/lib/wms.ts`.
+  (`RASTER_FOTOPLAN_*` and `RASTER_ORTOFOTO_*` for 1935, 1945, 2005–2021, and `ORTO` for today). 1944–2001
+  except 1945, and 2022–2024, aren't on that server, so they stay on the primary one. See `src/lib/wms.ts`.
 - When you switch years, the new layer loads on top of the old one. The old layer is removed only after the
   new one has finished, so the map never goes blank. A progress bar and a "Loading aerial photos…" pill
   show while tiles load.
+- **Play** (the first button in the bar) goes through every year in turn, holding each for 2 s once its tiles
+  have loaded. While it plays, the next year loads ahead as an invisible layer under the current one and is
+  shown as soon as its turn comes, so the switch is instant (`ahead` in `src/components/map/YearLayer.tsx`).
 - **The map opens in compare mode** (1935 | Today). The divider can be dragged with a mouse or touch. Each
-  side has its own year menu, and ⇄ swaps the sides. "One year" leaves compare mode, and the last button
+  side has its own year menu (it scrolls when it doesn't fit), and ⇄ swaps the sides. "One year" leaves compare mode and shows ‹ year › arrows that step through the years, and the last button
   ("Horizontal"/"Vertical", icon only on phones) switches the divider between vertical (the default) and
   horizontal. It clips two Leaflet panes, so there's no plugin
   (`src/components/map/SwipeDivider.tsx`).
@@ -78,7 +84,7 @@ npm run build        # static pages for / and every /spots/<id>
 | URL | |
 |---|---|
 | `/` | compare mode, 1935 \| today (default) |
-| `/?year=1945` | one year (`1935`, `1945`, `1951`, `1972`, `1987`, `2001`, `2010`, `today`) |
+| `/?year=1945` | one year (`1935`, `1944`, `1945`, … `2024`, `today`; see `YEAR_KEYS` in `src/lib/years.ts`) |
 | `/?swipe=1945,today` | compare mode, left and right |
 | `/?divider=horizontal` | compare mode with a horizontal divider (top and bottom); vertical is the default |
 | `/?at=52.2479,21.0136,17` | map position and zoom (`lat,lng,zoom`); combines with every other URL |
@@ -181,7 +187,8 @@ city at about 12 m per pixel and separates real photo from no-data: transparent 
 white padding around the 1945 mosaic, and the blank paper sheets of the 1935 photomap (flat, where photos
 are textured). A smooth shape is found at a quarter of that resolution, then bright flat paper near its
 edge is trimmed at full resolution and the outline is pulled in slightly, so the fade starts inside the
-photo. The black padding and black or white holes in 1951, 1972, 1987 and 2001 count as no-data too.
+photo. The black padding and black or white holes in the years marked `dark` in `LAYERS` (1944–2001 except 1945,
+and 2008) count as no-data too.
 The result is saved as polygons (outer ring plus large interior gaps). The map uses them to fade
 each layer's edge into the background, to skip tile requests outside the photos and to show the
 "No photos here" notice. Re-run it only if the city changes the layers. `uv run python coverage.py 1951 1972`

@@ -176,17 +176,6 @@ body,
   white-space: nowrap;
 }
 
-.photo-tag {
-  position: absolute;
-  top: 12px;
-  padding: 2px 9px;
-  border-radius: 999px;
-  background: rgb(17 18 20 / 0.78);
-  font-size: 12px;
-  font-weight: 600;
-  pointer-events: none;
-}
-
 .leaflet-container {
   --map-bg: #1a1b1e;
   --feather: 8px;

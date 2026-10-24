@@ -1,49 +1,45 @@
 'use client';
 
-import { ArrowLeftRight, Check, ChevronDown, Columns2, Pause, Play, RectangleHorizontal, SeparatorVertical } from 'lucide-react';
+import { ArrowLeftRight, Check, ChevronDown, ChevronLeft, ChevronRight, Columns2, Pause, Play, RectangleHorizontal, SeparatorVertical } from 'lucide-react';
 import { DropdownMenu } from 'radix-ui';
 
 import { useMessages } from '@/components/LocaleProvider';
 import { Button } from '@/components/ui/button';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import type { MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
-import { YEARS, type YearKey } from '@/lib/years';
+import { YEAR_KEYS, YEARS, type YearKey } from '@/lib/years';
 
-function YearToggle({
-  value,
-  onChange,
-  label,
-  className,
-}: {
-  value: YearKey;
-  onChange(v: YearKey): void;
-  label: string;
-  className?: string;
-}) {
+function YearStepper({ value, onChange, label }: { value: YearKey; onChange(v: YearKey): void; label: string }) {
   const t = useMessages();
+  const c = t.controls;
+  const i = YEAR_KEYS.indexOf(value);
+  const prev = YEAR_KEYS[i - 1];
+  const next = YEAR_KEYS[i + 1];
   return (
-    <ToggleGroup
-      type="single"
-      size="sm"
-      spacing={0}
-      value={value}
-      onValueChange={(v) => v && onChange(v as YearKey)}
-      aria-label={label}
-      className={cn('rounded-full', className)}
-    >
-      {YEARS.map((y) => (
-        <ToggleGroupItem
-          key={y.key}
-          value={y.key}
-          title={t.years[y.key].long}
-          className="h-8 rounded-full! px-2 font-semibold tabular-nums sm:px-3 text-muted-foreground data-[state=on]:bg-foreground data-[state=on]:text-background"
-        >
-          {t.years[y.key].label}
-        </ToggleGroupItem>
-      ))}
-    </ToggleGroup>
+    <div className="flex items-center">
+      <Button
+        variant="ghost"
+        size="icon-sm"
+        className="rounded-full"
+        disabled={!prev}
+        onClick={() => prev && onChange(prev)}
+        aria-label={prev ? `${c.previousYear}: ${t.years[prev].long}` : c.previousYear}
+      >
+        <ChevronLeft />
+      </Button>
+      <YearSelect value={value} onChange={onChange} label={label} />
+      <Button
+        variant="ghost"
+        size="icon-sm"
+        className="rounded-full"
+        disabled={!next}
+        onClick={() => next && onChange(next)}
+        aria-label={next ? `${c.nextYear}: ${t.years[next].long}` : c.nextYear}
+      >
+        <ChevronRight />
+      </Button>
+    </div>
   );
 }
 
@@ -78,7 +74,7 @@ export function YearSelect({
         <DropdownMenu.Content
           sideOffset={8}
           collisionPadding={10}
-          className="glass-strong z-[1200] min-w-48 rounded-xl p-1 text-sm text-foreground duration-150 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95"
+          className="glass-strong z-[1200] max-h-[min(70vh,var(--radix-dropdown-menu-content-available-height))] min-w-48 overflow-y-auto overscroll-contain rounded-xl p-1 text-sm text-foreground duration-150 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95"
         >
           <DropdownMenu.Label className="px-2.5 pt-1.5 pb-1 text-xs font-medium text-muted-foreground">{label}</DropdownMenu.Label>
           <DropdownMenu.RadioGroup value={value} onValueChange={(v) => onChange(v as YearKey)}>
@@ -88,7 +84,7 @@ export function YearSelect({
                 value={y.key}
                 className="flex cursor-pointer items-center gap-3 rounded-lg py-1.5 pr-2 pl-2.5 outline-none select-none data-[highlighted]:bg-muted data-[state=checked]:text-gold"
               >
-                <span className="w-11 font-semibold tabular-nums">{t.years[y.key].label}</span>
+                <span className="w-16 font-semibold tabular-nums">{t.years[y.key].label}</span>
                 <span className="flex-1 text-xs text-muted-foreground">{t.years[y.key].era}</span>
                 <DropdownMenu.ItemIndicator>
                   <Check className="size-4" />
@@ -158,10 +154,7 @@ export function YearControls({
           <YearSelect value={compare[1]} onChange={(y) => setSide(1, y)} label={state.horizontal ? c.bottomSide : c.rightSide} />
         </>
       ) : (
-        <>
-          <YearToggle value={state.year} onChange={setYear} label={c.year} className="hidden md:flex" />
-          <YearSelect value={state.year} onChange={setYear} label={c.year} className="md:hidden" />
-        </>
+        <YearStepper value={state.year} onChange={setYear} label={c.year} />
       )}
       <Tooltip>
         <TooltipTrigger asChild>

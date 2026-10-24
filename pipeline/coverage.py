@@ -13,12 +13,33 @@ from PIL import Image
 WMS = "https://mapa.um.warszawa.pl/mapviewer/wms"
 LAYERS = {
     "1935": ("FOTOPLAN_1935", "texture"),
+    "1944": ("MUZEUM_PW_ORTO_1944", "dark"),
     "1945": ("ORTOFOTO_1945", "white"),
     "1951": ("ZDJECIA_1951", "dark"),
     "1972": ("ZDJECIA_1972", "dark"),
+    "1976": ("FOTOSZKIC_1976", "dark"),
+    "1982": ("FOTOSZKIC_1982", "dark"),
     "1987": ("FOTOSZKIC_1987", "dark"),
+    "1990": ("FOTOSZKIC_1990_1994", "dark"),
+    "1997": ("ZDJECIA_1997", "dark"),
     "2001": ("ORTOFOTO_2001", "dark"),
+    "2005": ("ORTOFOTO_2005", "alpha"),
+    "2008": ("ORTOFOTO_2008", "dark"),
     "2010": ("ORTOFOTO_2010", "alpha"),
+    "2011": ("FOTOPLAN_2011", "alpha"),
+    "2012": ("FOTOPLAN_2012", "alpha"),
+    "2013": ("ORTOFOTO_2013", "alpha"),
+    "2014": ("FOTOPLAN_2014", "alpha"),
+    "2015": ("FOTOPLAN_2015", "alpha"),
+    "2016": ("FOTOPLAN_2016", "alpha"),
+    "2017": ("FOTOPLAN_2017", "alpha"),
+    "2018": ("FOTOPLAN_2018", "alpha"),
+    "2019": ("FOTOPLAN_2019", "alpha"),
+    "2020": ("FOTOPLAN_2020", "alpha"),
+    "2021": ("FOTOPLAN_2021", "alpha"),
+    "2022": ("ORTOFOTO_2022", "alpha"),
+    "2023": ("ORTOFOTO_2023", "alpha"),
+    "2024": ("ORTOFOTO_2024", "alpha"),
     "today": ("ORTOFOTO_2025", "alpha"),
 }
 WEST, SOUTH, EAST, NORTH = 20.6, 51.95, 21.5, 52.5
@@ -50,7 +71,7 @@ def fetch(layer, bbox, width, height):
         return np.array(Image.open(io.BytesIO(r.read())).convert("RGBA"))
 
 
-def fetch_tiled(layer, bbox, width, height, tile=2048):
+def fetch_tiled(layer, bbox, width, height, tile=1024):
     x0, y0, x1, y1 = bbox
     out = np.zeros((height, width, 4), np.uint8)
     for top in range(0, height, tile):

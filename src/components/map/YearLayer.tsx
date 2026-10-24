@@ -7,14 +7,15 @@ import { trackLayer } from '@/lib/loading';
 import { createYearLayer } from '@/lib/wms';
 import type { YearKey } from '@/lib/years';
 
-export function YearLayer({ pane, year }: { pane: string; year: YearKey | null }) {
+export function YearLayer({ pane, year, ahead = null }: { pane: string; year: YearKey | null; ahead?: YearKey | null }) {
   const map = useMap();
   const t = useMessages();
   const slot = useRef<{
     current: { key: YearKey; layer: L.TileLayer } | null;
     pending: { key: YearKey; layer: L.TileLayer } | null;
+    ahead: { key: YearKey; layer: L.TileLayer } | null;
     z: number;
-  }>({ current: null, pending: null, z: 1 });
+  }>({ current: null, pending: null, ahead: null, z: 1 });
 
   useEffect(() => {
     const s = slot.current;
@@ -29,7 +30,11 @@ export function YearLayer({ pane, year }: { pane: string; year: YearKey | null }
     }
     if (s.current?.key === year || s.pending?.key === year) return;
 
-    const layer = createYearLayer(year, pane, { label: t.about.aerial, owner: t.about.city }).setZIndex(++s.z);
+    const preloaded = s.ahead?.key === year ? s.ahead.layer : null;
+    if (preloaded) s.ahead = null;
+    const layer = (preloaded ?? createYearLayer(year, pane, { label: t.about.aerial, owner: t.about.city }))
+      .setOpacity(1)
+      .setZIndex(++s.z);
     trackLayer(layer);
     const entry = { key: year, layer };
     const promote = () => {
@@ -44,15 +49,27 @@ export function YearLayer({ pane, year }: { pane: string; year: YearKey | null }
       s.pending = entry;
       layer.once('load', promote);
     }
-    layer.addTo(map);
+    if (!preloaded) layer.addTo(map);
     if (!layer.isLoading()) promote();
   }, [map, pane, year, t]);
+
+  useEffect(() => {
+    const s = slot.current;
+    if (s.ahead && s.ahead.key !== ahead) {
+      map.removeLayer(s.ahead.layer);
+      s.ahead = null;
+    }
+    if (!ahead || ahead === year || s.ahead || s.current?.key === ahead || s.pending?.key === ahead) return;
+    const layer = createYearLayer(ahead, pane, { label: t.about.aerial, owner: t.about.city }).setOpacity(0).setZIndex(0);
+    s.ahead = { key: ahead, layer };
+    layer.addTo(map);
+  }, [map, pane, year, ahead, t]);
 
   useEffect(
     () => () => {
       const s = slot.current;
-      for (const e of [s.current, s.pending]) if (e) map.removeLayer(e.layer);
-      s.current = s.pending = null;
+      for (const e of [s.current, s.pending, s.ahead]) if (e) map.removeLayer(e.layer);
+      s.current = s.pending = s.ahead = null;
     },
     [map],
   );

@@ -1,5 +1,5 @@
 import type { Locale } from './i18n';
-import type { YearKey } from './years';
+import { yearLabel, type YearKey } from './years';
 
 type YearText = { label: string; long: string; era?: string };
 
@@ -69,7 +69,7 @@ const en = {
     zoomOut: 'Zoom out',
     noCoverage: (years: YearKey[]) =>
       `No ${list(
-        years.map((k) => (k === 'today' ? 'current' : k)),
+        years.map((k) => (k === 'today' ? 'current' : yearLabel(k))),
         'or',
       )} photos here`,
     backToCoverage: 'Back to the map',
@@ -94,6 +94,8 @@ const en = {
     compare: 'Compare',
     play: 'Play through the years',
     pause: 'Pause',
+    previousYear: 'Previous year',
+    nextYear: 'Next year',
   },
   about: {
     trigger: 'About this map',
@@ -152,12 +154,33 @@ const en = {
   },
   years: {
     '1935': { label: '1935', long: 'Aerial photomap, 1935', era: 'Before the war' },
+    '1944': { label: '1944', long: 'Aerial photo, 1944 (Warsaw Rising Museum)', era: 'During the war' },
     '1945': { label: '1945', long: 'Aerial photo, 1945 (after the destruction)', era: 'After the destruction' },
     '1951': { label: '1951', long: 'Aerial photos, 1951 (rebuilding)', era: 'Rebuilding' },
     '1972': { label: '1972', long: 'Aerial photos, 1972', era: "People's Republic" },
+    '1976': { label: '1976–77', long: 'Aerial photo sketch, 1976–77' },
+    '1982': { label: '1982', long: 'Aerial photo sketch, 1982' },
     '1987': { label: '1987', long: 'Aerial photo sketch, 1987', era: 'Late 1980s' },
+    '1990': { label: '1990–94', long: 'Aerial photo sketch, 1990–94' },
+    '1997': { label: '1997', long: 'Aerial photos, 1997' },
     '2001': { label: '2001', long: 'Aerial photo, 2001', era: 'After the transition' },
+    '2005': { label: '2005', long: 'Aerial photo, 2005' },
+    '2008': { label: '2008', long: 'Aerial photo, 2008' },
     '2010': { label: '2010', long: 'Aerial photo, 2010' },
+    '2011': { label: '2011', long: 'Aerial photomap, 2011' },
+    '2012': { label: '2012', long: 'Aerial photomap, 2012' },
+    '2013': { label: '2013', long: 'Aerial photo, 2013' },
+    '2014': { label: '2014', long: 'Aerial photomap, 2014' },
+    '2015': { label: '2015', long: 'Aerial photomap, 2015' },
+    '2016': { label: '2016', long: 'Aerial photomap, 2016' },
+    '2017': { label: '2017', long: 'Aerial photomap, 2017' },
+    '2018': { label: '2018', long: 'Aerial photomap, 2018' },
+    '2019': { label: '2019', long: 'Aerial photomap, 2019' },
+    '2020': { label: '2020', long: 'Aerial photomap, 2020' },
+    '2021': { label: '2021', long: 'Aerial photomap, 2021' },
+    '2022': { label: '2022', long: 'Aerial photo, 2022' },
+    '2023': { label: '2023', long: 'Aerial photo, 2023' },
+    '2024': { label: '2024', long: 'Aerial photo, 2024' },
     today: { label: 'Today', long: 'Aerial photo, 2025', era: '2025' },
   } as Record<YearKey, YearText>,
   date: (d: string) => d,
@@ -244,7 +267,7 @@ const pl: Messages = {
     zoomIn: 'Przybliż',
     zoomOut: 'Oddal',
     noCoverage: (years) => {
-      const past = years.filter((k) => k !== 'today');
+      const past = years.filter((k) => k !== 'today').map(yearLabel);
       const parts = [past.length ? `z ${list(past, 'ani')} r.` : '', years.includes('today') ? 'współczesnych' : ''];
       return `Tu nie ma zdjęć ${parts.filter(Boolean).join(' ani ')}`;
     },
@@ -270,6 +293,8 @@ const pl: Messages = {
     compare: 'Porównaj',
     play: 'Odtwórz kolejne lata',
     pause: 'Wstrzymaj',
+    previousYear: 'Poprzedni rok',
+    nextYear: 'Następny rok',
   },
   about: {
     trigger: 'O mapie',
@@ -328,12 +353,33 @@ const pl: Messages = {
   },
   years: {
     '1935': { label: '1935', long: 'Fotoplan lotniczy, 1935', era: 'Przed wojną' },
+    '1944': { label: '1944', long: 'Zdjęcie lotnicze, 1944 (Muzeum Powstania Warszawskiego)', era: 'W czasie wojny' },
     '1945': { label: '1945', long: 'Zdjęcie lotnicze, 1945 (po zniszczeniach)', era: 'Po zniszczeniach' },
     '1951': { label: '1951', long: 'Zdjęcia lotnicze, 1951 (odbudowa)', era: 'Odbudowa' },
     '1972': { label: '1972', long: 'Zdjęcia lotnicze, 1972', era: 'PRL' },
+    '1976': { label: '1976–77', long: 'Fotoszkic lotniczy, 1976–77' },
+    '1982': { label: '1982', long: 'Fotoszkic lotniczy, 1982' },
     '1987': { label: '1987', long: 'Fotoszkic lotniczy, 1987', era: 'Koniec lat 80.' },
+    '1990': { label: '1990–94', long: 'Fotoszkic lotniczy, 1990–94' },
+    '1997': { label: '1997', long: 'Zdjęcia lotnicze, 1997' },
     '2001': { label: '2001', long: 'Zdjęcie lotnicze, 2001', era: 'Po transformacji' },
+    '2005': { label: '2005', long: 'Zdjęcie lotnicze, 2005' },
+    '2008': { label: '2008', long: 'Zdjęcie lotnicze, 2008' },
     '2010': { label: '2010', long: 'Zdjęcie lotnicze, 2010' },
+    '2011': { label: '2011', long: 'Fotoplan lotniczy, 2011' },
+    '2012': { label: '2012', long: 'Fotoplan lotniczy, 2012' },
+    '2013': { label: '2013', long: 'Zdjęcie lotnicze, 2013' },
+    '2014': { label: '2014', long: 'Fotoplan lotniczy, 2014' },
+    '2015': { label: '2015', long: 'Fotoplan lotniczy, 2015' },
+    '2016': { label: '2016', long: 'Fotoplan lotniczy, 2016' },
+    '2017': { label: '2017', long: 'Fotoplan lotniczy, 2017' },
+    '2018': { label: '2018', long: 'Fotoplan lotniczy, 2018' },
+    '2019': { label: '2019', long: 'Fotoplan lotniczy, 2019' },
+    '2020': { label: '2020', long: 'Fotoplan lotniczy, 2020' },
+    '2021': { label: '2021', long: 'Fotoplan lotniczy, 2021' },
+    '2022': { label: '2022', long: 'Zdjęcie lotnicze, 2022' },
+    '2023': { label: '2023', long: 'Zdjęcie lotnicze, 2023' },
+    '2024': { label: '2024', long: 'Zdjęcie lotnicze, 2024' },
     today: { label: 'Dziś', long: 'Zdjęcie lotnicze, 2025', era: '2025' },
   },
   date: (d) =>
