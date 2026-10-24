@@ -78,10 +78,15 @@ function FeatherZoom() {
   return null;
 }
 
-function PinLabelZoom() {
+function PinZoom() {
   const map = useMap();
   useEffect(() => {
-    const sync = () => map.getContainer().classList.toggle('pin-labels', map.getZoom() >= 16);
+    const sync = () => {
+      const zoom = map.getZoom();
+      const el = map.getContainer();
+      el.classList.toggle('pins-small', zoom >= 15 && zoom < 17);
+      el.classList.toggle('pins-dots', zoom < 15);
+    };
     sync();
     map.on('zoomend', sync);
     return () => {
@@ -169,7 +174,7 @@ export function MapView({
           pathOptions={{ color: '#fff', weight: 2, fillColor: '#3b82f6', fillOpacity: 1 }}
         />
       )}
-      <PinLabelZoom />
+      <PinZoom />
       <FeatherZoom />
     </MapContainer>
   );

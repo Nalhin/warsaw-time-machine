@@ -39,7 +39,7 @@ const ShareDialog = dynamic(() => import('@/components/ShareDialog').then((m) =>
 });
 
 const HINT_KEY = 'wtm-dragged';
-const PLAY_HOLD_MS = 5000;
+const PLAY_HOLD_MS = 3500;
 
 export function MapApp({ spots }: { spots: Spot[] }) {
   const router = useRouter();
@@ -144,10 +144,11 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     const zoom = Math.max(first ? 17 : map.getZoom(), 16);
     const target = map.unproject(map.project([spot.lat, spot.lng], zoom).add([covered.x / 2, covered.y / 2]), zoom);
     if (first) map.setView(target, zoom, { animate: false });
+    else if (zoom === map.getZoom()) map.panTo(target, { duration: 0.6 });
     else map.flyTo(target, zoom, { duration: 0.8 });
   }, [map, spot, mobile]);
   useEffect(() => {
-    if (!spot && flown.current !== null) flown.current = '';
+    if (!spot) flown.current = '';
   }, [spot]);
 
   useEffect(() => {

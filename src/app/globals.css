@@ -235,6 +235,28 @@ body,
   stroke-width: calc(var(--feather) * 4);
 }
 
+.leaflet-container {
+  --pin-scale: 1;
+}
+
+.leaflet-container.pins-small {
+  --pin-scale: 0.68;
+}
+
+.leaflet-container.pins-dots {
+  --pin-scale: 0.34;
+}
+
+.leaflet-marker-icon.spot-pin {
+  pointer-events: none;
+}
+
+.spot-pin.active,
+.spot-pin:hover,
+.spot-pin:focus-visible {
+  --pin-scale: 1;
+}
+
 .spot-pin .pin {
   display: grid;
   place-items: center;
@@ -246,7 +268,9 @@ body,
   color: var(--gold-foreground);
   border: 2.5px solid #fff;
   box-shadow: 0 4px 14px rgb(0 0 0 / 0.5);
-  transition: transform 0.18s ease, border-color 0.18s, box-shadow 0.18s;
+  pointer-events: auto;
+  scale: var(--pin-scale);
+  transition: scale 0.18s ease, transform 0.18s ease, border-width 0.18s, border-color 0.18s, box-shadow 0.18s;
 }
 
 .leaflet-container .leaflet-marker-pane .spot-pin .pin img {
@@ -255,6 +279,24 @@ body,
   max-width: none;
   object-fit: cover;
   filter: sepia(0.25) contrast(1.05);
+  transition: opacity 0.18s;
+}
+
+.pins-dots .spot-pin:not(.active, :hover, :focus-visible) .pin {
+  border-width: 7px;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 0.6);
+}
+
+.leaflet-container.pins-dots .leaflet-marker-pane .spot-pin:not(.active, :hover, :focus-visible) .pin img {
+  opacity: 0;
+}
+
+.pins-dots .spot-pin::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  pointer-events: auto;
 }
 
 .spot-pin:hover .pin,
@@ -280,7 +322,7 @@ body,
 
 .spot-pin .pin-label {
   position: absolute;
-  left: 50px;
+  left: calc(28px + 22px * var(--pin-scale));
   top: 50%;
   transform: translateY(-50%);
   padding: 3px 9px;
@@ -294,7 +336,7 @@ body,
   transition: opacity 0.2s;
 }
 
-.pin-labels .spot-pin .pin-label,
-.spot-pin:hover .pin-label {
+.spot-pin:hover .pin-label,
+.spot-pin:focus-visible .pin-label {
   opacity: 1;
 }
