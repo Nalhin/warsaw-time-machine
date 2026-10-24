@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.DS_Store
+.vercel/
+.netlify/
+
+# pipeline
+pipeline/.venv/
+pipeline/.cache/
+pipeline/models/
+pipeline/fonts/
+pipeline/out/
+__pycache__/
+*.part
