@@ -25,8 +25,9 @@ function CreditLine({ c }: { c: Credit }) {
   return (
     <p
       title={[c.author, c.licence, c.source].filter(Boolean).join(' · ')}
-      className="absolute bottom-2.5 left-2.5 max-w-[calc(100%-64px)] truncate rounded-full bg-black/60 px-2.5 py-1 text-[11px] leading-4 text-white/80 backdrop-blur [&_a]:underline [&_a]:decoration-white/40 [&_a]:underline-offset-2 [&_a:hover]:text-white"
+      className="mt-1 truncate text-xs text-muted-foreground [&_a]:underline [&_a]:decoration-muted-foreground/40 [&_a]:underline-offset-2 [&_a:hover]:text-foreground"
     >
+      {t.spot.credit}:{' '}
       {c.sourceUrl ? (
         <a href={c.sourceUrl} target="_blank" rel="noopener" aria-label={`${c.author} (${c.source || t.spot.source})`}>
           {c.author}
@@ -174,7 +175,6 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
         >
           <Maximize2 className="size-4" />
         </button>
-        <CreditLine c={photo.credit} />
       </div>
 
       <div className="mt-3 grid text-[13px] leading-snug text-muted-foreground">
@@ -191,6 +191,7 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
           </p>
         ))}
       </div>
+      <CreditLine c={photo.credit} />
 
       <div className="mt-4">
         <div className="mb-2 flex items-baseline justify-between gap-2">
