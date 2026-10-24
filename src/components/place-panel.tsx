@@ -109,7 +109,7 @@ function PlaceContent({ spot, onClose }: PlaceContentProps) {
   return (
     <div className="px-4 pt-1 pb-[calc(24px+env(safe-area-inset-bottom))] sm:px-5 sm:pt-5">
       <header className="mb-4 flex items-start justify-between gap-3">
-        <h1 className="min-w-0 font-heading text-2xl leading-tight font-semibold tracking-tight sm:text-[28px]">{spot.name}</h1>
+        <h1 className="min-w-0 font-heading text-xl leading-tight font-semibold tracking-tight sm:text-2xl">{spot.name}</h1>
         <Button variant="outline" size="icon" className="shrink-0" onClick={onClose} aria-label={t.spot.close}>
           <X />
         </Button>
