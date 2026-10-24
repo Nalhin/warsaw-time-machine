@@ -260,10 +260,6 @@ custom domain.
 
 </details>
 
-## Author
-
-**Krzysztof Olipra** · [X (@KrzysztofOlipra)](https://x.com/KrzysztofOlipra) · [krzysztofolipra.com](https://krzysztofolipra.com/)
-
 ## Credits
 
 Aerial photos © m.st. Warszawa. Site icon: the coat of arms of Warsaw ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:POL_Warszawa_COA.svg), public domain). Street names © m.st. Warszawa.
