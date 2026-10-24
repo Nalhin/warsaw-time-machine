@@ -153,7 +153,6 @@ const en = {
       portrait: { label: 'Portrait', hint: '4:5' },
       landscape: { label: 'Landscape', hint: '16:9' },
     },
-    place: 'Warsaw, Poland',
     credit: 'Aerial photos © m.st. Warszawa',
   },
   years: {
@@ -356,7 +355,6 @@ const pl: Messages = {
       portrait: { label: 'Pion', hint: '4:5' },
       landscape: { label: 'Poziom', hint: '16:9' },
     },
-    place: 'Warszawa, Polska',
     credit: 'Zdjęcia lotnicze © m.st. Warszawa',
   },
   years: {

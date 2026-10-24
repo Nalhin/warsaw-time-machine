@@ -35,7 +35,7 @@ const MapView = dynamic(() => import('@/components/map/MapView').then((m) => m.M
 
 const ShareDialog = dynamic(() => import('@/components/ShareDialog').then((m) => m.ShareDialog), {
   ssr: false,
-  loading: () => <div className="size-9" />,
+  loading: () => <div className="h-11" />,
 });
 
 const HINT_KEY = 'wtm-dragged';
@@ -267,7 +267,24 @@ export function MapApp({ spots }: { spots: Spot[] }) {
 
       <AboutDialog />
 
-      <LanguageSwitch shifted={panelOpen} />
+      <div
+        className={cn(
+          'fixed top-[calc(12px+env(safe-area-inset-top))] right-3 z-[1000] transition-[right] duration-300',
+          panelOpen && 'sm:right-[calc(var(--pw)+38px)]',
+        )}
+        style={{ ['--pw' as string]: `${PANEL_WIDTH}px` }}
+      >
+        {map && (
+          <ShareDialog
+            map={map}
+            state={state}
+            ratio={ratio}
+            labels={labels}
+            inset={spot ? (mobile ? { right: 0, bottom: innerHeight * DRAWER_PEEK } : { right: PANEL_WIDTH + 24, bottom: 0 }) : { right: 0, bottom: 0 }}
+            spotName={spot?.name ?? null}
+          />
+        )}
+      </div>
 
       <div
         className={cn(panelOpen && 'sm:[&>nav]:-translate-x-[calc(var(--pw)/2)]')}
@@ -287,21 +304,12 @@ export function MapApp({ spots }: { spots: Spot[] }) {
 
       <div
         className={cn(
-          'fixed right-3.5 bottom-[calc(88px+env(safe-area-inset-bottom))] z-[900] flex flex-col gap-2 transition-[right] duration-300 sm:bottom-9',
+          'fixed right-3.5 bottom-[calc(88px+env(safe-area-inset-bottom))] z-[900] flex flex-col gap-2 transition-[right] duration-300 xl:bottom-9',
           panelOpen && 'sm:right-[calc(var(--pw)+38px)]',
         )}
         style={{ ['--pw' as string]: `${PANEL_WIDTH}px` }}
       >
-        {map && (
-          <ShareDialog
-            map={map}
-            state={state}
-            ratio={ratio}
-            labels={labels}
-            inset={spot ? (mobile ? { right: 0, bottom: innerHeight * DRAWER_PEEK } : { right: PANEL_WIDTH + 24, bottom: 0 }) : { right: 0, bottom: 0 }}
-            spotName={spot?.name ?? null}
-          />
-        )}
+        <LanguageSwitch />
         <LayersMenu labels={labels} onLabels={setLabels} pins={pins} onPins={setPins} />
         <Tooltip>
           <TooltipTrigger asChild>

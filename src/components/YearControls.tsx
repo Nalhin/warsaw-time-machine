@@ -123,7 +123,7 @@ export function YearControls({
   return (
     <nav
       aria-label={c.nav}
-      className="glass fixed inset-x-2.5 bottom-[calc(28px+env(safe-area-inset-bottom))] z-[1000] mx-auto flex w-fit max-w-[calc(100%-20px)] items-center gap-1 rounded-full p-1 sm:top-3 sm:bottom-auto"
+      className="glass fixed inset-x-2.5 bottom-[calc(28px+env(safe-area-inset-bottom))] z-[1000] mx-auto flex w-fit max-w-[calc(100%-20px)] items-center gap-1 rounded-full p-1 xl:top-3 xl:bottom-auto"
     >
       <Tooltip>
         <TooltipTrigger asChild>

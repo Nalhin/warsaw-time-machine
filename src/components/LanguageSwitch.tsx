@@ -1,40 +1,41 @@
 'use client';
 
-import { Check, ChevronDown, Languages } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { DropdownMenu } from 'radix-ui';
 
 import { useLocale, useMessages } from '@/components/LocaleProvider';
-import { PANEL_WIDTH } from '@/components/PlacePanel';
+import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { LOCALES, localePath, stripLocale } from '@/lib/i18n';
 import { MESSAGES } from '@/lib/messages';
-import { cn } from '@/lib/utils';
 
-export function LanguageSwitch({ shifted }: { shifted: boolean }) {
+export function LanguageSwitch() {
   const locale = useLocale();
   const t = useMessages();
   const path = stripLocale(usePathname() ?? '/');
 
   return (
     <DropdownMenu.Root modal={false}>
-      <DropdownMenu.Trigger asChild>
-        <button
-          type="button"
-          aria-label={`${t.language}: ${t.languageName}`}
-          style={{ ['--pw' as string]: `${PANEL_WIDTH}px` }}
-          className={cn(
-            'glass fixed top-[calc(12px+env(safe-area-inset-top))] right-3 z-[1000] flex h-11 items-center gap-1.5 rounded-full pr-2.5 pl-3.5 text-sm font-semibold transition-[right] duration-300 data-[state=open]:bg-muted',
-            shifted && 'sm:right-[calc(var(--pw)+38px)]',
-          )}
-        >
-          <Languages className="size-4 opacity-80" />
-          {locale.toUpperCase()}
-          <ChevronDown className="size-3.5 opacity-60" />
-        </button>
-      </DropdownMenu.Trigger>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <DropdownMenu.Trigger asChild>
+            <Button
+              variant="outline"
+              size="icon-lg"
+              className="glass-strong rounded-xl text-xs font-semibold data-[state=open]:bg-muted"
+              aria-label={`${t.language}: ${t.languageName}`}
+            >
+              {locale.toUpperCase()}
+            </Button>
+          </DropdownMenu.Trigger>
+        </TooltipTrigger>
+        <TooltipContent side="left">{t.language}</TooltipContent>
+      </Tooltip>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
-          align="end"
+          side="left"
+          align="start"
           sideOffset={8}
           collisionPadding={10}
           className="glass-strong z-[1200] min-w-40 rounded-xl p-1 text-sm text-foreground duration-150 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95"

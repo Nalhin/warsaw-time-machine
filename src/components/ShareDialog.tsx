@@ -181,7 +181,6 @@ export function ShareDialog({
           title,
           host: location.host,
           yearLabels: [t.years[years[0]].label, t.years[years[1]].label],
-          place: m.place,
           credit: m.credit,
         });
         const blob = await toBlob(canvas);
@@ -273,12 +272,13 @@ export function ShareDialog({
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
-            <Button variant="outline" size="icon-lg" className="glass-strong rounded-xl" aria-label={m.trigger}>
+            <Button className="h-11 rounded-full bg-gold px-4 text-sm font-semibold text-gold-foreground shadow-lg hover:bg-gold/85">
               <Share2 />
+              {m.trigger}
             </Button>
           </DialogTrigger>
         </TooltipTrigger>
-        <TooltipContent side="left">{m.title}</TooltipContent>
+        <TooltipContent side="bottom">{m.title}</TooltipContent>
       </Tooltip>
 
       <DialogContent className="max-h-[calc(100dvh-32px)] overflow-y-auto sm:max-w-3xl">

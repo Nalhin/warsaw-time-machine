@@ -35,7 +35,6 @@ export interface SnapshotOptions {
   title: string;
   host: string;
   yearLabels: [string, string];
-  place: string;
   credit: string;
 }
 
@@ -283,27 +282,18 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
   const creditWidth = ctx.measureText(credit).width;
 
   ctx.font = `600 ${26 * s}px ${sans}`;
-  const brandWidth = ctx.measureText(o.place).width;
-  ctx.font = `500 ${24 * s}px ${sans}`;
-  const separator = o.host ? '  ·  ' : '';
-  const separatorWidth = ctx.measureText(separator).width;
-  const hostWidth = separatorWidth + ctx.measureText(o.host).width;
+  const hostWidth = ctx.measureText(o.host).width;
 
   ctx.textAlign = 'right';
   ctx.font = `400 ${17 * s}px ${sans}`;
   ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-  const creditFits = brandWidth + hostWidth + creditWidth + 32 * s <= W - pad * 2;
+  const creditFits = hostWidth + creditWidth + 32 * s <= W - pad * 2;
   ctx.fillText(credit, W - pad, creditFits ? baseline : baseline - 34 * s);
 
   ctx.textAlign = 'left';
   ctx.font = `600 ${26 * s}px ${sans}`;
   ctx.fillStyle = '#fff';
-  ctx.fillText(o.place, pad, baseline);
-  ctx.font = `500 ${24 * s}px ${sans}`;
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-  ctx.fillText(separator, pad + brandWidth, baseline);
-  ctx.fillStyle = '#fff';
-  ctx.fillText(o.host, pad + brandWidth + separatorWidth, baseline);
+  ctx.fillText(o.host, pad, baseline);
 
   const title = o.title.trim();
   if (title) {
