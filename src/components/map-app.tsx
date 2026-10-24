@@ -77,6 +77,8 @@ function useSecondSidePins(map: L.Map | null, spots: Spot[], ratio: number, isSw
 }
 
 const PLAY_HOLD_MS = 2000;
+const STEP_FADE_MS = 450;
+const PRELOAD_YEARS = 3;
 
 interface MapAppProps {
   spots: Spot[];
@@ -158,12 +160,10 @@ export function MapApp({ spots }: MapAppProps) {
   const setMode = useCallback(
     (mode: ViewMode) => {
       if (mode === state.mode) return;
-      setIsPlaying(mode === 'timelapse');
+      setIsPlaying(false);
       setState((s) => {
         if (mode === 'compare') return { ...s, mode, swipe: [s.year === 'today' ? '1935' : s.year, 'today'] };
-        const year = s.mode === 'compare' ? s.swipe[1] : s.year;
-        const startsOver = mode === 'timelapse' && (s.mode === 'compare' || !stepYear(year, 1));
-        return { ...s, mode, year: startsOver ? YEAR_KEYS[0] : year };
+        return { ...s, mode, year: s.mode === 'compare' ? s.swipe[1] : s.year };
       });
     },
     [state.mode],
@@ -223,6 +223,10 @@ export function MapApp({ spots }: MapAppProps) {
   }, [isBusy]);
 
   const nextYear = stepYear(state.year, 1);
+  const holdMs = PLAY_HOLD_MS / speed;
+  const preloadYears =
+    state.mode === 'timelapse' ? YEAR_KEYS.slice(YEAR_KEYS.indexOf(state.year) + 1).slice(0, PRELOAD_YEARS) : [];
+  const fadeMs = isPlaying ? Math.round(holdMs * 0.4) : STEP_FADE_MS;
 
   useEffect(() => {
     if (!isPlaying || isBusy) return;
@@ -230,9 +234,9 @@ export function MapApp({ spots }: MapAppProps) {
     const timer = setTimeout(() => {
       setState((s) => ({ ...s, year: nextYear }));
       if (!stepYear(nextYear, 1)) setIsPlaying(false);
-    }, PLAY_HOLD_MS / speed);
+    }, holdMs);
     return () => clearTimeout(timer);
-  }, [isPlaying, isBusy, nextYear, speed]);
+  }, [isPlaying, isBusy, nextYear, holdMs]);
 
   const dismissHint = () => {
     if (hasSeenHint) return;
@@ -254,7 +258,8 @@ export function MapApp({ spots }: MapAppProps) {
           camera={initialCamera}
           left={isComparing ? state.swipe[0] : state.year}
           right={isComparing ? state.swipe[1] : null}
-          ahead={isPlaying ? (nextYear ?? null) : null}
+          ahead={preloadYears}
+          fadeMs={fadeMs}
           spots={spots}
           activeSpot={activeId}
           onSpot={openSpot}
@@ -322,6 +327,7 @@ export function MapApp({ spots }: MapAppProps) {
             togglePlay={togglePlay}
             speed={speed}
             setSpeed={setSpeed}
+            progressMs={isPlaying && !isBusy && nextYear ? holdMs : null}
           />
         )}
       </div>

@@ -198,6 +198,32 @@ body,
   transition: opacity 0.35s ease;
 }
 
+.leaflet-yearLeft-pane > .leaflet-layer,
+.leaflet-yearRight-pane > .leaflet-layer {
+  transition: opacity var(--year-fade, 450ms) ease-in-out;
+}
+
+@keyframes timelapse-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.timelapse-progress {
+  transform-origin: left;
+  animation: timelapse-progress linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaflet-yearLeft-pane > .leaflet-layer,
+  .leaflet-yearRight-pane > .leaflet-layer {
+    transition: none;
+  }
+}
+
 .leaflet-yearLeft-pane > svg,
 .leaflet-yearRight-pane > svg {
   z-index: 999999;

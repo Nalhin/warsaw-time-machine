@@ -15,23 +15,38 @@ interface LayerEntry {
 interface LayerSlots {
   current: LayerEntry | null;
   pending: LayerEntry | null;
-  ahead: LayerEntry | null;
+  ahead: Map<YearKey, L.TileLayer>;
+  leaving: Map<L.TileLayer, ReturnType<typeof setTimeout>>;
+  fill(): void;
   z: number;
 }
 
 interface YearLayerProps {
   pane: string;
   year: YearKey | null;
-  ahead?: YearKey | null;
+  ahead?: YearKey[];
+  fadeMs: number;
 }
 
-export function YearLayer({ pane, year, ahead = null }: YearLayerProps) {
+const NO_YEARS: YearKey[] = [];
+
+export function YearLayer({ pane, year, ahead = NO_YEARS, fadeMs }: YearLayerProps) {
   const map = useMap();
   const t = useMessages();
-  const slot = useRef<LayerSlots>({ current: null, pending: null, ahead: null, z: 1 });
+  const slot = useRef<LayerSlots>({ current: null, pending: null, ahead: new Map(), leaving: new Map(), fill: () => {}, z: 1 });
+  const fade = useRef(fadeMs);
+  fade.current = fadeMs;
+  const aheadKey = ahead.join(',');
 
   useEffect(() => {
     const s = slot.current;
+    const retire = (layer: L.TileLayer) => {
+      const timer = setTimeout(() => {
+        s.leaving.delete(layer);
+        map.removeLayer(layer);
+      }, fade.current + 50);
+      s.leaving.set(layer, timer);
+    };
     if (s.pending && s.pending.key !== year) {
       map.removeLayer(s.pending.layer);
       s.pending = null;
@@ -43,45 +58,66 @@ export function YearLayer({ pane, year, ahead = null }: YearLayerProps) {
     }
     if (s.current?.key === year || s.pending?.key === year) return;
 
-    const preloaded = s.ahead?.key === year ? s.ahead.layer : null;
-    if (preloaded) s.ahead = null;
-    const layer = (preloaded ?? createYearLayer(year, pane, { label: t.about.aerial, owner: t.about.city }))
-      .setOpacity(1)
-      .setZIndex(++s.z);
+    const preloaded = s.ahead.get(year) ?? null;
+    s.ahead.delete(year);
+    const layer = preloaded ?? createYearLayer(year, pane, { label: t.about.aerial, owner: t.about.city }).setOpacity(0);
+    layer.setZIndex(++s.z);
     trackLayer(layer);
     const entry = { key: year, layer };
-    const promote = () => {
+    const reveal = () => {
       if (s.pending !== entry) return;
-      if (s.current) map.removeLayer(s.current.layer);
+      if (s.current) retire(s.current.layer);
       s.current = entry;
       s.pending = null;
+      layer.setOpacity(1);
+      s.fill();
     };
-    if (!s.current) s.current = entry;
-    else {
+    if (!s.current) {
+      s.current = entry;
+      layer.setOpacity(1);
+    } else {
       s.pending = entry;
-      layer.once('load', promote);
+      layer.once('load', reveal);
     }
-    if (!preloaded) layer.addTo(map);
-    if (!layer.isLoading()) promote();
+    if (!preloaded) layer.on('load', () => s.fill()).addTo(map);
+    if (!layer.isLoading()) reveal();
   }, [map, pane, year, t]);
 
   useEffect(() => {
     const s = slot.current;
-    if (s.ahead && s.ahead.key !== ahead) {
-      map.removeLayer(s.ahead.layer);
-      s.ahead = null;
+    const wanted = aheadKey ? (aheadKey.split(',') as YearKey[]) : NO_YEARS;
+    for (const [key, layer] of s.ahead) {
+      if (wanted.includes(key)) continue;
+      map.removeLayer(layer);
+      s.ahead.delete(key);
     }
-    if (!ahead || ahead === year || s.ahead || s.current?.key === ahead || s.pending?.key === ahead) return;
-    const layer = createYearLayer(ahead, pane, { label: t.about.aerial, owner: t.about.city }).setOpacity(0).setZIndex(0);
-    s.ahead = { key: ahead, layer };
-    layer.addTo(map);
-  }, [map, pane, year, ahead, t]);
+    s.fill = () => {
+      if (s.pending?.layer.isLoading() || s.current?.layer.isLoading()) return;
+      if ([...s.ahead.values()].some((l) => l.isLoading())) return;
+      const key = wanted.find((k) => k !== s.current?.key && k !== s.pending?.key && !s.ahead.has(k));
+      if (!key) return;
+      const layer = createYearLayer(key, pane, { label: t.about.aerial, owner: t.about.city }).setOpacity(0).setZIndex(0);
+      s.ahead.set(key, layer);
+      layer.on('load', () => s.fill());
+      layer.addTo(map);
+      if (!layer.isLoading()) s.fill();
+    };
+    s.fill();
+  }, [map, pane, aheadKey, t]);
 
   useEffect(
     () => () => {
       const s = slot.current;
-      for (const e of [s.current, s.pending, s.ahead]) if (e) map.removeLayer(e.layer);
-      s.current = s.pending = s.ahead = null;
+      for (const e of [s.current, s.pending]) if (e) map.removeLayer(e.layer);
+      for (const layer of s.ahead.values()) map.removeLayer(layer);
+      for (const [layer, timer] of s.leaving) {
+        clearTimeout(timer);
+        map.removeLayer(layer);
+      }
+      s.ahead.clear();
+      s.leaving.clear();
+      s.current = s.pending = null;
+      s.fill = () => {};
     },
     [map],
   );

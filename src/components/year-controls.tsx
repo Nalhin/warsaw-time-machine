@@ -200,9 +200,10 @@ interface TimelapseControlsProps {
   togglePlay(): void;
   speed: PlaybackSpeed;
   setSpeed(speed: PlaybackSpeed): void;
+  progressMs: number | null;
 }
 
-function TimelapseControls({ year, setYear, isPlaying, togglePlay, speed, setSpeed }: TimelapseControlsProps) {
+function TimelapseControls({ year, setYear, isPlaying, togglePlay, speed, setSpeed, progressMs }: TimelapseControlsProps) {
   const t = useMessages();
   const c = t.controls;
   const strip = useRef<HTMLDivElement>(null);
@@ -263,11 +264,19 @@ function TimelapseControls({ year, setYear, isPlaying, togglePlay, speed, setSpe
               aria-label={t.years[key].long}
               onClick={() => setYear(key)}
               className={cn(
-                'h-8 shrink-0 rounded-full px-3 text-sm whitespace-nowrap text-muted-foreground tabular-nums transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60',
+                'relative h-8 shrink-0 overflow-hidden rounded-full px-3 text-sm whitespace-nowrap text-muted-foreground tabular-nums transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60',
                 key === year && 'bg-gold font-semibold text-gold-foreground hover:text-gold-foreground',
               )}
             >
               {t.years[key].label}
+              {key === year && progressMs && (
+                <span
+                  key={`${year}-${progressMs}`}
+                  aria-hidden
+                  className="timelapse-progress absolute inset-x-2.5 bottom-1 h-0.5 rounded-full bg-gold-foreground/45"
+                  style={{ animationDuration: `${progressMs}ms` }}
+                />
+              )}
             </button>
           ))}
         </div>
@@ -303,9 +312,22 @@ interface YearControlsProps {
   togglePlay(): void;
   speed: PlaybackSpeed;
   setSpeed(speed: PlaybackSpeed): void;
+  progressMs: number | null;
 }
 
-export function YearControls({ state, setMode, setYear, setSide, swap, toggleHorizontal, isPlaying, togglePlay, speed, setSpeed }: YearControlsProps) {
+export function YearControls({
+  state,
+  setMode,
+  setYear,
+  setSide,
+  swap,
+  toggleHorizontal,
+  isPlaying,
+  togglePlay,
+  speed,
+  setSpeed,
+  progressMs,
+}: YearControlsProps) {
   const c = useMessages().controls;
   const isTimelapse = state.mode === 'timelapse';
   return (
@@ -330,6 +352,7 @@ export function YearControls({ state, setMode, setYear, setSide, swap, toggleHor
             togglePlay={togglePlay}
             speed={speed}
             setSpeed={setSpeed}
+            progressMs={progressMs}
           />
         )}
       </div>

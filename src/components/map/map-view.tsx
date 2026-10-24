@@ -82,6 +82,18 @@ function CoverageMask({ pane, year }: CoverageMaskProps) {
   return null;
 }
 
+interface FadeStyleProps {
+  fadeMs: number;
+}
+
+function FadeStyle({ fadeMs }: FadeStyleProps) {
+  const map = useMap();
+  useEffect(() => {
+    map.getContainer().style.setProperty('--year-fade', `${fadeMs}ms`);
+  }, [map, fadeMs]);
+  return null;
+}
+
 function ZoomStyles() {
   const map = useMap();
   useEffect(() => {
@@ -105,7 +117,8 @@ interface MapViewProps {
   camera: MapCamera;
   left: YearKey;
   right: YearKey | null;
-  ahead?: YearKey | null;
+  ahead: YearKey[];
+  fadeMs: number;
   spots: Spot[];
   activeSpot: string | null;
   onSpot(id: string): void;
@@ -121,7 +134,8 @@ export function MapView({
   camera,
   left,
   right,
-  ahead = null,
+  ahead,
+  fadeMs,
   spots,
   activeSpot,
   onSpot,
@@ -156,11 +170,11 @@ export function MapView({
       attributionControl
     >
       <Pane name="yearLeft" style={{ zIndex: 250 }}>
-        <YearLayer pane="yearLeft" year={left} ahead={ahead} />
+        <YearLayer pane="yearLeft" year={left} ahead={ahead} fadeMs={fadeMs} />
         <CoverageMask pane="yearLeft" year={left} />
       </Pane>
       <Pane name="yearRight" style={{ zIndex: 251 }}>
-        <YearLayer pane="yearRight" year={right} />
+        <YearLayer pane="yearRight" year={right} fadeMs={fadeMs} />
         <CoverageMask pane="yearRight" year={right} />
       </Pane>
       <Pane name="labels" style={{ zIndex: 450, pointerEvents: 'none' }}>
@@ -187,6 +201,7 @@ export function MapView({
         />
       )}
       <ZoomStyles />
+      <FadeStyle fadeMs={fadeMs} />
     </MapContainer>
   );
 }
