@@ -36,6 +36,8 @@ export const YEARS: YearDef[] = [
 
 export const yearDef = (key: YearKey) => YEARS.find((y) => y.key === key)!;
 
+export const featherPx = (zoom: number) => Math.min(24, Math.max(3, 3 * 2 ** ((zoom - 11) / 2)));
+
 export function parseYear(v: string | null | undefined): YearKey | null {
   if (!v) return null;
   const s = v.trim().toLowerCase();

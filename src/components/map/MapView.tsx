@@ -4,11 +4,11 @@ import { CircleMarker, MapContainer, Marker, Pane, ZoomControl, useMap } from 'r
 
 import type { Spot } from '@/lib/spots';
 import { createLabelLayer } from '@/lib/wms';
-import { yearDef, type YearKey } from '@/lib/years';
+import { MAX_ZOOM, MIN_ZOOM, type MapCamera } from '@/lib/state';
+import { featherPx, yearDef, type YearKey } from '@/lib/years';
 import { YearLayer } from './YearLayer';
 
 export const WARSAW_BOUNDS = L.latLngBounds([52.07, 20.82], [52.39, 21.29]);
-const START: L.LatLngTuple = [52.2445, 21.0122];
 
 const escapeHtml = (s: string) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -66,8 +66,7 @@ function FeatherZoom() {
   const map = useMap();
   useEffect(() => {
     const sync = () => {
-      const px = Math.min(24, Math.max(3, 3 * 2 ** ((map.getZoom() - 11) / 2)));
-      map.getContainer().style.setProperty('--feather', `${px.toFixed(1)}px`);
+      map.getContainer().style.setProperty('--feather', `${featherPx(map.getZoom()).toFixed(1)}px`);
     };
     sync();
     map.on('zoomend', sync);
@@ -92,6 +91,7 @@ function PinLabelZoom() {
 }
 
 export function MapView({
+  camera,
   left,
   right,
   spots,
@@ -101,6 +101,7 @@ export function MapView({
   myLocation,
   onMap,
 }: {
+  camera: MapCamera;
   left: YearKey;
   right: YearKey | null;
   spots: Spot[];
@@ -121,10 +122,10 @@ export function MapView({
         if (m) onMap(m);
       }}
       className="fixed! inset-0"
-      center={START}
-      zoom={16}
-      minZoom={11}
-      maxZoom={20}
+      center={[camera.lat, camera.lng]}
+      zoom={camera.zoom}
+      minZoom={MIN_ZOOM}
+      maxZoom={MAX_ZOOM}
       maxBounds={WARSAW_BOUNDS.pad(0.05)}
       maxBoundsViscosity={1}
       zoomControl={false}

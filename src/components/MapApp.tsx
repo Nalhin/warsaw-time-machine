@@ -19,13 +19,18 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { useTileLoading } from '@/lib/loading';
 import { WARSAW_BBOX } from '@/lib/site';
 import { spotIdFromPath, type Spot } from '@/lib/spots';
-import { DEFAULT_STATE, mapStateToQuery, readMapState, type MapState } from '@/lib/state';
+import { DEFAULT_STATE, START, mapStateToQuery, readCamera, readMapState, type MapCamera, type MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
 import { yearDef, type YearKey } from '@/lib/years';
 
 const MapView = dynamic(() => import('@/components/map/MapView').then((m) => m.MapView), {
   ssr: false,
   loading: () => <div className="fixed inset-0 bg-[#1a1b1e]" />,
+});
+
+const ShareDialog = dynamic(() => import('@/components/ShareDialog').then((m) => m.ShareDialog), {
+  ssr: false,
+  loading: () => <div className="size-9" />,
 });
 
 const HINT_KEY = 'wtm-dragged';
@@ -37,6 +42,8 @@ export function MapApp({ spots }: { spots: Spot[] }) {
   const spot = spots.find((s) => s.id === activeId) ?? null;
 
   const [state, setState] = useState<MapState>(DEFAULT_STATE);
+  const [camera, setCamera] = useState<MapCamera | null>(null);
+  const [initialCamera, setInitialCamera] = useState<MapCamera>(START);
   const [ready, setReady] = useState(false);
   const [map, setMap] = useState<L.Map | null>(null);
   const [ratio, setRatio] = useState(0.5);
@@ -45,8 +52,16 @@ export function MapApp({ spots }: { spots: Spot[] }) {
   const [me, setMe] = useState<L.LatLng | null>(null);
   const mobile = useIsMobile();
 
+  const flown = useRef<string | null>(null);
+
   useEffect(() => {
     setState(readMapState(location.search));
+    const fromUrl = readCamera(location.search);
+    if (fromUrl) {
+      setCamera(fromUrl);
+      setInitialCamera(fromUrl);
+      if (activeId) flown.current = activeId;
+    }
     try {
       setHintSeen(localStorage.getItem(HINT_KEY) === '1');
     } catch {
@@ -57,9 +72,26 @@ export function MapApp({ spots }: { spots: Spot[] }) {
 
   useEffect(() => {
     if (!ready) return;
-    const url = `${location.pathname}${mapStateToQuery(state)}`;
+    const url = `${location.pathname}${mapStateToQuery(state, camera)}`;
     if (url !== `${location.pathname}${location.search}`) history.replaceState(history.state, '', url);
-  }, [state, ready, pathname]);
+  }, [state, camera, ready, pathname]);
+
+  useEffect(() => {
+    if (!map) return;
+    let timer: ReturnType<typeof setTimeout>;
+    const sync = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const c = map.getCenter();
+        setCamera({ lat: c.lat, lng: c.lng, zoom: map.getZoom() });
+      }, 300);
+    };
+    map.on('moveend', sync);
+    return () => {
+      clearTimeout(timer);
+      map.off('moveend', sync);
+    };
+  }, [map]);
 
   const setYear = (year: YearKey) => setState((s) => ({ ...s, year }));
   const setSide = useCallback(
@@ -73,6 +105,7 @@ export function MapApp({ spots }: { spots: Spot[] }) {
       }),
     [],
   );
+  const toggleHorizontal = useCallback(() => setState((s) => ({ ...s, horizontal: !s.horizontal })), []);
   const swap = useCallback(() => setState((s) => (s.swipe ? { ...s, swipe: [s.swipe[1], s.swipe[0]] } : s)), []);
   const toggleCompare = useCallback(
     () =>
@@ -84,7 +117,6 @@ export function MapApp({ spots }: { spots: Spot[] }) {
 
   const openSpot = (id: string) => router.push(`/spots/${id}${location.search}`, { scroll: false });
 
-  const flown = useRef<string | null>(null);
   useEffect(() => {
     if (!map || !spot || flown.current === spot.id) return;
     const first = flown.current === null;
@@ -134,22 +166,28 @@ export function MapApp({ spots }: { spots: Spot[] }) {
 
   return (
     <>
-      <MapView
-        left={state.swipe ? state.swipe[0] : state.year}
-        right={state.swipe ? state.swipe[1] : null}
-        spots={spots}
-        activeSpot={activeId}
-        onSpot={openSpot}
-        showLabels={labels}
-        myLocation={me}
-        onMap={setMap}
-      />
+      {ready ? (
+        <MapView
+          camera={initialCamera}
+          left={state.swipe ? state.swipe[0] : state.year}
+          right={state.swipe ? state.swipe[1] : null}
+          spots={spots}
+          activeSpot={activeId}
+          onSpot={openSpot}
+          showLabels={labels}
+          myLocation={me}
+          onMap={setMap}
+        />
+      ) : (
+        <div className="fixed inset-0 bg-[#1a1b1e]" />
+      )}
 
       {map && state.swipe && (
         <SwipeDivider
           map={map}
           ratio={ratio}
           onRatio={setRatio}
+          horizontal={state.horizontal}
           leftLabel={yearDef(state.swipe[0]).label}
           rightLabel={yearDef(state.swipe[1]).label}
           showHint={!hintSeen}
@@ -172,7 +210,14 @@ export function MapApp({ spots }: { spots: Spot[] }) {
         className={cn(panelOpen && 'sm:[&>nav]:-translate-x-[calc(var(--pw)/2)]')}
         style={{ ['--pw' as string]: `${PANEL_WIDTH + 12}px` }}
       >
-        <YearControls state={state} setYear={setYear} setSide={setSide} swap={swap} toggleCompare={toggleCompare} />
+        <YearControls
+          state={state}
+          setYear={setYear}
+          setSide={setSide}
+          swap={swap}
+          toggleCompare={toggleCompare}
+          toggleHorizontal={toggleHorizontal}
+        />
       </div>
 
       <div
@@ -181,6 +226,16 @@ export function MapApp({ spots }: { spots: Spot[] }) {
           panelOpen && 'sm:right-[calc(420px+38px)]',
         )}
       >
+        {map && (
+          <ShareDialog
+            map={map}
+            state={state}
+            ratio={ratio}
+            labels={labels}
+            inset={spot ? (mobile ? { right: 0, bottom: innerHeight * DRAWER_PEEK } : { right: PANEL_WIDTH + 24, bottom: 0 }) : { right: 0, bottom: 0 }}
+            spotName={spot?.name ?? null}
+          />
+        )}
         <Tooltip>
           <TooltipTrigger asChild>
             <Button

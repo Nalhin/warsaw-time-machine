@@ -1,11 +1,12 @@
 'use client';
 
-import { ArrowLeftRight, Columns2, Square } from 'lucide-react';
+import { ArrowLeftRight, Columns2, SeparatorVertical, Square } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import type { MapState } from '@/lib/state';
+import { cn } from '@/lib/utils';
 import { YEARS, type YearKey } from '@/lib/years';
 
 function YearToggle({ value, onChange, label }: { value: YearKey; onChange(v: YearKey): void; label: string }) {
@@ -24,7 +25,7 @@ function YearToggle({ value, onChange, label }: { value: YearKey; onChange(v: Ye
           key={y.key}
           value={y.key}
           title={y.long}
-          className="h-8 rounded-full! px-2.5 font-semibold tabular-nums sm:px-3 text-muted-foreground data-[state=on]:bg-foreground data-[state=on]:text-background"
+          className="h-8 rounded-full! px-2 font-semibold tabular-nums sm:px-3 text-muted-foreground data-[state=on]:bg-foreground data-[state=on]:text-background"
         >
           {y.label}
         </ToggleGroupItem>
@@ -39,12 +40,14 @@ export function YearControls({
   setSide,
   swap,
   toggleCompare,
+  toggleHorizontal,
 }: {
   state: MapState;
   setYear(y: YearKey): void;
   setSide(side: 0 | 1, y: YearKey): void;
   swap(): void;
   toggleCompare(): void;
+  toggleHorizontal(): void;
 }) {
   const compare = state.swipe;
   return (
@@ -54,7 +57,7 @@ export function YearControls({
     >
       {compare ? (
         <>
-          <YearToggle value={compare[0]} onChange={(y) => setSide(0, y)} label="Left side" />
+          <YearToggle value={compare[0]} onChange={(y) => setSide(0, y)} label={state.horizontal ? 'Top side' : 'Left side'} />
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="ghost" size="icon-sm" className="rounded-full" onClick={swap} aria-label="Swap sides">
@@ -63,7 +66,21 @@ export function YearControls({
             </TooltipTrigger>
             <TooltipContent>Swap sides</TooltipContent>
           </Tooltip>
-          <YearToggle value={compare[1]} onChange={(y) => setSide(1, y)} label="Right side" />
+          <YearToggle value={compare[1]} onChange={(y) => setSide(1, y)} label={state.horizontal ? 'Bottom side' : 'Right side'} />
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                className="rounded-full"
+                onClick={toggleHorizontal}
+                aria-label={state.horizontal ? 'Vertical divider' : 'Horizontal divider'}
+              >
+                <SeparatorVertical className={cn('transition-transform duration-300', state.horizontal && 'rotate-90')} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>{state.horizontal ? 'Vertical divider' : 'Horizontal divider'}</TooltipContent>
+          </Tooltip>
         </>
       ) : (
         <YearToggle value={state.year} onChange={setYear} label="Year" />

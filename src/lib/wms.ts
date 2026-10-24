@@ -15,7 +15,7 @@ const LABEL_LAYERS = [
 
 let primaryDead = false;
 
-function whiteToAlpha(canvas: HTMLCanvasElement, img: HTMLImageElement) {
+export function whiteToAlpha(canvas: HTMLCanvasElement, img: HTMLImageElement) {
   const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
   const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -94,4 +94,50 @@ export function createLabelLayer(pane: string): L.TileLayer.WMS {
     updateWhenZooming: false,
     DATASOURCE: 'dane_wawa',
   } as L.WMSOptions);
+}
+
+export type BBox = [minX: number, minY: number, maxX: number, maxY: number];
+
+function getMapUrl(base: string, layers: string, bbox: BBox, width: number, height: number) {
+  const q = new URLSearchParams({
+    SERVICE: 'WMS',
+    REQUEST: 'GetMap',
+    VERSION: '1.1.1',
+    LAYERS: layers,
+    STYLES: '',
+    FORMAT: 'image/png',
+    TRANSPARENT: 'true',
+    SRS: 'EPSG:3857',
+    BBOX: bbox.map((v) => v.toFixed(2)).join(','),
+    WIDTH: String(width),
+    HEIGHT: String(height),
+  });
+  if (base === PRIMARY_URL) q.set('DATASOURCE', 'dane_wawa');
+  return `${base}?${q}`;
+}
+
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(`Image failed: ${src}`));
+    img.src = src;
+  });
+}
+
+export async function fetchYearImage(key: YearKey, bbox: BBox, width: number, height: number) {
+  const def = yearDef(key);
+  if (!primaryDead) {
+    try {
+      return await loadImage(getMapUrl(PRIMARY_URL, def.layer, bbox, width, height));
+    } catch {
+      console.warn(`[wms] ${def.layer}: GetMap failed, trying ${FALLBACK_URL}`);
+    }
+  }
+  return loadImage(getMapUrl(FALLBACK_URL, def.fallbackLayer, bbox, width, height));
+}
+
+export function fetchLabelImage(bbox: BBox, width: number, height: number) {
+  return loadImage(getMapUrl(PRIMARY_URL, LABEL_LAYERS, bbox, width, height));
 }

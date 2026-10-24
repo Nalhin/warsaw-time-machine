@@ -44,10 +44,22 @@ npm run build        # static pages for / and every /spots/<id>
   new one has finished, so the map never goes blank. A progress bar and a "Loading aerial photos…" pill
   show while tiles load.
 - **The map opens in compare mode** (1935 | Today). The divider can be dragged with a mouse or touch. Each
-  side has its own year buttons, and ⇄ swaps the sides. It clips two Leaflet panes, so there's no plugin
+  side has its own year buttons, and ⇄ swaps the sides. The divider button next to them switches the divider
+  between vertical (the default) and horizontal. It clips two Leaflet panes, so there's no plugin
   (`src/components/map/SwipeDivider.tsx`).
 - In the spot panel, the before/after slider follows the mouse, and the expand button opens it full-screen.
 - "T" toggles street names (City of Warsaw WMS labels). The target button shows your location.
+- The map keeps its position and zoom in the URL (`?at=lat,lng,zoom`, updated after every move), so any
+  address bar URL is a shareable link to the same view.
+- **Share** (the button above street names) makes an image of the current view for social media: two years
+  split at the divider exactly as on the map (default), side by side, or stacked, at the shape of the
+  visible map ("Screen", 1600 px on the long side), square (1080×1080), portrait (1080×1350) or landscape
+  (1600×900), as a JPEG with an optional title, year tags, a caption and the City of Warsaw credit. Each year is
+  requested from the WMS as one GetMap image at the output size (the servers send CORS headers, so the canvas
+  can be exported). The split follows the divider orientation. The image is captioned "Warsaw, Poland" and
+  the site's domain. The 1945 white padding and the coverage edge fade are applied the same way as on the map.
+  The dialog also has the link to the view, and Download, Copy image (desktop) or Share (mobile, via the
+  system share sheet). See `src/lib/snapshot.ts` and `src/components/ShareDialog.tsx`.
 
 ### URLs and SEO
 
@@ -56,6 +68,8 @@ npm run build        # static pages for / and every /spots/<id>
 | `/` | compare mode, 1935 \| today (default) |
 | `/?year=1945` | one year (`1935`, `1945`, `today`) |
 | `/?swipe=1945,today` | compare mode, left and right |
+| `/?divider=horizontal` | compare mode with a horizontal divider (top and bottom); vertical is the default |
+| `/?at=52.2479,21.0136,17` | map position and zoom (`lat,lng,zoom`); combines with every other URL |
 | `/spots/plac-zamkowy` | a place: its own server-rendered page (can be combined with `?swipe=` / `?year=`) |
 | `/s/<id>`, `/?spot=<id>` | old links: permanent redirects to `/spots/<id>` |
 
