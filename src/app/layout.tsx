@@ -6,7 +6,7 @@ import { Fraunces, Geist } from 'next/font/google';
 
 import { MapApp } from '@/components/MapApp';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site';
+import { AUTHOR, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site';
 import { SPOTS } from '@/lib/spots';
 
 const geist = Geist({ subsets: ['latin', 'latin-ext'], variable: '--font-geist' });
@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
+  authors: [{ name: AUTHOR.name, url: AUTHOR.website }],
+  creator: AUTHOR.name,
   keywords: [
     'Warsaw',
     'Warszawa',
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
     'pre-war Warsaw',
     'Warsaw destruction',
     'rephotography',
+    'Warsaw Time Machine',
   ],
   alternates: { canonical: '/' },
   openGraph: {
@@ -39,8 +42,7 @@ export const metadata: Metadata = {
     url: '/',
     images: [{ url: '/img/og/default.jpg', width: 1200, height: 630, alt: 'Warsaw in 1935, 1945 and today, side by side' }],
   },
-  twitter: { card: 'summary_large_image', title: SITE_NAME, description: SITE_DESCRIPTION, images: ['/img/og/default.jpg'] },
-  icons: { icon: '/favicon.svg' },
+  twitter: { card: 'summary_large_image', creator: '@KrzysztofOlipra', title: SITE_NAME, description: SITE_DESCRIPTION, images: ['/img/og/default.jpg'] },
 };
 
 export const viewport: Viewport = {
@@ -55,8 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`dark ${geist.variable} ${fraunces.variable}`}>
       <body>
         <TooltipProvider delayDuration={300}>
-          <MapApp spots={SPOTS} />
-          {children}
+          <div className="isolate">
+            <MapApp spots={SPOTS} />
+          </div>
+          <div className="isolate">{children}</div>
         </TooltipProvider>
       </body>
     </html>

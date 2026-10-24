@@ -20,7 +20,7 @@ import { WARSAW_BBOX } from '@/lib/site';
 import { spotIdFromPath, type Spot } from '@/lib/spots';
 import { DEFAULT_STATE, mapStateToQuery, readMapState, type MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
-import { yearDef, YEARS, type YearKey } from '@/lib/years';
+import { yearDef, type YearKey } from '@/lib/years';
 
 const MapView = dynamic(() => import('@/components/map/MapView').then((m) => m.MapView), {
   ssr: false,
@@ -60,7 +60,6 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     if (url !== `${location.pathname}${location.search}`) history.replaceState(history.state, '', url);
   }, [state, ready, pathname]);
 
-
   const setYear = (year: YearKey) => setState((s) => ({ ...s, year }));
   const setSide = useCallback(
     (side: 0 | 1, y: YearKey) =>
@@ -82,7 +81,6 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     [],
   );
 
-
   const openSpot = (id: string) => router.push(`/spots/${id}${location.search}`, { scroll: false });
 
   const flown = useRef<string | null>(null);
@@ -101,7 +99,6 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     if (!spot && flown.current !== null) flown.current = '';
   }, [spot]);
 
-
   useEffect(() => {
     if (!map) return;
     const found = (e: L.LocationEvent) => {
@@ -119,29 +116,6 @@ export function MapApp({ spots }: { spots: Spot[] }) {
       map.off('locationerror', failed);
     };
   }, [map]);
-
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
-      const t = e.target as HTMLElement;
-      if (t.closest('input, textarea, select, [contenteditable], [role="dialog"]')) return;
-      const digit = /^Digit([123])$/.exec(e.code);
-      if (digit) {
-        const y = YEARS[+digit[1] - 1].key;
-        setState((s) => (s.swipe ? s : { ...s, year: y }));
-        setSide(e.shiftKey ? 0 : 1, y);
-      } else if (e.key === 'c' || e.key === 'C') toggleCompare();
-      else if (e.key === 's' || e.key === 'S') swap();
-      else if (e.key === '[') setRatio((r) => Math.max(0, r - 0.05));
-      else if (e.key === ']') setRatio((r) => Math.min(1, r + 0.05));
-      else return;
-      e.preventDefault();
-    };
-    addEventListener('keydown', onKey);
-    return () => removeEventListener('keydown', onKey);
-  }, [setSide, swap, toggleCompare]);
-
 
   const loading = useTileLoading();
   const busy = loading.total > 0 && loading.done < loading.total;

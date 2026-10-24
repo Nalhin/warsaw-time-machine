@@ -25,7 +25,7 @@ FONT_URLS = {
 }
 
 WMS = "https://mapa.um.warszawa.pl/mapviewer/wms"
-UA = {"User-Agent": "warsaw-1935-1945-today/0.1 (+og.py)"}
+UA = {"User-Agent": "warsaw-time-machine/0.1 (+og.py)"}
 
 
 def font(name: str, size: int, weight: int) -> ImageFont.FreeTypeFont:
@@ -76,6 +76,22 @@ def pill(d: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, f, fill, fg, an
     d.text((x + 14 - l, y + 8 - t), text, font=f, fill=fg)
 
 
+def fit_title(d: ImageDraw.ImageDraw, title: str, max_w: int) -> tuple[list[str], ImageFont.FreeTypeFont]:
+    for size in (68, 60, 54, 48):
+        f = font("Fraunces.ttf", size, 600)
+        if d.textlength(title, font=f) <= max_w:
+            return [title], f
+    f = font("Fraunces.ttf", 52, 600)
+    words, lines = title.split(), [""]
+    for w in words:
+        trial = f"{lines[-1]} {w}".strip()
+        if d.textlength(trial, font=f) <= max_w or not lines[-1]:
+            lines[-1] = trial
+        else:
+            lines.append(w)
+    return lines[:2], f
+
+
 def spot_card(old: Path, today: Path, title: str, out: Path, old_label: str = "Pre-war") -> None:
     half = W // 2
     img = Image.new("RGB", (W, H))
@@ -85,17 +101,20 @@ def spot_card(old: Path, today: Path, title: str, out: Path, old_label: str = "P
     d = ImageDraw.Draw(img)
     d.rectangle((half - 2, 0, half + 1, H), fill=(255, 255, 255))
     d.ellipse((half - 26, H // 2 - 26, half + 26, H // 2 + 26), fill=(255, 255, 255))
-    arrow = font("Inter.ttf", 26, 700)
-    d.text((half, H // 2), "⇆", font=arrow, fill=(20, 20, 20), anchor="mm")
+    cx, cy = half, H // 2
+    d.polygon([(cx - 15, cy), (cx - 6, cy - 8), (cx - 6, cy + 8)], fill=(20, 20, 20))
+    d.polygon([(cx + 15, cy), (cx + 6, cy - 8), (cx + 6, cy + 8)], fill=(20, 20, 20))
 
     tag = font("Inter.ttf", 24, 600)
     pill(d, (28, 28), old_label, tag, (17, 18, 20), (243, 239, 231))
     pill(d, (W - 28, 28), "Today", tag, (17, 18, 20), (243, 239, 231), anchor="ra")
 
-    big = font("Fraunces.ttf", 68 if len(title) < 22 else 54, 600)
+    lines, big = fit_title(d, title, W - 80)
     small = font("Inter.ttf", 25, 500)
-    d.text((40, H - 118), title, font=big, fill=(255, 255, 255), anchor="ls")
-    d.text((42, H - 62), "Warsaw 1935 · 1945 · today", font=small, fill=(226, 183, 100), anchor="ls")
+    line_h = round(big.size * 1.08)
+    for i, line in enumerate(reversed(lines)):
+        d.text((40, H - 118 - i * line_h), line, font=big, fill=(255, 255, 255), anchor="ls")
+    d.text((42, H - 62), "Warsaw Time Machine", font=small, fill=(226, 183, 100), anchor="ls")
     out.parent.mkdir(parents=True, exist_ok=True)
     img.save(out, "JPEG", quality=86, optimize=True, progressive=True)
 
@@ -137,8 +156,8 @@ def default_card(out: Path) -> None:
         pill(d, (i * strip + 24, 24), label, tag, (17, 18, 20), (243, 239, 231))
     big = font("Fraunces.ttf", 74, 600)
     small = font("Inter.ttf", 26, 500)
-    d.text((40, H - 112), "Warsaw 1935 · 1945 · today", font=big, fill=(255, 255, 255), anchor="ls")
-    d.text((42, H - 58), "Aerial and street photos: before the war, after the destruction, today", font=small, fill=(226, 183, 100), anchor="ls")
+    d.text((40, H - 112), "Warsaw Time Machine", font=big, fill=(255, 255, 255), anchor="ls")
+    d.text((42, H - 58), "Warsaw in 1935, after the destruction in 1945, and today", font=small, fill=(226, 183, 100), anchor="ls")
     out.parent.mkdir(parents=True, exist_ok=True)
     card.filter(ImageFilter.UnsharpMask(1.2, 60, 2)).save(out, "JPEG", quality=86, optimize=True, progressive=True)
     print(f"-> {out}", file=sys.stderr)

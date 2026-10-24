@@ -61,7 +61,7 @@ export function YearControls({
                 <ArrowLeftRight />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Swap sides (S)</TooltipContent>
+            <TooltipContent>Swap sides</TooltipContent>
           </Tooltip>
           <YearToggle value={compare[1]} onChange={(y) => setSide(1, y)} label="Right side" />
         </>
@@ -82,7 +82,7 @@ export function YearControls({
             <span className={compare ? 'hidden sm:inline' : ''}>{compare ? 'One year' : 'Compare'}</span>
           </Button>
         </TooltipTrigger>
-        <TooltipContent>{compare ? 'Show one year' : 'Compare two years'} (C)</TooltipContent>
+        <TooltipContent>{compare ? 'Show one year' : 'Compare two years'}</TooltipContent>
       </Tooltip>
     </nav>
   );

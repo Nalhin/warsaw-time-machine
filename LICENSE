@@ -19,19 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----------------------------------------------------------------------------
-
-This licence covers the source code only. It does not cover:
-
-- Photographs in public/img/ and pipeline/sources/. Each photo keeps its own
-  licence, and its author, licence and source link are recorded in
-  src/data/spots.json and pipeline/sources/sources.json.
-- AI-restored images (public/img/*_ai.jpg). These are derived from the
-  photographs above and follow the licence of the original photo.
-- Aerial imagery, which is loaded at runtime from the City of Warsaw WMS
-  (© m.st. Warszawa) and is not distributed with this repository, except for
-  the excerpt in public/img/og/default.jpg.
-- Third-party model weights (Real-ESRGAN, BSD-3-Clause; DDColor, Apache-2.0)
-  and fonts (Fraunces, Inter, Geist; SIL Open Font License), which are
-  downloaded separately under their own licences.

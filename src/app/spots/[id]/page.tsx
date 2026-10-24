@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `/spots/${spot.id}`,
       images: [{ url: image, width: 1200, height: 630, alt: `${spot.name}: before the war and today` }],
     },
-    twitter: { card: 'summary_large_image', title, description, images: [image] },
+    twitter: { card: 'summary_large_image', creator: '@KrzysztofOlipra', title, description, images: [image] },
   };
 }
 

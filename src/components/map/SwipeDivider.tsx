@@ -83,12 +83,11 @@ export function SwipeDivider({
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(ratio * 100)}
-        title="Drag to compare · double-click to centre"
+        title="Drag to compare"
         className={cn(
           'pointer-events-auto absolute top-1/2 left-[var(--x)] -mt-[22px] -ml-[22px] grid size-11 cursor-ew-resize touch-none place-items-center rounded-full bg-white text-neutral-900 shadow-lg ring-1 ring-black/10 transition-transform',
           dragging && 'scale-110',
         )}
-        onDoubleClick={() => onRatio(0.5)}
         onKeyDown={(e) => {
           const step = e.shiftKey ? 0.1 : 0.02;
           if (e.key === 'ArrowLeft') onRatio(Math.max(0, ratio - step));

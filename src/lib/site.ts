@@ -4,9 +4,17 @@ export const SITE_URL = (
   'http://localhost:3000'
 ).replace(/\/$/, '');
 
-export const SITE_NAME = 'Warsaw 1935 / 1945 / Today';
+export const SITE_NAME = 'Warsaw Time Machine';
 
 export const SITE_DESCRIPTION =
   'Compare aerial photos of Warsaw from 1935, 1945 and today, and see pre-war street photographs next to the same view today.';
 
 export const WARSAW_BBOX = { south: 52.07, west: 20.82, north: 52.39, east: 21.29 };
+
+export const GITHUB_URL = 'https://github.com/Nalhin/warsaw-time-machine';
+
+export const AUTHOR = {
+  name: 'Krzysztof Olipra',
+  x: 'https://x.com/KrzysztofOlipra',
+  website: 'https://krzysztofolipra.com/',
+};

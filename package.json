@@ -1,7 +1,7 @@
 {
-  "name": "warszawa-1935-1945-dzis",
+  "name": "warsaw-time-machine",
   "version": "1.0.0",
-  "description": "Mapa Warszawy: zdjęcia lotnicze 1935 / 1945 / dziś i porównania ulic",
+  "description": "Warsaw Time Machine: aerial photos of Warsaw from 1935, 1945 and today, with pre-war street views",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

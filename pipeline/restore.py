@@ -178,7 +178,7 @@ def save_jpeg(im: Image.Image, path: Path, quality: int) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     exif = Image.Exif()
     exif[0x010E] = LABEL_META
-    exif[0x0131] = "warszawa-1935-1945-dzis/restore.py"
+    exif[0x0131] = "warsaw-time-machine/restore.py"
     im.save(path, "JPEG", quality=quality, optimize=True, progressive=True, exif=exif.tobytes())
 
 

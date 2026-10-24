@@ -1,8 +1,28 @@
-# Warsaw 1935 / 1945 / Today
+# Warsaw Time Machine
 
 A map of Warsaw that compares the city's aerial photos from 1935 (pre-war), 1945 (after the destruction)
 and today. Pins open street-level comparisons: the real pre-war photo, an AI-restored version, and a photo
-taken from the same spot today. It's a Next.js site, statically generated and deployed on Vercel.
+taken from the same spot today.
+
+## Why
+
+The goal of the project is to raise awareness of what Poland has been through as a country, and of what
+it has achieved since. In 1945 most of Warsaw lay in ruins. Putting the city before the war, right after
+it, and today side by side shows both the scale of the loss and the scale of the rebuilding.
+
+## Contributing
+
+Contributions are open and welcome, especially new places with a pre-war photo and a matching photo from
+today. The code is on GitHub: **[github.com/Nalhin/warsaw-time-machine](https://github.com/Nalhin/warsaw-time-machine)**.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a place and the rules for photos.
+
+## Author
+
+Krzysztof Olipra · [X (@KrzysztofOlipra)](https://x.com/KrzysztofOlipra) · [krzysztofolipra.com](https://krzysztofolipra.com/)
+
+## Development
+
+It's a Next.js site, statically generated and deployed on Vercel.
 
 **Stack:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, [shadcn/ui](https://ui.shadcn.com) (Radix), Leaflet via react-leaflet.
 The restoration pipeline is Python (uv, PyTorch, ONNX Runtime).
@@ -21,13 +41,11 @@ npm run build        # static pages for / and every /spots/<id>
 - If 3 tiles fail before any succeeds, the app switches to the official `https://wms.um.warszawa.pl/serwis`
   (`RASTER_FOTOPLAN_1935`, `RASTER_ORTOFOTO_1945`, `ORTO`). See `src/lib/wms.ts`.
 - When you switch years, the new layer loads on top of the old one. The old layer is removed only after the
-  new one has finished, so the map never goes blank. A progress bar and a "Wczytywanie…" pill show while
-  tiles load.
-- **The map opens in compare mode** (1935 | Today). The divider can be dragged with a mouse or touch, or moved
-  with the arrow keys or `[` `]`. Double-click it to centre. Each side has its own year buttons, and ⇄ swaps
-  the sides. It clips two Leaflet panes, so there's no plugin (`src/components/map/SwipeDivider.tsx`).
-- Shortcuts: `1` `2` `3` set the year (the right side in compare mode; Shift sets the left side), `C`
-  toggles compare, `S` swaps.
+  new one has finished, so the map never goes blank. A progress bar and a "Loading aerial photos…" pill
+  show while tiles load.
+- **The map opens in compare mode** (1935 | Today). The divider can be dragged with a mouse or touch. Each
+  side has its own year buttons, and ⇄ swaps the sides. It clips two Leaflet panes, so there's no plugin
+  (`src/components/map/SwipeDivider.tsx`).
 - In the spot panel, the before/after slider follows the mouse, and the expand button opens it full-screen.
 - "T" toggles street names (CARTO labels). The target button shows your location.
 
@@ -138,7 +156,7 @@ and updates `src/data/spots.json`. Entries that aren't in `sources.json` are lef
 
 ## Credits
 
-Aerial photos © m.st. Warszawa. Labels and basemap © OpenStreetMap contributors, © CARTO.
+Aerial photos © m.st. Warszawa. Site icon: the coat of arms of Warsaw ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:POL_Warszawa_COA.svg), public domain). Labels and basemap © OpenStreetMap contributors, © CARTO.
 Real-ESRGAN (BSD-3-Clause), DDColor (Apache-2.0), fonts Fraunces, Inter and Geist (OFL).
 
 Code: [MIT](LICENSE). Photos keep their own licences (see `src/data/spots.json`). Contributions:
