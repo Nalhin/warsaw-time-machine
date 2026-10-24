@@ -5,6 +5,13 @@ import { yearDef, type YearKey } from './years';
 const PRIMARY_URL = 'https://mapa.um.warszawa.pl/mapviewer/wms';
 const FALLBACK_URL = 'https://wms.um.warszawa.pl/serwis';
 const FAILS_BEFORE_FALLBACK = 3;
+const LABEL_LAYERS = [
+  'ORTO_ULICE_GLOWNE_3',
+  'ORTO_ULICE_GLOWNE_4',
+  'ORTO_ULICE_LINIOWE_5_18',
+  'ORTO_ULICE_POWIERZCHNIOWE_9_14',
+  'ORTO_ULICE_POWIERZCHNIOWE_15_18',
+].join(',');
 
 let primaryDead = false;
 
@@ -40,4 +47,19 @@ export function createYearLayer(key: YearKey, pane: string): L.TileLayer.WMS {
     }
   });
   return layer;
+}
+
+export function createLabelLayer(pane: string): L.TileLayer.WMS {
+  return L.tileLayer.wms(PRIMARY_URL, {
+    layers: LABEL_LAYERS,
+    format: 'image/png',
+    transparent: true,
+    version: '1.1.1',
+    tileSize: 512,
+    pane,
+    maxZoom: 21,
+    keepBuffer: 1,
+    updateWhenZooming: false,
+    DATASOURCE: 'dane_wawa',
+  } as L.WMSOptions);
 }

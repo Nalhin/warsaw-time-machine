@@ -47,7 +47,7 @@ npm run build        # static pages for / and every /spots/<id>
   side has its own year buttons, and ⇄ swaps the sides. It clips two Leaflet panes, so there's no plugin
   (`src/components/map/SwipeDivider.tsx`).
 - In the spot panel, the before/after slider follows the mouse, and the expand button opens it full-screen.
-- "T" toggles street names (CARTO labels). The target button shows your location.
+- "T" toggles street names (City of Warsaw WMS labels). The target button shows your location.
 
 ### URLs and SEO
 
@@ -156,7 +156,7 @@ and updates `src/data/spots.json`. Entries that aren't in `sources.json` are lef
 
 ## Credits
 
-Aerial photos © m.st. Warszawa. Site icon: the coat of arms of Warsaw ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:POL_Warszawa_COA.svg), public domain). Labels and basemap © OpenStreetMap contributors, © CARTO.
+Aerial photos © m.st. Warszawa. Site icon: the coat of arms of Warsaw ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:POL_Warszawa_COA.svg), public domain). Street names © m.st. Warszawa.
 Real-ESRGAN (BSD-3-Clause), DDColor (Apache-2.0), fonts Fraunces, Inter and Geist (OFL).
 
 Code: [MIT](LICENSE). Photos keep their own licences (see `src/data/spots.json`). Contributions:

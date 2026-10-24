@@ -74,7 +74,7 @@ export function AboutDialog() {
               </a>
             </li>
             <li>Photographs: Wikimedia Commons and archives, credited under each photo</li>
-            <li>Street names: © OpenStreetMap, © CARTO</li>
+            <li>Street names: City of Warsaw</li>
           </ul>
         </div>
 

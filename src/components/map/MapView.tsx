@@ -1,16 +1,14 @@
 import L from 'leaflet';
 import { useEffect, useMemo } from 'react';
-import { CircleMarker, MapContainer, Marker, Pane, TileLayer, ZoomControl, useMap } from 'react-leaflet';
+import { CircleMarker, MapContainer, Marker, Pane, ZoomControl, useMap } from 'react-leaflet';
 
 import type { Spot } from '@/lib/spots';
+import { createLabelLayer } from '@/lib/wms';
 import type { YearKey } from '@/lib/years';
 import { YearLayer } from './YearLayer';
 
 export const WARSAW_BOUNDS = L.latLngBounds([52.07, 20.82], [52.39, 21.29]);
 const START: L.LatLngTuple = [52.2445, 21.0122];
-
-const CARTO_ATTR =
-  '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
 
 const escapeHtml = (s: string) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -24,6 +22,17 @@ function pinIcon(name: string, active: boolean) {
     iconSize: [36, 36],
     iconAnchor: [18, 18],
   });
+}
+
+function StreetLabels({ pane }: { pane: string }) {
+  const map = useMap();
+  useEffect(() => {
+    const layer = createLabelLayer(pane).addTo(map);
+    return () => {
+      map.removeLayer(layer);
+    };
+  }, [map, pane]);
+  return null;
 }
 
 function PinLabelZoom() {
@@ -79,12 +88,6 @@ export function MapView({
       attributionControl
     >
       <ZoomControl position="bottomright" zoomInTitle="Zoom in" zoomOutTitle="Zoom out" />
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
-        subdomains="abcd"
-        maxZoom={20}
-        attribution={CARTO_ATTR}
-      />
       <Pane name="yearLeft" style={{ zIndex: 250 }}>
         <YearLayer pane="yearLeft" year={left} />
       </Pane>
@@ -92,14 +95,7 @@ export function MapView({
         <YearLayer pane="yearRight" year={right} />
       </Pane>
       <Pane name="labels" style={{ zIndex: 450, pointerEvents: 'none' }}>
-        {showLabels && (
-          <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png"
-            subdomains="abcd"
-            maxZoom={20}
-            pane="labels"
-          />
-        )}
+        {showLabels && <StreetLabels pane="labels" />}
       </Pane>
 
       {spots.map((s) => (
