@@ -23,7 +23,20 @@ import { useTileLoading } from '@/lib/loading';
 import { isInWarsaw } from '@/lib/site';
 import { NO_SPOTS, publishMapState, publishSecondSide } from '@/lib/map-store';
 import { spotIdFromPath, yearNumber, type Spot } from '@/lib/spots';
-import { DEFAULT_STATE, START, mapStateToQuery, readCamera, readMapState, setSwipeSide, type MapCamera, type MapState, type Side } from '@/lib/state';
+import {
+  DEFAULT_STATE,
+  START,
+  mapStateToQuery,
+  readCamera,
+  readMapState,
+  setSwipeSide,
+  shownYears,
+  type MapCamera,
+  type MapState,
+  type PlaybackSpeed,
+  type Side,
+  type ViewMode,
+} from '@/lib/state';
 import { cn } from '@/lib/utils';
 import { stepYear, YEAR_KEYS, type YearKey } from '@/lib/years';
 
@@ -88,6 +101,7 @@ export function MapApp({ spots }: MapAppProps) {
   const [showPins, setShowPins] = useState(true);
   const [me, setMe] = useState<L.LatLng | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [speed, setSpeed] = useState<PlaybackSpeed>(1);
   const isMobile = useIsMobile();
 
   const flown = useRef<string | null>(null);
@@ -110,7 +124,8 @@ export function MapApp({ spots }: MapAppProps) {
 
   useEffect(() => publishMapState(state), [state]);
 
-  const secondSide = useSecondSidePins(map, spots, ratio, !!state.swipe, state.isHorizontal);
+  const isComparing = state.mode === 'compare';
+  const secondSide = useSecondSidePins(map, spots, ratio, isComparing, state.isHorizontal);
   useEffect(() => publishSecondSide(secondSide), [secondSide]);
 
   useEffect(() => {
@@ -136,25 +151,26 @@ export function MapApp({ spots }: MapAppProps) {
     };
   }, [map]);
 
-  const setYear = (year: YearKey) => {
-    setIsPlaying(false);
-    setState((s) => ({ ...s, year }));
-  };
-  const setSide = useCallback(
-    (side: Side, year: YearKey) => setState((s) => (s.swipe ? { ...s, swipe: setSwipeSide(s.swipe, side, year) } : s)),
-    [],
-  );
+  const setYear = useCallback((year: YearKey) => setState((s) => ({ ...s, year })), []);
+  const setSide = useCallback((side: Side, year: YearKey) => setState((s) => ({ ...s, swipe: setSwipeSide(s.swipe, side, year) })), []);
   const toggleHorizontal = useCallback(() => setState((s) => ({ ...s, isHorizontal: !s.isHorizontal })), []);
-  const swap = useCallback(() => setState((s) => (s.swipe ? { ...s, swipe: [s.swipe[1], s.swipe[0]] } : s)), []);
-  const toggleCompare = useCallback(() => {
-    setIsPlaying(false);
-    setState((s) =>
-      s.swipe ? { ...s, year: s.swipe[1], swipe: null } : { ...s, swipe: [s.year === 'today' ? '1935' : s.year, 'today'] },
-    );
-  }, []);
+  const swap = useCallback(() => setState((s) => ({ ...s, swipe: [s.swipe[1], s.swipe[0]] })), []);
+  const setMode = useCallback(
+    (mode: ViewMode) => {
+      if (mode === state.mode) return;
+      setIsPlaying(mode === 'timelapse');
+      setState((s) => {
+        if (mode === 'compare') return { ...s, mode, swipe: [s.year === 'today' ? '1935' : s.year, 'today'] };
+        const year = s.mode === 'compare' ? s.swipe[1] : s.year;
+        const startsOver = mode === 'timelapse' && (s.mode === 'compare' || !stepYear(year, 1));
+        return { ...s, mode, year: startsOver ? YEAR_KEYS[0] : year };
+      });
+    },
+    [state.mode],
+  );
   const togglePlay = useCallback(() => {
     if (isPlaying) return setIsPlaying(false);
-    setState((s) => ({ ...s, swipe: null, year: s.swipe || s.year === 'today' ? YEAR_KEYS[0] : s.year }));
+    setState((s) => (stepYear(s.year, 1) ? s : { ...s, year: YEAR_KEYS[0] }));
     setIsPlaying(true);
   }, [isPlaying]);
 
@@ -214,9 +230,9 @@ export function MapApp({ spots }: MapAppProps) {
     const timer = setTimeout(() => {
       setState((s) => ({ ...s, year: nextYear }));
       if (!stepYear(nextYear, 1)) setIsPlaying(false);
-    }, PLAY_HOLD_MS);
+    }, PLAY_HOLD_MS / speed);
     return () => clearTimeout(timer);
-  }, [isPlaying, isBusy, nextYear]);
+  }, [isPlaying, isBusy, nextYear, speed]);
 
   const dismissHint = () => {
     if (hasSeenHint) return;
@@ -236,15 +252,15 @@ export function MapApp({ spots }: MapAppProps) {
       {isReady ? (
         <MapView
           camera={initialCamera}
-          left={state.swipe ? state.swipe[0] : state.year}
-          right={state.swipe ? state.swipe[1] : null}
+          left={isComparing ? state.swipe[0] : state.year}
+          right={isComparing ? state.swipe[1] : null}
           ahead={isPlaying ? (nextYear ?? null) : null}
           spots={spots}
           activeSpot={activeId}
           onSpot={openSpot}
           showLabels={showLabels}
           showPins={showPins}
-          years={state.swipe ? [yearNumber(state.swipe[0]), yearNumber(state.swipe[1])] : [yearNumber(state.year)]}
+          years={isComparing ? [yearNumber(state.swipe[0]), yearNumber(state.swipe[1])] : [yearNumber(state.year)]}
           secondSide={secondSide}
           myLocation={me}
           onMap={setMap}
@@ -253,7 +269,7 @@ export function MapApp({ spots }: MapAppProps) {
         <div className="fixed inset-0 bg-[#1a1b1e]" />
       )}
 
-      {map && state.swipe && (
+      {map && isComparing && (
         <SwipeDivider
           map={map}
           ratio={ratio}
@@ -266,7 +282,7 @@ export function MapApp({ spots }: MapAppProps) {
         />
       )}
 
-      {map && <CoverageNotice map={map} years={state.swipe ?? [state.year]} />}
+      {map && <CoverageNotice map={map} years={shownYears(state)} />}
 
       <AboutDialog />
 
@@ -289,24 +305,30 @@ export function MapApp({ spots }: MapAppProps) {
       </div>
 
       <div
-        className={cn(isPanelOpen && 'sm:[&>nav]:-translate-x-[calc(var(--pw)/2)]')}
+        className={cn(
+          isPanelOpen && 'sm:[&>nav]:max-w-[min(48rem,calc(100%-var(--pw)-20px))] sm:[&>nav]:-translate-x-[calc(var(--pw)/2)]',
+        )}
         style={{ ['--pw' as string]: `${PANEL_WIDTH + 12}px` }}
       >
-        <YearControls
-          state={state}
-          setYear={setYear}
-          setSide={setSide}
-          swap={swap}
-          toggleCompare={toggleCompare}
-          toggleHorizontal={toggleHorizontal}
-          isPlaying={isPlaying}
-          togglePlay={togglePlay}
-        />
+        {isReady && (
+          <YearControls
+            state={state}
+            setMode={setMode}
+            setYear={setYear}
+            setSide={setSide}
+            swap={swap}
+            toggleHorizontal={toggleHorizontal}
+            isPlaying={isPlaying}
+            togglePlay={togglePlay}
+            speed={speed}
+            setSpeed={setSpeed}
+          />
+        )}
       </div>
 
       <div
         className={cn(
-          'fixed right-3.5 bottom-[calc(88px+env(safe-area-inset-bottom))] z-[900] flex flex-col gap-2 transition-[right] duration-300 xl:bottom-9',
+          'fixed right-3.5 bottom-[calc(130px+env(safe-area-inset-bottom))] z-[900] flex flex-col gap-2 transition-[right] duration-300 xl:bottom-9',
           isPanelOpen && 'sm:right-[calc(var(--pw)+38px)]',
         )}
         style={{ ['--pw' as string]: `${PANEL_WIDTH}px` }}
@@ -331,7 +353,7 @@ export function MapApp({ spots }: MapAppProps) {
               style={{ width: `${loading.total ? Math.round((loading.done / loading.total) * 100) : 100}%` }}
             />
           </div>
-          <div className="glass-strong fixed top-14 left-1/2 flex -translate-x-1/2 items-center gap-2.5 rounded-full px-3.5 py-2 text-[13px] whitespace-nowrap text-foreground/85 tabular-nums sm:top-16">
+          <div className="glass-strong fixed top-14 left-1/2 flex -translate-x-1/2 items-center gap-2.5 rounded-full px-3.5 py-2 text-[13px] whitespace-nowrap text-foreground/85 tabular-nums sm:top-16 xl:top-28">
             <span className="size-3.5 animate-spin rounded-full border-2 border-white/20 border-t-gold" />
             {t.map.loading} {loading.done}/{loading.total}
           </div>

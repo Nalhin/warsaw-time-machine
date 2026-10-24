@@ -3,10 +3,17 @@ import { otherYear, parseYear, type YearKey } from './years';
 
 export type Side = 0 | 1;
 export type SwipeYears = [YearKey, YearKey];
+export type ViewMode = 'compare' | 'year' | 'timelapse';
+
+export const VIEW_MODES: ViewMode[] = ['compare', 'year', 'timelapse'];
+export const PLAYBACK_SPEEDS = [0.5, 1, 2] as const;
+
+export type PlaybackSpeed = (typeof PLAYBACK_SPEEDS)[number];
 
 export interface MapState {
+  mode: ViewMode;
   year: YearKey;
-  swipe: SwipeYears | null;
+  swipe: SwipeYears;
   isHorizontal: boolean;
 }
 
@@ -17,7 +24,7 @@ export interface MapCamera {
 }
 
 export const DEFAULT_SWIPE: SwipeYears = ['1935', 'today'];
-export const DEFAULT_STATE: MapState = { year: '1935', swipe: DEFAULT_SWIPE, isHorizontal: false };
+export const DEFAULT_STATE: MapState = { mode: 'compare', year: '1935', swipe: DEFAULT_SWIPE, isHorizontal: false };
 export const START: MapCamera = { lat: 52.2445, lng: 21.0122, zoom: 16 };
 export const MIN_ZOOM = 11;
 export const MAX_ZOOM = 20;
@@ -29,18 +36,32 @@ export function setSwipeSide(years: SwipeYears, side: Side, year: YearKey): Swip
   return next;
 }
 
+export function shownYears(s: MapState): [YearKey] | SwipeYears {
+  return s.mode === 'compare' ? s.swipe : [s.year];
+}
+
+function readMode(q: URLSearchParams, hasYear: boolean): ViewMode {
+  if (q.get('mode')?.trim().toLowerCase() === 'timelapse') return 'timelapse';
+  return hasYear && !q.has('swipe') ? 'year' : 'compare';
+}
+
 export function readMapState(search: string): MapState {
   const q = new URLSearchParams(search);
   const year = parseYear(q.get('year'));
-  let swipe: MapState['swipe'] = null;
+  let swipe: SwipeYears = [...DEFAULT_SWIPE];
   const sw = q.get('swipe');
   if (sw !== null) {
     const [a, b] = sw.split(',').map(parseYear);
     swipe = [a ?? '1935', b ?? otherYear(a)];
     if (swipe[0] === swipe[1]) swipe[1] = otherYear(swipe[0]);
-  } else if (!year) swipe = [...DEFAULT_SWIPE];
+  }
   const divider = q.get('divider')?.trim().toLowerCase();
-  return { year: year ?? '1935', swipe, isHorizontal: divider === 'horizontal' || divider === 'h' };
+  return {
+    mode: readMode(q, !!year),
+    year: year ?? '1935',
+    swipe,
+    isHorizontal: divider === 'horizontal' || divider === 'h',
+  };
 }
 
 export function readCamera(search: string): MapCamera | null {
@@ -58,9 +79,10 @@ export function formatCamera({ lat, lng, zoom }: MapCamera): string {
 
 export function mapStateToQuery(s: MapState, camera: MapCamera | null = null): string {
   const parts: string[] = [];
-  if (!s.swipe) parts.push(`year=${s.year}`);
+  if (s.mode === 'timelapse') parts.push('mode=timelapse');
+  if (s.mode !== 'compare') parts.push(`year=${s.year}`);
   else if (s.swipe.join() !== DEFAULT_SWIPE.join()) parts.push(`swipe=${s.swipe.join(',')}`);
-  if (s.swipe && s.isHorizontal) parts.push('divider=horizontal');
+  if (s.mode === 'compare' && s.isHorizontal) parts.push('divider=horizontal');
   if (camera) parts.push(`at=${formatCamera(camera)}`);
   return parts.length ? `?${parts.join('&')}` : '';
 }

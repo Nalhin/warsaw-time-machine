@@ -56,7 +56,7 @@ function capture(map: L.Map, state: MapState, ratio: number, inset: Inset): Capt
       metersPerPixel: (se.x - nw.x) / width,
     },
     divider: state.isHorizontal ? (ratio * size.y) / height : (ratio * size.x) / width,
-    isHorizontal: !!state.swipe && state.isHorizontal,
+    isHorizontal: state.mode === 'compare' && state.isHorizontal,
     link: `${location.origin}${location.pathname}${mapStateToQuery(state, camera)}`,
   };
 }
@@ -106,7 +106,7 @@ export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialo
   const onOpenChange = (next: boolean) => {
     if (next) {
       setSnap(capture(map, state, ratio, inset));
-      setYears(state.swipe ? [...state.swipe] : [state.year, otherYear(state.year)]);
+      setYears(state.mode === 'compare' ? [...state.swipe] : [state.year, otherYear(state.year)]);
       setHasLabels(showLabels);
       setIsCopied(false);
       setMode('link');

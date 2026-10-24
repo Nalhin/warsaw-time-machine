@@ -156,8 +156,8 @@ export function SwipeDivider({
         </>
       ) : (
         <>
-          <span className={cn(YEAR_TAG_CLASS, 'right-[calc(100%-var(--pos)+14px)]')}>{leftLabel}</span>
-          <span className={cn(YEAR_TAG_CLASS, 'left-[calc(var(--pos)+14px)]')}>{rightLabel}</span>
+          <span className={cn(YEAR_TAG_CLASS, 'right-[calc(100%-var(--pos)+14px)] xl:top-[calc(116px+env(safe-area-inset-top))]')}>{leftLabel}</span>
+          <span className={cn(YEAR_TAG_CLASS, 'left-[calc(var(--pos)+14px)] xl:top-[calc(116px+env(safe-area-inset-top))]')}>{rightLabel}</span>
         </>
       )}
     </div>

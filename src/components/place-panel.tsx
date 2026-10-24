@@ -83,7 +83,7 @@ function PlaceContent({ spot, onClose }: PlaceContentProps) {
   const t = useMessages();
   const map = useMapState();
   const isOnSecondSide = useSecondSide().has(spot.id);
-  const mapYear = map.swipe ? map.swipe[isOnSecondSide ? 1 : 0] : map.year;
+  const mapYear = map.mode === 'compare' ? map.swipe[isOnSecondSide ? 1 : 0] : map.year;
   const fromMap = nearestPhoto(spot, yearNumber(mapYear));
   const [picked, setPicked] = useState<Photo | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
