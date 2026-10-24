@@ -1,20 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <defs>
     <clipPath id="tile"><rect width="32" height="32" rx="7"/></clipPath>
-    <clipPath id="old"><rect width="16" height="32"/></clipPath>
-    <clipPath id="new"><rect x="16" width="16" height="32"/></clipPath>
   </defs>
   <g clip-path="url(#tile)">
-    <g clip-path="url(#old)">
-      <rect width="32" height="32" fill="#8c8c8c"/>
-      <path d="M-2 26C9 18 21 30 34 20" fill="none" stroke="#4a4a4a" stroke-width="6"/>
+    <rect width="16" height="32" fill="#8c8c8c"/>
+    <rect x="16" width="16" height="32" fill="#e3b667"/>
+    <g transform="matrix(-1 0 0 1 32.8 1)" fill="#22190a" stroke="#22190a" stroke-linecap="round">
+      <circle cx="17.8" cy="7.8" r="1.85"/>
+      <path d="M15.8 11.2Q16 10.1 17.9 10.1Q20.2 10.1 20.5 11.2L19.8 17H16.6Z"/>
+      <path d="M16.6 17H19.8C21.4 20.4 21.2 23.6 18.6 25.6C16.6 27.1 13.8 26.9 12.4 25.4L13.4 24.4C14.6 25.2 16.4 25.2 17.4 24.2C18.8 22.8 18.6 20 16.6 17Z"/>
+      <path d="M13.2 25L9.4 22.2L10.6 25.4L9 28.4Z"/>
+      <path d="M20 11.2L23.4 5.6M16.4 11.6L13.8 14.2" fill="none" stroke-width="1.7"/>
+      <path d="M23.4 5.6L18.2 1.4M22 4.6L24.6 6.8" fill="none" stroke-width="1.2"/>
+      <circle cx="12" cy="15.8" r="3.2"/>
+      <circle cx="12" cy="15.8" r="1.7" fill="none" stroke="#e3b667" stroke-width=".7"/>
     </g>
-    <g clip-path="url(#new)">
-      <rect width="32" height="32" fill="#e3b667"/>
-      <path d="M-2 26C9 18 21 30 34 20" fill="none" stroke="#3f8fcc" stroke-width="6"/>
-    </g>
-    <rect x="15" width="2" height="32" fill="#fff"/>
-    <circle cx="16" cy="12" r="4.5" fill="#fff"/>
-    <circle cx="16" cy="12" r="2.5" fill="#22190a"/>
   </g>
 </svg>
