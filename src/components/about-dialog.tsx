@@ -40,7 +40,7 @@ export function AboutDialog() {
         <button
           type="button"
           title={t.about.trigger}
-          className="glass fixed top-[calc(12px+env(safe-area-inset-top))] left-3 z-[1000] flex h-11 items-center rounded-full px-4 text-sm font-semibold transition-colors hover:bg-muted data-[state=open]:bg-muted"
+          className="glass fixed top-[calc(12px+env(safe-area-inset-top))] left-3 z-[1000] flex h-[42px] items-center rounded-full px-3.5 text-[0.8rem] font-semibold transition-colors hover:bg-muted data-[state=open]:bg-muted"
         >
           <span className="whitespace-nowrap">{t.about.label}</span>
         </button>

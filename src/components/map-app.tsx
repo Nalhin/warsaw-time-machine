@@ -50,7 +50,7 @@ const MapView = dynamic(() => import('@/components/map/map-view').then((m) => m.
 
 const ShareDialog = dynamic(() => import('@/components/share-dialog').then((m) => m.ShareDialog), {
   ssr: false,
-  loading: () => <div className="h-11" />,
+  loading: () => <div className="h-[42px]" />,
 });
 
 const HINT_KEY = 'wtm-dragged';

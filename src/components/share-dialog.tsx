@@ -303,7 +303,7 @@ export function ShareDialog({ map, state, ratio, speed, showLabels, inset }: Sha
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
-            <Button className="h-11 rounded-full bg-gold px-4 text-sm font-semibold text-gold-foreground shadow-lg hover:bg-gold/85">
+            <Button className="h-[42px] gap-1.5 rounded-full bg-gold px-3.5 text-[0.8rem] font-semibold text-gold-foreground shadow-lg hover:bg-gold/85 [&_svg:not([class*='size-'])]:size-3.5">
               <Share2 />
               {m.trigger}
             </Button>
