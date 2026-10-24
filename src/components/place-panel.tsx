@@ -18,7 +18,15 @@ import { cn } from '@/lib/utils';
 export const DRAWER_PEEK = 0.55;
 export const PANEL_WIDTH = 480;
 
-function CreditLine({ c }: { c: Credit }) {
+export function panelInset(isMobile: boolean) {
+  return isMobile ? { right: 0, bottom: innerHeight * DRAWER_PEEK } : { right: PANEL_WIDTH + 24, bottom: 0 };
+}
+
+interface CreditLineProps {
+  c: Credit;
+}
+
+function CreditLine({ c }: CreditLineProps) {
   const t = useMessages();
   return (
     <p
@@ -47,19 +55,15 @@ function CreditLine({ c }: { c: Credit }) {
 
 const PANEL_FRAME = 4 / 3;
 
-function SinglePhoto({
-  photo,
-  alt,
-  sizes,
-  frame,
-  className,
-}: {
+interface SinglePhotoProps {
   photo: Photo;
   alt: string;
   sizes: string;
   frame?: number;
   className?: string;
-}) {
+}
+
+function SinglePhoto({ photo, alt, sizes, frame, className }: SinglePhotoProps) {
   return (
     <div
       className={cn('relative overflow-hidden rounded-[2px] bg-neutral-900', className)}
@@ -70,28 +74,37 @@ function SinglePhoto({
   );
 }
 
-function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
+interface PlaceContentProps {
+  spot: Spot;
+  onClose(): void;
+}
+
+function PlaceContent({ spot, onClose }: PlaceContentProps) {
   const t = useMessages();
   const map = useMapState();
-  const onSecondSide = useSecondSide().has(spot.id);
-  const mapYear = map.swipe ? map.swipe[onSecondSide ? 1 : 0] : map.year;
+  const isOnSecondSide = useSecondSide().has(spot.id);
+  const mapYear = map.swipe ? map.swipe[isOnSecondSide ? 1 : 0] : map.year;
   const fromMap = nearestPhoto(spot, yearNumber(mapYear));
   const [picked, setPicked] = useState<Photo | null>(null);
-  const [zoomed, setZoomed] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   useEffect(() => setPicked(null), [mapYear]);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && !zoomed && onClose();
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && !isZoomed && onClose();
     addEventListener('keydown', onKey);
     return () => removeEventListener('keydown', onKey);
-  }, [onClose, zoomed]);
+  }, [onClose, isZoomed]);
 
   const photo = picked ?? fromMap;
   const index = spot.photos.indexOf(photo);
-  const gap = Math.abs(fromMap.year - yearNumber(mapYear)) > NEAR_YEARS;
+  const hasGap = Math.abs(fromMap.year - yearNumber(mapYear)) > NEAR_YEARS;
+  const steps = [
+    { delta: -1, icon: ChevronLeft, label: t.spot.older, side: 'left-2' },
+    { delta: 1, icon: ChevronRight, label: t.spot.newer, side: 'right-2' },
+  ];
 
-  const step = (d: number) => setPicked(spot.photos[(index + d + spot.photos.length) % spot.photos.length]);
+  const step = (delta: number) => setPicked(spot.photos[(index + delta + spot.photos.length) % spot.photos.length]);
 
   return (
     <div className="px-4 pt-1 pb-[calc(24px+env(safe-area-inset-bottom))] sm:px-5 sm:pt-5">
@@ -110,14 +123,11 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
           frame={PANEL_FRAME}
         />
         {spot.photos.length > 1 &&
-          ([
-            [-1, ChevronLeft, t.spot.older, 'left-2'],
-            [1, ChevronRight, t.spot.newer, 'right-2'],
-          ] as const).map(([d, Icon, label, side]) => (
+          steps.map(({ delta, icon: Icon, label, side }) => (
             <button
-              key={d}
+              key={delta}
               type="button"
-              onClick={() => step(d)}
+              onClick={() => step(delta)}
               aria-label={label}
               title={label}
               className={cn(
@@ -130,7 +140,7 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
           ))}
         <button
           type="button"
-          onClick={() => setZoomed(true)}
+          onClick={() => setIsZoomed(true)}
           aria-label={t.spot.fullScreen}
           title={t.spot.fullScreen}
           className="absolute right-2.5 bottom-2.5 grid size-8 place-items-center rounded-full bg-black/60 text-white backdrop-blur hover:bg-black/80"
@@ -147,7 +157,7 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
             className={cn('col-start-1 row-start-1', p !== photo && 'invisible')}
           >
             {p.caption}
-            {gap && p === fromMap && (
+            {hasGap && p === fromMap && (
               <span className="mt-1 block text-xs">{t.spot.gap(t.years[mapYear].label, fromMap.date)}</span>
             )}
           </p>
@@ -166,7 +176,7 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
         </div>
         <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pt-0.5 pb-2">
           {spot.photos.map((p) => {
-            const on = p === photo;
+            const isSelected = p === photo;
             return (
               <button
                 key={p.src}
@@ -180,10 +190,10 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
                   alt=""
                   className={cn(
                     'size-16 rounded-lg object-cover ring-offset-2 ring-offset-background transition',
-                    on ? 'ring-2 ring-gold' : 'opacity-75 group-hover:opacity-100',
+                    isSelected ? 'ring-2 ring-gold' : 'opacity-75 group-hover:opacity-100',
                   )}
                 />
-                <span className={cn('mt-1 block text-[11px] tabular-nums', on ? 'font-semibold text-foreground' : 'text-muted-foreground')}>
+                <span className={cn('mt-1 block text-[11px] tabular-nums', isSelected ? 'font-semibold text-foreground' : 'text-muted-foreground')}>
                   {p.approx ? t.spot.circa(p.year) : p.year}
                 </span>
               </button>
@@ -194,7 +204,7 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
 
       {spot.description && <p className="mt-3 text-[15px] leading-relaxed text-foreground/85">{spot.description}</p>}
 
-      <Dialog open={zoomed} onOpenChange={setZoomed}>
+      <Dialog open={isZoomed} onOpenChange={setIsZoomed}>
         <DialogContent className="flex max-h-none w-auto max-w-[calc(100vw-24px)] flex-col items-center border-0 bg-transparent p-0 shadow-none ring-0 sm:max-w-[calc(100vw-48px)]">
           <DialogTitle className="sr-only">{spot.name}</DialogTitle>
           <div style={{ width: `min(calc(100vw - 32px), calc((100dvh - 160px) * ${photo.ratio}))` }}>
@@ -209,15 +219,19 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
   );
 }
 
-export function PlacePanel({ spot }: { spot: Spot }) {
+interface PlacePanelProps {
+  spot: Spot;
+}
+
+export function PlacePanel({ spot }: PlacePanelProps) {
   const router = useRouter();
   const locale = useLocale();
   const t = useMessages();
-  const mobile = useIsMobile();
+  const isMobile = useIsMobile();
   const [snap, setSnap] = useState<number | string | null>(DRAWER_PEEK);
   const close = () => router.push(`${localePath(locale, '/')}${location.search}`, { scroll: false });
 
-  if (mobile) {
+  if (isMobile)
     return (
       <Drawer
         open
@@ -236,7 +250,6 @@ export function PlacePanel({ spot }: { spot: Spot }) {
         </DrawerContent>
       </Drawer>
     );
-  }
 
   return (
     <aside

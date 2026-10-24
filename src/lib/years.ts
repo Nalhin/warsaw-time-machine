@@ -58,12 +58,9 @@ export interface YearDef {
   label?: string;
 }
 
-const year = (key: YearKey, def: Omit<YearDef, 'key' | 'outline' | 'coverage'>): YearDef => ({
-  key,
-  ...def,
-  outline: OUTLINES[key],
-  coverage: boundsOf(OUTLINES[key]),
-});
+function year(key: YearKey, def: Omit<YearDef, 'key' | 'outline' | 'coverage'>): YearDef {
+  return { key, ...def, outline: OUTLINES[key], coverage: boundsOf(OUTLINES[key]) };
+}
 
 export const YEARS: YearDef[] = [
   year('1935', { layer: 'FOTOPLAN_1935', fallbackLayer: 'RASTER_FOTOPLAN_1935' }),
@@ -92,11 +89,25 @@ export const YEARS: YearDef[] = [
   year('today', { layer: 'ORTOFOTO_2025', fallbackLayer: 'ORTO' }),
 ];
 
-export const yearDef = (key: YearKey) => YEARS.find((y) => y.key === key)!;
+export function yearDef(key: YearKey) {
+  return YEARS.find((y) => y.key === key)!;
+}
 
-export const yearLabel = (key: YearKey) => yearDef(key).label ?? key;
+export function yearLabel(key: YearKey) {
+  return yearDef(key).label ?? key;
+}
 
-export const featherPx = (zoom: number) => Math.min(24, Math.max(3, 3 * 2 ** ((zoom - 11) / 2)));
+export function stepYear(key: YearKey, delta: number): YearKey | undefined {
+  return YEAR_KEYS[YEAR_KEYS.indexOf(key) + delta];
+}
+
+export function otherYear(key: YearKey | null): YearKey {
+  return key === 'today' ? '1935' : 'today';
+}
+
+export function featherPx(zoom: number) {
+  return Math.min(24, Math.max(3, 3 * 2 ** ((zoom - 11) / 2)));
+}
 
 export function parseYear(v: string | null | undefined): YearKey | null {
   if (!v) return null;

@@ -9,7 +9,13 @@ import { YEAR_KEYS } from '@/lib/years';
 
 export { viewport } from '@/components/AppShell';
 
-type Props = { params: Promise<{ lang: string }> };
+interface LocaleParams {
+  params: Promise<{ lang: string }>;
+}
+
+interface LocaleLayoutProps extends LocaleParams {
+  children: React.ReactNode;
+}
 
 export const dynamicParams = false;
 
@@ -17,7 +23,7 @@ export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
   const { lang } = await params;
   if (!isLocale(lang)) return {};
   const t = MESSAGES[lang];
@@ -50,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function LocaleLayout({ children, params }: Props & { children: React.ReactNode }) {
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   return <AppShell locale={lang}>{children}</AppShell>;

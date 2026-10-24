@@ -19,7 +19,12 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-export function AppShell({ locale, children }: { locale: Locale; children: React.ReactNode }) {
+interface AppShellProps {
+  locale: Locale;
+  children: React.ReactNode;
+}
+
+export function AppShell({ locale, children }: AppShellProps) {
   return (
     <html lang={locale} className={`dark ${inter.variable}`}>
       <body>

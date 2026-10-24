@@ -36,4 +36,6 @@ export function spotsFor(locale: Locale): Spot[] {
 
 export const SPOT_IDS = RAW.map((s) => s.id);
 
-export const getSpot = (id: string, locale: Locale) => spotsFor(locale).find((s) => s.id === id);
+export function getSpot(id: string, locale: Locale) {
+  return spotsFor(locale).find((s) => s.id === id);
+}

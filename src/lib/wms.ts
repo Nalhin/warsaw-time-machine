@@ -13,7 +13,7 @@ const LABEL_LAYERS = [
   'ORTO_ULICE_POWIERZCHNIOWE_15_18',
 ].join(',');
 
-let primaryDead = false;
+let isPrimaryDead = false;
 
 export function whiteToAlpha(canvas: HTMLCanvasElement, img: HTMLImageElement) {
   const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
@@ -45,12 +45,17 @@ const BlankWhiteWMS: new (url: string, options: L.WMSOptions) => L.TileLayer.WMS
   },
 });
 
-export function createYearLayer(key: YearKey, pane: string, credit: { label: string; owner: string }): L.TileLayer.WMS {
+export interface LayerCredit {
+  label: string;
+  owner: string;
+}
+
+export function createYearLayer(key: YearKey, pane: string, credit: LayerCredit): L.TileLayer.WMS {
   const def = yearDef(key);
   const Layer = def.whiteIsBlank ? BlankWhiteWMS : L.TileLayer.WMS;
-  const useFallback = primaryDead && !!def.fallbackLayer;
-  const layer = new Layer(useFallback ? FALLBACK_URL : PRIMARY_URL, {
-    layers: useFallback ? def.fallbackLayer : def.layer,
+  const shouldUseFallback = isPrimaryDead && !!def.fallbackLayer;
+  const layer = new Layer(shouldUseFallback ? FALLBACK_URL : PRIMARY_URL, {
+    layers: shouldUseFallback ? def.fallbackLayer : def.layer,
     format: 'image/png',
     transparent: true,
     bounds: L.latLngBounds(def.coverage),
@@ -61,17 +66,17 @@ export function createYearLayer(key: YearKey, pane: string, credit: { label: str
     keepBuffer: 1,
     updateWhenZooming: false,
     attribution: `${credit.label} <a href="https://mapa.um.warszawa.pl" target="_blank" rel="noopener">${credit.owner}</a>`,
-    ...(useFallback ? {} : { DATASOURCE: 'dane_wawa' }),
+    ...(shouldUseFallback ? {} : { DATASOURCE: 'dane_wawa' }),
   } as L.WMSOptions);
 
-  let ok = 0;
-  let failed = 0;
-  layer.on('tileload', () => ok++);
+  let loadedCount = 0;
+  let failedCount = 0;
+  layer.on('tileload', () => loadedCount++);
   layer.on('tileerror', () => {
-    failed++;
+    failedCount++;
     if (!def.fallbackLayer || (layer as any)._url === FALLBACK_URL) return;
-    if (ok === 0 && failed >= FAILS_BEFORE_FALLBACK) {
-      primaryDead = true;
+    if (loadedCount === 0 && failedCount >= FAILS_BEFORE_FALLBACK) {
+      isPrimaryDead = true;
       const params = (layer as any).wmsParams as Record<string, unknown>;
       delete params.DATASOURCE;
       params.layers = def.fallbackLayer;
@@ -129,7 +134,7 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 
 export async function fetchYearImage(key: YearKey, bbox: BBox, width: number, height: number) {
   const def = yearDef(key);
-  if (!primaryDead || !def.fallbackLayer) {
+  if (!isPrimaryDead || !def.fallbackLayer) {
     try {
       return await loadImage(getMapUrl(PRIMARY_URL, def.layer, bbox, width, height));
     } catch {

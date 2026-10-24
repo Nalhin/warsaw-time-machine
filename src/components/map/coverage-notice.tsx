@@ -8,21 +8,34 @@ import { yearDef, type Box, type YearKey } from '@/lib/years';
 
 const MIN_OVERLAP = 0.1;
 
-const area = ([[s, w], [n, e]]: Box) => Math.max(0, n - s) * Math.max(0, e - w);
+function area([[s, w], [n, e]]: Box) {
+  return Math.max(0, n - s) * Math.max(0, e - w);
+}
 
-const intersect = ([[s1, w1], [n1, e1]]: Box, [[s2, w2], [n2, e2]]: Box): Box => [
-  [Math.max(s1, s2), Math.max(w1, w2)],
-  [Math.min(n1, n2), Math.min(e1, e2)],
-];
+function intersect([[s1, w1], [n1, e1]]: Box, [[s2, w2], [n2, e2]]: Box): Box {
+  return [
+    [Math.max(s1, s2), Math.max(w1, w2)],
+    [Math.min(n1, n2), Math.min(e1, e2)],
+  ];
+}
 
-const overlap = (view: Box, cov: Box) => area(intersect(view, cov)) / Math.min(area(view), area(cov));
+function overlap(view: Box, cov: Box) {
+  return area(intersect(view, cov)) / Math.min(area(view), area(cov));
+}
 
-const toBox = (b: L.LatLngBounds): Box => [
-  [b.getSouth(), b.getWest()],
-  [b.getNorth(), b.getEast()],
-];
+function toBox(b: L.LatLngBounds): Box {
+  return [
+    [b.getSouth(), b.getWest()],
+    [b.getNorth(), b.getEast()],
+  ];
+}
 
-export function CoverageNotice({ map, years }: { map: L.Map; years: YearKey[] }) {
+interface CoverageNoticeProps {
+  map: L.Map;
+  years: YearKey[];
+}
+
+export function CoverageNotice({ map, years }: CoverageNoticeProps) {
   const t = useMessages();
   const key = years.join(',');
   const [missing, setMissing] = useState<YearKey[]>([]);

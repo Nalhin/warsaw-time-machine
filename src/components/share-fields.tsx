@@ -6,9 +6,15 @@ import { useMessages } from '@/components/LocaleProvider';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { YearSelect } from '@/components/YearControls';
+import type { Side, SwipeYears } from '@/lib/state';
 import type { YearKey } from '@/lib/years';
 
-export function Field({ label, children }: { label: string; children: React.ReactNode }) {
+interface FieldProps {
+  label: string;
+  children: React.ReactNode;
+}
+
+export function Field({ label, children }: FieldProps) {
   return (
     <div className="grid gap-1.5">
       <span className="text-xs font-medium text-muted-foreground">{label}</span>
@@ -17,17 +23,20 @@ export function Field({ label, children }: { label: string; children: React.Reac
   );
 }
 
-export function Choice<T extends string>({
-  value,
-  onChange,
-  options,
-  label,
-}: {
-  value: T;
-  onChange(v: T): void;
-  options: { key: T; label: string; hint?: string }[];
+interface ChoiceOption<T extends string> {
+  key: T;
   label: string;
-}) {
+  hint?: string;
+}
+
+interface ChoiceProps<T extends string> {
+  value: T;
+  onChange(value: T): void;
+  options: ChoiceOption<T>[];
+  label: string;
+}
+
+export function Choice<T extends string>({ value, onChange, options, label }: ChoiceProps<T>) {
   return (
     <ToggleGroup
       type="single"
@@ -53,17 +62,14 @@ export function Choice<T extends string>({
   );
 }
 
-export function YearPair({
-  years,
-  sides,
-  onSide,
-  onSwap,
-}: {
-  years: [YearKey, YearKey];
+interface YearPairProps {
+  years: SwipeYears;
   sides: [string, string];
-  onSide(side: 0 | 1, year: YearKey): void;
+  onSide(side: Side, year: YearKey): void;
   onSwap(): void;
-}) {
+}
+
+export function YearPair({ years, sides, onSide, onSwap }: YearPairProps) {
   const m = useMessages().share;
   return (
     <div className="grid gap-1.5">
@@ -78,10 +84,10 @@ export function YearPair({
           <span className="w-12 shrink-0 text-xs text-muted-foreground">{sides[i]}</span>
           <YearSelect
             value={year}
-            onChange={(y) => onSide(i as 0 | 1, y)}
+            onChange={(y) => onSide(i as Side, y)}
             label={m.sideYear(sides[i])}
             className="flex-1 justify-between rounded-md border border-input bg-input/30"
-            modal
+            isModal
           />
         </div>
       ))}

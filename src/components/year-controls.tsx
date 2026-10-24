@@ -4,18 +4,24 @@ import { ArrowLeftRight, Check, ChevronDown, ChevronLeft, ChevronRight, Columns2
 import { DropdownMenu } from 'radix-ui';
 
 import { useMessages } from '@/components/LocaleProvider';
+import { MENU_ITEM_CLASS, MenuContent } from '@/components/Toolbar';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import type { MapState } from '@/lib/state';
+import type { MapState, Side } from '@/lib/state';
 import { cn } from '@/lib/utils';
-import { YEAR_KEYS, YEARS, type YearKey } from '@/lib/years';
+import { stepYear, YEARS, type YearKey } from '@/lib/years';
 
-function YearStepper({ value, onChange, label }: { value: YearKey; onChange(v: YearKey): void; label: string }) {
+interface YearPickerProps {
+  value: YearKey;
+  onChange(value: YearKey): void;
+  label: string;
+}
+
+function YearStepper({ value, onChange, label }: YearPickerProps) {
   const t = useMessages();
   const c = t.controls;
-  const i = YEAR_KEYS.indexOf(value);
-  const prev = YEAR_KEYS[i - 1];
-  const next = YEAR_KEYS[i + 1];
+  const prev = stepYear(value, -1);
+  const next = stepYear(value, 1);
   return (
     <div className="flex items-center">
       <Button
@@ -43,22 +49,15 @@ function YearStepper({ value, onChange, label }: { value: YearKey; onChange(v: Y
   );
 }
 
-export function YearSelect({
-  value,
-  onChange,
-  label,
-  className,
-  modal = false,
-}: {
-  value: YearKey;
-  onChange(v: YearKey): void;
-  label: string;
+interface YearSelectProps extends YearPickerProps {
   className?: string;
-  modal?: boolean;
-}) {
+  isModal?: boolean;
+}
+
+export function YearSelect({ value, onChange, label, className, isModal = false }: YearSelectProps) {
   const t = useMessages();
   return (
-    <DropdownMenu.Root modal={modal}>
+    <DropdownMenu.Root modal={isModal}>
       <DropdownMenu.Trigger asChild>
         <Button
           variant="ghost"
@@ -70,32 +69,35 @@ export function YearSelect({
           <ChevronDown className="size-3.5 opacity-60" />
         </Button>
       </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content
-          sideOffset={8}
-          collisionPadding={10}
-          className="glass-strong z-[1200] max-h-[min(70vh,var(--radix-dropdown-menu-content-available-height))] min-w-48 overflow-y-auto overscroll-contain rounded-xl p-1 text-sm text-foreground duration-150 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95"
-        >
-          <DropdownMenu.Label className="px-2.5 pt-1.5 pb-1 text-xs font-medium text-muted-foreground">{label}</DropdownMenu.Label>
-          <DropdownMenu.RadioGroup value={value} onValueChange={(v) => onChange(v as YearKey)}>
-            {YEARS.map((y) => (
-              <DropdownMenu.RadioItem
-                key={y.key}
-                value={y.key}
-                className="flex cursor-pointer items-center gap-3 rounded-lg py-1.5 pr-2 pl-2.5 outline-none select-none data-[highlighted]:bg-muted data-[state=checked]:text-gold"
-              >
-                <span className="w-16 font-semibold tabular-nums">{t.years[y.key].label}</span>
-                <span className="flex-1 text-xs text-muted-foreground">{t.years[y.key].era}</span>
-                <DropdownMenu.ItemIndicator>
-                  <Check className="size-4" />
-                </DropdownMenu.ItemIndicator>
-              </DropdownMenu.RadioItem>
-            ))}
-          </DropdownMenu.RadioGroup>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
+      <MenuContent
+        label={label}
+        className="max-h-[min(70vh,var(--radix-dropdown-menu-content-available-height))] min-w-48 overflow-y-auto overscroll-contain"
+      >
+        <DropdownMenu.RadioGroup value={value} onValueChange={(v) => onChange(v as YearKey)}>
+          {YEARS.map((y) => (
+            <DropdownMenu.RadioItem key={y.key} value={y.key} className={cn(MENU_ITEM_CLASS, 'data-[state=checked]:text-gold')}>
+              <span className="w-16 font-semibold tabular-nums">{t.years[y.key].label}</span>
+              <span className="flex-1 text-xs text-muted-foreground">{t.years[y.key].era}</span>
+              <DropdownMenu.ItemIndicator>
+                <Check className="size-4" />
+              </DropdownMenu.ItemIndicator>
+            </DropdownMenu.RadioItem>
+          ))}
+        </DropdownMenu.RadioGroup>
+      </MenuContent>
     </DropdownMenu.Root>
   );
+}
+
+interface YearControlsProps {
+  state: MapState;
+  setYear(year: YearKey): void;
+  setSide(side: Side, year: YearKey): void;
+  swap(): void;
+  toggleCompare(): void;
+  toggleHorizontal(): void;
+  isPlaying: boolean;
+  togglePlay(): void;
 }
 
 export function YearControls({
@@ -105,18 +107,9 @@ export function YearControls({
   swap,
   toggleCompare,
   toggleHorizontal,
-  playing,
+  isPlaying,
   togglePlay,
-}: {
-  state: MapState;
-  setYear(y: YearKey): void;
-  setSide(side: 0 | 1, y: YearKey): void;
-  swap(): void;
-  toggleCompare(): void;
-  toggleHorizontal(): void;
-  playing: boolean;
-  togglePlay(): void;
-}) {
+}: YearControlsProps) {
   const t = useMessages();
   const c = t.controls;
   const compare = state.swipe;
@@ -130,19 +123,19 @@ export function YearControls({
           <Button
             variant="ghost"
             size="icon"
-            className={cn('rounded-full', playing && 'text-gold')}
+            className={cn('rounded-full', isPlaying && 'text-gold')}
             onClick={togglePlay}
-            aria-label={playing ? c.pause : c.play}
-            aria-pressed={playing}
+            aria-label={isPlaying ? c.pause : c.play}
+            aria-pressed={isPlaying}
           >
-            {playing ? <Pause className="fill-current" /> : <Play className="fill-current" />}
+            {isPlaying ? <Pause className="fill-current" /> : <Play className="fill-current" />}
           </Button>
         </TooltipTrigger>
-        <TooltipContent>{playing ? c.pause : c.play}</TooltipContent>
+        <TooltipContent>{isPlaying ? c.pause : c.play}</TooltipContent>
       </Tooltip>
       {compare ? (
         <>
-          <YearSelect value={compare[0]} onChange={(y) => setSide(0, y)} label={state.horizontal ? c.topSide : c.leftSide} />
+          <YearSelect value={compare[0]} onChange={(y) => setSide(0, y)} label={state.isHorizontal ? c.topSide : c.leftSide} />
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="ghost" size="icon-sm" className="rounded-full" onClick={swap} aria-label={c.swapSides}>
@@ -151,7 +144,7 @@ export function YearControls({
             </TooltipTrigger>
             <TooltipContent>{c.swapSides}</TooltipContent>
           </Tooltip>
-          <YearSelect value={compare[1]} onChange={(y) => setSide(1, y)} label={state.horizontal ? c.bottomSide : c.rightSide} />
+          <YearSelect value={compare[1]} onChange={(y) => setSide(1, y)} label={state.isHorizontal ? c.bottomSide : c.rightSide} />
         </>
       ) : (
         <YearStepper value={state.year} onChange={setYear} label={c.year} />
@@ -179,13 +172,13 @@ export function YearControls({
               size="sm"
               className="h-8 rounded-full px-2 sm:px-2.5"
               onClick={toggleHorizontal}
-              aria-label={state.horizontal ? c.verticalDivider : c.horizontalDivider}
+              aria-label={state.isHorizontal ? c.verticalDivider : c.horizontalDivider}
             >
-              <SeparatorVertical className={cn('transition-transform duration-300', !state.horizontal && 'rotate-90')} />
-              <span className="hidden sm:inline">{state.horizontal ? c.vertical : c.horizontal}</span>
+              <SeparatorVertical className={cn('transition-transform duration-300', !state.isHorizontal && 'rotate-90')} />
+              <span className="hidden sm:inline">{state.isHorizontal ? c.vertical : c.horizontal}</span>
             </Button>
           </TooltipTrigger>
-          <TooltipContent>{state.horizontal ? c.verticalDivider : c.horizontalDivider}</TooltipContent>
+          <TooltipContent>{state.isHorizontal ? c.verticalDivider : c.horizontalDivider}</TooltipContent>
         </Tooltip>
       )}
     </nav>

@@ -7,10 +7,19 @@ import { MESSAGES } from '@/lib/messages';
 
 const LocaleContext = createContext<Locale>(DEFAULT_LOCALE);
 
-export function LocaleProvider({ locale, children }: { locale: Locale; children: React.ReactNode }) {
+interface LocaleProviderProps {
+  locale: Locale;
+  children: React.ReactNode;
+}
+
+export function LocaleProvider({ locale, children }: LocaleProviderProps) {
   return <LocaleContext value={locale}>{children}</LocaleContext>;
 }
 
-export const useLocale = () => useContext(LocaleContext);
+export function useLocale() {
+  return useContext(LocaleContext);
+}
 
-export const useMessages = () => MESSAGES[useLocale()];
+export function useMessages() {
+  return MESSAGES[useLocale()];
+}

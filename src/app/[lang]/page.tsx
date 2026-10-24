@@ -5,7 +5,11 @@ import { MESSAGES } from '@/lib/messages';
 import { SITE_NAME, SITE_URL } from '@/lib/site';
 import { spotsFor } from '@/lib/spot-data';
 
-export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
+interface HomeProps {
+  params: Promise<{ lang: string }>;
+}
+
+export default async function Home({ params }: HomeProps) {
   const { lang } = await params;
   if (!isLocale(lang)) return null;
   const t = MESSAGES[lang];

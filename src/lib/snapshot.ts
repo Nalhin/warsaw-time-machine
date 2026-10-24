@@ -8,7 +8,13 @@ export const LAYOUTS: Layout[] = ['side', 'stack', 'split'];
 
 const SCREEN_LONG_SIDE = 1600;
 
-export const FORMATS: { key: Format; width: number; height: number }[] = [
+export interface FormatSize {
+  key: Format;
+  width: number;
+  height: number;
+}
+
+export const FORMATS: FormatSize[] = [
   { key: 'screen', width: 0, height: 0 },
   { key: 'square', width: 1080, height: 1080 },
   { key: 'portrait', width: 1080, height: 1350 },
@@ -30,8 +36,8 @@ export interface SnapshotOptions {
   format: Format;
   area: SnapshotArea;
   divider: number;
-  horizontal: boolean;
-  labels: boolean;
+  isHorizontal: boolean;
+  hasLabels: boolean;
   host: string;
   yearLabels: [string, string];
   credit: string;
@@ -50,12 +56,16 @@ const PILL_BG = 'rgba(17, 18, 20, 0.84)';
 const PILL_FG = '#f3efe7';
 const EARTH_RADIUS = 6378137;
 
-const project = (lat: number, lng: number): [number, number] => [
-  (EARTH_RADIUS * lng * Math.PI) / 180,
-  EARTH_RADIUS * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360)),
-];
+type Rect = [x: number, y: number, width: number, height: number];
 
-function canvas(width: number, height: number) {
+function project(lat: number, lng: number): [number, number] {
+  return [
+    (EARTH_RADIUS * lng * Math.PI) / 180,
+    EARTH_RADIUS * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360)),
+  ];
+}
+
+function createCanvas(width: number, height: number) {
   const c = document.createElement('canvas');
   c.width = width;
   c.height = height;
@@ -97,22 +107,22 @@ function drawCoverageMask(ctx: CanvasRenderingContext2D, year: YearKey, bbox: BB
 
 const panelCache = new Map<string, Promise<HTMLCanvasElement>>();
 
-function renderPanel(year: YearKey, bbox: BBox, width: number, height: number, labels: boolean, feather: number) {
-  const key = [year, ...bbox.map((v) => v.toFixed(1)), width, height, labels, feather.toFixed(1)].join('|');
+function renderPanel(year: YearKey, bbox: BBox, width: number, height: number, hasLabels: boolean, feather: number) {
+  const key = [year, ...bbox.map((v) => v.toFixed(1)), width, height, hasLabels, feather.toFixed(1)].join('|');
   const cached = panelCache.get(key);
   if (cached) return cached;
 
   const job = (async () => {
     const [photo, names] = await Promise.all([
       fetchYearImage(year, bbox, width, height),
-      labels ? fetchLabelImage(bbox, width, height).catch(() => null) : null,
+      hasLabels ? fetchLabelImage(bbox, width, height).catch(() => null) : null,
     ]);
-    const c = canvas(width, height);
+    const c = createCanvas(width, height);
     const ctx = c.getContext('2d')!;
     ctx.fillStyle = BG;
     ctx.fillRect(0, 0, width, height);
     if (yearDef(year).whiteIsBlank) {
-      const tmp = canvas(width, height);
+      const tmp = createCanvas(width, height);
       whiteToAlpha(tmp, photo);
       ctx.drawImage(tmp, 0, 0);
     } else {
@@ -151,10 +161,10 @@ function pill(ctx: CanvasRenderingContext2D, text: string, x: number, y: number,
   ctx.fillText(text, left + padX + ink.actualBoundingBoxLeft, y + (h + cap) / 2);
 }
 
-function drawHandle(ctx: CanvasRenderingContext2D, cx: number, cy: number, s: number, horizontal: boolean) {
+function drawHandle(ctx: CanvasRenderingContext2D, cx: number, cy: number, s: number, isHorizontal: boolean) {
   ctx.save();
   ctx.translate(cx, cy);
-  if (horizontal) ctx.rotate(Math.PI / 2);
+  if (isHorizontal) ctx.rotate(Math.PI / 2);
   ctx.save();
   ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
   ctx.shadowBlur = 14 * s;
@@ -184,7 +194,7 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
     document.fonts.load(`500 24px ${sans}`),
   ]).catch(() => undefined);
 
-  const rects: [number, number, number, number][] =
+  const rects: Rect[] =
     o.layout === 'side'
       ? [
           [0, 0, Math.round(W / 2), H],
@@ -206,21 +216,21 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
       const bbox = fit(o.area, w, h);
       const outMpp = (bbox[2] - bbox[0]) / w;
       const feather = featherPx(o.area.zoom) * (o.area.metersPerPixel / outMpp);
-      return renderPanel(year, bbox, w, h, o.labels, feather);
+      return renderPanel(year, bbox, w, h, o.hasLabels, feather);
     }),
   );
 
-  const out = canvas(W, H);
+  const out = createCanvas(W, H);
   const ctx = out.getContext('2d')!;
   ctx.fillStyle = BG;
   ctx.fillRect(0, 0, W, H);
 
   const full = fit(o.area, W, H);
-  const along = o.horizontal
+  const along = o.isHorizontal
     ? (full[3] - (o.area.cy + o.area.height / 2 - o.divider * o.area.height)) / (full[3] - full[1])
     : (o.area.cx - o.area.width / 2 + o.divider * o.area.width - full[0]) / (full[2] - full[0]);
-  const split = Math.round((o.horizontal ? H : W) * Math.min(0.97, Math.max(0.03, along)));
-  if (o.layout === 'split' && o.horizontal) {
+  const split = Math.round((o.isHorizontal ? H : W) * Math.min(0.97, Math.max(0.03, along)));
+  if (o.layout === 'split' && o.isHorizontal) {
     ctx.drawImage(panels[0], 0, 0, W, split, 0, 0, W, split);
     ctx.drawImage(panels[1], 0, split, W, H - split, 0, split, W, H - split);
   } else if (o.layout === 'split') {
@@ -241,17 +251,15 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
   const line = Math.max(2, Math.round(3 * s));
   if (o.layout === 'stack') ctx.fillRect(0, rects[1][1] - line / 2, W, line);
   else if (o.layout === 'side') ctx.fillRect(rects[1][0] - line / 2, 0, line, H);
-  else if (o.horizontal) ctx.fillRect(0, split - line / 2, W, line);
+  else if (o.isHorizontal) ctx.fillRect(0, split - line / 2, W, line);
   else ctx.fillRect(split - line / 2, 0, line, H);
-  if (o.layout === 'split') {
-    if (o.horizontal) drawHandle(ctx, W / 2, split, s, true);
-    else drawHandle(ctx, split, H / 2, s, false);
-  }
+  if (o.layout === 'split' && o.isHorizontal) drawHandle(ctx, W / 2, split, s, true);
+  else if (o.layout === 'split') drawHandle(ctx, split, H / 2, s, false);
 
   const margin = 28 * s;
   ctx.font = `600 ${26 * s}px ${sans}`;
   const [a, b] = o.yearLabels;
-  if (o.layout === 'split' && o.horizontal) {
+  if (o.layout === 'split' && o.isHorizontal) {
     pill(ctx, a, margin, margin, s, 'left');
     pill(ctx, b, margin, split + margin, s, 'left');
   } else if (o.layout === 'split') {
@@ -276,8 +284,8 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
   ctx.textAlign = 'right';
   ctx.font = `400 ${17 * s}px ${sans}`;
   ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-  const creditFits = hostWidth + creditWidth + 32 * s <= W - pad * 2;
-  ctx.fillText(credit, W - pad, creditFits ? baseline : baseline - 34 * s);
+  const doesCreditFit = hostWidth + creditWidth + 32 * s <= W - pad * 2;
+  ctx.fillText(credit, W - pad, doesCreditFit ? baseline : baseline - 34 * s);
 
   ctx.textAlign = 'left';
   ctx.font = `600 ${26 * s}px ${sans}`;

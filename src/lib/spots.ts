@@ -33,15 +33,20 @@ export interface Spot {
   photos: Photo[];
 }
 
-export const spotIdFromPath = (pathname: string | null) =>
-  /^(?:\/(?:en|pl))?\/spots\/([^/]+)/.exec(pathname ?? '')?.[1] ?? null;
+export function spotIdFromPath(pathname: string | null) {
+  return /^(?:\/(?:en|pl))?\/spots\/([^/]+)/.exec(pathname ?? '')?.[1] ?? null;
+}
 
 export const NEAR_YEARS = 12;
 
-export const yearNumber = (key: YearKey) => (key === 'today' ? new Date().getFullYear() : Number(key));
+export function yearNumber(key: YearKey) {
+  return key === 'today' ? new Date().getFullYear() : Number(key);
+}
 
 export function nearestPhoto(spot: Spot, year: number): Photo {
   return spot.photos.reduce((best, p) => (Math.abs(p.year - year) < Math.abs(best.year - year) ? p : best));
 }
 
-export const hasPhotoNear = (spot: Spot, year: number) => spot.photos.some((p) => Math.abs(p.year - year) <= NEAR_YEARS);
+export function hasPhotoNear(spot: Spot, year: number) {
+  return spot.photos.some((p) => Math.abs(p.year - year) <= NEAR_YEARS);
+}

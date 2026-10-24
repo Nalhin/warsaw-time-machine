@@ -2,27 +2,30 @@ import L from 'leaflet';
 import { useEffect, useMemo } from 'react';
 import { CircleMarker, MapContainer, Marker, Pane, useMap } from 'react-leaflet';
 
+import { WARSAW_BBOX } from '@/lib/site';
 import { hasPhotoNear, nearestPhoto, type Spot } from '@/lib/spots';
 import { createLabelLayer } from '@/lib/wms';
 import { MAX_ZOOM, MIN_ZOOM, type MapCamera } from '@/lib/state';
 import { featherPx, yearDef, type YearKey } from '@/lib/years';
 import { YearLayer } from './YearLayer';
 
-export const WARSAW_BOUNDS = L.latLngBounds([52.07, 20.82], [52.39, 21.29]);
+const WARSAW_BOUNDS = L.latLngBounds([WARSAW_BBOX.south, WARSAW_BBOX.west], [WARSAW_BBOX.north, WARSAW_BBOX.east]);
 
-const escapeHtml = (s: string) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
+function escapeHtml(s: string) {
+  return s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
+}
 
 const ATTRIBUTION_PREFIX = '<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>';
 
 const iconCache = new Map<string, L.DivIcon>();
 
-function pinIcon(spot: Spot, year: number, active: boolean) {
+function pinIcon(spot: Spot, year: number, isActive: boolean) {
   const photo = nearestPhoto(spot, year);
-  const faded = !hasPhotoNear(spot, year);
-  const key = [spot.id, spot.name, photo.pin, active, faded].join('|');
+  const isFaded = !hasPhotoNear(spot, year);
+  const key = [spot.id, spot.name, photo.pin, isActive, isFaded].join('|');
   const cached = iconCache.get(key);
   if (cached) return cached;
-  const classes = ['spot-pin', active && 'active', faded && 'faded', spot.kind === 'modern' && 'modern'];
+  const classes = ['spot-pin', isActive && 'active', isFaded && 'faded', spot.kind === 'modern' && 'modern'];
   const icon = L.divIcon({
     className: classes.filter(Boolean).join(' '),
     html: `<span class="pin"><img src="${escapeHtml(photo.pin)}" alt="" draggable="false"></span><span class="pin-label">${escapeHtml(spot.name)}</span>`,
@@ -33,7 +36,11 @@ function pinIcon(spot: Spot, year: number, active: boolean) {
   return icon;
 }
 
-function StreetLabels({ pane }: { pane: string }) {
+interface PaneProps {
+  pane: string;
+}
+
+function StreetLabels({ pane }: PaneProps) {
   const map = useMap();
   useEffect(() => {
     const layer = createLabelLayer(pane).addTo(map);
@@ -51,7 +58,11 @@ const WORLD: L.LatLngTuple[] = [
   [-85, -180],
 ];
 
-function CoverageMask({ pane, year }: { pane: string; year: YearKey | null }) {
+interface CoverageMaskProps extends PaneProps {
+  year: YearKey | null;
+}
+
+function CoverageMask({ pane, year }: CoverageMaskProps) {
   const map = useMap();
   useEffect(() => {
     if (!year) return;
@@ -71,27 +82,13 @@ function CoverageMask({ pane, year }: { pane: string; year: YearKey | null }) {
   return null;
 }
 
-function FeatherZoom() {
-  const map = useMap();
-  useEffect(() => {
-    const sync = () => {
-      map.getContainer().style.setProperty('--feather', `${featherPx(map.getZoom()).toFixed(1)}px`);
-    };
-    sync();
-    map.on('zoomend', sync);
-    return () => {
-      map.off('zoomend', sync);
-    };
-  }, [map]);
-  return null;
-}
-
-function PinZoom() {
+function ZoomStyles() {
   const map = useMap();
   useEffect(() => {
     const sync = () => {
       const zoom = map.getZoom();
       const el = map.getContainer();
+      el.style.setProperty('--feather', `${featherPx(zoom).toFixed(1)}px`);
       el.classList.toggle('pins-small', zoom >= 15 && zoom < 17);
       el.classList.toggle('pins-dots', zoom < 15);
     };
@@ -102,6 +99,22 @@ function PinZoom() {
     };
   }, [map]);
   return null;
+}
+
+interface MapViewProps {
+  camera: MapCamera;
+  left: YearKey;
+  right: YearKey | null;
+  ahead?: YearKey | null;
+  spots: Spot[];
+  activeSpot: string | null;
+  onSpot(id: string): void;
+  showLabels: boolean;
+  showPins: boolean;
+  years: [number] | [number, number];
+  secondSide: ReadonlySet<string>;
+  myLocation: L.LatLng | null;
+  onMap(map: L.Map): void;
 }
 
 export function MapView({
@@ -118,21 +131,7 @@ export function MapView({
   secondSide,
   myLocation,
   onMap,
-}: {
-  camera: MapCamera;
-  left: YearKey;
-  right: YearKey | null;
-  ahead?: YearKey | null;
-  spots: Spot[];
-  activeSpot: string | null;
-  onSpot(id: string): void;
-  showLabels: boolean;
-  showPins: boolean;
-  years: [number] | [number, number];
-  secondSide: ReadonlySet<string>;
-  myLocation: L.LatLng | null;
-  onMap(map: L.Map): void;
-}) {
+}: MapViewProps) {
   const [first, second = first] = years;
   const icons = useMemo(
     () => new Map(spots.map((s) => [s.id, pinIcon(s, secondSide.has(s.id) ? second : first, s.id === activeSpot)])),
@@ -187,8 +186,7 @@ export function MapView({
           pathOptions={{ color: '#fff', weight: 2, fillColor: '#3b82f6', fillOpacity: 1 }}
         />
       )}
-      <PinZoom />
-      <FeatherZoom />
+      <ZoomStyles />
     </MapContainer>
   );
 }

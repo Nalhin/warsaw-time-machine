@@ -13,13 +13,13 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { Choice, Field, YearPair } from '@/components/ShareFields';
 import { SITE_NAME } from '@/lib/site';
 import { FORMATS, LAYOUTS, formatSize, renderSnapshot, toBlob, type Format, type Layout, type SnapshotArea } from '@/lib/snapshot';
-import { mapStateToQuery, type MapState } from '@/lib/state';
+import { mapStateToQuery, setSwipeSide, type MapState, type Side, type SwipeYears } from '@/lib/state';
 import { cn } from '@/lib/utils';
-import type { YearKey } from '@/lib/years';
+import { otherYear, type YearKey } from '@/lib/years';
 
 type Mode = 'link' | 'image';
 
-interface Inset {
+export interface Inset {
   right: number;
   bottom: number;
 }
@@ -27,7 +27,7 @@ interface Inset {
 interface Capture {
   area: SnapshotArea;
   divider: number;
-  horizontal: boolean;
+  isHorizontal: boolean;
   link: string;
 }
 
@@ -55,56 +55,50 @@ function capture(map: L.Map, state: MapState, ratio: number, inset: Inset): Capt
       zoom: map.getZoom(),
       metersPerPixel: (se.x - nw.x) / width,
     },
-    divider: state.horizontal ? (ratio * size.y) / height : (ratio * size.x) / width,
-    horizontal: !!state.swipe && state.horizontal,
+    divider: state.isHorizontal ? (ratio * size.y) / height : (ratio * size.x) / width,
+    isHorizontal: !!state.swipe && state.isHorizontal,
     link: `${location.origin}${location.pathname}${mapStateToQuery(state, camera)}`,
   };
 }
 
-const otherYear = (y: YearKey): YearKey => (y === 'today' ? '1935' : 'today');
-
-const canShareFiles = () => {
+function supportsFileShare() {
   try {
     return !!navigator.canShare?.({ files: [new File([''], 'x.jpg', { type: 'image/jpeg' })] });
   } catch {
     return false;
   }
-};
+}
 
-export function ShareDialog({
-  map,
-  state,
-  ratio,
-  labels,
-  inset,
-}: {
+interface ShareDialogProps {
   map: L.Map;
   state: MapState;
   ratio: number;
-  labels: boolean;
+  showLabels: boolean;
   inset: Inset;
-}) {
+}
+
+export function ShareDialog({ map, state, ratio, showLabels, inset }: ShareDialogProps) {
   const t = useMessages();
   const m = t.share;
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<Mode>('link');
   const [snap, setSnap] = useState<Capture | null>(null);
-  const [years, setYears] = useState<[YearKey, YearKey]>(['1935', 'today']);
+  const [years, setYears] = useState<SwipeYears>(['1935', 'today']);
   const [layout, setLayout] = useState<Layout>('split');
   const [format, setFormat] = useState<Format>('screen');
-  const [withLabels, setWithLabels] = useState(false);
+  const [hasLabels, setHasLabels] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const [attempt, setAttempt] = useState(0);
-  const [copied, setCopied] = useState(false);
-  const [shareFiles, setShareFiles] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const [canShareFiles, setCanShareFiles] = useState(false);
   const [canShareLink, setCanShareLink] = useState(false);
   const [canCopyImage, setCanCopyImage] = useState(false);
   const resultRef = useRef<Result | null>(null);
 
   useEffect(() => {
-    setShareFiles(canShareFiles());
+    setCanShareFiles(supportsFileShare());
     setCanShareLink(!!navigator.share);
     setCanCopyImage(typeof ClipboardItem !== 'undefined' && !!navigator.clipboard?.write);
   }, []);
@@ -113,18 +107,18 @@ export function ShareDialog({
     if (next) {
       setSnap(capture(map, state, ratio, inset));
       setYears(state.swipe ? [...state.swipe] : [state.year, otherYear(state.year)]);
-      setWithLabels(labels);
-      setCopied(false);
+      setHasLabels(showLabels);
+      setIsCopied(false);
       setMode('link');
     }
-    setOpen(next);
+    setIsOpen(next);
   };
 
   useEffect(() => {
-    if (!open || !snap || mode !== 'image') return;
-    let cancelled = false;
-    setBusy(true);
-    setError(false);
+    if (!isOpen || !snap || mode !== 'image') return;
+    let isCancelled = false;
+    setIsBusy(true);
+    setHasError(false);
     const timer = setTimeout(async () => {
       try {
         const canvas = await renderSnapshot({
@@ -133,29 +127,29 @@ export function ShareDialog({
           format,
           area: snap.area,
           divider: snap.divider,
-          horizontal: snap.horizontal,
-          labels: withLabels,
+          isHorizontal: snap.isHorizontal,
+          hasLabels,
           host: location.host,
           yearLabels: [t.years[years[0]].label, t.years[years[1]].label],
           credit: m.credit,
         });
         const blob = await toBlob(canvas);
-        if (cancelled) return;
+        if (isCancelled) return;
         if (resultRef.current) URL.revokeObjectURL(resultRef.current.url);
         resultRef.current = { canvas, blob, url: URL.createObjectURL(blob) };
         setResult(resultRef.current);
       } catch (e) {
         console.error('[share] snapshot failed', e);
-        if (!cancelled) setError(true);
+        if (!isCancelled) setHasError(true);
       } finally {
-        if (!cancelled) setBusy(false);
+        if (!isCancelled) setIsBusy(false);
       }
     }, 250);
     return () => {
-      cancelled = true;
+      isCancelled = true;
       clearTimeout(timer);
     };
-  }, [open, snap, mode, years, layout, format, withLabels, attempt, t]);
+  }, [isOpen, snap, mode, years, layout, format, hasLabels, attempt, t]);
 
   useEffect(
     () => () => {
@@ -164,24 +158,18 @@ export function ShareDialog({
     [],
   );
 
-  const setSide = (side: 0 | 1, y: YearKey) =>
-    setYears((prev) => {
-      const next: [YearKey, YearKey] = [...prev];
-      if (next[1 - side] === y) next[1 - side] = next[side];
-      next[side] = y;
-      return next;
-    });
+  const setSide = (side: Side, year: YearKey) => setYears((prev) => setSwipeSide(prev, side, year));
 
   const fileName = `${m.filePrefix}-${years.join('-vs-')}.jpg`;
-  const ready = !!result && !busy && !error;
-  const sides: [string, string] = layout === 'stack' || (layout === 'split' && snap?.horizontal) ? [m.top, m.bottom] : [m.left, m.right];
+  const isReady = !!result && !isBusy && !hasError;
+  const sides: [string, string] = layout === 'stack' || (layout === 'split' && snap?.isHorizontal) ? [m.top, m.bottom] : [m.left, m.right];
   const preview = snap ? formatSize(format, snap.area) : { width: 1, height: 1 };
 
   const copyLink = async () => {
     if (!snap) return;
     try {
       await navigator.clipboard.writeText(snap.link);
-      setCopied(true);
+      setIsCopied(true);
       toast.success(m.linkCopied);
     } catch {
       toast.error(m.linkFailed);
@@ -227,7 +215,7 @@ export function ShareDialog({
   const swapYears = () => setYears(([a, b]) => [b, a]);
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
@@ -266,8 +254,8 @@ export function ShareDialog({
             />
             <div className="flex gap-2">
               <Button className="flex-1" onClick={copyLink}>
-                {copied ? <Check /> : <Link2 />}
-                {copied ? m.copied : m.copyLink}
+                {isCopied ? <Check /> : <Link2 />}
+                {isCopied ? m.copied : m.copyLink}
               </Button>
               {canShareLink && (
                 <Button variant="outline" className="flex-1" onClick={shareLink}>
@@ -288,10 +276,10 @@ export function ShareDialog({
                   <img
                     src={result.url}
                     alt={m.preview}
-                    className={cn('size-full object-contain transition-opacity', busy && 'opacity-50')}
+                    className={cn('size-full object-contain transition-opacity', isBusy && 'opacity-50')}
                   />
                 )}
-                {busy && (
+                {isBusy && (
                   <div className="absolute inset-0 grid place-items-center">
                     <span className="glass-strong flex items-center gap-2 rounded-full px-3 py-1.5 text-xs">
                       <Loader2 className="size-3.5 animate-spin text-gold" />
@@ -299,7 +287,7 @@ export function ShareDialog({
                     </span>
                   </div>
                 )}
-                {error && !busy && (
+                {hasError && !isBusy && (
                   <div className="absolute inset-0 grid place-items-center p-4 text-center">
                     <div className="grid justify-items-center gap-2 text-sm text-muted-foreground">
                       <ImageIcon className="size-5" />
@@ -313,18 +301,18 @@ export function ShareDialog({
               </div>
 
               <div className="flex flex-wrap justify-center gap-2">
-                {shareFiles && (
-                  <Button onClick={shareImage} disabled={!ready}>
+                {canShareFiles && (
+                  <Button onClick={shareImage} disabled={!isReady}>
                     <Share2 />
                     {m.shareImage}
                   </Button>
                 )}
-                <Button variant={shareFiles ? 'outline' : 'default'} onClick={download} disabled={!ready}>
+                <Button variant={canShareFiles ? 'outline' : 'default'} onClick={download} disabled={!isReady}>
                   <Download />
                   {m.download}
                 </Button>
-                {canCopyImage && !shareFiles && (
-                  <Button variant="outline" onClick={copyImage} disabled={!ready}>
+                {canCopyImage && !canShareFiles && (
+                  <Button variant="outline" onClick={copyImage} disabled={!isReady}>
                     <Copy />
                     {m.copyImage}
                   </Button>
@@ -358,7 +346,7 @@ export function ShareDialog({
                   <Type className="size-4 text-muted-foreground" />
                   {m.showStreetNames}
                 </span>
-                <Switch checked={withLabels} onCheckedChange={setWithLabels} />
+                <Switch checked={hasLabels} onCheckedChange={setHasLabels} />
               </label>
             </div>
           </div>

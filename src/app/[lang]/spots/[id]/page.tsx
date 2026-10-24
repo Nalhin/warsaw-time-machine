@@ -8,24 +8,29 @@ import { SITE_NAME, SITE_URL } from '@/lib/site';
 import { getSpot, SPOT_IDS } from '@/lib/spot-data';
 import type { Credit, Spot } from '@/lib/spots';
 
-type Props = { params: Promise<{ lang: string; id: string }> };
+interface SpotPageProps {
+  params: Promise<{ lang: string; id: string }>;
+}
 
 export function generateStaticParams() {
   return SPOT_IDS.map((id) => ({ id }));
 }
 
-async function resolve(params: Props['params']) {
+async function resolve(params: SpotPageProps['params']) {
   const { lang, id } = await params;
   if (!isLocale(lang)) return null;
   const spot = getSpot(id, lang);
   return spot ? { locale: lang, spot } : null;
 }
 
-const describe = (s: Spot, locale: Locale) =>
-  s.description?.split(/(?<=\.)\s/)[0] ??
-  MESSAGES[locale].spot.fallbackDescription(s.name, s.photos.length, s.photos[0].date, s.photos[s.photos.length - 1].date);
+function describe(s: Spot, locale: Locale) {
+  return (
+    s.description?.split(/(?<=\.)\s/)[0] ??
+    MESSAGES[locale].spot.fallbackDescription(s.name, s.photos.length, s.photos[0].date, s.photos[s.photos.length - 1].date)
+  );
+}
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: SpotPageProps): Promise<Metadata> {
   const found = await resolve(params);
   if (!found) return {};
   const { locale, spot } = found;
@@ -51,22 +56,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const imageObject = (url: string, name: string, credit: string | Credit) => ({
-  '@type': 'ImageObject',
-  contentUrl: `${SITE_URL}${url}`,
-  name,
-  ...(typeof credit === 'string'
-    ? { creditText: credit }
-    : {
-        creator: { '@type': 'Person', name: credit.author },
-        creditText: credit.author,
-        ...(credit.date && { dateCreated: credit.date }),
-        ...(credit.licenceUrl && { license: credit.licenceUrl }),
-        ...(credit.sourceUrl && { acquireLicensePage: credit.sourceUrl }),
-      }),
-});
+function imageObject(url: string, name: string, credit: string | Credit) {
+  return {
+    '@type': 'ImageObject',
+    contentUrl: `${SITE_URL}${url}`,
+    name,
+    ...(typeof credit === 'string'
+      ? { creditText: credit }
+      : {
+          creator: { '@type': 'Person', name: credit.author },
+          creditText: credit.author,
+          ...(credit.date && { dateCreated: credit.date }),
+          ...(credit.licenceUrl && { license: credit.licenceUrl }),
+          ...(credit.sourceUrl && { acquireLicensePage: credit.sourceUrl }),
+        }),
+  };
+}
 
-export default async function SpotPage({ params }: Props) {
+export default async function SpotPage({ params }: SpotPageProps) {
   const found = await resolve(params);
   if (!found) notFound();
   const { locale, spot } = found;

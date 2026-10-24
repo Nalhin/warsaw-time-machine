@@ -7,15 +7,28 @@ import { trackLayer } from '@/lib/loading';
 import { createYearLayer } from '@/lib/wms';
 import type { YearKey } from '@/lib/years';
 
-export function YearLayer({ pane, year, ahead = null }: { pane: string; year: YearKey | null; ahead?: YearKey | null }) {
+interface LayerEntry {
+  key: YearKey;
+  layer: L.TileLayer;
+}
+
+interface LayerSlots {
+  current: LayerEntry | null;
+  pending: LayerEntry | null;
+  ahead: LayerEntry | null;
+  z: number;
+}
+
+interface YearLayerProps {
+  pane: string;
+  year: YearKey | null;
+  ahead?: YearKey | null;
+}
+
+export function YearLayer({ pane, year, ahead = null }: YearLayerProps) {
   const map = useMap();
   const t = useMessages();
-  const slot = useRef<{
-    current: { key: YearKey; layer: L.TileLayer } | null;
-    pending: { key: YearKey; layer: L.TileLayer } | null;
-    ahead: { key: YearKey; layer: L.TileLayer } | null;
-    z: number;
-  }>({ current: null, pending: null, ahead: null, z: 1 });
+  const slot = useRef<LayerSlots>({ current: null, pending: null, ahead: null, z: 1 });
 
   useEffect(() => {
     const s = slot.current;
@@ -43,9 +56,8 @@ export function YearLayer({ pane, year, ahead = null }: { pane: string; year: Ye
       s.current = entry;
       s.pending = null;
     };
-    if (!s.current) {
-      s.current = entry;
-    } else {
+    if (!s.current) s.current = entry;
+    else {
       s.pending = entry;
       layer.once('load', promote);
     }

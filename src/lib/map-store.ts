@@ -5,12 +5,12 @@ import { DEFAULT_STATE, type MapState } from './state';
 function createStore<T>(initial: T) {
   let current = initial;
   const listeners = new Set<() => void>();
-  const subscribe = (fn: () => void) => {
-    listeners.add(fn);
+  function subscribe(listener: () => void) {
+    listeners.add(listener);
     return () => {
-      listeners.delete(fn);
+      listeners.delete(listener);
     };
-  };
+  }
   return {
     publish(next: T) {
       if (next === current) return;
