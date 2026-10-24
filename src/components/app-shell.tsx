@@ -4,8 +4,8 @@ import '@/app/globals.css';
 import type { Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
-import { LocaleProvider } from '@/components/LocaleProvider';
-import { MapApp } from '@/components/MapApp';
+import { LocaleProvider } from '@/components/locale-provider';
+import { MapApp } from '@/components/map-app';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import type { Locale } from '@/lib/i18n';
 import { spotsFor } from '@/lib/spot-data';

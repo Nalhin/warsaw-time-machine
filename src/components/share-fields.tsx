@@ -2,10 +2,10 @@
 
 import { ArrowLeftRight } from 'lucide-react';
 
-import { useMessages } from '@/components/LocaleProvider';
+import { useMessages } from '@/components/locale-provider';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import { YearSelect } from '@/components/YearControls';
+import { YearSelect } from '@/components/year-controls';
 import type { Side, SwipeYears } from '@/lib/state';
 import type { YearKey } from '@/lib/years';
 

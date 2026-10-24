@@ -7,16 +7,16 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
-import { AboutDialog } from '@/components/AboutDialog';
-import { LanguageSwitch } from '@/components/LanguageSwitch';
-import { LayersMenu } from '@/components/LayersMenu';
-import { useLocale, useMessages } from '@/components/LocaleProvider';
-import { CoverageNotice } from '@/components/map/CoverageNotice';
-import { SwipeDivider } from '@/components/map/SwipeDivider';
-import { PANEL_WIDTH, panelInset } from '@/components/PlacePanel';
-import { ToolButton } from '@/components/Toolbar';
+import { AboutDialog } from '@/components/about-dialog';
+import { LanguageSwitch } from '@/components/language-switch';
+import { LayersMenu } from '@/components/layers-menu';
+import { useLocale, useMessages } from '@/components/locale-provider';
+import { CoverageNotice } from '@/components/map/coverage-notice';
+import { SwipeDivider } from '@/components/map/swipe-divider';
+import { PANEL_WIDTH, panelInset } from '@/components/place-panel';
+import { ToolButton } from '@/components/toolbar';
 import { Toaster } from '@/components/ui/sonner';
-import { YearControls } from '@/components/YearControls';
+import { YearControls } from '@/components/year-controls';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { localePath } from '@/lib/i18n';
 import { useTileLoading } from '@/lib/loading';
@@ -27,12 +27,12 @@ import { DEFAULT_STATE, START, mapStateToQuery, readCamera, readMapState, setSwi
 import { cn } from '@/lib/utils';
 import { stepYear, YEAR_KEYS, type YearKey } from '@/lib/years';
 
-const MapView = dynamic(() => import('@/components/map/MapView').then((m) => m.MapView), {
+const MapView = dynamic(() => import('@/components/map/map-view').then((m) => m.MapView), {
   ssr: false,
   loading: () => <div className="fixed inset-0 bg-[#1a1b1e]" />,
 });
 
-const ShareDialog = dynamic(() => import('@/components/ShareDialog').then((m) => m.ShareDialog), {
+const ShareDialog = dynamic(() => import('@/components/share-dialog').then((m) => m.ShareDialog), {
   ssr: false,
   loading: () => <div className="h-11" />,
 });

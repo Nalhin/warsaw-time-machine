@@ -2,7 +2,7 @@ import type L from 'leaflet';
 import { useEffect, useRef } from 'react';
 import { useMap } from 'react-leaflet';
 
-import { useMessages } from '@/components/LocaleProvider';
+import { useMessages } from '@/components/locale-provider';
 import { trackLayer } from '@/lib/loading';
 import { createYearLayer } from '@/lib/wms';
 import type { YearKey } from '@/lib/years';

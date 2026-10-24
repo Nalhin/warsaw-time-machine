@@ -3,8 +3,8 @@
 import { ArrowLeftRight, Check, ChevronDown, ChevronLeft, ChevronRight, Columns2, Pause, Play, RectangleHorizontal, SeparatorVertical } from 'lucide-react';
 import { DropdownMenu } from 'radix-ui';
 
-import { useMessages } from '@/components/LocaleProvider';
-import { MENU_ITEM_CLASS, MenuContent } from '@/components/Toolbar';
+import { useMessages } from '@/components/locale-provider';
+import { MENU_ITEM_CLASS, MenuContent } from '@/components/toolbar';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import type { MapState, Side } from '@/lib/state';

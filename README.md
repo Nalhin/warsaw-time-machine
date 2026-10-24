@@ -52,12 +52,12 @@ npm run build        # static pages for / and every /spots/<id>
   show while tiles load.
 - **Play** (the first button in the bar) goes through every year in turn, holding each for 2 s once its tiles
   have loaded. While it plays, the next year loads ahead as an invisible layer under the current one and is
-  shown as soon as its turn comes, so the switch is instant (`ahead` in `src/components/map/YearLayer.tsx`).
+  shown as soon as its turn comes, so the switch is instant (`ahead` in `src/components/map/year-layer.tsx`).
 - **The map opens in compare mode** (1935 | Today). The divider can be dragged with a mouse or touch. Each
   side has its own year menu (it scrolls when it doesn't fit), and ⇄ swaps the sides. "One year" leaves compare mode and shows ‹ year › arrows that step through the years, and the last button
   ("Horizontal"/"Vertical", icon only on phones) switches the divider between vertical (the default) and
   horizontal. It clips two Leaflet panes, so there's no plugin
-  (`src/components/map/SwipeDivider.tsx`).
+  (`src/components/map/swipe-divider.tsx`).
 - **Places** are pins with photos from different years. A pin shows a crop of the photo closest to the year on
   the map, and fades when the place has no photo within 12 years of it. Modern landmarks have square pins.
   Opening one slides in a panel next to the map (a bottom sheet on mobile) with the photo nearest to the map's
@@ -77,7 +77,7 @@ npm run build        # static pages for / and every /spots/<id>
   can be exported). The split follows the divider orientation. The image is captioned "Warsaw, Poland" and
   the site's domain. The 1945 white padding and the coverage edge fade are applied the same way as on the map.
   The dialog also has the link to the view, and Download, Copy image (desktop) or Share (mobile, via the
-  system share sheet). See `src/lib/snapshot.ts` and `src/components/ShareDialog.tsx`.
+  system share sheet). See `src/lib/snapshot.ts` and `src/components/share-dialog.tsx`.
 
 ### URLs and SEO
 

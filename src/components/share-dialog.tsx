@@ -5,12 +5,12 @@ import { Check, Copy, Download, ImageIcon, Link2, Loader2, Share2, Type } from '
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
-import { useMessages } from '@/components/LocaleProvider';
+import { useMessages } from '@/components/locale-provider';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Switch } from '@/components/ui/switch';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { Choice, Field, YearPair } from '@/components/ShareFields';
+import { Choice, Field, YearPair } from '@/components/share-fields';
 import { SITE_NAME } from '@/lib/site';
 import { FORMATS, LAYOUTS, formatSize, renderSnapshot, toBlob, type Format, type Layout, type SnapshotArea } from '@/lib/snapshot';
 import { mapStateToQuery, setSwipeSide, type MapState, type Side, type SwipeYears } from '@/lib/state';

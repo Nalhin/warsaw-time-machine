@@ -2,7 +2,7 @@ import type L from 'leaflet';
 import { ImageOff } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import { useMessages } from '@/components/LocaleProvider';
+import { useMessages } from '@/components/locale-provider';
 import { Button } from '@/components/ui/button';
 import { yearDef, type Box, type YearKey } from '@/lib/years';
 

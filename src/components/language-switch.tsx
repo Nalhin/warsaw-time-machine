@@ -4,8 +4,8 @@ import { Check } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { DropdownMenu } from 'radix-ui';
 
-import { useLocale, useMessages } from '@/components/LocaleProvider';
-import { MENU_ITEM_CLASS, MenuContent, ToolButton } from '@/components/Toolbar';
+import { useLocale, useMessages } from '@/components/locale-provider';
+import { MENU_ITEM_CLASS, MenuContent, ToolButton } from '@/components/toolbar';
 import { LOCALES, localePath, stripLocale } from '@/lib/i18n';
 import { MESSAGES } from '@/lib/messages';
 

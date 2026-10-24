@@ -1,6 +1,6 @@
 'use client';
 
-import { useMessages } from '@/components/LocaleProvider';
+import { useMessages } from '@/components/locale-provider';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

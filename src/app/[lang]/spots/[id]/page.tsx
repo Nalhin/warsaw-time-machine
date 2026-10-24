@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { PlacePanel } from '@/components/PlacePanel';
+import { PlacePanel } from '@/components/place-panel';
 import { isLocale, languageAlternates, LOCALES, localePath, OG_LOCALE, type Locale } from '@/lib/i18n';
 import { MESSAGES } from '@/lib/messages';
 import { SITE_NAME, SITE_URL } from '@/lib/site';

@@ -3,8 +3,8 @@
 import { Check, Layers, MapPin, Type } from 'lucide-react';
 import { DropdownMenu } from 'radix-ui';
 
-import { useMessages } from '@/components/LocaleProvider';
-import { MENU_ITEM_CLASS, MenuContent, ToolButton } from '@/components/Toolbar';
+import { useMessages } from '@/components/locale-provider';
+import { MENU_ITEM_CLASS, MenuContent, ToolButton } from '@/components/toolbar';
 
 interface LayersMenuProps {
   showLabels: boolean;

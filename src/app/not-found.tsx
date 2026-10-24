@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { AppShell } from '@/components/AppShell';
+import { AppShell } from '@/components/app-shell';
 import { MESSAGES } from '@/lib/messages';
 import { SITE_NAME } from '@/lib/site';
 
-export { viewport } from '@/components/AppShell';
+export { viewport } from '@/components/app-shell';
 
 export const metadata: Metadata = { title: `${MESSAGES.en.spot.notFound} | ${SITE_NAME}` };
 

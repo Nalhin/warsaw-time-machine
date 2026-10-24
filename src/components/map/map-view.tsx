@@ -7,7 +7,7 @@ import { hasPhotoNear, nearestPhoto, type Spot } from '@/lib/spots';
 import { createLabelLayer } from '@/lib/wms';
 import { MAX_ZOOM, MIN_ZOOM, type MapCamera } from '@/lib/state';
 import { featherPx, yearDef, type YearKey } from '@/lib/years';
-import { YearLayer } from './YearLayer';
+import { YearLayer } from './year-layer';
 
 const WARSAW_BOUNDS = L.latLngBounds([WARSAW_BBOX.south, WARSAW_BBOX.west], [WARSAW_BBOX.north, WARSAW_BBOX.east]);
 

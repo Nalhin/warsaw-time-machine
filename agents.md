@@ -18,6 +18,7 @@ You are an expert in Nextjs, TypeScript, React, Shadcn UI, Tailwind and Python.
 ## Naming Conventions
 
 - Use lowercase with dashes for directories (e.g., components/auth-wizard).
+- Use lowercase with dashes for tsx file names.
 - Use named exports for components. Use default exports only where the framework requires them (e.g. Next.js page/layout files, React.lazy targets).
 
 ## TypeScript Usage

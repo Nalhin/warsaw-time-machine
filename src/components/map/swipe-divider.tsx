@@ -2,7 +2,7 @@ import type L from 'leaflet';
 import { ChevronsLeftRight, ChevronsUpDown } from 'lucide-react';
 import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent as RPointerEvent } from 'react';
 
-import { useMessages } from '@/components/LocaleProvider';
+import { useMessages } from '@/components/locale-provider';
 import { cn } from '@/lib/utils';
 
 const YEAR_TAG_CLASS =

@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { AppShell } from '@/components/AppShell';
+import { AppShell } from '@/components/app-shell';
 import { isLocale, languageAlternates, LOCALES, localePath, OG_LOCALE } from '@/lib/i18n';
 import { MESSAGES } from '@/lib/messages';
 import { AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 import { YEAR_KEYS } from '@/lib/years';
 
-export { viewport } from '@/components/AppShell';
+export { viewport } from '@/components/app-shell';
 
 interface LocaleParams {
   params: Promise<{ lang: string }>;
