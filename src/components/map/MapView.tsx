@@ -1,6 +1,6 @@
 import L from 'leaflet';
 import { useEffect, useMemo } from 'react';
-import { CircleMarker, MapContainer, Marker, Pane, ZoomControl, useMap } from 'react-leaflet';
+import { CircleMarker, MapContainer, Marker, Pane, useMap } from 'react-leaflet';
 
 import { hasPhotoNear, nearestPhoto, type Spot } from '@/lib/spots';
 import { createLabelLayer } from '@/lib/wms';
@@ -138,7 +138,6 @@ export function MapView({
       zoomControl={false}
       attributionControl
     >
-      <ZoomControl position="bottomright" zoomInTitle="Zoom in" zoomOutTitle="Zoom out" />
       <Pane name="yearLeft" style={{ zIndex: 250 }}>
         <YearLayer pane="yearLeft" year={left} />
         <CoverageMask pane="yearLeft" year={left} />

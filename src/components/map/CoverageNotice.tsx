@@ -2,6 +2,7 @@ import type L from 'leaflet';
 import { ImageOff } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+import { useMessages } from '@/components/LocaleProvider';
 import { Button } from '@/components/ui/button';
 import { yearDef, type Box, type YearKey } from '@/lib/years';
 
@@ -21,10 +22,8 @@ const toBox = (b: L.LatLngBounds): Box => [
   [b.getNorth(), b.getEast()],
 ];
 
-const formatList = (items: string[]) =>
-  items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`;
-
 export function CoverageNotice({ map, years }: { map: L.Map; years: YearKey[] }) {
+  const t = useMessages();
   const key = years.join(',');
   const [missing, setMissing] = useState<YearKey[]>([]);
 
@@ -52,8 +51,6 @@ export function CoverageNotice({ map, years }: { map: L.Map; years: YearKey[] })
     map.flyToBounds(target, { padding: [24, 24], duration: 0.8 });
   };
 
-  const labels = missing.map((k) => (k === 'today' ? 'current' : yearDef(k).label));
-
   return (
     <div
       role="status"
@@ -61,9 +58,9 @@ export function CoverageNotice({ map, years }: { map: L.Map; years: YearKey[] })
       className="glass-strong fixed top-[30%] left-1/2 z-[950] flex -translate-x-1/2 animate-in items-center gap-3 rounded-full py-1.5 pr-1.5 pl-4 text-[13px] whitespace-nowrap text-foreground/90 duration-300 fade-in slide-in-from-top-2"
     >
       <ImageOff className="size-4 shrink-0 text-gold" />
-      <span>No {formatList(labels)} photos here</span>
+      <span>{t.map.noCoverage(missing)}</span>
       <Button size="sm" className="rounded-full" onClick={goToCoverage}>
-        Back to the map
+        {t.map.backToCoverage}
       </Button>
     </div>
   );

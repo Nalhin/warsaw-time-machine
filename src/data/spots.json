@@ -6,6 +6,10 @@
     "lng": 21.01466,
     "kind": "historic",
     "description": "Hotel Europejski on Krakowskie Przedmieście was built in 1855–1877 to a design by Henryk Marconi and was one of Warsaw's grandest hotels before the war. The building burned in September 1939 during the defence of Warsaw; after the war it was rebuilt, first for a military academy, and it reopened as a hotel in the early 1960s. After a 2013–2018 renovation that added two new storeys under a new roof, it reopened in 2018 as Raffles Europejski Warsaw.",
+    "pl": {
+      "name": "Hotel Europejski (Raffles Europejski)",
+      "description": "Hotel Europejski przy Krakowskim Przedmieściu wzniesiono w latach 1855–1877 według projektu Henryka Marconiego. Przed wojną był jednym z najokazalszych hoteli Warszawy. Budynek spłonął we wrześniu 1939 roku podczas obrony stolicy; po wojnie go odbudowano – najpierw na potrzeby akademii wojskowej – a jako hotel wznowił działalność na początku lat 60. Po renowacji w latach 2013–2018, podczas której nadbudowano dwie kondygnacje pod nowym dachem, otwarto go ponownie w 2018 roku jako Raffles Europejski Warsaw."
+    },
     "og": "/img/og/hotel-europejski.jpg",
     "photos": [
       {
@@ -16,6 +20,9 @@
         "approx": true,
         "ratio": 1.4493,
         "caption": "The hotel's rounded corner on Krakowskie Przedmieście, seen from the south-east, with cars and cabs in the street",
+        "pl": {
+          "caption": "Zaokrąglony narożnik hotelu przy Krakowskim Przedmieściu widziany od południowego wschodu; na ulicy samochody i dorożki"
+        },
         "credit": {
           "author": "Zdzisław Marcinkowski",
           "date": "before 1939",
@@ -33,6 +40,9 @@
         "approx": false,
         "ratio": 1.3245,
         "caption": "The hotel's long façade facing Piłsudski Square",
+        "pl": {
+          "caption": "Długa fasada hotelu od strony placu Piłsudskiego"
+        },
         "credit": {
           "author": "Willem van de Poll",
           "date": "1934",
@@ -50,6 +60,9 @@
         "approx": false,
         "ratio": 1.5564,
         "caption": "German military trucks on Piłsudski Square a month before the Warsaw Uprising; Hotel Europejski on the left",
+        "pl": {
+          "caption": "Niemieckie ciężarówki wojskowe na placu Piłsudskiego miesiąc przed wybuchem Powstania Warszawskiego; po lewej Hotel Europejski"
+        },
         "credit": {
           "author": "Stefan Bałuk",
           "date": "July 1944",
@@ -67,6 +80,9 @@
         "approx": false,
         "ratio": 1.8161,
         "caption": "The hotel before its 2013–2018 renovation, with its post-war green roof",
+        "pl": {
+          "caption": "Hotel przed renowacją z lat 2013–2018, jeszcze z powojennym zielonym dachem"
+        },
         "credit": {
           "author": "Pawel.lech",
           "date": "2011-09-19",
@@ -84,6 +100,9 @@
         "approx": false,
         "ratio": 1.4625,
         "caption": "Raffles Europejski after the renovation, with two new storeys under the glass roof",
+        "pl": {
+          "caption": "Raffles Europejski po renowacji, z dwiema nowymi kondygnacjami pod szklanym dachem"
+        },
         "credit": {
           "author": "Patryk Duszkiewicz",
           "date": "2021-11-15",
@@ -102,6 +121,10 @@
     "lng": 21.0136,
     "kind": "historic",
     "description": "Castle Square lies at the gate to the Old Town, with Sigismund's Column (1644) and the Royal Castle, the residence of the President of Poland in 1926–1939. The castle burned after German shelling in September 1939 and its remains were blown up by the Germans in 1944; the column was toppled during the Warsaw Uprising. The column was re-erected in 1949, when the W-Z route tunnel was built under the square, and the castle was rebuilt in 1971–1984.",
+    "pl": {
+      "name": "Plac Zamkowy",
+      "description": "Plac Zamkowy leży u wrót Starego Miasta. Stoją przy nim Kolumna Zygmunta (1644) i Zamek Królewski, w latach 1926–1939 rezydencja Prezydenta RP. Zamek spłonął po niemieckim ostrzale we wrześniu 1939 roku, a jego pozostałości Niemcy wysadzili w 1944 roku; kolumnę strącono podczas Powstania Warszawskiego. Ponownie stanęła w 1949 roku, gdy pod placem budowano tunel trasy W-Z, a zamek odbudowano w latach 1971–1984."
+    },
     "og": "/img/og/plac-zamkowy.jpg",
     "photos": [
       {
@@ -112,6 +135,9 @@
         "approx": false,
         "ratio": 1.4467,
         "caption": "Sigismund's Column and the Royal Castle seen from above, looking north towards the Old Town",
+        "pl": {
+          "caption": "Kolumna Zygmunta i Zamek Królewski z lotu ptaka, widok na północ, w stronę Starego Miasta"
+        },
         "credit": {
           "author": "Henryk Poddębski",
           "date": "1925",
@@ -129,6 +155,9 @@
         "approx": false,
         "ratio": 1.4665,
         "caption": "The ruined square with the toppled Sigismund's Column and the burned-out houses of the Old Town",
+        "pl": {
+          "caption": "Zrujnowany plac ze strąconą Kolumną Zygmunta i wypalonymi kamienicami Starego Miasta"
+        },
         "credit": {
           "author": "Leonard Sempoliński",
           "date": "1945",
@@ -146,6 +175,9 @@
         "approx": true,
         "ratio": 1.6,
         "caption": "The rebuilt John's townhouse and re-erected Sigismund's Column, with St Martin's Church behind",
+        "pl": {
+          "caption": "Odbudowana kamienica Johna i ponownie wzniesiona Kolumna Zygmunta, w głębi kościół św. Marcina"
+        },
         "credit": {
           "author": "unidentified family member",
           "date": "1950s",
@@ -163,6 +195,9 @@
         "approx": true,
         "ratio": 1.4072,
         "caption": "The square with buses and the empty, cleared site of the Royal Castle before its reconstruction",
+        "pl": {
+          "caption": "Plac z autobusami i pustą, uprzątniętą parcelą po Zamku Królewskim przed jego odbudową"
+        },
         "credit": {
           "author": "unknown",
           "date": "before 1972",
@@ -180,6 +215,9 @@
         "approx": false,
         "ratio": 1.5385,
         "caption": "The rebuilt Royal Castle and Sigismund's Column seen from Krakowskie Przedmieście, with parked cars",
+        "pl": {
+          "caption": "Odbudowany Zamek Królewski i Kolumna Zygmunta widziane od strony Krakowskiego Przedmieścia, z zaparkowanymi samochodami"
+        },
         "credit": {
           "author": "Fortepan / Jankó Attila",
           "date": "1981",
@@ -197,6 +235,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "Sigismund's Column, the Old Town houses and the Royal Castle's clock tower",
+        "pl": {
+          "caption": "Kolumna Zygmunta, kamienice Starego Miasta i wieża zegarowa Zamku Królewskiego"
+        },
         "credit": {
           "author": "Scotch Mist",
           "date": "2010-07-24",
@@ -214,6 +255,9 @@
         "approx": false,
         "ratio": 1.3278,
         "caption": "The square and the Royal Castle seen from above, looking north towards the Old Town",
+        "pl": {
+          "caption": "Plac i Zamek Królewski z lotu ptaka, widok na północ, w stronę Starego Miasta"
+        },
         "credit": {
           "author": "Gemmajade99",
           "date": "2024-09-16",
@@ -232,6 +276,10 @@
     "lng": 21.01375,
     "kind": "historic",
     "description": "The northern end of Krakowskie Przedmieście, part of the Royal Route, runs past St Anne's Church and the former Bernardine monastery towards Castle Square; before the war trams ran along it. Buildings here were damaged in September 1939 and burned in 1944, while St Anne's Church survived with damage. In 1947–1949 the W-Z route was cut in a tunnel under the street beside the church, and most of the historic buildings were rebuilt; in 2006–2008 the street was repaved and largely closed to private traffic.",
+    "pl": {
+      "name": "Krakowskie Przedmieście przy kościele św. Anny",
+      "description": "Północny odcinek Krakowskiego Przedmieścia, części Traktu Królewskiego, biegnie obok kościoła św. Anny i dawnego klasztoru bernardynów w stronę placu Zamkowego; przed wojną kursowały tędy tramwaje. Tutejsze budynki ucierpiały we wrześniu 1939 roku i spłonęły w 1944 roku, natomiast kościół św. Anny przetrwał, choć uszkodzony. W latach 1947–1949 obok kościoła poprowadzono pod ulicą tunel trasy W-Z, a większość zabytkowych budynków odbudowano. W latach 2006–2008 ulicę wyłożono nową nawierzchnią i w dużej mierze zamknięto dla ruchu prywatnych samochodów."
+    },
     "og": "/img/og/krakowskie-przedmiescie.jpg",
     "photos": [
       {
@@ -242,6 +290,9 @@
         "approx": true,
         "ratio": 1.4506,
         "caption": "Trams on Krakowskie Przedmieście in front of St Anne's Church, looking north towards Castle Square",
+        "pl": {
+          "caption": "Tramwaje na Krakowskim Przedmieściu przed kościołem św. Anny, widok na północ, w stronę placu Zamkowego"
+        },
         "credit": {
           "author": "Henryk Poddębski",
           "date": "1930–1933",
@@ -259,6 +310,9 @@
         "approx": true,
         "ratio": 1.5224,
         "caption": "Line 3 trams passing the Resursa Obywatelska building next to St Anne's during the German occupation",
+        "pl": {
+          "caption": "Tramwaje linii 3 mijają gmach Resursy Obywatelskiej obok kościoła św. Anny w czasie okupacji niemieckiej"
+        },
         "credit": {
           "author": "unknown",
           "date": "1940",
@@ -276,6 +330,9 @@
         "approx": false,
         "ratio": 1.2945,
         "caption": "St Anne's Church among the rubble and ruined buildings at the end of the war",
+        "pl": {
+          "caption": "Kościół św. Anny wśród gruzów i ruin pod koniec wojny"
+        },
         "credit": {
           "author": "Leonard Jabrzemski",
           "date": "1945",
@@ -293,6 +350,9 @@
         "approx": false,
         "ratio": 1.4939,
         "caption": "Looking south from Castle Square down the rebuilt Krakowskie Przedmieście, with St Anne's bell tower on the left",
+        "pl": {
+          "caption": "Widok z placu Zamkowego na południe, wzdłuż odbudowanego Krakowskiego Przedmieścia; po lewej dzwonnica kościoła św. Anny"
+        },
         "credit": {
           "author": "Fortepan / Lencse Zoltán",
           "date": "1958",
@@ -310,6 +370,9 @@
         "approx": true,
         "ratio": 0.9669,
         "caption": "Krakowskie Przedmieście seen from above, with cars, buses and Sigismund's Column",
+        "pl": {
+          "caption": "Krakowskie Przedmieście z lotu ptaka, z samochodami, autobusami i Kolumną Zygmunta"
+        },
         "credit": {
           "author": "unknown",
           "date": "c. 1974",
@@ -327,6 +390,9 @@
         "approx": false,
         "ratio": 1.3746,
         "caption": "St Anne's Church façade and the arcaded former Bernardine monastery wing",
+        "pl": {
+          "caption": "Fasada kościoła św. Anny i arkadowe skrzydło dawnego klasztoru bernardynów"
+        },
         "credit": {
           "author": "Guillaume Speurt",
           "date": "2012-03-02",
@@ -344,6 +410,9 @@
         "approx": false,
         "ratio": 1.9753,
         "caption": "The pedestrianised street in front of St Anne's Church, looking north towards Castle Square",
+        "pl": {
+          "caption": "Deptak przed kościołem św. Anny, widok na północ, w stronę placu Zamkowego"
+        },
         "credit": {
           "author": "Cayambe",
           "date": "2019-07-27",
@@ -362,6 +431,10 @@
     "lng": 21.011285,
     "kind": "historic",
     "description": "The Tomb of the Unknown Soldier was created in 1925 in the central colonnade of the Saxon Palace, which closed the west side of today's Piłsudski Square. German troops blew up the palace in December 1944; only three arcades of the colonnade with the tomb survived. The tomb was restored and reopened in 1946 as a free-standing monument in front of the Saxon Garden. In 2021 the decision was taken to rebuild the Saxon Palace, and archaeological excavations on its site followed.",
+    "pl": {
+      "name": "Grób Nieznanego Żołnierza / Pałac Saski (plac Piłsudskiego)",
+      "description": "Grób Nieznanego Żołnierza urządzono w 1925 roku w środkowej kolumnadzie Pałacu Saskiego, który zamykał od zachodu dzisiejszy plac Piłsudskiego. W grudniu 1944 roku Niemcy wysadzili pałac w powietrze; ocalały jedynie trzy arkady kolumnady z grobem. Grób odrestaurowano i w 1946 roku ponownie udostępniono jako wolno stojący pomnik przed Ogrodem Saskim. W 2021 roku zapadła decyzja o odbudowie Pałacu Saskiego, po czym na jego miejscu rozpoczęły się wykopaliska archeologiczne."
+    },
     "og": "/img/og/ogrod-saski.jpg",
     "photos": [
       {
@@ -372,6 +445,9 @@
         "approx": false,
         "ratio": 1.5857,
         "caption": "Guard of honour at the Tomb of the Unknown Soldier under the Saxon Palace colonnade",
+        "pl": {
+          "caption": "Warta honorowa przy Grobie Nieznanego Żołnierza pod kolumnadą Pałacu Saskiego"
+        },
         "credit": {
           "author": "Narcyz Witczak-Witaczyński",
           "date": "1929-08-02",
@@ -389,6 +465,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The Saxon Palace with its central colonnade seen across Piłsudski Square",
+        "pl": {
+          "caption": "Pałac Saski ze środkową kolumnadą widziany z drugiej strony placu Piłsudskiego"
+        },
         "credit": {
           "author": "Willem van de Poll",
           "date": "1934",
@@ -406,6 +485,9 @@
         "approx": false,
         "ratio": 1.2285,
         "caption": "The surviving arches of the tomb among the rubble of the blown-up Saxon Palace",
+        "pl": {
+          "caption": "Ocalałe arkady grobu wśród gruzów wysadzonego Pałacu Saskiego"
+        },
         "credit": {
           "author": "Jan Bułhak",
           "date": "1945",
@@ -423,6 +505,9 @@
         "approx": true,
         "ratio": 0.9456,
         "caption": "The restored tomb with its urns, looking out at the ruined Grand Theatre across the square",
+        "pl": {
+          "caption": "Odrestaurowany grób z urnami; po drugiej stronie placu ruiny Teatru Wielkiego"
+        },
         "credit": {
           "author": "unknown",
           "date": "c. 1949",
@@ -440,6 +525,9 @@
         "approx": false,
         "ratio": 1.5504,
         "caption": "The free-standing arcade of the tomb on Victory Square, with the Saxon Garden behind",
+        "pl": {
+          "caption": "Wolno stojąca arkada grobu na placu Zwycięstwa, w głębi Ogród Saski"
+        },
         "credit": {
           "author": "foundin_a_attic",
           "date": "1972",
@@ -457,6 +545,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The tomb seen across the empty Piłsudski Square",
+        "pl": {
+          "caption": "Grób widziany z drugiej strony pustego placu Piłsudskiego"
+        },
         "credit": {
           "author": "Janusz Jurzyk",
           "date": "2005",
@@ -474,6 +565,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The arcade of the Tomb of the Unknown Soldier with the eternal flame",
+        "pl": {
+          "caption": "Arkada Grobu Nieznanego Żołnierza z wiecznym ogniem"
+        },
         "credit": {
           "author": "tm-md",
           "date": "2022-12-30",
@@ -492,6 +586,10 @@
     "lng": 21.01067,
     "kind": "historic",
     "description": "The Warsaw–Vienna Railway Station, the city's first, opened in 1845 at the corner of Marszałkowska Street and Aleje Jerozolimskie, and from 1919 served as the Main Station. Most of the building was demolished in the 1930s during construction of the cross-city railway tunnel, and the remainder burned in September 1939; the ruins of the clock tower were blown up in 1947. The site became part of the square around the Palace of Culture and Science, and since 1998 the sunken 'Patelnia' square has formed the entrance to Centrum metro station.",
+    "pl": {
+      "name": "Dworzec Wiedeński – dziś Patelnia",
+      "description": "Dworzec Kolei Warszawsko-Wiedeńskiej, pierwszy dworzec kolejowy w mieście, otwarto w 1845 roku u zbiegu ulicy Marszałkowskiej i Alej Jerozolimskich; od 1919 roku pełnił funkcję Dworca Głównego. Większą część budynku rozebrano w latach 30. podczas budowy kolejowego tunelu średnicowego, a pozostała część spłonęła we wrześniu 1939 roku; ruiny wieży zegarowej wysadzono w 1947 roku. Teren stał się częścią placu wokół Pałacu Kultury i Nauki, a od 1998 roku obniżony plac zwany „Patelnią” tworzy wejście do stacji metra Centrum."
+    },
     "og": "/img/og/dworzec-glowny.jpg",
     "photos": [
       {
@@ -502,6 +600,9 @@
         "approx": true,
         "ratio": 1.3699,
         "caption": "The station with its clock tower at the corner of Marszałkowska Street, with crowds and trams",
+        "pl": {
+          "caption": "Dworzec z wieżą zegarową na rogu Marszałkowskiej, z tłumem przechodniów i tramwajami"
+        },
         "credit": {
           "author": "Henryk Poddębski",
           "date": "before 1939",
@@ -519,6 +620,9 @@
         "approx": false,
         "ratio": 1.4109,
         "caption": "The cross-city railway cutting dug through the station site, with the remaining clock-tower building behind",
+        "pl": {
+          "caption": "Wykop pod linię średnicową przecinający teren dworca, w głębi zachowany budynek z wieżą zegarową"
+        },
         "credit": {
           "author": "unknown",
           "date": "1931",
@@ -536,6 +640,9 @@
         "approx": false,
         "ratio": 1.5341,
         "caption": "The burned-out Main Station after the siege of Warsaw",
+        "pl": {
+          "caption": "Wypalony Dworzec Główny po oblężeniu Warszawy"
+        },
         "credit": {
           "author": "unknown",
           "date": "September 1939",
@@ -553,6 +660,9 @@
         "approx": false,
         "ratio": 1.5009,
         "caption": "Trams at the Marszałkowska / Aleje Jerozolimskie crossing; behind, the cleared station site and the Palace of Culture under construction",
+        "pl": {
+          "caption": "Tramwaje na skrzyżowaniu Marszałkowskiej i Alej Jerozolimskich; w głębi uprzątnięty teren dworca i budowa Pałacu Kultury"
+        },
         "credit": {
           "author": "Zbyszko Siemaszko",
           "date": "1954",
@@ -570,6 +680,9 @@
         "approx": true,
         "ratio": 1.1127,
         "caption": "The crossing in the 1960s with the Universal office building and the Rotunda",
+        "pl": {
+          "caption": "Skrzyżowanie w latach 60. z biurowcem Universal i Rotundą"
+        },
         "credit": {
           "author": "unknown",
           "date": "1960s",
@@ -587,6 +700,9 @@
         "approx": false,
         "ratio": 1.5009,
         "caption": "The Patelnia square at the entrance to Centrum metro station at night",
+        "pl": {
+          "caption": "Plac „Patelnia” przy wejściu do stacji metra Centrum nocą"
+        },
         "credit": {
           "author": "Lukas Plewnia",
           "date": "2013-11-01",
@@ -604,6 +720,9 @@
         "approx": false,
         "ratio": 1.4995,
         "caption": "Patelnia with the metro entrances and the Palace of Culture and Science behind",
+        "pl": {
+          "caption": "„Patelnia” z wejściami do metra, w głębi Pałac Kultury i Nauki"
+        },
         "credit": {
           "author": "Cybularny",
           "date": "2024-07-19",
@@ -622,6 +741,10 @@
     "lng": 21.012167,
     "kind": "historic",
     "description": "The townhouses of the Old Town Market Square largely kept their 17th–18th-century form until 1944; in 1928–1929 their façades were repainted with new polychromes. During and after the Warsaw Uprising the Old Town was almost completely destroyed. In 1949–1953 the townhouses were reconstructed using surviving fragments and historical records, and the square was reopened on 22 July 1953. The rebuilt Old Town has been a UNESCO World Heritage Site since 1980.",
+    "pl": {
+      "name": "Rynek Starego Miasta",
+      "description": "Kamienice Rynku Starego Miasta zachowały w dużej mierze swój XVII- i XVIII-wieczny kształt aż do 1944 roku; w latach 1928–1929 ich fasady pokryto nowymi polichromiami. W czasie Powstania Warszawskiego i po jego upadku Stare Miasto zostało niemal całkowicie zniszczone. W latach 1949–1953 kamienice zrekonstruowano z wykorzystaniem ocalałych fragmentów i dokumentacji historycznej, a rynek oddano do użytku 22 lipca 1953 roku. Od 1980 roku odbudowane Stare Miasto znajduje się na Liście światowego dziedzictwa UNESCO."
+    },
     "og": "/img/og/rynek-starego-miasta.jpg",
     "photos": [
       {
@@ -632,6 +755,9 @@
         "approx": true,
         "ratio": 1.4286,
         "caption": "The square looking north-west towards the Dekert side, with children playing on the cobbles",
+        "pl": {
+          "caption": "Rynek, widok na północny zachód, ku stronie Dekerta; na bruku bawią się dzieci"
+        },
         "credit": {
           "author": "Henryk Poddębski",
           "date": "c. 1929",
@@ -649,6 +775,9 @@
         "approx": false,
         "ratio": 1.281,
         "caption": "The burned-out shells of the Dekert side townhouses after the Warsaw Uprising",
+        "pl": {
+          "caption": "Wypalone mury kamienic strony Dekerta po Powstaniu Warszawskim"
+        },
         "credit": {
           "author": "Jan Bułhak",
           "date": "1945",
@@ -666,6 +795,9 @@
         "approx": false,
         "ratio": 0.9657,
         "caption": "Crowds at the ceremony opening the rebuilt Old Town, 22 July 1953",
+        "pl": {
+          "caption": "Tłumy na uroczystości otwarcia odbudowanego Starego Miasta, 22 lipca 1953 roku"
+        },
         "credit": {
           "author": "unknown",
           "date": "1953-07-22",
@@ -683,6 +815,9 @@
         "approx": false,
         "ratio": 1.2021,
         "caption": "Rebuilt townhouses on the square, with a car parked in the foreground",
+        "pl": {
+          "caption": "Odbudowane kamienice przy rynku, na pierwszym planie zaparkowany samochód"
+        },
         "credit": {
           "author": "Fortepan / Romák Éva",
           "date": "1960",
@@ -700,6 +835,9 @@
         "approx": false,
         "ratio": 1.448,
         "caption": "Cars parked in front of the rebuilt townhouses",
+        "pl": {
+          "caption": "Samochody zaparkowane przed odbudowanymi kamienicami"
+        },
         "credit": {
           "author": "Fortepan / Sugár Ferenc",
           "date": "1966",
@@ -717,6 +855,9 @@
         "approx": false,
         "ratio": 1.4453,
         "caption": "The Kołłątaj side of the square in 1991",
+        "pl": {
+          "caption": "Strona Kołłątaja w 1991 roku"
+        },
         "credit": {
           "author": "Smiley.toerist",
           "date": "August 1991",
@@ -734,6 +875,9 @@
         "approx": false,
         "ratio": 1.5094,
         "caption": "The square with the water pump and the Mermaid statue, looking towards the Dekert side",
+        "pl": {
+          "caption": "Rynek z pompą uliczną i pomnikiem Syrenki, widok ku stronie Dekerta"
+        },
         "credit": {
           "author": "Steven Lek",
           "date": "2018-10-28",
@@ -752,6 +896,10 @@
     "lng": 21.009574,
     "kind": "historic",
     "description": "Theatre Square is framed by the Grand Theatre and the Jabłonowski Palace, which served as Warsaw's City Hall from 1819 until 1944. The theatre was bombed in September 1939 and burned in 1944; it was rebuilt and greatly enlarged after the war, keeping its original façade on the square, and reopened in 1965. The ruins of the Jabłonowski Palace were demolished in 1952 and the Warsaw Nike monument was unveiled near its site in 1964; the monument was moved away in the 1990s and the palace was reconstructed in 1995–1997.",
+    "pl": {
+      "name": "Plac Teatralny",
+      "description": "Plac Teatralny wyznaczają Teatr Wielki i Pałac Jabłonowskich, który od 1819 do 1944 roku był siedzibą warszawskiego ratusza. Teatr został zbombardowany we wrześniu 1939 roku i spłonął w 1944 roku; po wojnie odbudowano go i znacznie powiększono, zachowując pierwotną fasadę od strony placu, a ponownie otwarto w 1965 roku. Ruiny Pałacu Jabłonowskich rozebrano w 1952 roku, a w 1964 roku w pobliżu jego dawnego miejsca odsłonięto pomnik Warszawskiej Nike. W latach 90. pomnik przeniesiono, a pałac zrekonstruowano w latach 1995–1997."
+    },
     "og": "/img/og/plac-teatralny.jpg",
     "photos": [
       {
@@ -762,6 +910,9 @@
         "approx": true,
         "ratio": 1.4172,
         "caption": "The square with the Jabłonowski Palace (City Hall) tower on the left and the Grand Theatre on the right",
+        "pl": {
+          "caption": "Plac z wieżą Pałacu Jabłonowskich (ratusza) po lewej i Teatrem Wielkim po prawej"
+        },
         "credit": {
           "author": "unknown",
           "date": "before 1939",
@@ -779,6 +930,9 @@
         "approx": true,
         "ratio": 1.537,
         "caption": "City Hall with its tower and the Grand Theatre, seen from above across the square",
+        "pl": {
+          "caption": "Ratusz z wieżą i Teatr Wielki widziane z góry ponad placem"
+        },
         "credit": {
           "author": "Willem van de Poll",
           "date": "c. 1934",
@@ -796,6 +950,9 @@
         "approx": false,
         "ratio": 1.4401,
         "caption": "Refugees in front of the Jabłonowski Palace (City Hall) during the siege of Warsaw",
+        "pl": {
+          "caption": "Uchodźcy przed Pałacem Jabłonowskich (ratuszem) podczas oblężenia Warszawy"
+        },
         "credit": {
           "author": "unknown",
           "date": "September 1939",
@@ -813,6 +970,9 @@
         "approx": false,
         "ratio": 1.3675,
         "caption": "Residents clearing rubble by the ruined Jabłonowski Palace",
+        "pl": {
+          "caption": "Mieszkańcy uprzątający gruz przy zrujnowanym Pałacu Jabłonowskich"
+        },
         "credit": {
           "author": "unknown",
           "date": "1945",
@@ -830,6 +990,9 @@
         "approx": true,
         "ratio": 1.4184,
         "caption": "The Warsaw Nike monument on the square, near the site of the demolished Jabłonowski Palace",
+        "pl": {
+          "caption": "Pomnik Warszawskiej Nike na placu, w pobliżu miejsca po rozebranym Pałacu Jabłonowskich"
+        },
         "credit": {
           "author": "unknown",
           "date": "1960s",
@@ -847,6 +1010,9 @@
         "approx": false,
         "ratio": 3.0246,
         "caption": "The north side of the square with the reconstructed Jabłonowski Palace and its tower",
+        "pl": {
+          "caption": "Północna pierzeja placu ze zrekonstruowanym Pałacem Jabłonowskich i jego wieżą"
+        },
         "credit": {
           "author": "Marcin Białek",
           "date": "2009-08-16",
@@ -864,6 +1030,9 @@
         "approx": false,
         "ratio": 1.7372,
         "caption": "The empty square with the Jabłonowski Palace on the left and the Grand Theatre on the right",
+        "pl": {
+          "caption": "Pusty plac z Pałacem Jabłonowskich po lewej i Teatrem Wielkim po prawej"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2020-04-18",
@@ -882,6 +1051,10 @@
     "lng": 21.01796,
     "kind": "historic",
     "description": "Plac Zbawiciela on Marszałkowska Street is dominated by the Church of the Most Holy Saviour, built in 1901–1927. In September 1939 German shells destroyed the church's west tower, the spire over the crossing and the roof, and in 1944 it suffered further severe damage. The church was repaired after the war and its towers rebuilt; in the early 1950s the square was enclosed by the arcaded buildings of the MDM housing estate. The central spire over the crossing was never rebuilt.",
+    "pl": {
+      "name": "Plac Zbawiciela – kościół Najświętszego Zbawiciela",
+      "description": "Nad placem Zbawiciela przy ulicy Marszałkowskiej dominuje kościół Najświętszego Zbawiciela, wzniesiony w latach 1901–1927. We wrześniu 1939 roku niemieckie pociski zniszczyły zachodnią wieżę kościoła, sygnaturkę nad skrzyżowaniem naw i dach, a w 1944 roku świątynia doznała kolejnych poważnych zniszczeń. Po wojnie kościół wyremontowano i odbudowano jego wieże; na początku lat 50. plac otoczyły arkadowe budynki osiedla MDM. Centralnej wieżyczki nad skrzyżowaniem naw nigdy nie odbudowano."
+    },
     "og": "/img/og/marszalkowska.jpg",
     "photos": [
       {
@@ -892,6 +1065,9 @@
         "approx": true,
         "ratio": 0.7113,
         "caption": "The church with its twin towers and central spire, seen across the round garden in the middle of the square",
+        "pl": {
+          "caption": "Kościół z dwiema wieżami i centralną wieżyczką widziany zza okrągłego skweru pośrodku placu"
+        },
         "credit": {
           "author": "unknown",
           "date": "1929–1939",
@@ -909,6 +1085,9 @@
         "approx": false,
         "ratio": 1.1923,
         "caption": "The war-damaged church behind rubble and stone lions on today's Aleja Wyzwolenia",
+        "pl": {
+          "caption": "Zniszczony w czasie wojny kościół za gruzami i kamiennymi lwami na dzisiejszej alei Wyzwolenia"
+        },
         "credit": {
           "author": "Leonard Jabrzemski",
           "date": "1945",
@@ -926,6 +1105,9 @@
         "approx": true,
         "ratio": 1.6807,
         "caption": "The church with one tower under reconstruction in scaffolding, on the cleared post-war square",
+        "pl": {
+          "caption": "Kościół z jedną z wież odbudowywaną w rusztowaniach, na uprzątniętym powojennym placu"
+        },
         "credit": {
           "author": "Roman Kwiatkowski",
           "date": "c. 1949",
@@ -943,6 +1125,9 @@
         "approx": true,
         "ratio": 0.9306,
         "caption": "Aerial view of the square ringed by the arcaded MDM buildings, with the church towers on the right",
+        "pl": {
+          "caption": "Plac otoczony arkadowymi budynkami MDM z lotu ptaka, po prawej wieże kościoła"
+        },
         "credit": {
           "author": "Edmund Kupiecki",
           "date": "1960s",
@@ -960,6 +1145,9 @@
         "approx": false,
         "ratio": 0.7519,
         "caption": "The church seen from the square, without the pre-war central spire",
+        "pl": {
+          "caption": "Kościół widziany z placu, bez przedwojennej centralnej wieżyczki"
+        },
         "credit": {
           "author": "Aw58",
           "date": "2009-05-13",
@@ -977,6 +1165,9 @@
         "approx": false,
         "ratio": 0.6294,
         "caption": "The front of the church with its twin towers",
+        "pl": {
+          "caption": "Fasada kościoła z dwiema wieżami"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2019-05-05",
@@ -994,6 +1185,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "Aerial view of the square from the west, with the church on the right",
+        "pl": {
+          "caption": "Plac z lotu ptaka od zachodu, po prawej kościół"
+        },
         "credit": {
           "author": "Emptywords",
           "date": "2022-05-17",
@@ -1012,6 +1206,10 @@
     "lng": 21.02234,
     "kind": "historic",
     "description": "St Alexander's Church on Three Crosses Square was built in 1818–1826 to a classicist design by Chrystian Piotr Aigner and enlarged in 1886–1895 in neo-Renaissance style, with two towers and a large dome. It was largely destroyed during the Warsaw Uprising in 1944. In 1949–1952 it was rebuilt in its original, smaller classicist form, without the 19th-century extension, while new buildings rose around the square.",
+    "pl": {
+      "name": "Plac Trzech Krzyży – kościół św. Aleksandra",
+      "description": "Kościół św. Aleksandra na placu Trzech Krzyży wzniesiono w latach 1818–1826 według klasycystycznego projektu Chrystiana Piotra Aignera, a w latach 1886–1895 rozbudowano w stylu neorenesansowym, dodając dwie wieże i dużą kopułę. Podczas Powstania Warszawskiego w 1944 roku świątynia została w dużej mierze zniszczona. W latach 1949–1952 odbudowano ją w pierwotnej, mniejszej formie klasycystycznej, bez XIX-wiecznej rozbudowy, a wokół placu wyrosły nowe budynki."
+    },
     "og": "/img/og/plac-trzech-krzyzy.jpg",
     "photos": [
       {
@@ -1022,6 +1220,9 @@
         "approx": true,
         "ratio": 1.3559,
         "caption": "The square from above, with the enlarged church, trees and trams",
+        "pl": {
+          "caption": "Plac z lotu ptaka z rozbudowanym kościołem, drzewami i tramwajami"
+        },
         "credit": {
           "author": "unknown",
           "date": "before 1939",
@@ -1039,6 +1240,9 @@
         "approx": false,
         "ratio": 1.4427,
         "caption": "Looking along Nowy Świat towards the enlarged St Alexander's Church with its two towers and dome",
+        "pl": {
+          "caption": "Widok wzdłuż Nowego Światu na rozbudowany kościół św. Aleksandra z dwiema wieżami i kopułą"
+        },
         "credit": {
           "author": "unknown",
           "date": "1933",
@@ -1056,6 +1260,9 @@
         "approx": false,
         "ratio": 1.1765,
         "caption": "The ruins of the church with one surviving tower",
+        "pl": {
+          "caption": "Ruiny kościoła z jedną ocalałą wieżą"
+        },
         "credit": {
           "author": "Jan Bułhak",
           "date": "1945",
@@ -1073,6 +1280,9 @@
         "approx": true,
         "ratio": 1.4829,
         "caption": "Trams on the square during post-war reconstruction, with the ruined church on the right",
+        "pl": {
+          "caption": "Tramwaje na placu w czasie powojennej odbudowy, po prawej zrujnowany kościół"
+        },
         "credit": {
           "author": "Leonard Jabrzemski",
           "date": "1948 or 1949",
@@ -1090,6 +1300,9 @@
         "approx": true,
         "ratio": 1.6598,
         "caption": "Buses and cars on the square in front of the rebuilt classicist church",
+        "pl": {
+          "caption": "Autobusy i samochody na placu przed odbudowanym klasycystycznym kościołem"
+        },
         "credit": {
           "author": "unknown",
           "date": "1960s",
@@ -1107,6 +1320,9 @@
         "approx": false,
         "ratio": 2.2857,
         "caption": "The rebuilt church in the middle of the square, in winter",
+        "pl": {
+          "caption": "Odbudowany kościół pośrodku placu zimą"
+        },
         "credit": {
           "author": "Marcin Białek",
           "date": "2009-02-21",
@@ -1124,6 +1340,9 @@
         "approx": false,
         "ratio": 1.4085,
         "caption": "St Alexander's Church, the rotunda and portico as rebuilt after the war",
+        "pl": {
+          "caption": "Kościół św. Aleksandra – rotunda i portyk w kształcie nadanym przy powojennej odbudowie"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2022-08-05",
@@ -1142,6 +1361,10 @@
     "lng": 21.02086,
     "kind": "historic",
     "description": "Before the war the crossing of Nowy Świat and Aleje Jerozolimskie was one of Warsaw's busiest corners, lined with tenement houses and cafés, with the Bank Gospodarstwa Krajowego building completed on one corner in 1931. Most of the surrounding houses were destroyed during the war and the 1944 Warsaw Uprising. In 1948–1952 the monumental Party House, seat of the Central Committee of the Polish United Workers' Party, was built on the corner of Nowy Świat. After 1991 it became the Centrum Bankowo-Finansowe and housed the Warsaw Stock Exchange until 2000; since 2002 Joanna Rajkowska's artificial palm tree has stood in the middle of the Charles de Gaulle roundabout.",
+    "pl": {
+      "name": "Nowy Świat przy Alejach Jerozolimskich (rondo de Gaulle'a)",
+      "description": "Przed wojną skrzyżowanie Nowego Światu z Alejami Jerozolimskimi było jednym z najruchliwszych miejsc Warszawy, otoczonym kamienicami i kawiarniami; na jednym z narożników w 1931 roku ukończono gmach Banku Gospodarstwa Krajowego. Większość okolicznych kamienic zniszczono w czasie wojny i Powstania Warszawskiego w 1944 roku. W latach 1948–1952 na rogu Nowego Światu wzniesiono monumentalny Dom Partii, siedzibę Komitetu Centralnego PZPR. Po 1991 roku budynek stał się Centrum Bankowo-Finansowym, a do 2000 roku mieściła się w nim Giełda Papierów Wartościowych w Warszawie. Od 2002 roku pośrodku ronda Charles'a de Gaulle'a stoi sztuczna palma Joanny Rajkowskiej."
+    },
     "og": "/img/og/nowy-swiat.jpg",
     "photos": [
       {
@@ -1152,6 +1375,9 @@
         "approx": true,
         "ratio": 1.3722,
         "caption": "Cars, cabs and a line 0 tram at the Nowy Świat – Aleje Jerozolimskie crossing, with the Gastronomia café on the right",
+        "pl": {
+          "caption": "Samochody, dorożki i tramwaj linii 0 na skrzyżowaniu Nowego Światu z Alejami Jerozolimskimi, po prawej kawiarnia Gastronomia"
+        },
         "credit": {
           "author": "Jan Binek",
           "date": "1930–1934",
@@ -1169,6 +1395,9 @@
         "approx": true,
         "ratio": 1.3452,
         "caption": "The corner tenement house with the Gastronomia café at Nowy Świat and Aleje 3 Maja",
+        "pl": {
+          "caption": "Narożna kamienica z kawiarnią Gastronomia u zbiegu Nowego Światu i Alei 3 Maja"
+        },
         "credit": {
           "author": "Unknown",
           "date": "before 1939",
@@ -1186,6 +1415,9 @@
         "approx": true,
         "ratio": 1.5952,
         "caption": "The junction in the late 1940s, with war-damaged houses and early post-war traffic",
+        "pl": {
+          "caption": "Skrzyżowanie pod koniec lat 40. – zniszczone w czasie wojny kamienice i pierwszy powojenny ruch uliczny"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1948–1949",
@@ -1203,6 +1435,9 @@
         "approx": false,
         "ratio": 1.2842,
         "caption": "Clearing the street at the junction while the Party House rises behind scaffolding",
+        "pl": {
+          "caption": "Uprzątanie ulicy na skrzyżowaniu, w głębi wznoszony w rusztowaniach Dom Partii"
+        },
         "credit": {
           "author": "Edward Falkowski",
           "date": "1949",
@@ -1220,6 +1455,9 @@
         "approx": true,
         "ratio": 1.3514,
         "caption": "Trams and buses at the junction in the 1960s, with the Party House in the background",
+        "pl": {
+          "caption": "Tramwaje i autobusy na skrzyżowaniu w latach 60., w tle Dom Partii"
+        },
         "credit": {
           "author": "Marek A. Karewicz",
           "date": "1960s",
@@ -1237,6 +1475,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The roundabout with the artificial palm tree and the Bank Gospodarstwa Krajowego building",
+        "pl": {
+          "caption": "Rondo ze sztuczną palmą i gmachem Banku Gospodarstwa Krajowego"
+        },
         "credit": {
           "author": "Alina Zienowicz (Ala_z)",
           "date": "2012-05-24",
@@ -1254,6 +1495,9 @@
         "approx": false,
         "ratio": 1.4109,
         "caption": "The Charles de Gaulle roundabout with its palm tree, seen along Aleje Jerozolimskie",
+        "pl": {
+          "caption": "Rondo Charles'a de Gaulle'a z palmą, widok wzdłuż Alej Jerozolimskich"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2019-08-18",
@@ -1272,6 +1516,10 @@
     "lng": 21.002322,
     "kind": "historic",
     "description": "Bank Square took its classicist form in the 1820s, when Antonio Corazzi built the palace of the Government Revenue and Treasury Commission, the Treasury Minister's Palace and the Bank Polski building around it. The palaces were burnt out in 1944 and rebuilt in the early 1950s, while the square was widened into a major traffic junction and renamed after Felix Dzerzhinsky, whose statue stood here from 1951 to 1989. Today the palace complex houses Warsaw City Hall, the Blue Skyscraper (completed in 1991) stands on the east side near the site of the destroyed Great Synagogue, and a monument to Juliusz Słowacki has stood on the square since 2001.",
+    "pl": {
+      "name": "Plac Bankowy",
+      "description": "Plac Bankowy zyskał klasycystyczny kształt w latach 20. XIX wieku, gdy Antonio Corazzi wzniósł wokół niego Pałac Komisji Rządowej Przychodów i Skarbu, Pałac Ministra Skarbu oraz gmach Banku Polskiego. Pałace spłonęły w 1944 roku i zostały odbudowane na początku lat 50., a sam plac poszerzono, przekształcając go w ważny węzeł komunikacyjny, i nazwano imieniem Feliksa Dzierżyńskiego, którego pomnik stał tu w latach 1951–1989. Dziś w zespole pałacowym mieści się warszawski ratusz, po wschodniej stronie placu, w pobliżu miejsca, gdzie stała zniszczona Wielka Synagoga, wznosi się Błękitny Wieżowiec (ukończony w 1991 roku), a od 2001 roku na placu stoi pomnik Juliusza Słowackiego."
+    },
     "og": "/img/og/plac-bankowy.jpg",
     "photos": [
       {
@@ -1282,6 +1530,9 @@
         "approx": true,
         "ratio": 1.5702,
         "caption": "The Treasury Minister's Palace and the tree-lined garden square in front of it, seen from Rymarska Street",
+        "pl": {
+          "caption": "Pałac Ministra Skarbu i zadrzewiony skwer przed nim, widok od strony ulicy Rymarskiej"
+        },
         "credit": {
           "author": "Zdzisław Marcinkowski (1880−1944)",
           "date": "1920s",
@@ -1299,6 +1550,9 @@
         "approx": true,
         "ratio": 1.534,
         "caption": "Bank Square with its fountain, the Corazzi palaces on the left and Rymarska Street on the right",
+        "pl": {
+          "caption": "Plac Bankowy z fontanną, pałacami Corazziego po lewej i ulicą Rymarską po prawej"
+        },
         "credit": {
           "author": "Unknown",
           "date": "before 1939",
@@ -1316,6 +1570,9 @@
         "approx": false,
         "ratio": 1.5549,
         "caption": "The colonnaded palaces of the square under reconstruction after their destruction in 1944",
+        "pl": {
+          "caption": "Pałace z kolumnadami przy placu w trakcie odbudowy po zniszczeniach z 1944 roku"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1951",
@@ -1333,6 +1590,9 @@
         "approx": true,
         "ratio": 1.1765,
         "caption": "Dzerzhinsky Square, as it was then named, with the rebuilt palaces and the Dzerzhinsky statue",
+        "pl": {
+          "caption": "Ówczesny plac Dzierżyńskiego z odbudowanymi pałacami i pomnikiem Dzierżyńskiego"
+        },
         "credit": {
           "author": "Unknown",
           "date": "c. 1974",
@@ -1350,6 +1610,9 @@
         "approx": false,
         "ratio": 1.5052,
         "caption": "A Konstal 105Na tram passing the rebuilt palace colonnades on Bank Square",
+        "pl": {
+          "caption": "Tramwaj Konstal 105Na mija odbudowane kolumnady pałaców przy placu Bankowym"
+        },
         "credit": {
           "author": "Citizen59",
           "date": "2010-08-07",
@@ -1367,6 +1630,9 @@
         "approx": false,
         "ratio": 1.5474,
         "caption": "The Blue Skyscraper and the Słowacki monument on Bank Square",
+        "pl": {
+          "caption": "Błękitny Wieżowiec i pomnik Słowackiego na placu Bankowym"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2015-06-02",
@@ -1384,6 +1650,9 @@
         "approx": false,
         "ratio": 1.8519,
         "caption": "The rebuilt Treasury Minister's Palace with the Słowacki monument in front",
+        "pl": {
+          "caption": "Odbudowany Pałac Ministra Skarbu, przed nim pomnik Słowackiego"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2018-04-15",
@@ -1402,6 +1671,10 @@
     "lng": 21.00336,
     "kind": "historic",
     "description": "Grzybowski Square was a busy market square in the heart of Warsaw's Jewish quarter, dominated by All Saints Church, built from 1861 to Enrico Marconi's design. In 1904 it was the scene of the PPS armed demonstration, and during the occupation the square lay within the Warsaw Ghetto. The church was badly damaged in 1944 and rebuilt after the war, while most of the surrounding tenements were replaced by post-war housing blocks and office towers. The square itself was redesigned as a green public space in 2010.",
+    "pl": {
+      "name": "Plac Grzybowski (kościół Wszystkich Świętych)",
+      "description": "Plac Grzybowski był gwarnym placem targowym w sercu żydowskiej dzielnicy Warszawy, nad którym górował kościół Wszystkich Świętych, budowany od 1861 roku według projektu Henryka Marconiego. W 1904 roku odbyła się tu zbrojna demonstracja PPS, a w czasie okupacji plac znalazł się w granicach getta warszawskiego. Kościół, poważnie uszkodzony w 1944 roku, odbudowano po wojnie, natomiast większość okolicznych kamienic zastąpiły powojenne bloki mieszkalne i biurowce. Sam plac przebudowano w 2010 roku, nadając mu charakter zielonej przestrzeni publicznej."
+    },
     "og": "/img/og/plac-grzybowski.jpg",
     "photos": [
       {
@@ -1412,6 +1685,9 @@
         "approx": false,
         "ratio": 1.2987,
         "caption": "All Saints Church under construction behind the market stalls and carts of Grzybowski Square",
+        "pl": {
+          "caption": "Budowa kościoła Wszystkich Świętych za straganami i wozami na placu Grzybowskim"
+        },
         "credit": {
           "author": "Konrad Brandel",
           "date": "1867-08",
@@ -1429,6 +1705,9 @@
         "approx": true,
         "ratio": 1.1356,
         "caption": "The completed All Saints Church above the busy square, with horse-drawn trams and carts",
+        "pl": {
+          "caption": "Ukończony kościół Wszystkich Świętych górujący nad gwarnym placem, z tramwajami konnymi i wozami"
+        },
         "credit": {
           "author": "Unknown",
           "date": "c. 1900",
@@ -1446,6 +1725,9 @@
         "approx": false,
         "ratio": 0.7169,
         "caption": "A Polish Socialist Party May Day rally in front of All Saints Church",
+        "pl": {
+          "caption": "Wiec pierwszomajowy Polskiej Partii Socjalistycznej przed kościołem Wszystkich Świętych"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1931-05-01",
@@ -1463,6 +1745,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The square as a small park with parked cars, before its 2010 redesign",
+        "pl": {
+          "caption": "Plac jako niewielki skwer z zaparkowanymi samochodami, przed przebudową w 2010 roku"
+        },
         "credit": {
           "author": "masti",
           "date": "2007-04-21",
@@ -1480,6 +1765,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The newly redesigned square in spring 2011",
+        "pl": {
+          "caption": "Plac tuż po przebudowie, wiosna 2011"
+        },
         "credit": {
           "author": "Raf24",
           "date": "2011-04-22",
@@ -1497,6 +1785,9 @@
         "approx": false,
         "ratio": 1.564,
         "caption": "The square's pond and planting, with post-war housing blocks behind",
+        "pl": {
+          "caption": "Oczko wodne i zieleń na placu, w tle powojenne bloki mieszkalne"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2015-08-16",
@@ -1514,6 +1805,9 @@
         "approx": false,
         "ratio": 1.2336,
         "caption": "All Saints Church at the southern end of the square today",
+        "pl": {
+          "caption": "Kościół Wszystkich Świętych na południowym krańcu placu dziś"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2026-04-20",
@@ -1532,6 +1826,10 @@
     "lng": 21.0394,
     "kind": "historic",
     "description": "Poniatowski Bridge, a steel-arch bridge over the Vistula with gatehouse towers designed by Stefan Szyller, opened in January 1914 as the continuation of Aleje Jerozolimskie. Russian troops blew it up in 1915 and it reopened only in the 1920s; in September 1944 German forces destroyed it again. The rebuilt bridge was reopened on 22 July 1946, and it still carries trams and road traffic to Praga, with the National Stadium on the eastern bank since 2011.",
+    "pl": {
+      "name": "Most Poniatowskiego",
+      "description": "Most Poniatowskiego – stalowy most łukowy na Wiśle z wieżami-strażnicami projektu Stefana Szyllera – otwarto w styczniu 1914 roku jako przedłużenie Alej Jerozolimskich. W 1915 roku wysadziły go wojska rosyjskie i ponownie oddano go do użytku dopiero w latach 20.; we wrześniu 1944 roku zniszczyli go Niemcy. Odbudowany most otwarto ponownie 22 lipca 1946 roku. Do dziś prowadzi nim ruch tramwajowy i samochodowy na Pragę, a od 2011 roku na wschodnim brzegu stoi Stadion Narodowy."
+    },
     "og": "/img/og/most-poniatowskiego.jpg",
     "photos": [
       {
@@ -1542,6 +1840,9 @@
         "approx": false,
         "ratio": 1.3937,
         "caption": "The newly opened bridge and its western gatehouse tower seen from the riverbank",
+        "pl": {
+          "caption": "Nowo otwarty most i jego zachodnia wieża-strażnica widziane z brzegu rzeki"
+        },
         "credit": {
           "author": "Stanisław Bogacki",
           "date": "1914",
@@ -1559,6 +1860,9 @@
         "approx": true,
         "ratio": 1.3746,
         "caption": "The western approach to the bridge with its pair of towers and a tram",
+        "pl": {
+          "caption": "Zachodni wjazd na most z parą wież i tramwajem"
+        },
         "credit": {
           "author": "Unknown",
           "date": "before 1939",
@@ -1576,6 +1880,9 @@
         "approx": false,
         "ratio": 1.5152,
         "caption": "A temporary pontoon bridge beside the wrecked spans and damaged tower of Poniatowski Bridge",
+        "pl": {
+          "caption": "Tymczasowy most pontonowy obok zniszczonych przęseł i uszkodzonej wieży mostu Poniatowskiego"
+        },
         "credit": {
           "author": "Jerzy Baranowski",
           "date": "1945",
@@ -1593,6 +1900,9 @@
         "approx": false,
         "ratio": 1.3962,
         "caption": "Workers assembling a new steel arch during the reconstruction of the bridge",
+        "pl": {
+          "caption": "Robotnicy montują nowy stalowy łuk podczas odbudowy mostu"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1945",
@@ -1610,6 +1920,9 @@
         "approx": false,
         "ratio": 1.5671,
         "caption": "The rebuilt bridge seen from the Stadion Dziesięciolecia side, with pedestrians and a bus",
+        "pl": {
+          "caption": "Odbudowany most od strony Stadionu Dziesięciolecia, z przechodniami i autobusem"
+        },
         "credit": {
           "author": "Fortepan / Lencse Zoltán",
           "date": "1958",
@@ -1627,6 +1940,9 @@
         "approx": false,
         "ratio": 1.5009,
         "caption": "The bridge during the high water of the Vistula in May 2010",
+        "pl": {
+          "caption": "Most podczas wezbrania Wisły w maju 2010 roku"
+        },
         "credit": {
           "author": "Tadeusz Rudzki",
           "date": "2010-05-21",
@@ -1644,6 +1960,9 @@
         "approx": false,
         "ratio": 1.9347,
         "caption": "The steel arches of the bridge from the western riverbank",
+        "pl": {
+          "caption": "Stalowe łuki mostu widziane z zachodniego brzegu"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2015-08-30",
@@ -1662,6 +1981,10 @@
     "lng": 21.010161,
     "kind": "historic",
     "description": "The Barbican, a semicircular fortified gate in Warsaw's city walls, was built in the mid-16th century on the road from the Old Town to the New Town. After losing its defensive role it was partly demolished and built over with tenement houses, and only fragments were uncovered during restoration work in the late 1930s. The area was devastated in 1944, and the Barbican was reconstructed in 1952–1954 from old drawings and the surviving remains. Today it is a pedestrian gateway between the Old and New Towns, part of the Old Town UNESCO World Heritage Site.",
+    "pl": {
+      "name": "Barbakan",
+      "description": "Barbakan – półokrągła, ufortyfikowana brama w murach miejskich Warszawy – powstał w połowie XVI wieku przy drodze ze Starego na Nowe Miasto. Gdy stracił znaczenie obronne, został częściowo rozebrany i zabudowany kamienicami, a podczas prac konserwatorskich pod koniec lat 30. XX wieku odsłonięto jedynie jego fragmenty. W 1944 roku okolica legła w gruzach, a w latach 1952–1954 Barbakan zrekonstruowano na podstawie dawnych rysunków i zachowanych reliktów. Dziś jest pieszym przejściem między Starym a Nowym Miastem i należy do warszawskiego Starego Miasta wpisanego na Listę światowego dziedzictwa UNESCO."
+    },
     "og": "/img/og/barbakan.jpg",
     "photos": [
       {
@@ -1672,6 +1995,9 @@
         "approx": true,
         "ratio": 1.6074,
         "caption": "Nowomiejska Street at Freta Street before the war, when the Barbican's remains were hidden among tenement houses",
+        "pl": {
+          "caption": "Ulica Nowomiejska u zbiegu z Freta przed wojną, gdy relikty Barbakanu kryły się wśród kamienic"
+        },
         "credit": {
           "author": "Unknown",
           "date": "before 1939",
@@ -1689,6 +2015,9 @@
         "approx": false,
         "ratio": 1.071,
         "caption": "Rubble filling Nowomiejska Street, which leads from the Old Town Market Square to the Barbican",
+        "pl": {
+          "caption": "Gruzy zalegające ulicę Nowomiejską, która prowadzi od Rynku Starego Miasta do Barbakanu"
+        },
         "credit": {
           "author": "Leonard Jabrzemski",
           "date": "1945",
@@ -1706,6 +2035,9 @@
         "approx": false,
         "ratio": 1.0652,
         "caption": "Reconstruction of the Barbican's brick walls",
+        "pl": {
+          "caption": "Odbudowa ceglanych murów Barbakanu"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1953",
@@ -1723,6 +2055,9 @@
         "approx": false,
         "ratio": 1.4733,
         "caption": "The rebuilt Barbican seen from Nowomiejska Street",
+        "pl": {
+          "caption": "Odbudowany Barbakan widziany od ulicy Nowomiejskiej"
+        },
         "credit": {
           "author": "Fortepan / Lencse Zoltán",
           "date": "1958",
@@ -1740,6 +2075,9 @@
         "approx": false,
         "ratio": 1.0989,
         "caption": "The Barbican and the reconstructed city walls seen from Podwale Street",
+        "pl": {
+          "caption": "Barbakan i zrekonstruowane mury miejskie widziane od strony Podwala"
+        },
         "credit": {
           "author": "Fortepan / Nagy Gyula",
           "date": "1965",
@@ -1757,6 +2095,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The Barbican's outer face seen from the moat",
+        "pl": {
+          "caption": "Zewnętrzna strona Barbakanu widziana z fosy"
+        },
         "credit": {
           "author": "Alina Zienowicz Ala z",
           "date": "2009-09-26",
@@ -1774,6 +2115,9 @@
         "approx": false,
         "ratio": 1.4273,
         "caption": "The Barbican seen from Nowomiejska Street",
+        "pl": {
+          "caption": "Barbakan od strony ulicy Nowomiejskiej"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2020-04-24",
@@ -1792,6 +2136,10 @@
     "lng": 21.011491,
     "kind": "historic",
     "description": "The Zachęta building on Małachowski Square was designed by Stefan Szyller for the Society for the Encouragement of Fine Arts and opened in 1900. In December 1922 Poland's first president, Gabriel Narutowicz, was assassinated inside it. The gallery survived the war with damage while much of the surrounding square was ruined, and after 1949 it housed the Central Bureau of Art Exhibitions. Since 2003 it has been the Zachęta National Gallery of Art.",
+    "pl": {
+      "name": "Zachęta (plac Małachowskiego)",
+      "description": "Gmach Zachęty przy placu Małachowskiego, zaprojektowany przez Stefana Szyllera dla Towarzystwa Zachęty Sztuk Pięknych, otwarto w 1900 roku. W grudniu 1922 roku zamordowano w nim pierwszego prezydenta Polski, Gabriela Narutowicza. Budynek przetrwał wojnę, choć został uszkodzony, podczas gdy znaczna część zabudowy placu legła w gruzach; po 1949 roku mieściło się w nim Centralne Biuro Wystaw Artystycznych. Od 2003 roku działa tu Zachęta – Narodowa Galeria Sztuki."
+    },
     "og": "/img/og/zacheta.jpg",
     "photos": [
       {
@@ -1802,6 +2150,9 @@
         "approx": false,
         "ratio": 1.2569,
         "caption": "The newly completed Zachęta building, with the dome of Holy Trinity Church behind",
+        "pl": {
+          "caption": "Świeżo ukończony gmach Zachęty, w tle kopuła kościoła Świętej Trójcy"
+        },
         "credit": {
           "author": "Jadwiga Golcz",
           "date": "1900",
@@ -1819,6 +2170,9 @@
         "approx": true,
         "ratio": 1.342,
         "caption": "Małachowski Square with the Lutheran Holy Trinity Church and the corner of the Zachęta building on the right",
+        "pl": {
+          "caption": "Plac Małachowskiego z ewangelickim kościołem Świętej Trójcy i narożnikiem gmachu Zachęty po prawej"
+        },
         "credit": {
           "author": "Unknown",
           "date": "before 1939",
@@ -1836,6 +2190,9 @@
         "approx": true,
         "ratio": 1.6145,
         "caption": "The Peowiak monument on Małachowski Square during the German occupation, with war-damaged houses behind",
+        "pl": {
+          "caption": "Pomnik Peowiaka na placu Małachowskiego w czasie okupacji niemieckiej, w tle domy zniszczone podczas działań wojennych"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1939–1940",
@@ -1853,6 +2210,9 @@
         "approx": false,
         "ratio": 1.5209,
         "caption": "Kredytowa Street seen from Małachowski Square, with ruins and new construction",
+        "pl": {
+          "caption": "Ulica Kredytowa widziana z placu Małachowskiego – ruiny i nowe budowy"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1948",
@@ -1870,6 +2230,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The Zachęta National Gallery of Art seen from Małachowski Square",
+        "pl": {
+          "caption": "Zachęta – Narodowa Galeria Sztuki widziana z placu Małachowskiego"
+        },
         "credit": {
           "author": "Alina Zienowicz Ala z",
           "date": "2010-03-28",
@@ -1887,6 +2250,9 @@
         "approx": false,
         "ratio": 1.8824,
         "caption": "The main facade of the Zachęta building with the 'Artibus' pediment",
+        "pl": {
+          "caption": "Fasada główna gmachu Zachęty z tympanonem z napisem „Artibus”"
+        },
         "credit": {
           "author": "rdrozd",
           "date": "2015-01-17",
@@ -1905,6 +2271,10 @@
     "lng": 21.012321,
     "kind": "historic",
     "description": "Built in 1931–1934 for the Prudential insurance company to a design by Marcin Weinfeld, the 66 m tower was one of the tallest buildings in pre-war Europe. During the 1944 Warsaw Uprising it was hit by heavy artillery and burnt out, but its steel frame survived. It was rebuilt by 1954 with a socialist-realist facade and reopened as Hotel Warszawa. After years of disuse it was renovated and reopened in 2018 as a luxury hotel that again shows its pre-war modernist lines.",
+    "pl": {
+      "name": "Prudential (Hotel Warszawa)",
+      "description": "Wzniesiony w latach 1931–1934 dla towarzystwa ubezpieczeniowego Prudential według projektu Marcina Weinfelda 66-metrowy wieżowiec był jednym z najwyższych budynków przedwojennej Europy. W czasie Powstania Warszawskiego w 1944 roku trafiły go pociski ciężkiej artylerii i budynek spłonął, ale jego stalowy szkielet przetrwał. Do 1954 roku odbudowano go z socrealistyczną elewacją i otwarto jako Hotel Warszawa. Po latach, gdy stał nieużywany, przeszedł renowację i w 2018 roku ponownie otwarto go jako luksusowy hotel, który znów eksponuje przedwojenne modernistyczne linie."
+    },
     "og": "/img/og/prudential.jpg",
     "photos": [
       {
@@ -1915,6 +2285,9 @@
         "approx": false,
         "ratio": 0.7063,
         "caption": "The new Prudential skyscraper seen above the trees of Plac Napoleona",
+        "pl": {
+          "caption": "Nowy wieżowiec Prudentialu ponad drzewami placu Napoleona"
+        },
         "credit": {
           "author": "Henryk Poddębski",
           "date": "1935",
@@ -1932,6 +2305,9 @@
         "approx": false,
         "ratio": 1.0753,
         "caption": "The burnt-out shell of the Prudential tower after the Warsaw Uprising",
+        "pl": {
+          "caption": "Wypalony wieżowiec Prudentialu po Powstaniu Warszawskim"
+        },
         "credit": {
           "author": "Zbyszko Siemaszko (CAF)",
           "date": "1945",
@@ -1949,6 +2325,9 @@
         "approx": true,
         "ratio": 0.725,
         "caption": "The rebuilt tower, now Hotel Warszawa, at the end of the widened Świętokrzyska Street",
+        "pl": {
+          "caption": "Odbudowany wieżowiec, już jako Hotel Warszawa, u wylotu poszerzonej ulicy Świętokrzyskiej"
+        },
         "credit": {
           "author": "Teodor Hermańczyk",
           "date": "c. 1955",
@@ -1966,6 +2345,9 @@
         "approx": true,
         "ratio": 0.8762,
         "caption": "Hotel Warszawa above Plac Powstańców Warszawy in the 1960s",
+        "pl": {
+          "caption": "Hotel Warszawa górujący nad placem Powstańców Warszawy w latach 60."
+        },
         "credit": {
           "author": "Henryk Jurko",
           "date": "1960s",
@@ -1983,6 +2365,9 @@
         "approx": true,
         "ratio": 0.7312,
         "caption": "Hotel Warszawa with its socialist-realist facade in the 1970s",
+        "pl": {
+          "caption": "Hotel Warszawa z socrealistyczną elewacją w latach 70."
+        },
         "credit": {
           "author": "Unknown",
           "date": "1970s",
@@ -2000,6 +2385,9 @@
         "approx": false,
         "ratio": 1.1197,
         "caption": "The disused tower with an advertising banner on top, 2009",
+        "pl": {
+          "caption": "Nieużywany wieżowiec z banerem reklamowym na szczycie, 2009"
+        },
         "credit": {
           "author": "Marcin Białek",
           "date": "2009-08-16",
@@ -2017,6 +2405,9 @@
         "approx": false,
         "ratio": 1.3356,
         "caption": "The renovated Hotel Warszawa seen from Plac Powstańców Warszawy",
+        "pl": {
+          "caption": "Odnowiony Hotel Warszawa widziany z placu Powstańców Warszawy"
+        },
         "credit": {
           "author": "Szczecinolog",
           "date": "2024-12-10",
@@ -2035,6 +2426,10 @@
     "lng": 21.016183,
     "kind": "historic",
     "description": "Before the war this was a dense area of 19th-century tenement houses at the junction of Marszałkowska, Piękna and Koszykowa streets; most of it was destroyed during the war. In 1950–1952 the Marszałkowska Housing District (MDM) was built here in the socialist-realist style, and Plac Konstytucji was opened on 22 July 1952 with its arcades, reliefs and three tall ornamental lamp posts. For decades much of the square has been used as a car park.",
+    "pl": {
+      "name": "Plac Konstytucji (MDM)",
+      "description": "Przed wojną był tu gęsto zabudowany XIX-wiecznymi kamienicami obszar u zbiegu ulic Marszałkowskiej, Pięknej i Koszykowej; większość tej zabudowy zniszczyła wojna. W latach 1950–1952 wzniesiono tu w stylu socrealistycznym Marszałkowską Dzielnicę Mieszkaniową (MDM), a 22 lipca 1952 roku otwarto plac Konstytucji z arkadami, płaskorzeźbami i trzema wysokimi ozdobnymi latarniami. Od dziesięcioleci znaczna część placu służy za parking."
+    },
     "og": "/img/og/plac-konstytucji.jpg",
     "photos": [
       {
@@ -2045,6 +2440,9 @@
         "approx": false,
         "ratio": 1.2549,
         "caption": "A barricade of tram cars at the corner of Marszałkowska and Piękna during the defence of Warsaw, with the pre-war tenements behind",
+        "pl": {
+          "caption": "Barykada z wagonów tramwajowych na rogu Marszałkowskiej i Pięknej podczas obrony Warszawy, w tle przedwojenne kamienice"
+        },
         "credit": {
           "author": "Unknown",
           "date": "September 1939",
@@ -2062,6 +2460,9 @@
         "approx": false,
         "ratio": 0.7294,
         "caption": "Ruins at the corner of Marszałkowska and Koszykowa, where the square was later built",
+        "pl": {
+          "caption": "Ruiny na rogu Marszałkowskiej i Koszykowej, gdzie później powstał plac"
+        },
         "credit": {
           "author": "Edward Falkowski",
           "date": "1945",
@@ -2079,6 +2480,9 @@
         "approx": false,
         "ratio": 1.6667,
         "caption": "MDM blocks under construction along Marszałkowska, April 1952",
+        "pl": {
+          "caption": "Budowa bloków MDM wzdłuż Marszałkowskiej, kwiecień 1952"
+        },
         "credit": {
           "author": "Unknown",
           "date": "April 1952",
@@ -2096,6 +2500,9 @@
         "approx": true,
         "ratio": 1.4023,
         "caption": "The finished square with the Palace of Culture in the background",
+        "pl": {
+          "caption": "Ukończony plac z Pałacem Kultury w tle"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1950s",
@@ -2113,6 +2520,9 @@
         "approx": true,
         "ratio": 1.2924,
         "caption": "Plac Konstytucji seen from the MDM Hotel, with cars parked in the middle",
+        "pl": {
+          "caption": "Plac Konstytucji widziany z hotelu MDM, z samochodami zaparkowanymi pośrodku"
+        },
         "credit": {
           "author": "Teodor Hermańczyk",
           "date": "c. 1975",
@@ -2130,6 +2540,9 @@
         "approx": false,
         "ratio": 1.592,
         "caption": "The square from a similar high viewpoint, 2010",
+        "pl": {
+          "caption": "Plac widziany z podobnego wysokiego punktu, 2010"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2010-11-12",
@@ -2147,6 +2560,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "Lamp posts and the MDM Hotel on Plac Konstytucji, 2021",
+        "pl": {
+          "caption": "Latarnie i hotel MDM na placu Konstytucji, 2021"
+        },
         "credit": {
           "author": "Szczecinolog",
           "date": "2021-09-13",
@@ -2165,6 +2581,10 @@
     "lng": 20.9984,
     "kind": "historic",
     "description": "The two brick market halls were built in 1899–1902 on the site of the former Mirów guards' barracks, designed by Józef Pius Dziekoński and Apoloniusz Nieniewski. During the 1944 Warsaw Uprising the Germans executed civilians here and the halls were burnt and partly blown up. After the war the western hall served as a sports hall for the Gwardia club, while the eastern hall was rebuilt and reopened as a market in the early 1960s. Both halls are again used for trade today, with a street market around them.",
+    "pl": {
+      "name": "Hale Mirowskie",
+      "description": "Dwie ceglane hale targowe wzniesiono w latach 1899–1902 na miejscu dawnych Koszar Mirowskich według projektu Józefa Piusa Dziekońskiego i Apoloniusza Nieniewskiego. Podczas Powstania Warszawskiego w 1944 roku Niemcy dokonywali tu egzekucji ludności cywilnej, a hale spłonęły i zostały częściowo wysadzone. Po wojnie hala zachodnia służyła jako hala sportowa klubu Gwardia, natomiast halę wschodnią odbudowano i na początku lat 60. ponownie otwarto jako targowisko. Dziś obie hale znów mają funkcję handlową, a wokół nich działa uliczny targ."
+    },
     "og": "/img/og/hala-mirowska.jpg",
     "photos": [
       {
@@ -2175,6 +2595,9 @@
         "approx": false,
         "ratio": 1.318,
         "caption": "Market stalls in front of the Mirów hall, 1932",
+        "pl": {
+          "caption": "Stragany przed Halą Mirowską, 1932"
+        },
         "credit": {
           "author": "Henryk Poddębski",
           "date": "1932",
@@ -2192,6 +2615,9 @@
         "approx": true,
         "ratio": 1.426,
         "caption": "A tram passes the western hall during the German occupation",
+        "pl": {
+          "caption": "Tramwaj mija halę zachodnią w czasie okupacji niemieckiej"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1939–1944",
@@ -2209,6 +2635,9 @@
         "approx": false,
         "ratio": 1.3749,
         "caption": "The hall on fire during the Warsaw Uprising, seen from Solna Street",
+        "pl": {
+          "caption": "Płonąca hala podczas Powstania Warszawskiego, widok od ulicy Solnej"
+        },
         "credit": {
           "author": "Stefan Bałuk",
           "date": "August 1944",
@@ -2226,6 +2655,9 @@
         "approx": false,
         "ratio": 1.0782,
         "caption": "The western hall used as the Gwardia sports hall, 1960",
+        "pl": {
+          "caption": "Hala zachodnia jako hala sportowa Gwardii, 1960"
+        },
         "credit": {
           "author": "Fortepan / Romák Éva",
           "date": "1960",
@@ -2243,6 +2675,9 @@
         "approx": true,
         "ratio": 0.7919,
         "caption": "Shoppers inside the rebuilt Mirów market hall",
+        "pl": {
+          "caption": "Klienci we wnętrzu odbudowanej Hali Mirowskiej"
+        },
         "credit": {
           "author": "Unknown",
           "date": "c. 1965",
@@ -2260,6 +2695,9 @@
         "approx": false,
         "ratio": 1.25,
         "caption": "One of the brick halls on a grey day in 2000",
+        "pl": {
+          "caption": "Jedna z ceglanych hal w pochmurny dzień, 2000"
+        },
         "credit": {
           "author": "Ra Boe",
           "date": "2000",
@@ -2277,6 +2715,9 @@
         "approx": false,
         "ratio": 1.5873,
         "caption": "Hala Mirowska seen from Aleja Jana Pawła II, 2025",
+        "pl": {
+          "caption": "Hala Mirowska widziana od strony alei Jana Pawła II, 2025"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2025-04-06",
@@ -2295,6 +2736,10 @@
     "lng": 21.01009,
     "kind": "historic",
     "description": "The Main Building was erected in 1899–1901 to a design by Stefan Szyller for the Emperor Nicholas II Polytechnic Institute, and from 1915 housed the Polish Warsaw University of Technology. It was burnt out during the war and repaired after 1945; in December 1948 a mass rally for the congress uniting the PPR and PPS parties was held on the square in front of it. Under communist rule the square was renamed Plac Jedności Robotniczej. Today the restored building, with its large glass-roofed main hall, is again the university's centrepiece on Plac Politechniki.",
+    "pl": {
+      "name": "Gmach Główny Politechniki Warszawskiej",
+      "description": "Gmach Główny wzniesiono w latach 1899–1901 według projektu Stefana Szyllera dla Instytutu Politechnicznego im. Cesarza Mikołaja II, a od 1915 roku mieściła się w nim polska Politechnika Warszawska. W czasie wojny budynek spłonął, a po 1945 roku został wyremontowany; w grudniu 1948 roku na placu przed nim odbył się masowy wiec z okazji kongresu zjednoczeniowego PPR i PPS. W okresie PRL plac przemianowano na plac Jedności Robotniczej. Dziś odrestaurowany gmach z wielką, nakrytą szklanym dachem Aulą Główną znów jest sercem uczelni przy placu Politechniki."
+    },
     "og": "/img/og/politechnika.jpg",
     "photos": [
       {
@@ -2305,6 +2750,9 @@
         "approx": true,
         "ratio": 1.5429,
         "caption": "The Main Building and the quiet square in front of it before the war",
+        "pl": {
+          "caption": "Gmach Główny i cichy plac przed nim przed wojną"
+        },
         "credit": {
           "author": "Zdzisław Marcinkowski",
           "date": "before 1939",
@@ -2322,6 +2770,9 @@
         "approx": false,
         "ratio": 1.2461,
         "caption": "The burnt-out Main Building in 1945",
+        "pl": {
+          "caption": "Wypalony Gmach Główny w 1945 roku"
+        },
         "credit": {
           "author": "Edward Falkowski",
           "date": "1945",
@@ -2339,6 +2790,9 @@
         "approx": false,
         "ratio": 0.6969,
         "caption": "A mass rally on the square during the PPR–PPS unification congress",
+        "pl": {
+          "caption": "Masowy wiec na placu podczas kongresu zjednoczeniowego PPR i PPS"
+        },
         "credit": {
           "author": "Unknown",
           "date": "December 1948",
@@ -2356,6 +2810,9 @@
         "approx": true,
         "ratio": 0.9619,
         "caption": "The square, then Plac Jedności Robotniczej, with cars and a bus in the 1960s",
+        "pl": {
+          "caption": "Plac, wówczas plac Jedności Robotniczej, z samochodami i autobusem w latach 60."
+        },
         "credit": {
           "author": "Janusz Smogorzewski",
           "date": "1960s",
@@ -2373,6 +2830,9 @@
         "approx": false,
         "ratio": 2.3845,
         "caption": "Panorama of the yellow-painted Main Building and the square, 2008",
+        "pl": {
+          "caption": "Panorama pomalowanego na żółto Gmachu Głównego i placu, 2008"
+        },
         "credit": {
           "author": "Marcin Białek",
           "date": "2008-06-16",
@@ -2390,6 +2850,9 @@
         "approx": false,
         "ratio": 1.3889,
         "caption": "The restored white facade with the Apotheosis of Knowledge sculpture group, 2018",
+        "pl": {
+          "caption": "Odnowiona biała fasada z grupą rzeźbiarską „Apoteoza Wiedzy”, 2018"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2018-05-05",
@@ -2407,6 +2870,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The Main Building seen across Plac Politechniki, 2019",
+        "pl": {
+          "caption": "Gmach Główny widziany z drugiej strony placu Politechniki, 2019"
+        },
         "credit": {
           "author": "Kgbo",
           "date": "2019-08-18",
@@ -2425,6 +2891,10 @@
     "lng": 20.9844,
     "kind": "modern",
     "description": "The roundabout at the junction of Prosta, Towarowa, Kasprzaka and Okopowa streets in Wola was for decades surrounded by industrial plots, low office blocks and the RSW press complex. Since the opening of the Rondo Daszyńskiego metro station in 2015 the area has become Warsaw's second high-rise business district, with Warsaw Spire (2016), Generation Park, The Warsaw HUB and Skyliner rising around the junction.",
+    "pl": {
+      "name": "Rondo Daszyńskiego",
+      "description": "Rondo u zbiegu ulic Prostej, Towarowej, Kasprzaka i Okopowej na Woli przez dziesięciolecia otaczały tereny przemysłowe, niskie biurowce i kompleks wydawniczy RSW. Od otwarcia stacji metra Rondo Daszyńskiego w 2015 roku okolica stała się drugim w Warszawie skupiskiem biurowych wieżowców – wokół skrzyżowania wyrosły Warsaw Spire (2016), Generation Park, The Warsaw HUB i Skyliner."
+    },
     "og": "/img/og/rondo-daszynskiego.jpg",
     "photos": [
       {
@@ -2435,6 +2905,9 @@
         "approx": true,
         "ratio": 1.0237,
         "caption": "Towarowa Street with the tower of the RSW press complex, c. 1971",
+        "pl": {
+          "caption": "Ulica Towarowa z wieżą kompleksu wydawniczego RSW, ok. 1971"
+        },
         "credit": {
           "author": "Unknown",
           "date": "c. 1971",
@@ -2452,6 +2925,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The roundabout in 2007, before the skyscrapers, with a low office block under construction",
+        "pl": {
+          "caption": "Rondo w 2007 roku, jeszcze przed erą wieżowców; w budowie niski biurowiec"
+        },
         "credit": {
           "author": "Hiuppo",
           "date": "2007-08-02",
@@ -2469,6 +2945,9 @@
         "approx": false,
         "ratio": 1.5686,
         "caption": "View to the north-east in 2013, with construction cranes on the Warsaw Spire site",
+        "pl": {
+          "caption": "Widok w kierunku północno-wschodnim w 2013 roku, z dźwigami na placu budowy Warsaw Spire"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2013-07-18",
@@ -2486,6 +2965,9 @@
         "approx": false,
         "ratio": 1.3019,
         "caption": "The finished Warsaw Spire tower and cranes over the Generation Park site, 2016",
+        "pl": {
+          "caption": "Ukończony wieżowiec Warsaw Spire i dźwigi nad budową Generation Park, 2016"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2016-06-12",
@@ -2503,6 +2985,9 @@
         "approx": false,
         "ratio": 1.5009,
         "caption": "Generation Park tower under construction beside Warsaw Spire, 2019",
+        "pl": {
+          "caption": "Wieża Generation Park w budowie obok Warsaw Spire, 2019"
+        },
         "credit": {
           "author": "Wistula",
           "date": "2019-03-17",
@@ -2520,6 +3005,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "Aerial view along Prosta Street with Generation Park and Warsaw Unit flanking the roundabout, 2022",
+        "pl": {
+          "caption": "Widok z lotu ptaka wzdłuż ulicy Prostej; po obu stronach ronda Generation Park i Warsaw Unit, 2022"
+        },
         "credit": {
           "author": "Emptywords",
           "date": "2022-09-02",
@@ -2538,6 +3026,10 @@
     "lng": 21.0061,
     "kind": "modern",
     "description": "Before the Second World War this part of Śródmieście was a dense quarter of tenement streets such as Chmielna, Złota, Zielna and Wielka, with the Vienna Railway Station at the corner of Marszałkowska and Aleje Jerozolimskie. After the wartime destruction the remaining buildings were cleared and the Palace of Culture and Science, a gift from the Soviet Union, was built in 1952–1955, surrounded by the vast Plac Defilad. In recent years the square has been redeveloped, with the Museum of Modern Art and the new Plac Centralny.",
+    "pl": {
+      "name": "Pałac Kultury i Nauki",
+      "description": "Przed II wojną światową ta część Śródmieścia była gęsto zabudowaną kamienicami dzielnicą ulic takich jak Chmielna, Złota, Zielna i Wielka, a na rogu Marszałkowskiej i Alej Jerozolimskich stał Dworzec Wiedeński. Po wojennych zniszczeniach ocalałe budynki rozebrano, a w latach 1952–1955 wzniesiono Pałac Kultury i Nauki – dar Związku Radzieckiego – otoczony rozległym placem Defilad. W ostatnich latach plac przebudowano: stanęło tu Muzeum Sztuki Nowoczesnej i powstał nowy plac Centralny."
+    },
     "og": "/img/og/palac-kultury.jpg",
     "photos": [
       {
@@ -2548,6 +3040,9 @@
         "approx": true,
         "ratio": 0.7094,
         "caption": "Chmielna Street at Zielna, looking towards Marszałkowska; this stretch now lies under Plac Defilad",
+        "pl": {
+          "caption": "Ulica Chmielna przy Zielnej, w stronę Marszałkowskiej; ten odcinek leży dziś pod placem Defilad"
+        },
         "credit": {
           "author": "Unknown",
           "date": "before 1939",
@@ -2565,6 +3060,9 @@
         "approx": true,
         "ratio": 0.8712,
         "caption": "Ruined building of the former Vienna Railway Station on Aleje Jerozolimskie, at the edge of today's Plac Defilad",
+        "pl": {
+          "caption": "Ruiny budynku dawnego Dworca Wiedeńskiego w Alejach Jerozolimskich, na skraju dzisiejszego placu Defilad"
+        },
         "credit": {
           "author": "Fortepan / Jezsuita Levéltár",
           "date": "1944",
@@ -2582,6 +3080,9 @@
         "approx": false,
         "ratio": 1.2355,
         "caption": "Excavating the foundations of the Palace, 1952",
+        "pl": {
+          "caption": "Wykopy pod fundamenty Pałacu, 1952"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1952",
@@ -2599,6 +3100,9 @@
         "approx": false,
         "ratio": 1.6327,
         "caption": "The steel frame of the tower rising during construction, 1953",
+        "pl": {
+          "caption": "Wznoszony stalowy szkielet wieży, 1953"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1953",
@@ -2616,6 +3120,9 @@
         "approx": true,
         "ratio": 0.7444,
         "caption": "The finished Palace seen from across Marszałkowska, with the Rotunda and the Universal office tower in the foreground, 1960s",
+        "pl": {
+          "caption": "Ukończony Pałac widziany zza Marszałkowskiej; na pierwszym planie Rotunda i biurowiec Universal, lata 60."
+        },
         "credit": {
           "author": "Unknown",
           "date": "1960s",
@@ -2633,6 +3140,9 @@
         "approx": false,
         "ratio": 0.75,
         "caption": "The Palace with the newly built Plac Centralny in front, 2025",
+        "pl": {
+          "caption": "Pałac z nowo urządzonym placem Centralnym na pierwszym planie, 2025"
+        },
         "credit": {
           "author": "Cybularny",
           "date": "2025-06-14",
@@ -2651,6 +3161,10 @@
     "lng": 21.045793,
     "kind": "modern",
     "description": "The 10th-Anniversary Stadium (Stadion Dziesięciolecia) was built on the Praga bank of the Vistula largely from wartime rubble and opened in July 1955. From 1989 its crumbling embankments housed Jarmark Europa, one of Europe's largest open-air markets, which closed in 2007. The National Stadium was built inside the old bowl in 2008–2011 and hosted the opening match of UEFA Euro 2012.",
+    "pl": {
+      "name": "Stadion Narodowy",
+      "description": "Stadion Dziesięciolecia zbudowano na praskim brzegu Wisły w dużej mierze z wojennego gruzu i otwarto w lipcu 1955 roku. Od 1989 roku na jego niszczejących wałach działał Jarmark Europa – jedno z największych targowisk pod gołym niebem w Europie, zamknięte w 2007 roku. W latach 2008–2011 wewnątrz dawnej niecki wzniesiono Stadion Narodowy, na którym rozegrano mecz otwarcia UEFA Euro 2012."
+    },
     "og": "/img/og/stadion-narodowy.jpg",
     "photos": [
       {
@@ -2661,6 +3175,9 @@
         "approx": false,
         "ratio": 1.3267,
         "caption": "Construction of the 10th-Anniversary Stadium, 1955",
+        "pl": {
+          "caption": "Budowa Stadionu Dziesięciolecia, 1955"
+        },
         "credit": {
           "author": "Zbyszko Siemaszko",
           "date": "1955",
@@ -2678,6 +3195,9 @@
         "approx": true,
         "ratio": 1.0169,
         "caption": "Aerial view of the 10th-Anniversary Stadium in the 1960s",
+        "pl": {
+          "caption": "Stadion Dziesięciolecia z lotu ptaka w latach 60."
+        },
         "credit": {
           "author": "Unknown",
           "date": "1960s",
@@ -2695,6 +3215,9 @@
         "approx": true,
         "ratio": 1.1057,
         "caption": "Crowds at the annual Trybuna Ludu festival in the stadium, 1970s",
+        "pl": {
+          "caption": "Tłumy na dorocznym festynie „Trybuny Ludu” na stadionie, lata 70."
+        },
         "credit": {
           "author": "Unknown",
           "date": "1970s",
@@ -2712,6 +3235,9 @@
         "approx": false,
         "ratio": 1.3311,
         "caption": "Last day of the Jarmark Europa market on the stadium embankment, 2007",
+        "pl": {
+          "caption": "Ostatni dzień Jarmarku Europa na wale stadionu, 2007"
+        },
         "credit": {
           "author": "masti",
           "date": "2007-09-30",
@@ -2729,6 +3255,9 @@
         "approx": false,
         "ratio": 1.3389,
         "caption": "The roof structure of the National Stadium under construction, 2010",
+        "pl": {
+          "caption": "Konstrukcja dachu Stadionu Narodowego w budowie, 2010"
+        },
         "credit": {
           "author": "Sliwers",
           "date": "2010-10-10",
@@ -2746,6 +3275,9 @@
         "approx": false,
         "ratio": 1.4995,
         "caption": "The National Stadium seen from Varso Tower across the Vistula, 2025",
+        "pl": {
+          "caption": "Stadion Narodowy widziany zza Wisły z Varso Tower, 2025"
+        },
         "credit": {
           "author": "Cybularny",
           "date": "2025-09-22",
@@ -2764,6 +3296,10 @@
     "lng": 21.02876,
     "kind": "modern",
     "description": "For most of the 20th century this stretch of the Powiśle riverbank was a sandy embankment and, later, the route of the Wisłostrada riverside expressway. The Copernicus Science Centre was built in 2008–2010 over a newly extended tunnel that took the expressway underground, and its planetarium opened in 2011. In the 2010s the riverside promenades were rebuilt as the Vistula boulevards, now one of the city's busiest public spaces.",
+    "pl": {
+      "name": "Centrum Nauki Kopernik i bulwary wiślane",
+      "description": "Przez większą część XX wieku ten odcinek powiślańskiego brzegu był piaszczystym nabrzeżem, a później trasą nadwiślańskiej arterii – Wisłostrady. Centrum Nauki Kopernik zbudowano w latach 2008–2010 nad nowo przedłużonym tunelem, którym Wisłostradę poprowadzono pod ziemią; planetarium otwarto w 2011 roku. W drugiej dekadzie XXI wieku nadrzeczne promenady przebudowano na bulwary wiślane, dziś jedno z najbardziej uczęszczanych miejsc publicznych w mieście."
+    },
     "og": "/img/og/centrum-nauki-kopernik.jpg",
     "photos": [
       {
@@ -2774,6 +3310,9 @@
         "approx": true,
         "ratio": 1.6667,
         "caption": "Sand diggers on the Vistula bank by Wybrzeże Kościuszkowskie, looking towards the railway bridge, 1920s",
+        "pl": {
+          "caption": "Piaskarze na brzegu Wisły przy Wybrzeżu Kościuszkowskim, w stronę mostu kolejowego, lata 20."
+        },
         "credit": {
           "author": "Zdzisław Marcinkowski",
           "date": "1924–1925",
@@ -2791,6 +3330,9 @@
         "approx": false,
         "ratio": 1.3361,
         "caption": "Wisłostrada beside Świętokrzyski Bridge in 2007, before the science centre was built over the road",
+        "pl": {
+          "caption": "Wisłostrada przy moście Świętokrzyskim w 2007 roku, zanim nad jezdnią stanęło Centrum Nauki Kopernik"
+        },
         "credit": {
           "author": "Marek \"masti\" Stelmasik",
           "date": "2007-03-10",
@@ -2808,6 +3350,9 @@
         "approx": false,
         "ratio": 1.5009,
         "caption": "The science centre under construction during the Vistula flood of May 2010",
+        "pl": {
+          "caption": "Budowa Centrum Nauki Kopernik podczas powodzi na Wiśle w maju 2010"
+        },
         "credit": {
           "author": "Tadeusz Rudzki",
           "date": "2010-05-20",
@@ -2825,6 +3370,9 @@
         "approx": false,
         "ratio": 1.7778,
         "caption": "The completed science centre by Świętokrzyski Bridge, with the National Stadium across the river, 2014",
+        "pl": {
+          "caption": "Ukończone Centrum Nauki Kopernik przy moście Świętokrzyskim, za rzeką Stadion Narodowy, 2014"
+        },
         "credit": {
           "author": "Mateusz Giełczyński",
           "date": "2014-05-06",
@@ -2842,6 +3390,9 @@
         "approx": false,
         "ratio": 1.5267,
         "caption": "The rebuilt Vistula boulevard in front of the science centre, 2017",
+        "pl": {
+          "caption": "Przebudowany bulwar wiślany przed Centrum Nauki Kopernik, 2017"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2017-08-27",
@@ -2859,6 +3410,9 @@
         "approx": false,
         "ratio": 1.5717,
         "caption": "The science centre seen from the river, with a moored barge, 2022",
+        "pl": {
+          "caption": "Centrum Nauki Kopernik od strony rzeki, z zacumowaną barką, 2022"
+        },
         "credit": {
           "author": "Panek",
           "date": "2022-08-13",
@@ -2877,6 +3431,10 @@
     "lng": 20.99828,
     "kind": "modern",
     "description": "The roundabout at the junction of Aleja Jana Pawła II (formerly Marchlewskiego), Świętokrzyska and Prosta streets was laid out after the war among new housing blocks and office towers. Since the 2000s it has become a cluster of high-rises, including Rondo 1 (2006) and Q22 (2016), and the Rondo ONZ station of metro line 2 opened beneath it in 2015.",
+    "pl": {
+      "name": "Rondo ONZ",
+      "description": "Rondo u zbiegu alei Jana Pawła II (dawniej Marchlewskiego) oraz ulic Świętokrzyskiej i Prostej wytyczono po wojnie wśród nowych bloków mieszkalnych i biurowców. Od początku XXI wieku wyrosło tu skupisko wieżowców, m.in. Rondo 1 (2006) i Q22 (2016), a w 2015 roku pod rondem otwarto stację Rondo ONZ II linii metra."
+    },
     "og": "/img/og/rondo-onz.jpg",
     "photos": [
       {
@@ -2887,6 +3445,9 @@
         "approx": true,
         "ratio": 0.9856,
         "caption": "The roundabout in the 1960s, looking south-east towards the Palace of Culture",
+        "pl": {
+          "caption": "Rondo w latach 60., widok na południowy wschód, w stronę Pałacu Kultury"
+        },
         "credit": {
           "author": "Henryk Jurko",
           "date": "1960s",
@@ -2904,6 +3465,9 @@
         "approx": true,
         "ratio": 0.9906,
         "caption": "The junction of Marchlewskiego and Świętokrzyska streets in the 1970s, with a PKO savings neon on a tower block",
+        "pl": {
+          "caption": "Skrzyżowanie ulic Marchlewskiego i Świętokrzyskiej w latach 70., z neonem PKO zachęcającym do oszczędzania na wieżowcu"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1970s",
@@ -2921,6 +3485,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "Rondo ONZ seen from above in 2007",
+        "pl": {
+          "caption": "Rondo ONZ widziane z góry w 2007 roku"
+        },
         "credit": {
           "author": "Gophi",
           "date": "2007-09-05",
@@ -2938,6 +3505,9 @@
         "approx": false,
         "ratio": 1.5038,
         "caption": "Construction works for the metro line 2 station at Rondo ONZ, 2012",
+        "pl": {
+          "caption": "Budowa stacji II linii metra przy rondzie ONZ, 2012"
+        },
         "credit": {
           "author": "Wistula",
           "date": "2012-09-28",
@@ -2955,6 +3525,9 @@
         "approx": false,
         "ratio": 2.2378,
         "caption": "Office towers around the roundabout in 2016",
+        "pl": {
+          "caption": "Biurowce wokół ronda w 2016 roku"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2016-05-09",
@@ -2972,6 +3545,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "Rondo ONZ seen from the Varso Tower viewing terrace, 2025",
+        "pl": {
+          "caption": "Rondo ONZ widziane z tarasu widokowego Varso Tower, 2025"
+        },
         "credit": {
           "author": "Cybularny",
           "date": "2025-09-22",
@@ -2990,6 +3566,10 @@
     "lng": 21.00328,
     "kind": "modern",
     "description": "Warsaw's modernist Main Station (Dworzec Główny) on Aleje Jerozolimskie was still unfinished when it was destroyed in 1939, and for three decades after the war the city made do with provisional station buildings. Warszawa Centralna, designed by Arseniusz Romanowicz and Piotr Szymaniak, opened in December 1975 above the underground cross-city railway line. Since 2022 its western neighbour has been Varso Tower, at 310 metres the tallest building in the European Union.",
+    "pl": {
+      "name": "Warszawa Centralna i Varso Tower",
+      "description": "Modernistyczny Dworzec Główny w Alejach Jerozolimskich nie był jeszcze ukończony, gdy w 1939 roku uległ zniszczeniu, a przez trzy dekady po wojnie miasto musiało zadowolić się prowizorycznymi budynkami dworcowymi. Dworzec Warszawa Centralna, zaprojektowany przez Arseniusza Romanowicza i Piotra Szymaniaka, otwarto w grudniu 1975 roku nad podziemną linią średnicową. Od 2022 roku jego zachodnim sąsiadem jest Varso Tower – mierzący 310 metrów najwyższy budynek w Unii Europejskiej."
+    },
     "og": "/img/og/dworzec-centralny.jpg",
     "photos": [
       {
@@ -3000,6 +3580,9 @@
         "approx": false,
         "ratio": 1.7957,
         "caption": "The pre-war Main Station under construction on Aleje Jerozolimskie, close to the site of today's Centralna, 1938",
+        "pl": {
+          "caption": "Budowa przedwojennego Dworca Głównego w Alejach Jerozolimskich, niedaleko miejsca, gdzie stoi dziś Centralna, 1938"
+        },
         "credit": {
           "author": "Józef Fischer",
           "date": "1938",
@@ -3017,6 +3600,9 @@
         "approx": false,
         "ratio": 1.6824,
         "caption": "View south-west from the Palace of Culture over the railway corridor where Centralna would be built, 1962",
+        "pl": {
+          "caption": "Widok z Pałacu Kultury na południowy zachód, na pas torów, gdzie miała powstać Centralna, 1962"
+        },
         "credit": {
           "author": "Fortepan / Nagy Gyula",
           "date": "1962",
@@ -3034,6 +3620,9 @@
         "approx": false,
         "ratio": 1.4572,
         "caption": "The main hall of the newly opened Warszawa Centralna, 1975",
+        "pl": {
+          "caption": "Hala główna nowo otwartego dworca Warszawa Centralna, 1975"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1975",
@@ -3051,6 +3640,9 @@
         "approx": false,
         "ratio": 1.3998,
         "caption": "The station roof seen from the Palace of Culture, with Złote Tarasy under construction on the right, 2006",
+        "pl": {
+          "caption": "Dach dworca widziany z Pałacu Kultury, po prawej budowa Złotych Tarasów, 2006"
+        },
         "credit": {
           "author": "Bahnfrend",
           "date": "2006-09-01",
@@ -3068,6 +3660,9 @@
         "approx": false,
         "ratio": 1.4995,
         "caption": "Varso Tower under construction behind the station, 2020",
+        "pl": {
+          "caption": "Budowa Varso Tower za dworcem, 2020"
+        },
         "credit": {
           "author": "Cybularny",
           "date": "2020-05-27",
@@ -3085,6 +3680,9 @@
         "approx": false,
         "ratio": 1.5355,
         "caption": "Warszawa Centralna in 2025",
+        "pl": {
+          "caption": "Warszawa Centralna w 2025 roku"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2025-08-03",
@@ -3103,6 +3701,10 @@
     "lng": 21.00982,
     "kind": "historic",
     "description": "Since the 17th and 18th centuries Miodowa Street has been lined with aristocratic residences such as the Pac and Branicki palaces, and with churches including the Capuchin church and the Basilian Greek Catholic church. Before the war it was also a busy shopping street with trams. Most of its buildings were burnt or ruined during the 1944 Warsaw Uprising and were rebuilt after the war, largely in their historic form. Today it is a quiet street of palaces, government offices and academies close to the Old Town.",
+    "pl": {
+      "name": "Ulica Miodowa",
+      "description": "Od XVII i XVIII wieku przy ulicy Miodowej wznoszą się arystokratyczne rezydencje, takie jak pałace Paca i Branickich, a także świątynie, w tym kościół Kapucynów i greckokatolicka cerkiew Bazylianów. Przed wojną była też ruchliwą ulicą handlową, którą kursowały tramwaje. Większość zabudowy spłonęła lub legła w gruzach podczas Powstania Warszawskiego w 1944 roku; po wojnie odbudowano ją, w dużej mierze w historycznym kształcie. Dziś to spokojna ulica pałaców, urzędów państwowych i uczelni w pobliżu Starego Miasta."
+    },
     "og": "/img/og/ulica-miodowa.jpg",
     "photos": [
       {
@@ -3113,6 +3715,9 @@
         "approx": true,
         "ratio": 1.5038,
         "caption": "Miodowa Street with shops and a tram, looking towards St Anne's Church",
+        "pl": {
+          "caption": "Ulica Miodowa ze sklepami i tramwajem, w stronę kościoła św. Anny"
+        },
         "credit": {
           "author": "Unknown",
           "date": "before 1913",
@@ -3130,6 +3735,9 @@
         "approx": false,
         "ratio": 1.2232,
         "caption": "A soldier on Miodowa during the defence of Warsaw, looking towards Senatorska Street",
+        "pl": {
+          "caption": "Żołnierz na Miodowej podczas obrony Warszawy, widok w stronę ulicy Senatorskiej"
+        },
         "credit": {
           "author": "Unknown",
           "date": "September 1939",
@@ -3147,6 +3755,9 @@
         "approx": false,
         "ratio": 1.1722,
         "caption": "Ruined buildings and rubble along Miodowa Street in 1945",
+        "pl": {
+          "caption": "Ruiny i gruzy wzdłuż ulicy Miodowej w 1945 roku"
+        },
         "credit": {
           "author": "Jan Bułhak",
           "date": "1945",
@@ -3164,6 +3775,9 @@
         "approx": true,
         "ratio": 1.3548,
         "caption": "Rebuilt palaces with cars and a bus on Miodowa in the 1960s",
+        "pl": {
+          "caption": "Odbudowane pałace, samochody i autobus na Miodowej w latach 60."
+        },
         "credit": {
           "author": "Unknown",
           "date": "1960s",
@@ -3181,6 +3795,9 @@
         "approx": false,
         "ratio": 1.4939,
         "caption": "Evening on Miodowa Street, 2009",
+        "pl": {
+          "caption": "Wieczór na ulicy Miodowej, 2009"
+        },
         "credit": {
           "author": "TenKobuz",
           "date": "2009-07-31",
@@ -3198,6 +3815,9 @@
         "approx": false,
         "ratio": 1.3333,
         "caption": "The south-eastern end of Miodowa leading to St Anne's Church, from a similar viewpoint to the old postcard",
+        "pl": {
+          "caption": "Południowo-wschodni kraniec Miodowej prowadzący do kościoła św. Anny, z podobnego miejsca co na dawnej pocztówce"
+        },
         "credit": {
           "author": "Simon Burchell",
           "date": "2014-01-06",
@@ -3215,6 +3835,9 @@
         "approx": false,
         "ratio": 1.4559,
         "caption": "Miodowa Street seen from the corner of Senatorska Street, 2025",
+        "pl": {
+          "caption": "Ulica Miodowa widziana z rogu Senatorskiej, 2025"
+        },
         "credit": {
           "author": "Adrian Grycuk",
           "date": "2025-08-16",
@@ -3233,6 +3856,10 @@
     "lng": 20.993131,
     "kind": "modern",
     "description": "Before the Second World War, Muranów was the heart of Warsaw's Jewish community. During the occupation it lay within the Warsaw Ghetto, and after the Ghetto Uprising of April–May 1943 the area was systematically razed. The Monument to the Ghetto Heroes by Natan Rapoport was unveiled in 1948 amid the rubble, and the post-war Muranów housing estate was later built around it. The POLIN Museum of the History of Polish Jews, designed by Rainer Mahlamäki, opened facing the monument in 2013, with its core exhibition opening in 2014.",
+    "pl": {
+      "name": "Muzeum POLIN i Pomnik Bohaterów Getta",
+      "description": "Przed II wojną światową Muranów był sercem warszawskiej społeczności żydowskiej. Podczas okupacji znalazł się w granicach getta, a po Powstaniu w getcie warszawskim (kwiecień–maj 1943) dzielnica została systematycznie zrównana z ziemią. Pomnik Bohaterów Getta dłuta Natana Rapoporta odsłonięto w 1948 roku wśród gruzów, a później wokół niego wzniesiono powojenne osiedle Muranów. Naprzeciwko pomnika w 2013 roku otwarto Muzeum Historii Żydów Polskich POLIN, zaprojektowane przez Rainera Mahlamäkiego; wystawę stałą udostępniono w 2014 roku."
+    },
     "og": "/img/og/polin.jpg",
     "photos": [
       {
@@ -3243,6 +3870,9 @@
         "approx": false,
         "ratio": 1.4011,
         "caption": "Zamenhofa Street in 1931, in the pre-war Jewish quarter around today's museum site",
+        "pl": {
+          "caption": "Ulica Zamenhofa w 1931 roku – przedwojenna dzielnica żydowska w okolicy dzisiejszego muzeum"
+        },
         "credit": {
           "author": "Leon Jarumski",
           "date": "1931",
@@ -3260,6 +3890,9 @@
         "approx": true,
         "ratio": 1.6244,
         "caption": "The levelled area of the former ghetto after the war, looking west along Gęsia Street (now Anielewicza), beside today's museum",
+        "pl": {
+          "caption": "Zrównany z ziemią teren dawnego getta po wojnie, widok na zachód wzdłuż ulicy Gęsiej (dziś Anielewicza), obok dzisiejszego muzeum"
+        },
         "credit": {
           "author": "Unknown",
           "date": "c. 1945",
@@ -3277,6 +3910,9 @@
         "approx": false,
         "ratio": 1.6393,
         "caption": "Construction of the first memorial to the Ghetto Heroes amid the ruins, 1946",
+        "pl": {
+          "caption": "Budowa pierwszego pomnika Bohaterów Getta wśród ruin, 1946"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1946",
@@ -3294,6 +3930,9 @@
         "approx": true,
         "ratio": 1.6293,
         "caption": "The new Muranów estate on Zamenhofa Street and the Monument to the Ghetto Heroes, 1960s",
+        "pl": {
+          "caption": "Nowe osiedle Muranów przy ulicy Zamenhofa i Pomnik Bohaterów Getta, lata 60."
+        },
         "credit": {
           "author": "Unknown",
           "date": "1960s",
@@ -3311,6 +3950,9 @@
         "approx": false,
         "ratio": 1.5094,
         "caption": "The Monument to the Ghetto Heroes in 2006, before the museum was built",
+        "pl": {
+          "caption": "Pomnik Bohaterów Getta w 2006 roku, przed budową muzeum"
+        },
         "credit": {
           "author": "Bahnfrend",
           "date": "2006-09-01",
@@ -3328,6 +3970,9 @@
         "approx": false,
         "ratio": 1.4639,
         "caption": "The POLIN museum building under construction, 2011",
+        "pl": {
+          "caption": "Budowa gmachu Muzeum POLIN, 2011"
+        },
         "credit": {
           "author": "Edelseider",
           "date": "2011-07-29",
@@ -3345,6 +3990,9 @@
         "approx": false,
         "ratio": 1.4995,
         "caption": "The POLIN museum and the back of the Ghetto Heroes Monument on the square, 2023",
+        "pl": {
+          "caption": "Muzeum POLIN i tył Pomnika Bohaterów Getta na placu, 2023"
+        },
         "credit": {
           "author": "Cybularny",
           "date": "2023-03-07",
@@ -3363,6 +4011,10 @@
     "lng": 21.020738,
     "kind": "historic",
     "description": "The Kierbedź Bridge, Warsaw's first permanent bridge over the Vistula, was built in 1859–1864 to a design by Stanisław Kierbedź as a long iron lattice truss carrying road traffic and trams. It was blown up by the retreating Russians in 1915 and rebuilt, then destroyed by the Germans in September 1944. On its old piers a new steel girder bridge, named Śląsko-Dąbrowski, was built in 1947–1949 as part of the East–West Route and opened in July 1949. It still carries cars and trams between the Old Town and Praga.",
+    "pl": {
+      "name": "Most Śląsko-Dąbrowski (most Kierbedzia)",
+      "description": "Most Kierbedzia, pierwszy stały most na Wiśle w Warszawie, zbudowano w latach 1859–1864 według projektu Stanisława Kierbedzia jako długą żelazną konstrukcję kratownicową, po której odbywał się ruch kołowy i tramwajowy. W 1915 roku wysadzili go wycofujący się Rosjanie; odbudowany, został ponownie zniszczony przez Niemców we wrześniu 1944 roku. Na jego dawnych filarach w latach 1947–1949 wzniesiono w ramach budowy Trasy W-Z nowy stalowy most belkowy, nazwany Śląsko-Dąbrowskim, który otwarto w lipcu 1949 roku. Do dziś prowadzi ruch samochodowy i tramwajowy między Starym Miastem a Pragą."
+    },
     "og": "/img/og/most-slasko-dabrowski.jpg",
     "photos": [
       {
@@ -3373,6 +4025,9 @@
         "approx": false,
         "ratio": 1.3223,
         "caption": "A tram and a car at the entrance portal of the iron Kierbedź Bridge",
+        "pl": {
+          "caption": "Tramwaj i samochód przy bramie wjazdowej żelaznego mostu Kierbedzia"
+        },
         "credit": {
           "author": "Willem van de Poll",
           "date": "1934",
@@ -3390,6 +4045,9 @@
         "approx": true,
         "ratio": 1.3998,
         "caption": "German soldiers on the Royal Castle terrace looking at the Kierbedź Bridge and Praga",
+        "pl": {
+          "caption": "Niemieccy żołnierze na tarasie Zamku Królewskiego spoglądający na most Kierbedzia i Pragę"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1940–1944",
@@ -3407,6 +4065,9 @@
         "approx": true,
         "ratio": 1.5889,
         "caption": "The surviving span of the blown-up Kierbedź Bridge before its demolition",
+        "pl": {
+          "caption": "Ocalałe przęsło wysadzonego mostu Kierbedzia przed rozbiórką"
+        },
         "credit": {
           "author": "Zdzisław Wdowiński",
           "date": "1945–1946",
@@ -3424,6 +4085,9 @@
         "approx": false,
         "ratio": 1.4506,
         "caption": "The new Śląsko-Dąbrowski Bridge shortly after its opening, with a crane still standing",
+        "pl": {
+          "caption": "Nowy most Śląsko-Dąbrowski krótko po otwarciu, z wciąż stojącym dźwigiem"
+        },
         "credit": {
           "author": "Leonard Jabrzemski",
           "date": "1949",
@@ -3441,6 +4105,9 @@
         "approx": true,
         "ratio": 1.2539,
         "caption": "Traffic on the East–West Route ramp leading to the bridge below the Old Town",
+        "pl": {
+          "caption": "Ruch na rampie Trasy W-Z prowadzącej do mostu u stóp Starego Miasta"
+        },
         "credit": {
           "author": "Unknown",
           "date": "1960s",
@@ -3458,6 +4125,9 @@
         "approx": false,
         "ratio": 1.4939,
         "caption": "The bridge seen from above, leading towards Praga and St Florian's Cathedral",
+        "pl": {
+          "caption": "Most widziany z góry, w stronę Pragi i katedry św. Floriana"
+        },
         "credit": {
           "author": "Paul Kowalow",
           "date": "2006",
@@ -3475,6 +4145,9 @@
         "approx": false,
         "ratio": 1.4995,
         "caption": "Drone view of the whole bridge across the Vistula, 2024",
+        "pl": {
+          "caption": "Widok z drona na cały most nad Wisłą, 2024"
+        },
         "credit": {
           "author": "Kapitel",
           "date": "2024-06-20",

@@ -211,35 +211,9 @@ body,
   color: var(--foreground) !important;
 }
 
-.leaflet-bar {
-  border: 1px solid var(--border) !important;
-  border-radius: 12px !important;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 0.35) !important;
-}
-
-.leaflet-bar a {
-  width: 36px !important;
-  height: 36px !important;
-  line-height: 36px !important;
-  background: color-mix(in oklab, var(--background) 94%, transparent) !important;
-  color: var(--foreground) !important;
-  border-bottom-color: var(--border) !important;
-}
-
 .panel-open .leaflet-bottom.leaflet-right {
   right: 504px;
   transition: right 0.3s ease-out;
-}
-
-.leaflet-bottom.leaflet-right .leaflet-control-zoom {
-  margin: 0 14px 14px 0;
-}
-
-@media (max-width: 720px) {
-  .leaflet-control-zoom {
-    display: none;
-  }
 }
 
 .leaflet-pane[class*='yearLeft'] .leaflet-tile,

@@ -3,6 +3,7 @@
 import { Globe } from 'lucide-react';
 import Image from 'next/image';
 
+import { useMessages } from '@/components/LocaleProvider';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -33,12 +34,13 @@ function XLogo({ className }: { className?: string }) {
 }
 
 export function AboutDialog() {
+  const t = useMessages();
   return (
     <Dialog>
       <DialogTrigger asChild>
         <button
           type="button"
-          title="About this map"
+          title={t.about.trigger}
           className="glass fixed top-[calc(12px+env(safe-area-inset-top))] left-3 z-[1000] flex h-11 items-center gap-2.5 rounded-full px-3 sm:pr-4"
         >
           <Image src="/coat-of-arms.png" alt="" width={18} height={30} priority className="h-[30px] w-auto drop-shadow-sm" />
@@ -48,48 +50,41 @@ export function AboutDialog() {
       <DialogContent className="max-h-[calc(100dvh-48px)] overflow-y-auto sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="font-heading text-2xl">{SITE_NAME}</DialogTitle>
-          <DialogDescription>Warsaw in 1935, in 1945 after the wartime destruction, through the rebuilding, and today, on one map.</DialogDescription>
+          <DialogDescription>{t.about.description}</DialogDescription>
         </DialogHeader>
 
         <div className="grid gap-3 text-sm leading-relaxed text-foreground/85 [&_a]:text-gold [&_a]:underline-offset-2 hover:[&_a]:underline">
-          <p>
-            Drag the white divider to compare two years of aerial photos, and pick the year for each side in the bar.
-            Each pin is a place with photographs from different years. Its panel opens on the photo closest to the
-            year on the map, and you can go through all of them. The pin button hides all pins.
-          </p>
-          <p>
-            The project aims to show what Poland has been through as a country, and what it has rebuilt and achieved
-            since.
-          </p>
+          <p>{t.about.how}</p>
+          <p>{t.about.why}</p>
           <Separator className="my-1" />
           <ul className="grid gap-1 text-muted-foreground">
             <li>
-              Aerial photos:{' '}
+              {t.about.aerial}{' '}
               <a href="https://mapa.um.warszawa.pl" target="_blank" rel="noopener">
-                City of Warsaw
+                {t.about.city}
               </a>
             </li>
-            <li>Photographs: Wikimedia Commons and archives, credited under each photo</li>
-            <li>Street names: City of Warsaw</li>
+            <li>{t.about.photos}</li>
+            <li>{t.about.streets}</li>
           </ul>
         </div>
 
         <DialogFooter className="items-center sm:justify-between">
-          <p className="text-xs text-muted-foreground">Made by {AUTHOR.name}</p>
+          <p className="text-xs text-muted-foreground">{t.about.madeBy(AUTHOR.name)}</p>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" asChild>
               <a href={GITHUB_URL} target="_blank" rel="noopener">
                 <GithubLogo className="size-3.5" />
-                Contribute
+                {t.about.contribute}
               </a>
             </Button>
             <Button variant="outline" size="icon-sm" asChild>
-              <a href={AUTHOR.x} target="_blank" rel="noopener me" aria-label={`${AUTHOR.name} on X`}>
+              <a href={AUTHOR.x} target="_blank" rel="noopener me" aria-label={t.about.onX(AUTHOR.name)}>
                 <XLogo className="size-3.5" />
               </a>
             </Button>
             <Button variant="outline" size="icon-sm" asChild>
-              <a href={AUTHOR.website} target="_blank" rel="noopener me" aria-label={`${AUTHOR.name}'s website`}>
+              <a href={AUTHOR.website} target="_blank" rel="noopener me" aria-label={t.about.website(AUTHOR.name)}>
                 <Globe />
               </a>
             </Button>

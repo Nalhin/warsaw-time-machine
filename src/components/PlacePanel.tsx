@@ -6,20 +6,22 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
+import { useLocale, useMessages } from '@/components/LocaleProvider';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Drawer, DrawerContent, DrawerDescription, DrawerTitle } from '@/components/ui/drawer';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { localePath } from '@/lib/i18n';
 import { useMapState } from '@/lib/map-store';
 import { NEAR_YEARS, nearestPhoto, yearNumber, type Credit, type Photo, type Spot } from '@/lib/spots';
 import { cn } from '@/lib/utils';
-import { yearDef } from '@/lib/years';
 
 export const DRAWER_PEEK = 0.55;
 export const PANEL_WIDTH = 480;
 
 function CreditLine({ c }: { c: Credit }) {
+  const t = useMessages();
   return (
     <>
       {c.author} ·{' '}
@@ -34,7 +36,7 @@ function CreditLine({ c }: { c: Credit }) {
         <>
           {' · '}
           <a href={c.sourceUrl} target="_blank" rel="noopener">
-            {c.source || 'source'}
+            {c.source || t.spot.source}
           </a>
         </>
       )}
@@ -55,6 +57,8 @@ function SinglePhoto({ photo, alt, sizes, className }: { photo: Photo; alt: stri
 }
 
 function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
+  const locale = useLocale();
+  const t = useMessages();
   const map = useMapState();
   const mapYear = map.swipe ? map.swipe[0] : map.year;
   const fromMap = nearestPhoto(spot, yearNumber(mapYear));
@@ -76,8 +80,8 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
   const last = spot.photos[spot.photos.length - 1];
 
   const share = async () => {
-    const shareUrl = `${location.origin}/spots/${spot.id}${location.search}`;
-    const data = { title: `${spot.name}: Warsaw then and now`, url: shareUrl };
+    const shareUrl = `${location.origin}${localePath(locale, `/spots/${spot.id}`)}${location.search}`;
+    const data = { title: t.spot.title(spot.name), url: shareUrl };
     if (navigator.share && matchMedia('(pointer: coarse)').matches) {
       try {
         return await navigator.share(data);
@@ -86,7 +90,7 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
     }
     try {
       await navigator.clipboard.writeText(shareUrl);
-      toast.success('Link copied');
+      toast.success(t.spot.linkCopied);
     } catch {
       toast(shareUrl);
     }
@@ -99,20 +103,20 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
       <header className="mb-4 flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="mb-1 flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] text-gold uppercase tabular-nums">
-            {first.year === last.year ? first.date : `${first.year}–${last.year}`} · {spot.photos.length} photos
+            {first.year === last.year ? first.date : `${first.year}–${last.year}`} · {t.spot.photos(spot.photos.length)}
             {spot.kind === 'modern' && (
               <Badge variant="outline" className="h-4.5 border-gold/40 px-1.5 text-[10px] tracking-normal text-gold normal-case">
-                Modern
+                {t.spot.modern}
               </Badge>
             )}
           </p>
           <h1 className="font-heading text-2xl leading-tight font-semibold sm:text-[28px]">{spot.name}</h1>
         </div>
         <div className="flex shrink-0 gap-1.5">
-          <Button variant="outline" size="icon" className="rounded-full" onClick={share} aria-label="Share">
+          <Button variant="outline" size="icon" className="rounded-full" onClick={share} aria-label={t.spot.share}>
             <Share />
           </Button>
-          <Button variant="outline" size="icon" className="rounded-full" onClick={onClose} aria-label="Close">
+          <Button variant="outline" size="icon" className="rounded-full" onClick={onClose} aria-label={t.spot.close}>
             <X />
           </Button>
         </div>
@@ -122,8 +126,8 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
         <SinglePhoto photo={photo} alt={`${spot.name}, ${photo.date}`} sizes="(max-width: 720px) 100vw, 460px" />
         {spot.photos.length > 1 &&
           ([
-            [-1, ChevronLeft, 'Older photo', 'left-2'],
-            [1, ChevronRight, 'Newer photo', 'right-2'],
+            [-1, ChevronLeft, t.spot.older, 'left-2'],
+            [1, ChevronRight, t.spot.newer, 'right-2'],
           ] as const).map(([d, Icon, label, side]) => (
             <button
               key={d}
@@ -142,8 +146,8 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
         <button
           type="button"
           onClick={() => setZoomed(true)}
-          aria-label="Full screen"
-          title="Full screen"
+          aria-label={t.spot.fullScreen}
+          title={t.spot.fullScreen}
           className="absolute right-2.5 bottom-2.5 grid size-8 place-items-center rounded-full bg-black/60 text-white backdrop-blur hover:bg-black/80"
         >
           <Maximize2 className="size-4" />
@@ -152,7 +156,7 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
 
       {gap && (
         <p className="mt-2 text-xs text-muted-foreground">
-          No photo from around {yearDef(mapYear).label} here; showing {fromMap.date}.
+          {t.spot.gap(t.years[mapYear].label, fromMap.date)}
         </p>
       )}
 
@@ -167,10 +171,10 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
 
       <div className="mt-4">
         <div className="mb-2 flex items-baseline justify-between gap-2">
-          <h2 className="text-xs font-semibold tracking-[0.1em] text-muted-foreground uppercase">All photos</h2>
+          <h2 className="text-xs font-semibold tracking-[0.1em] text-muted-foreground uppercase">{t.spot.allPhotos}</h2>
           {picked && picked !== fromMap && (
             <button type="button" onClick={() => setPicked(null)} className="text-xs font-medium text-gold hover:text-gold/80">
-              Back to the map&apos;s year ({yearDef(mapYear).label})
+              {t.spot.backToYear(t.years[mapYear].label)}
             </button>
           )}
         </div>
@@ -194,7 +198,7 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
                   )}
                 />
                 <span className={cn('mt-1 block text-[11px] tabular-nums', on ? 'font-semibold text-foreground' : 'text-muted-foreground')}>
-                  {p.approx ? `c. ${p.year}` : p.year}
+                  {p.approx ? t.spot.circa(p.year) : p.year}
                 </span>
               </button>
             );
@@ -221,9 +225,11 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
 
 export function PlacePanel({ spot }: { spot: Spot }) {
   const router = useRouter();
+  const locale = useLocale();
+  const t = useMessages();
   const mobile = useIsMobile();
   const [snap, setSnap] = useState<number | string | null>(DRAWER_PEEK);
-  const close = () => router.push(`/${location.search}`, { scroll: false });
+  const close = () => router.push(`${localePath(locale, '/')}${location.search}`, { scroll: false });
 
   if (mobile) {
     return (
@@ -237,7 +243,7 @@ export function PlacePanel({ spot }: { spot: Spot }) {
       >
         <DrawerContent hideOverlay className="glass-strong z-[1050] h-[calc(100dvh-56px)] max-h-none!">
           <DrawerTitle className="sr-only">{spot.name}</DrawerTitle>
-          <DrawerDescription className="sr-only">Photos of {spot.name} over the years</DrawerDescription>
+          <DrawerDescription className="sr-only">{t.spot.drawerDescription(spot.name)}</DrawerDescription>
           <div className={cn('overflow-y-auto overscroll-contain', snap === 1 ? 'h-full' : 'h-[calc(55dvh-48px)]')}>
             <PlaceContent key={spot.id} spot={spot} onClose={close} />
           </div>

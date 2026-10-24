@@ -2,6 +2,7 @@ import type L from 'leaflet';
 import { ChevronsLeftRight, ChevronsUpDown } from 'lucide-react';
 import { useEffect, useRef, useState, type PointerEvent as RPointerEvent } from 'react';
 
+import { useMessages } from '@/components/LocaleProvider';
 import { cn } from '@/lib/utils';
 
 export function SwipeDivider({
@@ -23,6 +24,7 @@ export function SwipeDivider({
   showHint: boolean;
   onDragStart(): void;
 }) {
+  const t = useMessages();
   const [pos, setPos] = useState(() => {
     const size = map.getSize();
     return (horizontal ? size.y : size.x) * ratio;
@@ -103,12 +105,12 @@ export function SwipeDivider({
       <button
         type="button"
         role="slider"
-        aria-label="Compare divider"
+        aria-label={t.map.divider}
         aria-orientation={horizontal ? 'vertical' : 'horizontal'}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(ratio * 100)}
-        title="Drag to compare"
+        title={t.map.dragToCompare}
         className={cn(
           'pointer-events-auto absolute -mt-[22px] -ml-[22px] grid size-11 touch-none place-items-center rounded-full bg-white text-neutral-900 shadow-lg ring-1 ring-black/10 transition-transform',
           horizontal ? 'top-[var(--pos)] left-1/2 cursor-ns-resize' : 'top-1/2 left-[var(--pos)] cursor-ew-resize',
@@ -135,7 +137,7 @@ export function SwipeDivider({
             horizontal ? 'top-[var(--pos)] left-1/2' : 'top-1/2 left-[var(--pos)]',
           )}
         >
-          Drag to compare
+          {t.map.dragToCompare}
         </span>
       )}
 

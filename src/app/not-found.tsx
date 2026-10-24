@@ -1,14 +1,31 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+import { AppShell } from '@/components/AppShell';
+import { MESSAGES } from '@/lib/messages';
+import { SITE_NAME } from '@/lib/site';
+
+export { viewport } from '@/components/AppShell';
+
+export const metadata: Metadata = { title: `${MESSAGES.en.spot.notFound} | ${SITE_NAME}` };
 
 export default function NotFound() {
   return (
-    <div className="glass-strong fixed top-1/2 left-1/2 z-[1200] -translate-1/2 rounded-2xl px-6 py-5 text-center">
-      <h1 className="font-heading text-xl font-semibold">Place not found</h1>
-      <p className="mt-2 text-sm text-muted-foreground">
-        <Link href="/" className="text-gold underline underline-offset-2">
-          Back to the map
-        </Link>
-      </p>
-    </div>
+    <AppShell locale="en">
+      <div className="glass-strong fixed top-1/2 left-1/2 z-[1200] -translate-1/2 rounded-2xl px-6 py-5 text-center">
+        <h1 className="font-heading text-xl font-semibold">{MESSAGES.en.spot.notFound}</h1>
+        <p lang="pl" className="mt-1 text-sm text-muted-foreground">
+          {MESSAGES.pl.spot.notFound}
+        </p>
+        <p className="mt-3 flex justify-center gap-4 text-sm">
+          <Link href="/" className="text-gold underline underline-offset-2">
+            {MESSAGES.en.spot.backToMap}
+          </Link>
+          <Link href="/pl" hrefLang="pl" lang="pl" className="text-gold underline underline-offset-2">
+            {MESSAGES.pl.spot.backToMap}
+          </Link>
+        </p>
+      </div>
+    </AppShell>
   );
 }

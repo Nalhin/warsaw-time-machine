@@ -4,19 +4,15 @@ import { featherPx, yearDef, type YearKey } from './years';
 export type Layout = 'side' | 'stack' | 'split';
 export type Format = 'screen' | 'square' | 'portrait' | 'landscape';
 
-export const LAYOUTS: { key: Layout; label: string }[] = [
-  { key: 'side', label: 'Side by side' },
-  { key: 'stack', label: 'Stacked' },
-  { key: 'split', label: 'Split' },
-];
+export const LAYOUTS: Layout[] = ['side', 'stack', 'split'];
 
 const SCREEN_LONG_SIDE = 1600;
 
-export const FORMATS: { key: Format; label: string; hint: string; width: number; height: number }[] = [
-  { key: 'screen', label: 'Screen', hint: 'as seen', width: 0, height: 0 },
-  { key: 'square', label: 'Square', hint: '1:1', width: 1080, height: 1080 },
-  { key: 'portrait', label: 'Portrait', hint: '4:5', width: 1080, height: 1350 },
-  { key: 'landscape', label: 'Landscape', hint: '16:9', width: 1600, height: 900 },
+export const FORMATS: { key: Format; width: number; height: number }[] = [
+  { key: 'screen', width: 0, height: 0 },
+  { key: 'square', width: 1080, height: 1080 },
+  { key: 'portrait', width: 1080, height: 1350 },
+  { key: 'landscape', width: 1600, height: 900 },
 ];
 
 export interface SnapshotArea {
@@ -38,6 +34,9 @@ export interface SnapshotOptions {
   labels: boolean;
   title: string;
   host: string;
+  yearLabels: [string, string];
+  place: string;
+  credit: string;
 }
 
 export function formatSize(format: Format, area: SnapshotArea) {
@@ -49,7 +48,6 @@ export function formatSize(format: Format, area: SnapshotArea) {
 }
 
 const BG = '#1a1b1e';
-const PLACE = 'Warsaw, Poland';
 const PILL_BG = 'rgba(17, 18, 20, 0.84)';
 const PILL_FG = '#f3efe7';
 const EARTH_RADIUS = 6378137;
@@ -264,7 +262,7 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
 
   const margin = 28 * s;
   ctx.font = `600 ${26 * s}px ${sans}`;
-  const [a, b] = o.years.map((y) => yearDef(y).label);
+  const [a, b] = o.yearLabels;
   if (o.layout === 'split' && o.horizontal) {
     pill(ctx, a, margin, margin, s, 'left');
     pill(ctx, b, margin, split + margin, s, 'left');
@@ -281,11 +279,11 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
   ctx.textBaseline = 'alphabetic';
 
   ctx.font = `400 ${17 * s}px ${sans}`;
-  const credit = 'Aerial photos © m.st. Warszawa';
+  const credit = o.credit;
   const creditWidth = ctx.measureText(credit).width;
 
   ctx.font = `600 ${26 * s}px ${sans}`;
-  const brandWidth = ctx.measureText(PLACE).width;
+  const brandWidth = ctx.measureText(o.place).width;
   ctx.font = `500 ${24 * s}px ${sans}`;
   const separator = o.host ? '  ·  ' : '';
   const separatorWidth = ctx.measureText(separator).width;
@@ -300,7 +298,7 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
   ctx.textAlign = 'left';
   ctx.font = `600 ${26 * s}px ${sans}`;
   ctx.fillStyle = '#fff';
-  ctx.fillText(PLACE, pad, baseline);
+  ctx.fillText(o.place, pad, baseline);
   ctx.font = `500 ${24 * s}px ${sans}`;
   ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
   ctx.fillText(separator, pad + brandWidth, baseline);

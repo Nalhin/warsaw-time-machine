@@ -20,9 +20,6 @@ function boundsOf(rings: Ring[]): Box {
 
 export interface YearDef {
   key: YearKey;
-  label: string;
-  long: string;
-  era?: string;
   layer: string;
   fallbackLayer?: string;
   outline: Ring[];
@@ -38,14 +35,14 @@ const year = (key: YearKey, def: Omit<YearDef, 'key' | 'outline' | 'coverage'>):
 });
 
 export const YEARS: YearDef[] = [
-  year('1935', { label: '1935', long: 'Aerial photomap, 1935', era: 'Before the war', layer: 'FOTOPLAN_1935', fallbackLayer: 'RASTER_FOTOPLAN_1935' }),
-  year('1945', { label: '1945', long: 'Aerial photo, 1945 (after the destruction)', era: 'After the destruction', layer: 'ORTOFOTO_1945', fallbackLayer: 'RASTER_ORTOFOTO_1945', whiteIsBlank: true }),
-  year('1951', { label: '1951', long: 'Aerial photos, 1951 (rebuilding)', era: 'Rebuilding', layer: 'ZDJECIA_1951' }),
-  year('1972', { label: '1972', long: 'Aerial photos, 1972', era: "People's Republic", layer: 'ZDJECIA_1972' }),
-  year('1987', { label: '1987', long: 'Aerial photo sketch, 1987', era: 'Late 1980s', layer: 'FOTOSZKIC_1987' }),
-  year('2001', { label: '2001', long: 'Aerial photo, 2001', era: 'After the transition', layer: 'ORTOFOTO_2001' }),
-  year('2010', { label: '2010', long: 'Aerial photo, 2010', layer: 'ORTOFOTO_2010', fallbackLayer: 'RASTER_ORTOFOTO_2010' }),
-  year('today', { label: 'Today', long: 'Aerial photo, 2025', era: '2025', layer: 'ORTOFOTO_2025', fallbackLayer: 'ORTO' }),
+  year('1935', { layer: 'FOTOPLAN_1935', fallbackLayer: 'RASTER_FOTOPLAN_1935' }),
+  year('1945', { layer: 'ORTOFOTO_1945', fallbackLayer: 'RASTER_ORTOFOTO_1945', whiteIsBlank: true }),
+  year('1951', { layer: 'ZDJECIA_1951' }),
+  year('1972', { layer: 'ZDJECIA_1972' }),
+  year('1987', { layer: 'FOTOSZKIC_1987' }),
+  year('2001', { layer: 'ORTOFOTO_2001' }),
+  year('2010', { layer: 'ORTOFOTO_2010', fallbackLayer: 'RASTER_ORTOFOTO_2010' }),
+  year('today', { layer: 'ORTOFOTO_2025', fallbackLayer: 'ORTO' }),
 ];
 
 export const yearDef = (key: YearKey) => YEARS.find((y) => y.key === key)!;

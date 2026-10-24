@@ -1,4 +1,3 @@
-import data from '@/data/spots.json';
 import type { YearKey } from '@/lib/years';
 
 export interface Credit {
@@ -18,6 +17,7 @@ export interface Photo {
   approx?: boolean;
   ratio: number;
   caption?: string;
+  pl?: { caption?: string };
   credit: Credit;
 }
 
@@ -28,15 +28,13 @@ export interface Spot {
   lng: number;
   kind?: 'historic' | 'modern';
   description?: string;
+  pl?: { name?: string; description?: string };
   og?: string;
   photos: Photo[];
 }
 
-export const SPOTS = data as Spot[];
-
-export const getSpot = (id: string) => SPOTS.find((s) => s.id === id);
-
-export const spotIdFromPath = (pathname: string | null) => /^\/spots\/([^/]+)/.exec(pathname ?? '')?.[1] ?? null;
+export const spotIdFromPath = (pathname: string | null) =>
+  /^(?:\/(?:en|pl))?\/spots\/([^/]+)/.exec(pathname ?? '')?.[1] ?? null;
 
 export const NEAR_YEARS = 12;
 

@@ -5,6 +5,7 @@ import { ArrowLeftRight, Check, Copy, Download, ImageIcon, Link2, Loader2, Share
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
+import { useMessages } from '@/components/LocaleProvider';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
@@ -14,7 +15,7 @@ import { SITE_NAME } from '@/lib/site';
 import { FORMATS, LAYOUTS, formatSize, renderSnapshot, toBlob, type Format, type Layout, type SnapshotArea } from '@/lib/snapshot';
 import { mapStateToQuery, type MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
-import { yearDef, type YearKey } from '@/lib/years';
+import type { YearKey } from '@/lib/years';
 
 interface Inset {
   right: number;
@@ -128,6 +129,8 @@ export function ShareDialog({
   inset: Inset;
   spotName: string | null;
 }) {
+  const t = useMessages();
+  const m = t.share;
   const [open, setOpen] = useState(false);
   const [snap, setSnap] = useState<Capture | null>(null);
   const [years, setYears] = useState<[YearKey, YearKey]>(['1935', 'today']);
@@ -177,6 +180,9 @@ export function ShareDialog({
           labels: withLabels,
           title,
           host: location.host,
+          yearLabels: [t.years[years[0]].label, t.years[years[1]].label],
+          place: m.place,
+          credit: m.credit,
         });
         const blob = await toBlob(canvas);
         if (cancelled) return;
@@ -194,7 +200,7 @@ export function ShareDialog({
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [open, snap, years, layout, format, withLabels, title, attempt]);
+  }, [open, snap, years, layout, format, withLabels, title, attempt, t]);
 
   useEffect(
     () => () => {
@@ -211,9 +217,9 @@ export function ShareDialog({
       return next;
     });
 
-  const fileName = `warsaw-${years.map((y) => yearDef(y).label.toLowerCase()).join('-vs-')}.jpg`;
+  const fileName = `${m.filePrefix}-${years.join('-vs-')}.jpg`;
   const ready = !!result && !busy && !error;
-  const sides = layout === 'stack' || (layout === 'split' && snap?.horizontal) ? ['Top', 'Bottom'] : ['Left', 'Right'];
+  const sides = layout === 'stack' || (layout === 'split' && snap?.horizontal) ? [m.top, m.bottom] : [m.left, m.right];
   const preview = snap ? formatSize(format, snap.area) : { width: 1, height: 1 };
 
   const copyLink = async () => {
@@ -221,9 +227,9 @@ export function ShareDialog({
     try {
       await navigator.clipboard.writeText(snap.link);
       setCopied(true);
-      toast.success('Link copied');
+      toast.success(m.linkCopied);
     } catch {
-      toast.error("Couldn't copy the link");
+      toast.error(m.linkFailed);
     }
   };
 
@@ -247,9 +253,9 @@ export function ShareDialog({
     if (!result) return;
     try {
       await navigator.clipboard.write([new ClipboardItem({ 'image/png': toBlob(result.canvas, 'image/png') })]);
-      toast.success('Image copied');
+      toast.success(m.imageCopied);
     } catch {
-      toast.error("Couldn't copy the image. Download it instead.");
+      toast.error(m.imageCopyFailed);
     }
   };
 
@@ -258,7 +264,7 @@ export function ShareDialog({
     try {
       await navigator.share({ files: [new File([result.blob], fileName, { type: 'image/jpeg' })], title: SITE_NAME });
     } catch (e) {
-      if ((e as Error).name !== 'AbortError') toast.error("Couldn't share the image");
+      if ((e as Error).name !== 'AbortError') toast.error(m.imageShareFailed);
     }
   };
 
@@ -267,18 +273,18 @@ export function ShareDialog({
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
-            <Button variant="outline" size="icon-lg" className="glass-strong rounded-xl" aria-label="Share">
+            <Button variant="outline" size="icon-lg" className="glass-strong rounded-xl" aria-label={m.trigger}>
               <Share2 />
             </Button>
           </DialogTrigger>
         </TooltipTrigger>
-        <TooltipContent side="left">Share this view</TooltipContent>
+        <TooltipContent side="left">{m.title}</TooltipContent>
       </Tooltip>
 
       <DialogContent className="max-h-[calc(100dvh-32px)] overflow-y-auto sm:max-w-3xl">
         <DialogHeader>
-          <DialogTitle className="font-heading text-2xl">Share this view</DialogTitle>
-          <DialogDescription>Make an image for social media, or copy a link to this exact place on the map.</DialogDescription>
+          <DialogTitle className="font-heading text-2xl">{m.title}</DialogTitle>
+          <DialogDescription>{m.description}</DialogDescription>
         </DialogHeader>
 
         <div className="grid gap-5 sm:grid-cols-[minmax(0,1fr)_280px]">
@@ -290,7 +296,7 @@ export function ShareDialog({
               {result && (
                 <img
                   src={result.url}
-                  alt="Preview of the image to share"
+                  alt={m.preview}
                   className={cn('size-full object-contain transition-opacity', busy && 'opacity-50')}
                 />
               )}
@@ -298,7 +304,7 @@ export function ShareDialog({
                 <div className="absolute inset-0 grid place-items-center">
                   <span className="glass-strong flex items-center gap-2 rounded-full px-3 py-1.5 text-xs">
                     <Loader2 className="size-3.5 animate-spin text-gold" />
-                    Rendering aerial photos…
+                    {m.rendering}
                   </span>
                 </div>
               )}
@@ -306,9 +312,9 @@ export function ShareDialog({
                 <div className="absolute inset-0 grid place-items-center p-4 text-center">
                   <div className="grid justify-items-center gap-2 text-sm text-muted-foreground">
                     <ImageIcon className="size-5" />
-                    Couldn&apos;t load the aerial photos.
+                    {m.failed}
                     <Button size="sm" variant="outline" onClick={() => setAttempt((n) => n + 1)}>
-                      Try again
+                      {m.retry}
                     </Button>
                   </div>
                 </div>
@@ -319,17 +325,17 @@ export function ShareDialog({
               {shareFiles && (
                 <Button onClick={shareImage} disabled={!ready}>
                   <Share2 />
-                  Share image
+                  {m.shareImage}
                 </Button>
               )}
               <Button variant={shareFiles ? 'outline' : 'default'} onClick={download} disabled={!ready}>
                 <Download />
-                Download
+                {m.download}
               </Button>
               {canCopyImage && !shareFiles && (
                 <Button variant="outline" onClick={copyImage} disabled={!ready}>
                   <Copy />
-                  Copy image
+                  {m.copyImage}
                 </Button>
               )}
             </div>
@@ -338,13 +344,13 @@ export function ShareDialog({
           <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-4">
             <div className="grid gap-1.5">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-muted-foreground">Years</span>
+                <span className="text-xs font-medium text-muted-foreground">{m.years}</span>
                 <Button
                   variant="ghost"
                   size="icon-xs"
                   onClick={() => setYears(([a, b]) => [b, a])}
-                  aria-label="Swap years"
-                  title="Swap years"
+                  aria-label={m.swapYears}
+                  title={m.swapYears}
                 >
                   <ArrowLeftRight />
                 </Button>
@@ -357,7 +363,7 @@ export function ShareDialog({
                   <YearSelect
                     value={year}
                     onChange={(y) => setSide(i as 0 | 1, y)}
-                    label={`${sides[i]} year`}
+                    label={m.sideYear(sides[i])}
                     className="flex-1 justify-between rounded-md border border-input bg-input/30"
                     modal
                   />
@@ -365,20 +371,30 @@ export function ShareDialog({
               ))}
             </div>
 
-            <Field label="Layout">
-              <Choice<Layout> value={layout} onChange={setLayout} options={LAYOUTS} label="Layout" />
+            <Field label={m.layout}>
+              <Choice<Layout>
+                value={layout}
+                onChange={setLayout}
+                options={LAYOUTS.map((key) => ({ key, label: m.layouts[key] }))}
+                label={m.layout}
+              />
             </Field>
 
-            <Field label="Size">
-              <Choice<Format> value={format} onChange={setFormat} options={FORMATS} label="Size" />
+            <Field label={m.size}>
+              <Choice<Format>
+                value={format}
+                onChange={setFormat}
+                options={FORMATS.map(({ key }) => ({ key, ...m.formats[key] }))}
+                label={m.size}
+              />
             </Field>
 
-            <Field label="Title">
+            <Field label={m.titleField}>
               <input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 maxLength={70}
-                placeholder="Optional, e.g. Plac Zamkowy"
+                placeholder={m.titlePlaceholder}
                 className="h-9 rounded-md border border-input bg-input/30 px-3 text-sm outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
               />
             </Field>
@@ -391,23 +407,23 @@ export function ShareDialog({
               aria-pressed={withLabels}
             >
               <Type />
-              Street names
+              {t.map.streetNames}
             </Button>
 
-            <Field label="Link to this view">
+            <Field label={m.link}>
               <div className="flex gap-2">
                 <input
                   readOnly
                   value={snap?.link ?? ''}
                   onFocus={(e) => e.currentTarget.select()}
-                  aria-label="Link to this view"
+                  aria-label={m.link}
                   className="h-9 min-w-0 flex-1 rounded-md border border-input bg-input/30 px-3 text-xs text-muted-foreground outline-none focus-visible:border-ring"
                 />
-                <Button variant="outline" size="icon" onClick={copyLink} aria-label="Copy link">
+                <Button variant="outline" size="icon" onClick={copyLink} aria-label={m.copyLink}>
                   {copied ? <Check /> : <Link2 />}
                 </Button>
                 {shareFiles && (
-                  <Button variant="outline" size="icon" onClick={shareLink} aria-label="Share link">
+                  <Button variant="outline" size="icon" onClick={shareLink} aria-label={m.shareLink}>
                     <Share2 />
                   </Button>
                 )}

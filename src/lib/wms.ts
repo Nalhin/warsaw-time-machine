@@ -45,7 +45,7 @@ const BlankWhiteWMS: new (url: string, options: L.WMSOptions) => L.TileLayer.WMS
   },
 });
 
-export function createYearLayer(key: YearKey, pane: string): L.TileLayer.WMS {
+export function createYearLayer(key: YearKey, pane: string, credit: { label: string; owner: string }): L.TileLayer.WMS {
   const def = yearDef(key);
   const Layer = def.whiteIsBlank ? BlankWhiteWMS : L.TileLayer.WMS;
   const useFallback = primaryDead && !!def.fallbackLayer;
@@ -60,7 +60,7 @@ export function createYearLayer(key: YearKey, pane: string): L.TileLayer.WMS {
     maxZoom: 21,
     keepBuffer: 1,
     updateWhenZooming: false,
-    attribution: 'Aerial photos: <a href="https://mapa.um.warszawa.pl" target="_blank" rel="noopener">City of Warsaw</a>',
+    attribution: `${credit.label} <a href="https://mapa.um.warszawa.pl" target="_blank" rel="noopener">${credit.owner}</a>`,
     ...(useFallback ? {} : { DATASOURCE: 'dane_wawa' }),
   } as L.WMSOptions);
 

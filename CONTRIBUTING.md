@@ -26,7 +26,8 @@ uv sync
    1994 are often public domain (`PD-Polish`); recent ones are usually CC BY-SA. Your own photo of today is
    welcome too (upload it to Commons as CC BY-SA 4.0 or CC0).
 2. Add the place to `pipeline/sources/sources.json` (see the README for the format). The Commons title, year,
-   author, licence and source page are **required** for every photo.
+   author, licence and source page are **required** for every photo. Add the Polish name, description and
+   captions in `pl` fields too, so the place reads well on `/pl`.
 3. Set `lat`/`lng` to the place itself: the middle of the building, the centre of the square. Check it on the
    2025 aerial on the map.
 4. Run `uv run python prepare_spots.py <id>`, then check the result in `npm run dev`.

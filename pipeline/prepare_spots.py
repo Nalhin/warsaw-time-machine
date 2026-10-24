@@ -115,6 +115,7 @@ def build(place: dict) -> dict:
                 "approx": bool(p.get("approx")),
                 "ratio": round(im.width / im.height, 4),
                 "caption": p.get("caption"),
+                "pl": p.get("pl"),
                 "credit": credit(p),
             }
         )
@@ -128,6 +129,7 @@ def build(place: dict) -> dict:
         "lng": place["lng"],
         "kind": place.get("kind", "historic"),
         "description": place.get("description"),
+        "pl": place.get("pl"),
         "og": f"/img/og/{pid}.jpg",
         "photos": photos,
     }

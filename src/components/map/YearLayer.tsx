@@ -2,12 +2,14 @@ import type L from 'leaflet';
 import { useEffect, useRef } from 'react';
 import { useMap } from 'react-leaflet';
 
+import { useMessages } from '@/components/LocaleProvider';
 import { trackLayer } from '@/lib/loading';
 import { createYearLayer } from '@/lib/wms';
 import type { YearKey } from '@/lib/years';
 
 export function YearLayer({ pane, year }: { pane: string; year: YearKey | null }) {
   const map = useMap();
+  const t = useMessages();
   const slot = useRef<{
     current: { key: YearKey; layer: L.TileLayer } | null;
     pending: { key: YearKey; layer: L.TileLayer } | null;
@@ -27,7 +29,7 @@ export function YearLayer({ pane, year }: { pane: string; year: YearKey | null }
     }
     if (s.current?.key === year || s.pending?.key === year) return;
 
-    const layer = createYearLayer(year, pane).setZIndex(++s.z);
+    const layer = createYearLayer(year, pane, { label: t.about.aerial, owner: t.about.city }).setZIndex(++s.z);
     trackLayer(layer);
     const entry = { key: year, layer };
     const promote = () => {
@@ -44,7 +46,7 @@ export function YearLayer({ pane, year }: { pane: string; year: YearKey | null }
     }
     layer.addTo(map);
     if (!layer.isLoading()) promote();
-  }, [map, pane, year]);
+  }, [map, pane, year, t]);
 
   useEffect(
     () => () => {

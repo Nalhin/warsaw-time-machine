@@ -1,13 +1,16 @@
 'use client';
 
 import type L from 'leaflet';
-import { LocateFixed, MapPin, MapPinOff, Type } from 'lucide-react';
+import { LocateFixed, Minus, Plus } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 import { AboutDialog } from '@/components/AboutDialog';
+import { LanguageSwitch } from '@/components/LanguageSwitch';
+import { LayersMenu } from '@/components/LayersMenu';
+import { useLocale, useMessages } from '@/components/LocaleProvider';
 import { CoverageNotice } from '@/components/map/CoverageNotice';
 import { SwipeDivider } from '@/components/map/SwipeDivider';
 import { DRAWER_PEEK, PANEL_WIDTH } from '@/components/PlacePanel';
@@ -16,13 +19,14 @@ import { Toaster } from '@/components/ui/sonner';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { YearControls } from '@/components/YearControls';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { localePath } from '@/lib/i18n';
 import { useTileLoading } from '@/lib/loading';
 import { WARSAW_BBOX } from '@/lib/site';
 import { publishMapState } from '@/lib/map-store';
 import { spotIdFromPath, yearNumber, type Spot } from '@/lib/spots';
 import { DEFAULT_STATE, START, mapStateToQuery, readCamera, readMapState, type MapCamera, type MapState } from '@/lib/state';
 import { cn } from '@/lib/utils';
-import { yearDef, type YearKey } from '@/lib/years';
+import type { YearKey } from '@/lib/years';
 
 const MapView = dynamic(() => import('@/components/map/MapView').then((m) => m.MapView), {
   ssr: false,
@@ -38,6 +42,8 @@ const HINT_KEY = 'wtm-dragged';
 
 export function MapApp({ spots }: { spots: Spot[] }) {
   const router = useRouter();
+  const locale = useLocale();
+  const t = useMessages();
   const pathname = usePathname();
   const activeId = spotIdFromPath(pathname);
   const spot = spots.find((s) => s.id === activeId) ?? null;
@@ -119,7 +125,7 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     [],
   );
 
-  const openSpot = (id: string) => router.push(`/spots/${id}${location.search}`, { scroll: false });
+  const openSpot = (id: string) => router.push(`${localePath(locale, `/spots/${id}`)}${location.search}`, { scroll: false });
 
   useEffect(() => {
     if (!map || !spot || flown.current === spot.id) return;
@@ -140,18 +146,18 @@ export function MapApp({ spots }: { spots: Spot[] }) {
     const found = (e: L.LocationEvent) => {
       const { lat, lng } = e.latlng;
       const b = WARSAW_BBOX;
-      if (lat < b.south || lat > b.north || lng < b.west || lng > b.east) return void toast("You're outside Warsaw");
+      if (lat < b.south || lat > b.north || lng < b.west || lng > b.east) return void toast(t.map.outsideWarsaw);
       setMe(e.latlng);
       map.flyTo(e.latlng, Math.max(map.getZoom(), 17));
     };
-    const failed = () => toast.error("Couldn't find your location");
+    const failed = () => toast.error(t.map.locationFailed);
     map.on('locationfound', found);
     map.on('locationerror', failed);
     return () => {
       map.off('locationfound', found);
       map.off('locationerror', failed);
     };
-  }, [map]);
+  }, [map, t]);
 
   const panelOpen = !!spot && !mobile;
   useEffect(() => {
@@ -193,8 +199,8 @@ export function MapApp({ spots }: { spots: Spot[] }) {
           ratio={ratio}
           onRatio={setRatio}
           horizontal={state.horizontal}
-          leftLabel={yearDef(state.swipe[0]).label}
-          rightLabel={yearDef(state.swipe[1]).label}
+          leftLabel={t.years[state.swipe[0]].label}
+          rightLabel={t.years[state.swipe[1]].label}
           showHint={!hintSeen}
           onDragStart={() => {
             if (hintSeen) return;
@@ -210,6 +216,8 @@ export function MapApp({ spots }: { spots: Spot[] }) {
       {map && <CoverageNotice map={map} years={state.swipe ?? [state.year]} />}
 
       <AboutDialog />
+
+      <LanguageSwitch shifted={panelOpen} />
 
       <div
         className={cn(panelOpen && 'sm:[&>nav]:-translate-x-[calc(var(--pw)/2)]')}
@@ -227,7 +235,7 @@ export function MapApp({ spots }: { spots: Spot[] }) {
 
       <div
         className={cn(
-          'fixed right-3.5 bottom-[calc(88px+env(safe-area-inset-bottom))] z-[900] flex flex-col gap-2 transition-[right] duration-300 sm:bottom-24',
+          'fixed right-3.5 bottom-[calc(88px+env(safe-area-inset-bottom))] z-[900] flex flex-col gap-2 transition-[right] duration-300 sm:bottom-9',
           panelOpen && 'sm:right-[calc(var(--pw)+38px)]',
         )}
         style={{ ['--pw' as string]: `${PANEL_WIDTH}px` }}
@@ -242,36 +250,7 @@ export function MapApp({ spots }: { spots: Spot[] }) {
             spotName={spot?.name ?? null}
           />
         )}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="outline"
-              size="icon-lg"
-              className={cn('glass-strong rounded-xl', labels && 'bg-foreground! text-background!')}
-              onClick={() => setLabels((v) => !v)}
-              aria-pressed={labels}
-              aria-label="Street names"
-            >
-              <Type />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="left">Street names</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="outline"
-              size="icon-lg"
-              className="glass-strong rounded-xl"
-              onClick={() => setPins((v) => !v)}
-              aria-pressed={!pins}
-              aria-label={pins ? 'Hide places' : 'Show places'}
-            >
-              {pins ? <MapPin /> : <MapPinOff />}
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="left">{pins ? 'Hide places' : 'Show places'}</TooltipContent>
-        </Tooltip>
+        <LayersMenu labels={labels} onLabels={setLabels} pins={pins} onPins={setPins} />
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
@@ -279,13 +258,34 @@ export function MapApp({ spots }: { spots: Spot[] }) {
               size="icon-lg"
               className="glass-strong rounded-xl"
               onClick={() => map?.locate({ enableHighAccuracy: true })}
-              aria-label="My location"
+              aria-label={t.map.myLocation}
             >
               <LocateFixed />
             </Button>
           </TooltipTrigger>
-          <TooltipContent side="left">My location</TooltipContent>
+          <TooltipContent side="left">{t.map.myLocation}</TooltipContent>
         </Tooltip>
+        {(
+          [
+            [Plus, t.map.zoomIn, () => map?.zoomIn()],
+            [Minus, t.map.zoomOut, () => map?.zoomOut()],
+          ] as const
+        ).map(([Icon, label, onClick]) => (
+          <Tooltip key={label}>
+            <TooltipTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon-lg"
+                className="glass-strong rounded-xl max-[720px]:hidden"
+                onClick={onClick}
+                aria-label={label}
+              >
+                <Icon />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="left">{label}</TooltipContent>
+          </Tooltip>
+        ))}
       </div>
 
       {showLoading && (
@@ -298,7 +298,7 @@ export function MapApp({ spots }: { spots: Spot[] }) {
           </div>
           <div className="glass-strong fixed top-14 left-1/2 flex -translate-x-1/2 items-center gap-2.5 rounded-full px-3.5 py-2 text-[13px] whitespace-nowrap text-foreground/85 tabular-nums sm:top-16">
             <span className="size-3.5 animate-spin rounded-full border-2 border-white/20 border-t-gold" />
-            Loading aerial photos… {loading.done}/{loading.total}
+            {t.map.loading} {loading.done}/{loading.total}
           </div>
         </div>
       )}

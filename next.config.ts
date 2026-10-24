@@ -8,6 +8,8 @@ const config: NextConfig = {
   },
   async redirects() {
     return [
+      { source: '/en', destination: '/', permanent: true },
+      { source: '/en/:path*', destination: '/:path*', permanent: true },
       { source: '/s/:id', destination: '/spots/:id', permanent: true },
       {
         source: '/',
@@ -16,6 +18,16 @@ const config: NextConfig = {
         permanent: true,
       },
     ];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: '/', destination: '/en' },
+        { source: '/spots/:id', destination: '/en/spots/:id' },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
   },
   async headers() {
     return [
