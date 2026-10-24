@@ -65,7 +65,7 @@ export interface Video {
   duration: number;
   hold: number;
   fade: number;
-  fonts: { heading: string; sans: string };
+  fonts: { sans: string };
 }
 
 function centerLatLng(area: SnapshotArea): [number, number] {
@@ -102,8 +102,7 @@ export async function prepareVideo(
   const H = Math.round((size.height * scale) / 2) * 2;
   const bbox = fit(options.area, W, H);
   const feather = featherPx(options.area.zoom) * (options.area.metersPerPixel / ((bbox[2] - bbox[0]) / W));
-  const heading = fontFamily('--font-fraunces', 'Georgia, serif');
-  const sans = fontFamily('--font-geist', 'system-ui, sans-serif');
+  const sans = fontFamily('--font-inter', "'Inter var', ui-sans-serif, system-ui, sans-serif");
 
   const panels: HTMLCanvasElement[] = new Array(years.length);
   let done = 0;
@@ -119,7 +118,7 @@ export async function prepareVideo(
   };
   await Promise.all([
     ...Array.from({ length: LOAD_CONCURRENCY }, worker),
-    document.fonts.load(`600 200px ${heading}`),
+    document.fonts.load(`700 200px ${sans}`),
     document.fonts.load(`600 40px ${sans}`),
   ]);
 
@@ -128,7 +127,7 @@ export async function prepareVideo(
     options.kind === 'swipe'
       ? SWIPE.holdA + SWIPE.sweep + SWIPE.holdB + SWIPE.back + END_HOLD
       : years.length * hold + (years.length - 1) * fade + END_HOLD;
-  return { options, panels, width: W, height: H, duration, hold, fade, fonts: { heading, sans } };
+  return { options, panels, width: W, height: H, duration, hold, fade, fonts: { sans } };
 }
 
 const ease = (x: number) => x * x * (3 - 2 * x);
@@ -165,7 +164,7 @@ function drawYear(ctx: CanvasRenderingContext2D, v: Video, label: string, cx: nu
   ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
   ctx.shadowBlur = 24 * (size / 230);
   ctx.fillStyle = '#fff';
-  fitFont(ctx, label, 600, size, v.fonts.heading, maxWidth);
+  fitFont(ctx, label, 700, size, v.fonts.sans, maxWidth);
   ctx.fillText(label, cx, baseline);
   ctx.restore();
 }

@@ -1,10 +1,9 @@
 'use client';
 
-import { ChevronLeft, ChevronRight, Maximize2, Share, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
 
 import { useLocale, useMessages } from '@/components/LocaleProvider';
 import { Badge } from '@/components/ui/badge';
@@ -64,7 +63,7 @@ function SinglePhoto({
 }) {
   return (
     <div
-      className={cn('relative overflow-hidden rounded-xl bg-neutral-900', className)}
+      className={cn('relative overflow-hidden rounded-[2px] bg-neutral-900', className)}
       style={{ aspectRatio: frame ?? photo.ratio }}
     >
       <Image src={photo.src} alt={alt} fill sizes={sizes} priority className={frame ? 'object-contain' : 'object-cover'} />
@@ -73,7 +72,6 @@ function SinglePhoto({
 }
 
 function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
-  const locale = useLocale();
   const t = useMessages();
   const map = useMapState();
   const onSecondSide = useSecondSide().has(spot.id);
@@ -93,25 +91,6 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
   const photo = picked ?? fromMap;
   const index = spot.photos.indexOf(photo);
   const gap = Math.abs(fromMap.year - yearNumber(mapYear)) > NEAR_YEARS;
-  const first = spot.photos[0];
-  const last = spot.photos[spot.photos.length - 1];
-
-  const share = async () => {
-    const shareUrl = `${location.origin}${localePath(locale, `/spots/${spot.id}`)}${location.search}`;
-    const data = { title: t.spot.title(spot.name), url: shareUrl };
-    if (navigator.share && matchMedia('(pointer: coarse)').matches) {
-      try {
-        return await navigator.share(data);
-      } catch {
-      }
-    }
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      toast.success(t.spot.linkCopied);
-    } catch {
-      toast(shareUrl);
-    }
-  };
 
   const step = (d: number) => setPicked(spot.photos[(index + d + spot.photos.length) % spot.photos.length]);
 
@@ -119,24 +98,16 @@ function PlaceContent({ spot, onClose }: { spot: Spot; onClose(): void }) {
     <div className="px-4 pt-1 pb-[calc(24px+env(safe-area-inset-bottom))] sm:px-5 sm:pt-5">
       <header className="mb-4 flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="mb-1 flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] text-gold uppercase tabular-nums">
-            {first.year === last.year ? first.date : `${first.year}–${last.year}`} · {t.spot.photos(spot.photos.length)}
-            {spot.kind === 'modern' && (
-              <Badge variant="outline" className="h-4.5 border-gold/40 px-1.5 text-[10px] tracking-normal text-gold normal-case">
-                {t.spot.modern}
-              </Badge>
-            )}
-          </p>
-          <h1 className="font-heading text-2xl leading-tight font-semibold sm:text-[28px]">{spot.name}</h1>
+          {spot.kind === 'modern' && (
+            <Badge variant="outline" className="mb-1 h-4.5 border-gold/40 px-1.5 text-[10px] tracking-normal text-gold normal-case">
+              {t.spot.modern}
+            </Badge>
+          )}
+          <h1 className="font-heading text-2xl leading-tight font-semibold tracking-tight sm:text-[28px]">{spot.name}</h1>
         </div>
-        <div className="flex shrink-0 gap-1.5">
-          <Button variant="outline" size="icon" className="rounded-full" onClick={share} aria-label={t.spot.share}>
-            <Share />
-          </Button>
-          <Button variant="outline" size="icon" className="rounded-full" onClick={onClose} aria-label={t.spot.close}>
-            <X />
-          </Button>
-        </div>
+        <Button variant="outline" size="icon" className="shrink-0 rounded-[3px]" onClick={onClose} aria-label={t.spot.close}>
+          <X />
+        </Button>
       </header>
 
       <div className="group/photo relative">
@@ -264,7 +235,7 @@ export function PlacePanel({ spot }: { spot: Spot }) {
         activeSnapPoint={snap}
         setActiveSnapPoint={setSnap}
       >
-        <DrawerContent hideOverlay className="glass-strong z-[1050] h-[calc(100dvh-56px)] max-h-none!">
+        <DrawerContent hideOverlay className="z-[1050] h-[calc(100dvh-56px)] max-h-none! border-x-0 border-b-0">
           <DrawerTitle className="sr-only">{spot.name}</DrawerTitle>
           <DrawerDescription className="sr-only">{t.spot.drawerDescription(spot.name)}</DrawerDescription>
           <div className={cn('overflow-y-auto overscroll-contain', snap === 1 ? 'h-full' : 'h-[calc(55dvh-48px)]')}>
@@ -279,7 +250,7 @@ export function PlacePanel({ spot }: { spot: Spot }) {
     <aside
       aria-label={spot.name}
       style={{ width: PANEL_WIDTH }}
-      className="glass-strong fixed top-3 right-3 bottom-3 z-[1050] animate-in overflow-y-auto overscroll-contain rounded-2xl duration-300 slide-in-from-right-8 fade-in-0"
+      className="sheet fixed top-3 right-3 bottom-3 z-[1050] animate-in overflow-y-auto overscroll-contain rounded-[3px] duration-300 slide-in-from-right-8 fade-in-0"
     >
       <PlaceContent key={spot.id} spot={spot} onClose={close} />
     </aside>

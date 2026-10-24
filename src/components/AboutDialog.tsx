@@ -44,7 +44,7 @@ export function AboutDialog() {
       </DialogTrigger>
       <DialogContent aria-describedby={undefined} className="max-h-[calc(100dvh-48px)] overflow-y-auto sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="font-heading text-2xl">{SITE_NAME}</DialogTitle>
+          <DialogTitle>{SITE_NAME}</DialogTitle>
         </DialogHeader>
 
         <div className="grid gap-3 text-sm leading-relaxed text-foreground/85 [&_a]:text-gold [&_a]:underline-offset-2 hover:[&_a]:underline">

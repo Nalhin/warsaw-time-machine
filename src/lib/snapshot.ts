@@ -185,7 +185,7 @@ export function drawHandle(ctx: CanvasRenderingContext2D, cx: number, cy: number
 export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElement> {
   const { width: W, height: H } = formatSize(o.format, o.area);
   const s = Math.min(W, H) / 1080;
-  const sans = fontFamily('--font-geist', 'system-ui, sans-serif');
+  const sans = fontFamily('--font-inter', "'Inter var', ui-sans-serif, system-ui, sans-serif");
   await Promise.all([
     document.fonts.load(`600 24px ${sans}`),
     document.fonts.load(`500 24px ${sans}`),

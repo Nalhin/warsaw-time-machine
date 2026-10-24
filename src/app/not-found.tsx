@@ -12,8 +12,8 @@ export const metadata: Metadata = { title: `${MESSAGES.en.spot.notFound} | ${SIT
 export default function NotFound() {
   return (
     <AppShell locale="en">
-      <div className="glass-strong fixed top-1/2 left-1/2 z-[1200] -translate-1/2 rounded-2xl px-6 py-5 text-center">
-        <h1 className="font-heading text-xl font-semibold">{MESSAGES.en.spot.notFound}</h1>
+      <div className="sheet fixed top-1/2 left-1/2 z-[1200] -translate-1/2 rounded-[3px] px-6 py-5 text-center">
+        <h1 className="font-heading text-xl font-semibold tracking-tight">{MESSAGES.en.spot.notFound}</h1>
         <p lang="pl" className="mt-1 text-sm text-muted-foreground">
           {MESSAGES.pl.spot.notFound}
         </p>
