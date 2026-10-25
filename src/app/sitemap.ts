@@ -16,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       alternates: { languages: absolute(languageAlternates('/')) },
     },
+    {
+      url: `${SITE_URL}${localePath(locale, '/about')}`,
+      changeFrequency: 'yearly' as const,
+      priority: 0.6,
+      alternates: { languages: absolute(languageAlternates('/about')) },
+    },
     ...spotsFor(locale).map((s) => ({
       url: `${SITE_URL}${localePath(locale, `/spots/${s.id}`)}`,
       changeFrequency: 'yearly' as const,

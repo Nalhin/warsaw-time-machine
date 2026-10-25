@@ -6,8 +6,9 @@ import { isLocale, languageAlternates, localePath, type Locale } from '@/lib/i18
 import { MESSAGES } from '@/lib/messages';
 import { SITE_NAME, SITE_URL } from '@/lib/site';
 import { socialMetadata } from '@/lib/social-metadata';
-import { getSpot, SPOT_IDS } from '@/lib/spot-data';
-import type { Credit, Spot } from '@/lib/spots';
+import { getSpot, nearbySpots, SPOT_IDS } from '@/lib/spot-data';
+import type { Photo, Spot } from '@/lib/spots';
+import { jsonLdScript, WARSAW, WEBSITE_ID } from '@/lib/structured-data';
 
 interface SpotPageProps {
   params: Promise<{ lang: string; id: string }>;
@@ -24,11 +25,13 @@ async function resolve(params: SpotPageProps['params']) {
   return spot ? { locale: lang, spot } : null;
 }
 
+const DESCRIPTION_LIMIT = 160;
+
 function describe(s: Spot, locale: Locale) {
-  return (
-    s.description?.split(/(?<=\.)\s/)[0] ??
-    MESSAGES[locale].spot.fallbackDescription(s.name, s.photos.length, s.photos[0].date, s.photos[s.photos.length - 1].date)
-  );
+  if (!s.description)
+    return MESSAGES[locale].spot.fallbackDescription(s.name, s.photos.length, s.photos[0].date, s.photos[s.photos.length - 1].date);
+  const [first, ...rest] = s.description.split(/(?<=\.)\s/);
+  return rest.reduce((text, sentence) => (text.length + sentence.length < DESCRIPTION_LIMIT ? `${text} ${sentence}` : text), first);
 }
 
 export async function generateMetadata({ params }: SpotPageProps): Promise<Metadata> {
@@ -55,43 +58,64 @@ export async function generateMetadata({ params }: SpotPageProps): Promise<Metad
   };
 }
 
-function imageObject(url: string, name: string, credit: string | Credit) {
+function imageObject(spot: Spot, { src, date, caption, credit }: Photo) {
   return {
     '@type': 'ImageObject',
-    contentUrl: `${SITE_URL}${url}`,
-    name,
-    ...(typeof credit === 'string'
-      ? { creditText: credit }
-      : {
-          creator: { '@type': 'Person', name: credit.author },
-          creditText: credit.author,
-          ...(credit.date && { dateCreated: credit.date }),
-          ...(credit.licenceUrl && { license: credit.licenceUrl }),
-          ...(credit.sourceUrl && { acquireLicensePage: credit.sourceUrl }),
-        }),
+    contentUrl: `${SITE_URL}${src}`,
+    name: `${spot.name}, ${date}`,
+    ...(caption && { caption }),
+    contentLocation: { '@id': placeId(spot) },
+    creator: { '@type': 'Person', name: credit.author },
+    creditText: credit.author,
+    ...(credit.date && { dateCreated: credit.date }),
+    ...(credit.licenceUrl && { license: credit.licenceUrl }),
+    ...(credit.sourceUrl && { acquireLicensePage: credit.sourceUrl }),
   };
+}
+
+function placeId(spot: Spot) {
+  return `${SITE_URL}/spots/${spot.id}#place`;
 }
 
 export default async function SpotPage({ params }: SpotPageProps) {
   const found = await resolve(params);
   if (!found) notFound();
   const { locale, spot } = found;
+  const t = MESSAGES[locale];
   const url = `${SITE_URL}${localePath(locale, `/spots/${spot.id}`)}`;
+  const nearby = nearbySpots(spot, locale);
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Place',
+        '@type': 'ItemPage',
+        '@id': url,
+        url,
+        name: t.spot.title(spot.name),
+        description: describe(spot, locale),
+        inLanguage: locale,
+        isPartOf: { '@id': WEBSITE_ID },
+        about: { '@id': placeId(spot) },
+        mainEntity: { '@id': placeId(spot) },
+        primaryImageOfPage: `${SITE_URL}${spot.og ?? '/img/og/default.jpg'}`,
+        breadcrumb: { '@id': `${url}#breadcrumb` },
+        relatedLink: nearby.map((s) => `${SITE_URL}${localePath(locale, `/spots/${s.id}`)}`),
+      },
+      {
+        '@type': spot.kind === 'modern' ? 'TouristAttraction' : 'LandmarksOrHistoricalBuildings',
+        '@id': placeId(spot),
         name: spot.name,
         description: spot.description,
         url,
         geo: { '@type': 'GeoCoordinates', latitude: spot.lat, longitude: spot.lng },
-        containedInPlace: { '@type': 'City', name: 'Warsaw', alternateName: 'Warszawa' },
-        image: spot.photos.map((p) => imageObject(p.src, `${spot.name}, ${p.date}`, p.credit)),
+        hasMap: `${SITE_URL}${localePath(locale, '/')}?at=${spot.lat},${spot.lng},17`,
+        containedInPlace: WARSAW,
+        image: spot.photos.map((p) => imageObject(spot, p)),
       },
       {
         '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: SITE_NAME, item: `${SITE_URL}${localePath(locale, '/')}` },
           { '@type': 'ListItem', position: 2, name: spot.name, item: url },
@@ -102,8 +126,8 @@ export default async function SpotPage({ params }: SpotPageProps) {
 
   return (
     <>
-      <PlacePanel spot={spot} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <PlacePanel spot={spot} nearby={nearby} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(jsonLd)} />
     </>
   );
 }

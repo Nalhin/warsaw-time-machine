@@ -74,12 +74,48 @@ function SinglePhoto({ photo, alt, sizes, frame, className }: SinglePhotoProps) 
   );
 }
 
-interface PlaceContentProps {
-  spot: Spot;
-  onClose(): void;
+interface NearbyPlacesProps {
+  spots: Spot[];
+  onOpen(id: string): void;
 }
 
-function PlaceContent({ spot, onClose }: PlaceContentProps) {
+function NearbyPlaces({ spots, onOpen }: NearbyPlacesProps) {
+  const t = useMessages();
+  const locale = useLocale();
+  return (
+    <nav aria-labelledby="nearby-places" className="mt-5">
+      <h2 id="nearby-places" className="mb-2 text-xs font-semibold tracking-[0.1em] text-muted-foreground uppercase">
+        {t.spot.nearby}
+      </h2>
+      <ul className="grid grid-cols-2 gap-2">
+        {spots.map((s) => (
+          <li key={s.id}>
+            <a
+              href={localePath(locale, `/spots/${s.id}`)}
+              onClick={(e) => {
+                e.preventDefault();
+                onOpen(s.id);
+              }}
+              className="flex items-center gap-2 rounded-lg p-1 text-[13px] leading-tight transition-colors hover:bg-muted"
+            >
+              <img src={s.photos[0].pin} alt="" className="size-10 shrink-0 rounded-md object-cover" />
+              <span className="line-clamp-2">{s.name}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
+interface PlaceContentProps {
+  spot: Spot;
+  nearby: Spot[];
+  onClose(): void;
+  onOpen(id: string): void;
+}
+
+function PlaceContent({ spot, nearby, onClose, onOpen }: PlaceContentProps) {
   const t = useMessages();
   const map = useMapState();
   const isOnSecondSide = useSecondSide().has(spot.id);
@@ -204,6 +240,8 @@ function PlaceContent({ spot, onClose }: PlaceContentProps) {
 
       {spot.description && <p className="mt-3 text-[15px] leading-relaxed text-foreground/85">{spot.description}</p>}
 
+      {nearby.length > 0 && <NearbyPlaces spots={nearby} onOpen={onOpen} />}
+
       <Dialog open={isZoomed} onOpenChange={setIsZoomed}>
         <DialogContent className="flex max-h-none w-auto max-w-[calc(100vw-24px)] flex-col items-center border-0 bg-transparent p-0 shadow-none ring-0 sm:max-w-[calc(100vw-48px)]">
           <DialogTitle className="sr-only">{spot.name}</DialogTitle>
@@ -221,15 +259,18 @@ function PlaceContent({ spot, onClose }: PlaceContentProps) {
 
 interface PlacePanelProps {
   spot: Spot;
+  nearby: Spot[];
 }
 
-export function PlacePanel({ spot }: PlacePanelProps) {
+export function PlacePanel({ spot, nearby }: PlacePanelProps) {
   const router = useRouter();
   const locale = useLocale();
   const t = useMessages();
   const isMobile = useIsMobile();
   const [snap, setSnap] = useState<number | string | null>(DRAWER_PEEK);
-  const close = () => router.push(`${localePath(locale, '/')}${location.search}`, { scroll: false });
+  const navigate = (path: string) => router.push(`${localePath(locale, path)}${location.search}`, { scroll: false });
+  const close = () => navigate('/');
+  const open = (id: string) => navigate(`/spots/${id}`);
 
   if (isMobile)
     return (
@@ -245,7 +286,7 @@ export function PlacePanel({ spot }: PlacePanelProps) {
           <DrawerTitle className="sr-only">{spot.name}</DrawerTitle>
           <DrawerDescription className="sr-only">{t.spot.drawerDescription(spot.name)}</DrawerDescription>
           <div className={cn('overflow-y-auto overscroll-contain', snap === 1 ? 'h-full' : 'h-[calc(55dvh-48px)]')}>
-            <PlaceContent key={spot.id} spot={spot} onClose={close} />
+            <PlaceContent key={spot.id} spot={spot} nearby={nearby} onClose={close} onOpen={open} />
           </div>
         </DrawerContent>
       </Drawer>
@@ -257,7 +298,7 @@ export function PlacePanel({ spot }: PlacePanelProps) {
       style={{ width: PANEL_WIDTH }}
       className="sheet fixed top-3 right-3 bottom-3 z-[1050] animate-in overflow-y-auto overscroll-contain rounded-2xl duration-300 slide-in-from-right-8 fade-in-0"
     >
-      <PlaceContent key={spot.id} spot={spot} onClose={close} />
+      <PlaceContent key={spot.id} spot={spot} nearby={nearby} onClose={close} onOpen={open} />
     </aside>
   );
 }

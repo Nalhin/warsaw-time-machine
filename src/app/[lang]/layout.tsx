@@ -30,16 +30,21 @@ export async function generateMetadata({ params }: LocaleParams): Promise<Metada
   const t = MESSAGES[lang];
   return {
     metadataBase: new URL(SITE_URL),
-    title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
+    title: { default: t.site.title, template: `%s | ${SITE_NAME}` },
     description: t.site.description,
     applicationName: SITE_NAME,
     authors: [{ name: AUTHOR.name, url: AUTHOR.website }],
     creator: AUTHOR.name,
     keywords: [...t.site.keywords, ...YEAR_KEYS.filter((k) => k !== 'today'), SITE_NAME],
     alternates: { canonical: localePath(lang, '/'), languages: languageAlternates('/') },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 },
+    },
     ...socialMetadata(lang, {
       type: 'website',
-      title: SITE_NAME,
+      title: t.site.title,
       description: t.site.description,
       url: localePath(lang, '/'),
       image: '/img/og/default.jpg',

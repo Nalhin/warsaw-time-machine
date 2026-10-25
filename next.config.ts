@@ -19,6 +19,7 @@ const config: NextConfig = {
         { source: '/pl', has: [{ type: 'query', key: 'at' }], destination: '/pl/view' },
         { source: '/', destination: '/en' },
         { source: '/spots/:id', destination: '/en/spots/:id' },
+        { source: '/about', destination: '/en/about' },
       ],
       afterFiles: [],
       fallback: [],

@@ -7,7 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
-import { AboutDialog } from '@/components/about-dialog';
+import { AboutButton } from '@/components/about-dialog';
 import { LanguageSwitch } from '@/components/language-switch';
 import { LayersMenu } from '@/components/layers-menu';
 import { useLocale, useMessages } from '@/components/locale-provider';
@@ -292,7 +292,7 @@ export function MapApp({ spots }: MapAppProps) {
 
       {map && <CoverageNotice map={map} years={shownYears(state)} />}
 
-      <AboutDialog />
+      <AboutButton />
 
       <div
         className={cn(

@@ -24,7 +24,9 @@ const en = {
   site: {
     description:
       'Compare aerial photos of Warsaw from 1935, 1945 after the destruction, the rebuilding years and today, and see street photos of the same places from the 1920s to today.',
+    title: 'Warsaw Timelapse: aerial photos of Warsaw from 1935 to today',
     heading: 'Warsaw from 1935 to today: historical aerial photos and street photos from every decade',
+    aerialYears: 'Aerial photos on the map',
     places: 'Places',
     ogAlt: 'Warsaw in 1935, 1945 and today, side by side',
     viewTitle: (years: string[]) => `Warsaw from above: ${list(years, 'and')}`,
@@ -51,6 +53,7 @@ const en = {
     fullScreen: 'Full screen',
     gap: (year: string, date: string) => `No photo from around ${year} here; showing ${date}.`,
     allPhotos: 'All photos',
+    nearby: 'Nearby places',
     backToYear: (year: string) => `Back to the map's year (${year})`,
     circa: (year: number) => `c. ${year}`,
     drawerDescription: (name: string) => `Photos of ${name} over the years`,
@@ -102,6 +105,9 @@ const en = {
   about: {
     label: 'About',
     trigger: 'About this map',
+    title: 'About Warsaw Timelapse',
+    description:
+      'Why this map exists: Warsaw before the war, its destruction in 1944–45, the rebuilding from the rubble and Poland’s transformation since 1989, and where the aerial and street photos come from.',
     story: [
       'In 1935 Warsaw was the capital of a country that had been independent for only 17 years, after more than a century of partitions.',
       'During the Second World War around six million Polish citizens were killed. After the 1944 Uprising the Germans destroyed Warsaw street by street. By 1945 about 85% of the historic centre was gone.',
@@ -229,7 +235,9 @@ const pl: Messages = {
   site: {
     description:
       'Porównaj zdjęcia lotnicze Warszawy z 1935 roku, z 1945 roku po zniszczeniach, z lat odbudowy i dzisiejsze, i zobacz zdjęcia tych samych miejsc z poziomu ulicy od lat 20. do dziś.',
+    title: 'Warsaw Timelapse: zdjęcia lotnicze Warszawy od 1935 roku do dziś',
     heading: 'Warszawa od 1935 roku do dziś: historyczne zdjęcia lotnicze i zdjęcia ulic z każdej dekady',
+    aerialYears: 'Zdjęcia lotnicze na mapie',
     places: 'Miejsca',
     ogAlt: 'Warszawa w 1935 i 1945 roku oraz dziś, obok siebie',
     viewTitle: (years) => `Warszawa z lotu ptaka: ${list(years, 'i')}`,
@@ -257,6 +265,7 @@ const pl: Messages = {
     fullScreen: 'Pełny ekran',
     gap: (year, date) => `Brak zdjęcia z okolic roku ${year}; pokazujemy zdjęcie z datą: ${date}.`,
     allPhotos: 'Wszystkie zdjęcia',
+    nearby: 'Miejsca w pobliżu',
     backToYear: (year) => `Wróć do roku z mapy (${year})`,
     circa: (year) => `ok. ${year}`,
     drawerDescription: (name) => `${name}: zdjęcia z różnych lat`,
@@ -308,6 +317,9 @@ const pl: Messages = {
   about: {
     label: 'O projekcie',
     trigger: 'O projekcie',
+    title: 'O projekcie Warsaw Timelapse',
+    description:
+      'Po co powstała ta mapa: przedwojenna Warszawa, jej zniszczenie w latach 1944–45, odbudowa z gruzów i przemiany Polski po 1989 roku, a także skąd pochodzą zdjęcia lotnicze i zdjęcia ulic.',
     story: [
       'W 1935 roku Warszawa była stolicą kraju, który był niepodległy dopiero od 17 lat, po ponad stu latach zaborów.',
       'W czasie drugiej wojny światowej zginęło około sześciu milionów obywateli Polski. Po Powstaniu Warszawskim w 1944 roku Niemcy niszczyli miasto ulica po ulicy. W 1945 roku nie istniało już około 85% historycznego centrum.',

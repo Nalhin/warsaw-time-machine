@@ -1,16 +1,14 @@
 'use client';
 
-import { useMessages } from '@/components/locale-provider';
+import { usePathname, useRouter } from 'next/navigation';
+import { Dialog as DialogPrimitive } from 'radix-ui';
+
+import { useLocale, useMessages } from '@/components/locale-provider';
 import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { DialogFooter } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
-import { AUTHOR, GITHUB_URL, SITE_NAME } from '@/lib/site';
+import { localePath, stripLocale } from '@/lib/i18n';
+import { AUTHOR, GITHUB_URL } from '@/lib/site';
 
 const LOGO_PATHS = {
   github:
@@ -31,21 +29,46 @@ function Logo({ name, className }: LogoProps) {
   );
 }
 
-export function AboutDialog() {
+function useRouteNavigation() {
+  const router = useRouter();
+  const locale = useLocale();
+  return (path: string) => router.push(`${localePath(locale, path)}${location.search}`, { scroll: false });
+}
+
+export function AboutButton() {
   const t = useMessages();
+  const locale = useLocale();
+  const navigate = useRouteNavigation();
+  const isOpen = stripLocale(usePathname() ?? '/') === '/about';
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button
-          type="button"
-          title={t.about.trigger}
-          className="glass fixed top-[calc(12px+env(safe-area-inset-top))] left-3 z-[1000] flex h-[42px] items-center rounded-full px-3.5 text-[0.8rem] font-semibold transition-colors hover:bg-muted data-[state=open]:bg-muted"
-        >
-          <span className="whitespace-nowrap">{t.about.label}</span>
-        </button>
-      </DialogTrigger>
-      <DialogContent aria-describedby={undefined} showCloseButton={false} className="flex max-h-[calc(100dvh-48px)] flex-col overflow-hidden sm:max-w-lg">
-        <DialogTitle className="sr-only">{SITE_NAME}</DialogTitle>
+    <a
+      href={localePath(locale, '/about')}
+      onClick={(e) => {
+        e.preventDefault();
+        navigate('/about');
+      }}
+      title={t.about.trigger}
+      data-state={isOpen ? 'open' : 'closed'}
+      className="glass fixed top-[calc(12px+env(safe-area-inset-top))] left-3 z-[1000] flex h-[42px] items-center rounded-full px-3.5 text-[0.8rem] font-semibold transition-colors hover:bg-muted data-[state=open]:bg-muted"
+    >
+      <span className="whitespace-nowrap">{t.about.label}</span>
+    </a>
+  );
+}
+
+export function AboutPanel() {
+  const t = useMessages();
+  const navigate = useRouteNavigation();
+  return (
+    <DialogPrimitive.Root open onOpenChange={(isOpen) => !isOpen && navigate('/')}>
+      <DialogPrimitive.Overlay className="fixed inset-0 isolate z-50 bg-black/70 duration-100 animate-in fade-in-0" />
+      <DialogPrimitive.Content
+        aria-describedby={undefined}
+        className="fixed top-1/2 left-1/2 z-50 flex max-h-[calc(100dvh-48px)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-hidden rounded-2xl border border-white/14 bg-popover p-5 text-sm text-popover-foreground shadow-[0_24px_60px_rgb(0_0_0/0.55)] duration-150 outline-none animate-in fade-in-0 slide-in-from-bottom-2 sm:max-w-lg"
+      >
+        <DialogPrimitive.Title asChild>
+          <h1 className="sr-only">{t.about.title}</h1>
+        </DialogPrimitive.Title>
 
         <div className="-mx-5 grid min-h-0 gap-3 overflow-y-auto px-5 text-sm leading-relaxed text-foreground/85 [&_a]:text-gold [&_a]:underline-offset-2 hover:[&_a]:underline">
           {t.about.story.map((paragraph) => (
@@ -83,7 +106,7 @@ export function AboutDialog() {
             </a>
           </p>
         </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      </DialogPrimitive.Content>
+    </DialogPrimitive.Root>
   );
 }

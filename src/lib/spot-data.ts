@@ -39,3 +39,16 @@ export const SPOT_IDS = RAW.map((s) => s.id);
 export function getSpot(id: string, locale: Locale) {
   return spotsFor(locale).find((s) => s.id === id);
 }
+
+function distance(a: Spot, b: Spot) {
+  const dLat = a.lat - b.lat;
+  const dLng = (a.lng - b.lng) * Math.cos((a.lat * Math.PI) / 180);
+  return dLat * dLat + dLng * dLng;
+}
+
+export function nearbySpots(spot: Spot, locale: Locale, count = 4) {
+  return spotsFor(locale)
+    .filter((s) => s.id !== spot.id)
+    .sort((a, b) => distance(spot, a) - distance(spot, b))
+    .slice(0, count);
+}
