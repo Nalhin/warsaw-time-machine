@@ -4253,5 +4253,160 @@
         }
       }
     ]
+  },
+  {
+    "id": "palac-na-wyspie",
+    "name": "Palace on the Isle (Łazienki Palace)",
+    "lat": 52.21512,
+    "lng": 21.03582,
+    "kind": "historic",
+    "description": "The Palace on the Isle in Royal Łazienki Park began as a bathhouse built for Prince Stanisław Herakliusz Lubomirski to a design by Tylman Gamerski in the 1680s. Between 1764 and 1795 Domenico Merlini rebuilt it for King Stanisław August Poniatowski into a classicist summer residence standing in the lake. After the Warsaw Uprising the Germans set its interiors on fire and drilled holes in the walls for explosives, but never blew it up. It was rebuilt under Jan Dąbrowski: the ground-floor rooms reopened in 1960 and the first floor in 1965.",
+    "pl": {
+      "name": "Pałac na Wyspie w Łazienkach Królewskich",
+      "description": "Pałac na Wyspie w Łazienkach Królewskich powstał jako łaźnia wzniesiona w latach 80. XVII wieku dla księcia Stanisława Herakliusza Lubomirskiego według projektu Tylmana z Gameren. W latach 1764–1795 Domenico Merlini przebudował ją dla króla Stanisława Augusta Poniatowskiego na klasycystyczną letnią rezydencję stojącą w stawie. Po upadku Powstania Warszawskiego Niemcy podpalili wnętrza pałacu i nawiercili w ścianach otwory na ładunki wybuchowe, ale nie wysadzili go. Pałac odbudowano pod kierunkiem Jana Dąbrowskiego: sale na parterze udostępniono w 1960 roku, a piętro w 1965."
+    },
+    "og": "/img/og/palac-na-wyspie.jpg",
+    "photos": [
+      {
+        "src": "/img/places/palac-na-wyspie/1930-1.jpg",
+        "pin": "/img/places/palac-na-wyspie/1930-1p.jpg",
+        "year": 1930,
+        "date": "c. 1930",
+        "approx": true,
+        "ratio": 1.6757,
+        "caption": "The south façade across the pond, reflected in the water",
+        "pl": {
+          "caption": "Fasada południowa za stawem, odbita w wodzie"
+        },
+        "credit": {
+          "author": "Unknown",
+          "date": "c. 1930",
+          "licence": "Public domain (PD-anon-70-EU)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-anon-70-EU",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:BASA-1771K-1-1163-40%D0%B0-%C5%81azienki_Park.jpeg"
+        }
+      },
+      {
+        "src": "/img/places/palac-na-wyspie/1932-1.jpg",
+        "pin": "/img/places/palac-na-wyspie/1932-1p.jpg",
+        "year": 1932,
+        "date": "1932-10-26",
+        "approx": false,
+        "ratio": 1.4842,
+        "caption": "The palace across the pond in autumn",
+        "pl": {
+          "caption": "Pałac za stawem jesienią"
+        },
+        "credit": {
+          "author": "Narcyz Witczak-Witaczyński",
+          "date": "1932-10-26",
+          "licence": "Public domain (PD-old-80)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-old-80",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Narcyz_Witczak-Witaczy%C5%84ski_-_%C5%81azienki_Kr%C3%B3lewskie_w_Warszawie_(107-480-1).jpg"
+        }
+      },
+      {
+        "src": "/img/places/palac-na-wyspie/1944-1.jpg",
+        "pin": "/img/places/palac-na-wyspie/1944-1p.jpg",
+        "year": 1944,
+        "date": "1944",
+        "approx": true,
+        "ratio": 1.4248,
+        "caption": "The burnt-out south façade after the Germans set the palace on fire",
+        "pl": {
+          "caption": "Wypalona fasada południowa po podpaleniu pałacu przez Niemców"
+        },
+        "credit": {
+          "author": "Unknown",
+          "date": "1944",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pa%C5%82ac_na_Wodzie_1944.jpg"
+        }
+      },
+      {
+        "src": "/img/places/palac-na-wyspie/1945-1.jpg",
+        "pin": "/img/places/palac-na-wyspie/1945-1p.jpg",
+        "year": 1945,
+        "date": "1945",
+        "approx": false,
+        "ratio": 1.5295,
+        "caption": "The gutted palace across the pond after the war",
+        "pl": {
+          "caption": "Wypalony pałac za stawem po wojnie"
+        },
+        "credit": {
+          "author": "Unknown",
+          "date": "1945",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:View_of_%C5%81azienki_Palace_after_war_dammage_(391852493317).jpg"
+        }
+      },
+      {
+        "src": "/img/places/palac-na-wyspie/1984-1.jpg",
+        "pin": "/img/places/palac-na-wyspie/1984-1p.jpg",
+        "year": 1984,
+        "date": "c. 1984",
+        "approx": true,
+        "ratio": 1.4227,
+        "caption": "Art historian Marek Kwiatkowski, the palace's curator since 1960, in front of the rebuilt palace",
+        "pl": {
+          "caption": "Historyk sztuki Marek Kwiatkowski, kustosz pałacu od 1960 roku, przed odbudowanym pałacem"
+        },
+        "credit": {
+          "author": "M. Sokołowski",
+          "date": "c. 1984",
+          "licence": "Public domain (PD-Poland)",
+          "licenceUrl": "https://commons.wikimedia.org/wiki/Template:PD-Poland",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marek_Kwiatkowski_Pa%C5%82ac_Na_Wyspie_1984.jpg"
+        }
+      },
+      {
+        "src": "/img/places/palac-na-wyspie/2008-1.jpg",
+        "pin": "/img/places/palac-na-wyspie/2008-1p.jpg",
+        "year": 2008,
+        "date": "2008-06-10",
+        "approx": false,
+        "ratio": 1.3913,
+        "caption": "The south façade seen from the terrace in front of it, with the fountain",
+        "pl": {
+          "caption": "Fasada południowa widziana z tarasu przed pałacem, z fontanną na pierwszym planie"
+        },
+        "credit": {
+          "author": "Miłośnik Podróży",
+          "date": "2008-06-10",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Palace_on_the_Isle_in_Lazienki_Park_Warsaw_2008.jpg"
+        }
+      },
+      {
+        "src": "/img/places/palac-na-wyspie/2023-1.jpg",
+        "pin": "/img/places/palac-na-wyspie/2023-1p.jpg",
+        "year": 2023,
+        "date": "2023-04-14",
+        "approx": false,
+        "ratio": 1.4801,
+        "caption": "The south façade across the pond today",
+        "pl": {
+          "caption": "Fasada południowa za stawem dziś"
+        },
+        "credit": {
+          "author": "Adrian Grycuk",
+          "date": "2023-04-14",
+          "licence": "CC BY 3.0 pl",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/pl/deed.en",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pa%C5%82ac_Na_Wyspie_w_Warszawie_2023.jpg"
+        }
+      }
+    ]
   }
 ]
