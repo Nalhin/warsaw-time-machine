@@ -1,5 +1,6 @@
 'use client';
 
+import { X } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Dialog as DialogPrimitive } from 'radix-ui';
 
@@ -66,9 +67,16 @@ export function AboutPanel() {
         aria-describedby={undefined}
         className="fixed top-1/2 left-1/2 z-50 flex max-h-[calc(100dvh-48px)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-hidden rounded-2xl border border-white/14 bg-popover p-5 text-sm text-popover-foreground shadow-[0_24px_60px_rgb(0_0_0/0.55)] duration-150 outline-none animate-in fade-in-0 slide-in-from-bottom-2 sm:max-w-lg"
       >
-        <DialogPrimitive.Title asChild>
-          <h1 className="sr-only">{t.about.title}</h1>
-        </DialogPrimitive.Title>
+        <header className="flex items-start justify-between gap-3">
+          <DialogPrimitive.Title asChild>
+            <h1 className="min-w-0 font-heading text-xl leading-tight font-semibold tracking-tight">{t.about.title}</h1>
+          </DialogPrimitive.Title>
+          <DialogPrimitive.Close asChild>
+            <Button variant="outline" size="icon" className="-mt-1 shrink-0" aria-label={t.about.close}>
+              <X />
+            </Button>
+          </DialogPrimitive.Close>
+        </header>
 
         <div className="-mx-5 grid min-h-0 gap-3 overflow-y-auto px-5 text-sm leading-relaxed text-foreground/85 [&_a]:text-gold [&_a]:underline-offset-2 hover:[&_a]:underline">
           {t.about.story.map((paragraph) => (

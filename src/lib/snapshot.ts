@@ -71,6 +71,8 @@ const BG = '#1a1b1e';
 const PILL_BG = 'rgba(17, 18, 20, 0.84)';
 const PILL_FG = '#f3efe7';
 const GOLD = '#e3b667';
+const SNAPSHOT_YEAR_SIZE = 40;
+const TIMELAPSE_YEAR_SIZE = 64;
 
 type Rect = [x: number, y: number, width: number, height: number];
 
@@ -153,9 +155,10 @@ function fontFamily(variable: string, fallback: string) {
   return family ? `${family}, ${fallback}` : fallback;
 }
 
-function pill(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, s: number, align: 'left' | 'right') {
-  const padX = 16 * s;
-  const h = 46 * s;
+function pill(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, size: number, sans: string, align: 'left' | 'right') {
+  ctx.font = `600 ${size}px ${sans}`;
+  const padX = size * 0.6;
+  const h = size * 1.7;
   ctx.textBaseline = 'alphabetic';
   ctx.textAlign = 'left';
   const ink = ctx.measureText(text);
@@ -277,13 +280,13 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
   ctx.fillStyle = BG;
   ctx.fillRect(0, 0, W, H);
   const margin = 28 * s;
+  const yearSize = SNAPSHOT_YEAR_SIZE * s;
   const line = Math.max(2, Math.round(3 * s));
 
   if (o.years.length === 1) {
     ctx.drawImage(await fullPanel(o, o.years[0], W, H), 0, 0);
     drawFooter(ctx, o, W, H, s, sans);
-    ctx.font = `600 ${26 * s}px ${sans}`;
-    pill(ctx, o.yearLabels[0], margin, margin, s, 'left');
+    pill(ctx, o.yearLabels[0], margin, margin, yearSize, sans, 'left');
     return out;
   }
 
@@ -296,8 +299,7 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
     ctx.fillStyle = '#fff';
     if (isStacked) ctx.fillRect(0, rects[1][1] - line / 2, W, line);
     else ctx.fillRect(rects[1][0] - line / 2, 0, line, H);
-    ctx.font = `600 ${26 * s}px ${sans}`;
-    rects.forEach(([x, y], i) => pill(ctx, o.yearLabels[i], x + margin, y + margin, s, 'left'));
+    rects.forEach(([x, y], i) => pill(ctx, o.yearLabels[i], x + margin, y + margin, yearSize, sans, 'left'));
     return out;
   }
 
@@ -322,11 +324,10 @@ export async function renderSnapshot(o: SnapshotOptions): Promise<HTMLCanvasElem
   if (o.isHorizontal) drawHandle(ctx, W / 2, split, s, true);
   else drawHandle(ctx, split, H / 2, s, false);
 
-  ctx.font = `600 ${26 * s}px ${sans}`;
   const [a, b] = o.yearLabels;
-  pill(ctx, a, margin, margin, s, 'left');
-  if (o.isHorizontal) pill(ctx, b, margin, split + margin, s, 'left');
-  else pill(ctx, b, W - margin, margin, s, 'right');
+  pill(ctx, a, margin, margin, yearSize, sans, 'left');
+  if (o.isHorizontal) pill(ctx, b, margin, split + margin, yearSize, sans, 'left');
+  else pill(ctx, b, W - margin, margin, yearSize, sans, 'right');
   return out;
 }
 
@@ -356,7 +357,8 @@ export async function renderTimelapse(o: TimelapseOptions, onProgress: (done: nu
     const still = hold - fades.length / FPS + (i === o.years.length - 1 ? hold : 0);
     return [...fades, { i, mix: 1, duration: still }];
   });
-  const margin = 28 * s;
+  const margin = 36 * s;
+  const yearSize = TIMELAPSE_YEAR_SIZE * s;
 
   try {
     let timestamp = 0;
@@ -373,8 +375,7 @@ export async function renderTimelapse(o: TimelapseOptions, onProgress: (done: nu
       ctx.drawImage(current, 0, 0);
       ctx.globalAlpha = 1;
       drawFooter(ctx, o, W, H, s, sans);
-      ctx.font = `600 ${26 * s}px ${sans}`;
-      pill(ctx, o.yearLabels[mix < 0.5 ? i - 1 : i], margin, margin, s, 'left');
+      pill(ctx, o.yearLabels[mix < 0.5 ? i - 1 : i], margin, margin, yearSize, sans, 'left');
 
       await source.add(timestamp, duration);
       timestamp += duration;

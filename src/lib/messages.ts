@@ -105,6 +105,7 @@ const en = {
   about: {
     label: 'About',
     trigger: 'About this map',
+    close: 'Close',
     title: 'About Warsaw Timelapse',
     description:
       'Why this map exists: Warsaw before the war, its destruction in 1944–45, the rebuilding from the rubble and Poland’s transformation since 1989, and where the aerial and street photos come from.',
@@ -317,6 +318,7 @@ const pl: Messages = {
   about: {
     label: 'O projekcie',
     trigger: 'O projekcie',
+    close: 'Zamknij',
     title: 'O projekcie Warsaw Timelapse',
     description:
       'Po co powstała ta mapa: przedwojenna Warszawa, jej zniszczenie w latach 1944–45, odbudowa z gruzów i przemiany Polski po 1989 roku, a także skąd pochodzą zdjęcia lotnicze i zdjęcia ulic.',
