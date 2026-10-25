@@ -1,6 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 import '@/app/globals.css';
 
+import { Analytics } from '@vercel/analytics/next';
 import type { Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -36,6 +37,7 @@ export function AppShell({ locale, children }: AppShellProps) {
             <div className="isolate">{children}</div>
           </TooltipProvider>
         </LocaleProvider>
+        <Analytics />
       </body>
     </html>
   );
